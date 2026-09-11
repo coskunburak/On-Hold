@@ -1,0 +1,448 @@
+ASKIDA KNOWLEDGE SNAPSHOT v0.1.0
+VOLUME: 02/10
+SNAPSHOT: 3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4
+STATUS: PROPOSED; GAME TESTS NOT RUN; READ-ONLY DERIVED COPY.
+Canonical Markdown documents remain the source of truth.
+
+DOCUMENT: ASK-009
+PATH: docs/00_foundation/009_decision_register.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 46993e3f5ed95faaac0c9b3870d60c84dbaca618d8b6fbe6014e48d93d99a365
+
+---
+doc_id: ASK-009
+title: "Karar kaydı ve onay bekleyenler"
+version: 0.1.0
+status: proposed
+owner_role: Producer
+last_reviewed: 2026-09-07
+dependencies: ["ASK-004","ASK-026","ASK-046","ASK-071","ASK-080"]
+---
+
+# Karar kaydı ve onay bekleyenler
+
+## Durum dili
+Kullanıcı ihtiyacı doğrulanmış olabilir; çözümün onaylandığı anlamına gelmez. Bu sürümde aşağıdaki ADR'lerin tamamı PROPOSED durumundadır. “Önerilen temel” üzerinden belgeler tutarlı yazılmıştır. Onay sahibi, tarih ve kanıt girilmeden APPROVED yapılmaz.
+
+| ADR | Önerilen temel | Onay için kanıt |
+|---|---|---|
+| ADR-ENGINE | Unity 6 + URP; tam sürüm kilidi bekliyor | Host/client fizik spike ve araç becerisi |
+| ADR-NET | Listen-server, host otoritesi; framework açık | NGO/transport entegrasyon testi |
+| ADR-CAMERA | İlk kişi, kamera roll kapalı | Konfor ve yük okuma testi |
+| ADR-ART | Quaternius şehir çekirdeği + özel araçlar | Ortak stil doğrulama sahnesi |
+| ADR-SESSION | 2–4 arkadaş, tur içi yeni oyuncu yok | Kopma/yükleme akışı |
+| ADR-SAVE | Host kampanyası, tur sonu atomik kayıt | Çökme/tekrar ödeme testleri |
+| ADR-PLATFORM | Kontrollü eğim, görsel halat | Uzak istemcide ortak taşıma |
+| ADR-SCOPE | 3 bina / 12 sözleşme üst hedef | Slice içerik üretim hızı |
+| ADR-BUDGET | Ekip ve nakit bütçesi belirlenmedi | Kullanıcı girdisi |
+| ADR-HARDWARE | 1080p/60 hedef hipotezi; cihaz açık | Referans cihaz listesi |
+| ADR-AI | Kod destekli Blender üretimi, insan QA | Lisanslı örnek varlığın kabulü |
+
+## Birlikte cevaplayacağımız sorular
+Kaç kişi hangi rollerde haftada kaç saat çalışacak? Unity ve Unreal deneyimin hangisinde daha yüksek? İlk altı ay nakit üst sınırı nedir? Referans minimum PC hangi gerçek cihaz olacak? Sanat için düşük bütçeli özel üretim ayrılabilir mi? İlk dil ve dağıtım bölgeleri nedir? Bu cevaplar alınmadan tarih ve harcama kesinleştirilmez.
+
+## ADR şablonu
+Kimlik; problem; bağlam; seçenekler; seçilen öneri; reddedilen alternatiflerin gerekçesi; geçiş maliyeti; ölçülebilir kapı; karar sahibi; onay tarihi; etkilenmiş ASK/REQ/TC/W kimlikleri; yeniden değerlendirme koşulu.
+
+## Değişiklik örneği
+Unreal seçilirse oyun kuralları büyük ölçüde korunur, ancak ASK-026–045'in Unity uygulama ayrıntıları yeniden yazılır. Bu arşiv aynı anda iki motorun üretim planı değildir. Sadece isimleri değiştirerek tam destek iddia edilemez.
+
+## Kabul
+Bir Codex görevi karar durumu okuyarak “uygula” ile “karşılaştır ve öner” işlerini ayırabilmelidir. Onaylanmamış varsayımlar kullanıcıya kesin karar olarak aktarılmamalıdır.
+
+## Gereksinim ve test izleri
+- REQ-001 → TC-001 — Motor ve sürüm kararı kanıtla seçilmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-004 — Proje bildirgesi ve başarı tanımı](004_project_charter.md)
+- [ASK-026 — Ağ çözümü seçimi ve risk prototipi](../02_network/026_network_adr_spike.md)
+- [ASK-046 — Sanat yönetimi ve paket uyumu](../04_art/046_art_direction.md)
+- [ASK-071 — Üretim yol haritası ve kapasite senaryoları](../07_production/071_roadmap_capacity.md)
+- [ASK-080 — Kaynaklar, doğrulama sınırları ve açık kanıtlar](../08_knowledge/080_sources_evidence_limits.md)
+
+
+
+DOCUMENT: ASK-010
+PATH: docs/00_foundation/010_glossary_parameters.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: b50060b42e964ef34bc2fa33b3740852f245fceb690859a0326e583374bdd346
+
+---
+doc_id: ASK-010
+title: "Sözlük, birimler ve başlangıç parametreleri"
+version: 0.1.0
+status: proposed
+owner_role: GameDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-016","ASK-018","ASK-022","ASK-030","ASK-065"]
+---
+
+# Sözlük, birimler ve başlangıç parametreleri
+
+## Normatif terimler
+ContractDefinition içerik tanımıdır; ContractRun tek oynanış denemesidir. ItemDefinition aynı türün tasarım verisi; ItemInstance dünyadaki tek örnektir. Authority sonucu belirleyen host sürecidir; Ownership ağ kütüphanesindeki nesne sahipliği olabilir ve oyun yetkisiyle eş anlamlı değildir. Holder eşyayı tutan oyuncudur; Driver vinç kontrol kiralamasını alan kişidir. Supported eşyanın platform tarafından taşındığı sınıflandırmadır. Secured geçerli sabitleme bağlantısı bulunan taşıma durumudur. Revision her kabul edilmiş durum değişiminin artan sürümüdür. SessionEpoch eski oturum mesajlarını ayırır.
+
+## Merkezi başlangıç değerleri
+Aşağıdaki rakamlar ölçülmüş sonuç veya motor garantisi değildir. data/parameters.json aynı kimlikleri taşır; uyuşmazlıkta değişiklik incelemesi gerekir.
+
+| Parametre | Başlangıç önerisi | Birim / gerekçe |
+|---|---:|---|
+| P-PHYSICS-HZ | 50 | Hz; 0,02 s adım |
+| P-SNAPSHOT-HZ | 20 | Hz; spike ile ayarlanır |
+| P-RECONNECT-SEC | 60 | s; mevcut yuva rezervi |
+| P-HOLDERS-MAX | 2 | oyuncu/eşya |
+| P-PLAYER-MASS | 80 | kg; görünümden bağımsız |
+| P-DECK-WIDTH | 2,4 | m; blockout |
+| P-DECK-DEPTH | 1,8 | m; blockout |
+| P-TILT-MAX | 12 | derece; kontrollü sınır |
+| P-DELIVERY-DWELL | 1,0 | s; kesintisiz kararlılık |
+| P-DELIVERY-SPEED | 0,15 | m/s; merkez doğrusal hız üstü |
+| P-DELIVERY-ANGULAR | 5 | derece/s; açısal hız üstü |
+| P-INTEGRITY-MIN | 20 | /100 teslimat alt sınırı |
+| P-RECOVERY-MAX | 2 | eşya başına dünya dışı kurtarma |
+| P-RECOVERY-PENALTY | 15 | s; kalan görev süresinden |
+| P-WINCH-SECURE-SPEED | 0,05 | m/s; sabitleme için |
+| P-TARGET-FPS | 60 | 1080p hedef hipotezi |
+
+## Birim sözleşmesi
+Unity içinde metre, kilogram, saniye kullanılır. Açısal hız API'sinin rad/s değeri sınır denetiminden önce birim dönüşümü yapar; tasarım tablosunda derece/s tutulur. Zamanlayıcılar istemci duvar saatinden değil host monotonik simülasyon zamanından hesaplanır. Dosya/şema kimlikleri ASCII; oyuncuya görünen metinler yerelleştirme anahtarıdır.
+
+## Sayı değişikliği
+Bir parametreyi değiştirince ilişkili fizik, ağ ve UX testinin tekrar koşulacağı kayda yazılır. “60 FPS” her cihaz sözü değildir; referans donanım ADR-HARDWARE ile seçilecektir. Fizik frekansı ile render kare hızı aynı şey değildir.
+
+## İlgili kaynak belgeler
+- [ASK-016 — Eşya semantiği ve değişmezler](../01_gameplay/016_item_state_model.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](../01_gameplay/018_platform_balance.md)
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](../01_gameplay/022_delivery_scoring.md)
+- [ASK-030 — Gecikme, öngörü ve düzeltme sınırları](../02_network/030_latency_prediction.md)
+- [ASK-065 — Performans hedefi ve ölçüm disiplini](../06_quality/065_performance_targets.md)
+
+
+
+DOCUMENT: ASK-011
+PATH: docs/01_gameplay/011_core_loop.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 2e12837d946ad3a7792af53ed6bad825872975104c3325350a13b36c607bd4f7
+
+---
+doc_id: ASK-011
+title: "Temel oyun döngüsü ve zaman çizgisi"
+version: 0.1.0
+status: proposed
+owner_role: GameDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-012","ASK-018","ASK-022","ASK-023","ASK-024"]
+---
+
+# Temel oyun döngüsü ve zaman çizgisi
+
+## Bir sözleşmenin akışı
+Hazırlık → rota keşfi → eşyayı alma → platforma yerleştirme → dengeleme/sabitleme → kaldırma → boşaltma → teslimat → sonuç. Oyuncuların bu sırayı her eşya için aynı anda uygulaması gerekmez; bir kişi sonraki eşyayı hazırlarken diğerleri mevcut yükü taşıyabilir. İlerleme host tarafından yönetilen görev hedeflerine bağlıdır, animasyonun bitiş olayına değil.
+
+## Hazırlık
+Brifing binayı, zorunlu eşyaları, teslimat bölgesini ve süreyi gösterir. V1'de alınması zorunlu ücretli ekipman yoktur; temel platform ve kayışlar görevle birlikte gelir. Oyuncu hazır olmadan süre başlamaz. Yükleme tamamlandıktan sonra mevcut oyuncuların hazır işaretleri veya host'un açık başlatma kararı gerekir; yüklemesi tamamlanmamış istemci Active içine zorla sokulmaz.
+
+## Aktif tur
+10–15 dakikalık sözleşme süresi tasarım hipotezidir; ilk öğretici bundan daha kısa olabilir. Kalan süre host zamanından gösterilir. Eşyalar önceden yerleştirilmiş, bilinen ölçü ve kütle sınıfındadır. Oyuncu serbestçe rol değiştirir; tur ortasında görev tanımı, oyuncu sayısına göre gizlice değişmez.
+
+## Bitiş
+Süre dolunca veya geçerli erken bitirme oyu kabul edilince Settling başlar. Yeni tutma, sabitleme ve teslimat komutları kapatılır. Aynı host tick'inde zaman aşımı ile teslimat çakışırsa tick başında süre sıfıra ulaşmışsa zaman aşımı önceliklidir; önceki tick'te tamamlanan teslimat korunur. Sonuç bir kez hesaplanır ve kayıt katmanına tek işlem olarak sunulur.
+
+## Eğlence ölçümü
+Her 60–90 saniyede bir anlamlı koordinasyon fırsatı hedeflenebilir fakat zorunlu olay zamanlayıcısıyla sahte kaos yaratılmaz. Testte oyuncuların ne kadar süre aktif karar verdiği, boş beklediği, arayüz aradığı ve tekrar aynı yolu yürüdüğü ayrı işaretlenir. Vincin yanında bekleyen oyuncuya ikinci kontrol paneli eklemek yerine rol değişimini ve yük hazırlama alanını iyileştirmek önce denenir.
+
+## Kabul senaryosu
+İlk ekip brifingden sonuca destek almadan ulaşır; en az bir kurtarma davranışını kendisi keşfeder; host ve istemci aynı teslimat sayısını görür. Teknik testin geçmesi deneyim testinin geçtiği anlamına gelmez.
+
+## Gereksinim ve test izleri
+- REQ-013 → TC-013 — Bitiş sırası ve kısmi ödül tutarlı olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-012 — Oturum ve görev durum makinesi](012_session_state_machine.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](018_platform_balance.md)
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](022_delivery_scoring.md)
+- [ASK-023 — Sözleşme tanımı, başarı ve bitirme](023_contract_rules.md)
+- [ASK-024 — İlerleme ve küçük ölçekli ekonomi](024_progression_economy.md)
+
+
+
+DOCUMENT: ASK-012
+PATH: docs/01_gameplay/012_session_state_machine.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 2d95f938d2ce01c335a0b4e294e7f8703095d78c9da17a2e43b529ecf4ce4b0c
+
+---
+doc_id: ASK-012
+title: "Oturum ve görev durum makinesi"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-011","ASK-031","ASK-032","ASK-033"]
+---
+
+# Oturum ve görev durum makinesi
+
+## Ayrı yaşam döngüleri
+Uygulama bağlantısı, görev durumu ve eşya durumu farklı makineler olmalıdır. Bağlantının kopması ContractRun kimliğini otomatik değiştirmez. Bir item Lost olduğu için oturum Failed durumuna atlanmaz; görev hedefleri değerlendirilir.
+
+| Durum | Giriş işi | Çıkış önkoşulu |
+|---|---|---|
+| Lobby | Yuvalar, build/content uyumu | Host başlatır; 2–4 uyumlu oyuncu |
+| Loading | Sahne ve ağ nesneleri hazırlanır | Başlayacak tüm oyuncular hazır |
+| Briefing | Manifest, rota ve kontroller | Hazır kontrolü ve host başlatma |
+| Active | Host zamanlayıcı ve kurallar | Süre veya geçerli bitirme isteği |
+| Settling | Komutları kapat, sonucu üret, kaydet | Kalıcı kayıt sonucu belli |
+| Results | Özet ve hata varsa güvenli seçenek | Host devam eder |
+| Hub | Yükseltme ve sonraki seçim | Yeni görev seçilir |
+
+## Geçiş sahipliği
+Yalnız SessionCoordinator host üzerinde geçiş yapar. UI “start” niyeti üretir; sahneyi doğrudan yüklemez. Her geçiş transitionId, epoch, önceki/yeni durum ve host tick taşır. Tekrar gelen bildirim aynı geçişi ikinci kez işletmez. Giriş/çıkış işlemleri iptal edilebilir ve idempotent tasarlanır.
+
+## Yükleme hataları
+Bir istemci zaman aşımına uğrarsa host'a o oyuncuyu lobide bırakma veya yüklemeyi iptal etme seçeneği verilir; sessizce eksik oyuncuyla Active başlatılmaz. Başlangıçta ikiden az uyumlu oyuncu varsa tur başlatılamaz. Active sırasında tek oyuncu kalması yeni başlangıç değildir; ASK-032 kuralı uygulanır.
+
+## Settling güvenliği
+Kaydetme başarısızsa sonuç RAM'de tutulur, aynı işlem kimliğiyle yeniden deneme yapılır. Kullanıcıya “kaydedildi” gösterilmez. Tekrar deneme yeni gelir hesabı yaratmaz. Uygulama kapanırsa önceki kalıcı checkpoint'e dönülebileceği açıkça belirtilir.
+
+## Test
+Her geçişte bağlantı kesme, sahne yükleme hatası ve yinelenen mesaj uygulanır. ContractRun başına en fazla bir sonuç ve en fazla bir commit beklenir. Tanı ekranında durum adı ve son geçiş nedeni bulunur; bunlar oyuncuya ham hata yığını olarak gösterilmez.
+
+## Gereksinim ve test izleri
+- REQ-015 → TC-015 — Lobi ve content handshake uyumlu olmalı
+- REQ-021 → TC-021 — Sahne yaşam döngüsü kaynak sızdırmamalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-011 — Temel oyun döngüsü ve zaman çizgisi](011_core_loop.md)
+- [ASK-031 — Lobi, Steam daveti ve bağlantı akışı](../02_network/031_lobby_steam_connectivity.md)
+- [ASK-032 — Kopma, yeniden bağlanma ve host kaybı](../02_network/032_disconnect_reconnect_hostloss.md)
+- [ASK-033 — Kampanya işlemleri ve kayıt otoritesi](../02_network/033_campaign_transaction.md)
+
+
+
+DOCUMENT: ASK-013
+PATH: docs/01_gameplay/013_controls_camera.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 0413ae16b1792547333806235cdcb47e16b0f8a8cead62d3d3ee802c72acdc16
+
+---
+doc_id: ASK-013
+title: "Kontroller, kamera ve giriş niyetleri"
+version: 0.1.0
+status: proposed
+owner_role: UX
+last_reviewed: 2026-09-07
+dependencies: ["ASK-015","ASK-017","ASK-019","ASK-052","ASK-063"]
+---
+
+# Kontroller, kamera ve giriş niyetleri
+
+## Varsayılan eşleme önerisi
+WASD hareket, fare bakış, E bağlamsal etkileşim, basılı sol tuş tutma, tuş bırakma bırakma, R sabitleme arayüzü, Q ping, Tab görev panosu, Esc menü. Bunlar dondurulmuş kontroller değildir. Gamepad eylemleri aynı semantik Action kimliklerine bağlanır; fizik kodu belirli klavye tuşu okumaz. Tutma için toggle seçeneği erişilebilirlik kapsamında desteklenir.
+
+## Öncelik
+Modal menü → arayüz odağı → vinç kontrol modu → eşya etkileşimi → boş el hareketi. Aynı giriş aynı karede hem UI onayı hem eşya bırakma üretmez. Menü açıldığında güvenli Release isteği gönderilir; istemci kaybolursa host ayrıca holder temizliği yapar. Menü çevrimiçi dünyayı durdurmaz; oyuncuya açık gösterilir.
+
+## Kamera
+İlk kişi kamera başı fiziksel rigidbody zincirine bağlanmaz. Platform pitch/roll bilgisi dünya ve ufuk ilişkisiyle görünür, kamera roll zorlaması kapalıdır. Görüş alanı, fare hassasiyeti, ters eksen, kamera sarsıntısı ve hareket azaltma ayrı ayarlanır. FOV aralığı ilk testte 70–100 dikey/yatay tanımı açık bir seçenek olarak belirlenmelidir; Unity kamera FOV birimiyle UI metni tutarlı olur, rastgele aynı rakam kopyalanmaz.
+
+## Eşya tutma sırasında
+Oyuncu elleriyle gerçekçi rig görünümü isterken kontrolü kaybetmemelidir. Tutma hedefi kamera önündeki sınırlı hacimde hesaplanır; duvar arkasına geçemez. Yük kamera içine sokulursa hedef mesafesi sınırlandırılır ve eşya saydamlaştırma yalnız yerel görsel çözüm olarak değerlendirilir; collider silinmez.
+
+## Kontrol kabulü
+Yeniden bağlanabilir tuşlar çakışma uyarısı verir; gamepad çıkarılması menüyü erişilemez bırakmaz; odak kaybı sonsuz tutma üretmez. İlk oyuncu ağ gecikmesini “tuş çalışmadı” sanmamalı: niyet bekliyor, kabul ve ret için farklı kısa geri bildirim vardır. Erişim reddi eşyayı yerel olarak kesin tutulmuş göstermez.
+
+## Gereksinim ve test izleri
+- REQ-035 → TC-035 — Erişim ayarları temel görevi desteklemeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-015 — Etkileşim sorgusu ve komut sözleşmesi](015_interaction_contract.md)
+- [ASK-017 — Ortak taşıma ve kuvvet modeli](017_shared_carrying.md)
+- [ASK-019 — Vinç kontrolü ve kontrol kiralaması](019_winch_control.md)
+- [ASK-052 — Animasyon grafiği ve gerekli klipler](../04_art/052_animation_graph.md)
+- [ASK-063 — Erişilebilirlik ve kamera konforu](../05_content/063_accessibility.md)
+
+
+
+DOCUMENT: ASK-014
+PATH: docs/01_gameplay/014_cooperation_roles.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 8c03fc6f7dd0da074a667278194e86ab04388561efbaaeec74a94755fafdc2f4
+
+---
+doc_id: ASK-014
+title: "Co-op roller ve oyuncu sayısı ölçekleme"
+version: 0.1.0
+status: proposed
+owner_role: GameDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-017","ASK-018","ASK-019","ASK-023"]
+---
+
+# Co-op roller ve oyuncu sayısı ölçekleme
+
+## Roller sınıf değildir
+Taşıyıcı, dengeleyici, vinç operatörü ve rota gözcüsü anlık görevlerdir. Karakter seçimi kütle veya beceri avantajı vermez. Aynı oyuncu eşyayı bıraktıktan sonra vinci devralabilir. Zorunlu mikrofon yoktur; yön, durdur, yardıma gel ve eşya pingleri bütün çekirdek çağrıları karşılar.
+
+## İki kişi
+İki oyuncu ağır eşyayı birlikte yerleştirir; sabitler; biri vinci kullanırken diğeri denge/rota kontrolü yapar. Vince erişmek için yükü güvensiz biçimde bırakmak zorunlu olmamalıdır. Güvenli park ve sabitleme bu yüzden temel mekaniktir. Bir eşya mutlaka üç veya dört el gerektiremez; v1 bütün zorunlu görevler iki kişiyle tamamlanabilir.
+
+## Üç ve dört kişi
+Ek oyuncular hazırlık, denge ve sonraki yük görevleriyle paralellik sağlar. Bir eşyada en fazla iki holder bulunur; üçüncü kişi serbest itme veya denge işi yapar. Fazladan oyuncu otomatik üç kat kuvvet vermez. Dar geçitte dört kişinin birbirini sürekli kilitlemesi eğlence hedefi değildir; karakter-karakter çarpışması yumuşak çözüm veya uygun collision layer ile spike'ta denenir.
+
+## Zorluk sabitleme
+Başlangıç oyuncu sayısı ContractRun'a kaydedilir. Gerekli adet, süre ve isteğe bağlı hedefler bu sayıya göre tanımdan seçilebilir; Active sırasında kopmayla yeniden ölçeklenmez. Aksi durumda ayrılıp girerek ödül sömürüsü oluşabilir. Ancak iki kişilik uygulanabilir rota her konfigürasyonun temelidir.
+
+## Toksik davranışa sınır
+Host lobi erişimini ve oyuncu çıkarma yetkisini yönetir. Çıkarma holder/driver haklarını hemen temizler. V1 arkadaş odaklıdır; bu, istemcinin para veya teleport yetkisi olması anlamına gelmez. Oyuncuların birbirini sonsuz kilitlemesine izin veren tutma/sabitleme kilitleri süreli ve kurtarılabilir olmalıdır.
+
+## Kabul
+İki kişilik testte hiçbir anda üçüncü kişi zorunluluğu oluşmaz. Dört kişilik testte her oyuncu görev boyunca anlamlı iş bulur. Ortalama bekleme süresi ve tek oyuncunun baskın iş oranı gözlemle kaydedilir, test yapılmadan “dengeli” denmez.
+
+## İlgili kaynak belgeler
+- [ASK-017 — Ortak taşıma ve kuvvet modeli](017_shared_carrying.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](018_platform_balance.md)
+- [ASK-019 — Vinç kontrolü ve kontrol kiralaması](019_winch_control.md)
+- [ASK-023 — Sözleşme tanımı, başarı ve bitirme](023_contract_rules.md)
+
+
+
+DOCUMENT: ASK-015
+PATH: docs/01_gameplay/015_interaction_contract.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: e4fd36b0bf1739a04c97befc75b809382848ec99a46abd877b99f83360e3452c
+
+---
+doc_id: ASK-015
+title: "Etkileşim sorgusu ve komut sözleşmesi"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-016","ASK-017","ASK-020","ASK-027","ASK-028"]
+---
+
+# Etkileşim sorgusu ve komut sözleşmesi
+
+## Sorgu ile işlem ayrımı
+İstemci yakın etkileşim adaylarını gösterir; son kabul host'a aittir. Görünür prompt bir garanti değildir. Query sonucu actorId, targetId, actionId, görülen revision, izin durumu ve kullanıcıya çevrilebilir reasonCode içerir. Execute aynı önkoşulları host üzerinde yeniden değerlendirir.
+
+## Ortak doğrulama sırası
+Oturum Active mı? Bağlantı doğrulanmış oyuncuya mı ait? Hedef bu epoch içinde var mı? Komut türü bu nesnede destekleniyor mu? Mesafe ve görüş/erişim yolu geçerli mi? Hedef terminal durumda mı? Rol/holder/driver koşulu sağlanıyor mu? Hız limiti ve payload sonlu/sınırlar içinde mi? Ancak bundan sonra atomik durum değişimi yapılır. İstemcinin gönderdiği mesafe veya kütle güvenilir değildir.
+
+## Örnek sonuç kodları
+Accepted, Pending, TooFar, Blocked, Busy, InvalidState, StaleRevision, RateLimited, WrongSession, UnsupportedAction. Ham teknik detaylar log'a gider; oyuncuya “Biraz yaklaş”, “Önce vinci durdur”, “Eşyayı bırakıp sabitle” gibi eylem öneren kısa metin gösterilir.
+
+## Eşzamanlı istek
+Aynı tick içindeki istekler host alım sırası, sonra kararlı actor kimliği ile sıralanır. Sonuç arrivalOrdinal ile loglanır. Bu yöntem farklı makinelerde tüm fiziğin deterministik olduğu iddiası değildir. İlk kabul nesne revision'ını artırır; sonraki komut yeni durumla tekrar değerlendirilir. İki geçerli tutma yuvası varsa ikinci tutma kendi şartlarıyla kabul edilebilir.
+
+## Bırakma istisnası
+Release, oyuncunun mevcut holder hakkını kaldıran güvenli işlemdir. Revision eski diye oyuncu eşyaya kilitlenmez: epoch, hedef ve holder kimliği geçerliyse idempotent release uygulanır. Aktif hakkı olmayan oyuncuya başarı benzeri “zaten bırakılmış” sonucu verilebilir; başka oyuncunun holder hakkı silinmez.
+
+## Kabul
+Prompt kaybolduğu karede gönderilen komut güvenli reddedilir. Aynı requestId tekrarında ikinci fizik joint'i oluşmaz. Duvar arkasından tutma, hayali objeye komut ve NaN hedefler dünyayı değiştirmez. Bu kurallar görsel etkileşim bileşeninden bağımsız test edilebilir olmalıdır.
+
+## Gereksinim ve test izleri
+- REQ-004 → TC-004 — İki holder sınırlı kuvvetle aynı eşyayı taşıyabilmeli
+- REQ-034 → TC-034 — UI otorite ve kayıt durumunu doğru göstermeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-016 — Eşya semantiği ve değişmezler](016_item_state_model.md)
+- [ASK-017 — Ortak taşıma ve kuvvet modeli](017_shared_carrying.md)
+- [ASK-020 — Sabitleme, kayış ve anchor sözleşmesi](020_straps_anchors.md)
+- [ASK-027 — Otorite, sahiplik ve veri sınırları](../02_network/027_authority_matrix.md)
+- [ASK-028 — Komut protokolü, tekrarlar ve sıralama](../02_network/028_command_protocol.md)
+
+
+
+DOCUMENT: ASK-016
+PATH: docs/01_gameplay/016_item_state_model.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 0f5a6bf01876cd28093b9567819b62dc378cbc4943825fd7697d367c52416105
+
+---
+doc_id: ASK-016
+title: "Eşya semantiği ve değişmezler"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-015","ASK-017","ASK-020","ASK-021","ASK-022","ASK-025"]
+---
+
+# Eşya semantiği ve değişmezler
+
+## Bir enum yeterli değil
+Eşya üç ayrı eksende modellenir: yaşam döngüsü Available / Delivered / Lost; taşıma durumu Free / Held / Secured; integrity 0–100. Hasarlı olmak ayrıca taşıma durumunu değiştirmez. Kırık veya teslim edilmiş eşyanın holder'ı bulunamaz.
+
+| Olay | Önkoşul | Sonuç |
+|---|---|---|
+| Grab | Available; Free/Held; boş yuva | Held; holder ekle |
+| Release | İstekte bulunan mevcut holder | Son holder ise Free |
+| Secure | Available + Free + geçerli platform | Secured; anchor kaydı |
+| Unsecure | Available + Secured + güvenli vinç | Free; anchor kaldır |
+| Deliver | Available + Free + bölge koşulları | Delivered; ödül olayı bir kez |
+| IntegrityZero | Available ve integrity=0 | Lost; bağlantıları temizle |
+| Recovery | Available; kurtarma hakkı var | Free; güvenli konuma al |
+
+## Değişmezler
+Delivered ve Lost terminaldir; aynı ContractRun içinde geri Available yapılamaz. Held durumunda 1–2 holder vardır. Free durumunda holder ve anchor yoktur. Secured durumunda holder yok, tam bir platform anchor ilişkisi vardır. Integrity negatif olamaz. Delivered nesnenin fiziksel collider'ı oyunda teslimat sonrası nasıl kaldırılırsa kaldırılsın kimliği sonuç kayıtlarında korunur. Mesh veya GameObject adı kalıcı item kimliği değildir.
+
+## Durum kaydı
+Önerilen alanlar: itemInstanceId, definitionId, lifecycle, handling, integrity, revision, holderIds, platformId/anchorId, recoveryCount, pose, linear/angular velocity. Bu alanların hepsi her ağ paketinde gönderilmez; semantik durum ile yüksek frekanslı pose çoğaltması ayrılır. Shared physics host üzerinde; yerel eller ve kozmetik efektler türetilmiştir.
+
+## Atomik işlem
+StateStore değişikliği tek uygulama sınırından yapılır. GrabJoint oluşturulması başarısızsa holder kaydı geri alınır; yarım Held durumu bırakılamaz. Deliver geçişi, teslimat defterine item kimliği eklenmesiyle aynı domain işleminde olur. Kayıt diske tur sonunda ayrı güvenilir sınırla gider.
+
+## Yasak kombinasyon örnekleri
+Delivered + Held; Lost + anchor; üç holder; iki farklı platforma Secured; Free ama kalan joint; integrity sıfır ama Available. Geliştirme build'inde invariant denetimi bu durumları görünür raporlar. Shipping build kendi kendine para ekleyerek durumu “düzeltmez”; güvenli cleanup ve hata kaydı gerekir.
+
+## Kabul
+Bütün geçerli geçişler ve yasak kombinasyonlar saf domain testinde kapsanır. Görsel model gizlense de durumun doğruluğu test edilebilir. Çökme veya kopma temizliği normal oyuncu komutlarının aynı kurallarını kullanır, bağımsız ikinci kural seti yaratmaz.
+
+## Durum diyagramı — taşıma ekseni
+```mermaid
+stateDiagram-v2
+    [*] --> Free
+    Free --> Held: Grab
+    Held --> Held: Ikinci tutus veya tek birakma
+    Held --> Free: Son holder birakir
+    Free --> Secured: Secure
+    Secured --> Free: Unsecure
+```
+
+Bu diyagram yalnız Available yaşam döngüsü içindeki taşıma eksenini gösterir. Delivered/Lost geçişleri ayrıca terminal cleanup uygular; diyagramdan eksik yaşam döngüsü kuralı türetilmez.
+
+## Gereksinim ve test izleri
+- REQ-009 → TC-009 — Eşya değişmezleri korunmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-015 — Etkileşim sorgusu ve komut sözleşmesi](015_interaction_contract.md)
+- [ASK-017 — Ortak taşıma ve kuvvet modeli](017_shared_carrying.md)
+- [ASK-020 — Sabitleme, kayış ve anchor sözleşmesi](020_straps_anchors.md)
+- [ASK-021 — Hasar ve kontrollü kırılma](021_damage_breakage.md)
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](022_delivery_scoring.md)
+- [ASK-025 — Düşme, sıkışma ve kurtarma kuralları](025_recovery_failures.md)
+
+
+

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f9b9bd001ed45a4b90b25cc7ba0423, type: 3}
+  m_Name: Crate
+  m_EditorClassIdentifier: OnHold.Gameplay::OnHold.Gameplay.ItemDefinition
+  DefinitionId: item.crate.a
+  DisplayNameKey: item.crate.a
+  ProvenanceId: original.greybox.1
+  MassKg: 35
+  BaseValue: 100
+  Prefab: {fileID: 2828617026140929145, guid: e0091e5597be644afb24e0715bdede22, type: 3}
+  Grips:
+  - {x: -0.325, y: 0.1, z: 0}
+  - {x: 0.325, y: 0.1, z: 0}
+  BoundsCenter: {x: 0, y: 0, z: 0}
+  BoundsSize: {x: 0.65, y: 0.65, z: 0.65}

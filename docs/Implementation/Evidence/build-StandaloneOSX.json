@@ -1,0 +1,10 @@
+{
+    "target": "StandaloneOSX",
+    "result": "Succeeded",
+    "editor": "6000.5.0f1",
+    "lockHash": "d87f784f6b6129ba8003603914aa1dab4e2288692b34b7ccefbb1b31e8746502",
+    "seconds": 63.117816999999998,
+    "bytes": 320785771,
+    "errors": 0,
+    "warnings": 347
+}

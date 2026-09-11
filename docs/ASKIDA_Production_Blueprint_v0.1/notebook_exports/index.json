@@ -1,0 +1,145 @@
+{
+  "snapshot_sha256": "3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4",
+  "volumes": [
+    {
+      "path": "notebook_exports/volume_01.txt",
+      "documents": [
+        "ASK-001",
+        "ASK-002",
+        "ASK-003",
+        "ASK-004",
+        "ASK-005",
+        "ASK-006",
+        "ASK-007",
+        "ASK-008"
+      ],
+      "sha256": "e5e8f3026de70df66e0c1fe2e01f7934b2cebb72e2faa88cb15967eca45815de"
+    },
+    {
+      "path": "notebook_exports/volume_02.txt",
+      "documents": [
+        "ASK-009",
+        "ASK-010",
+        "ASK-011",
+        "ASK-012",
+        "ASK-013",
+        "ASK-014",
+        "ASK-015",
+        "ASK-016"
+      ],
+      "sha256": "a530dbde0f5a7967f4708c53a13312be385116afe7ab91085082ab92b2684edf"
+    },
+    {
+      "path": "notebook_exports/volume_03.txt",
+      "documents": [
+        "ASK-017",
+        "ASK-018",
+        "ASK-019",
+        "ASK-020",
+        "ASK-021",
+        "ASK-022",
+        "ASK-023",
+        "ASK-024"
+      ],
+      "sha256": "ec12d79505c8205863695c10eba52a92a8afee75a68cf67e40e227b028e85d40"
+    },
+    {
+      "path": "notebook_exports/volume_04.txt",
+      "documents": [
+        "ASK-025",
+        "ASK-026",
+        "ASK-027",
+        "ASK-028",
+        "ASK-029",
+        "ASK-030",
+        "ASK-031",
+        "ASK-032"
+      ],
+      "sha256": "89a8fdbc78d6b58b8f84775e3b8c1244edd2ce56601d528f8c4d20383742d7a7"
+    },
+    {
+      "path": "notebook_exports/volume_05.txt",
+      "documents": [
+        "ASK-033",
+        "ASK-034",
+        "ASK-035",
+        "ASK-036",
+        "ASK-037",
+        "ASK-038",
+        "ASK-039",
+        "ASK-040"
+      ],
+      "sha256": "2c774795e02a782dc18e9d6cf15699bc9d1ba7988aa9f02102411ed0beb2350e"
+    },
+    {
+      "path": "notebook_exports/volume_06.txt",
+      "documents": [
+        "ASK-041",
+        "ASK-042",
+        "ASK-043",
+        "ASK-044",
+        "ASK-045",
+        "ASK-046",
+        "ASK-047",
+        "ASK-048"
+      ],
+      "sha256": "d7f1e7d0654e82a2ec76fc2e653a53324e12b7294b499f505fc0bf2c3e0cb758"
+    },
+    {
+      "path": "notebook_exports/volume_07.txt",
+      "documents": [
+        "ASK-049",
+        "ASK-050",
+        "ASK-051",
+        "ASK-052",
+        "ASK-053",
+        "ASK-054",
+        "ASK-055",
+        "ASK-056"
+      ],
+      "sha256": "fcd45ad95ef3ccc72caf4d3a470931fe71cea9a269a99905ed4f1eca9d336eed"
+    },
+    {
+      "path": "notebook_exports/volume_08.txt",
+      "documents": [
+        "ASK-057",
+        "ASK-058",
+        "ASK-059",
+        "ASK-060",
+        "ASK-061",
+        "ASK-062",
+        "ASK-063",
+        "ASK-064"
+      ],
+      "sha256": "8d4acd357573a8a855cc84aaaec7f291faf0a667d3d4a33fd176996a2e438771"
+    },
+    {
+      "path": "notebook_exports/volume_09.txt",
+      "documents": [
+        "ASK-065",
+        "ASK-066",
+        "ASK-067",
+        "ASK-068",
+        "ASK-069",
+        "ASK-070",
+        "ASK-071",
+        "ASK-072"
+      ],
+      "sha256": "766a50704e54878c49ecfacb200d4b7e54925b59c1669dba6c8c6f3e03efd96f"
+    },
+    {
+      "path": "notebook_exports/volume_10.txt",
+      "documents": [
+        "ASK-073",
+        "ASK-074",
+        "ASK-075",
+        "ASK-076",
+        "ASK-077",
+        "ASK-078",
+        "ASK-079",
+        "ASK-080"
+      ],
+      "sha256": "39b9a9589b045d31b80f7e0800ded1915affdf8893bad7e0bf659eb013fa17a7"
+    }
+  ]
+}

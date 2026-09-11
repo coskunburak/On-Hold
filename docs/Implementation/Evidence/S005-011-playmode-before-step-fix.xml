@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-10 12:13:17Z" end-time="2026-09-10 12:13:25Z" duration="8.1442382">
+  <test-suite type="TestSuite" id="1028" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-09-10 12:13:17Z" end-time="2026-09-10 12:13:25Z" duration="8.144238" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1022" name="OnHold.PlayMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.PlayMode.Tests.dll" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-09-10 12:13:17Z" end-time="2026-09-10 12:13:25Z" duration="8.139908" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79361" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1023" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-09-10 12:13:17Z" end-time="2026-09-10 12:13:25Z" duration="8.139645" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1024" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-09-10 12:13:17Z" end-time="2026-09-10 12:13:25Z" duration="8.139543" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="BootstrapRuntimeSmoke" fullname="OnHold.Tests.BootstrapRuntimeSmoke" classname="OnHold.Tests.BootstrapRuntimeSmoke" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-10 12:13:17Z" end-time="2026-09-10 12:13:20Z" duration="2.822403" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="BootstrapScene_LoadsAndInitializes_WithoutFatalErrors" fullname="OnHold.Tests.BootstrapRuntimeSmoke.BootstrapScene_LoadsAndInitializes_WithoutFatalErrors" methodname="BootstrapScene_LoadsAndInitializes_WithoutFatalErrors" classname="OnHold.Tests.BootstrapRuntimeSmoke" runstate="Runnable" seed="1365696562" result="Passed" start-time="2026-09-10 12:13:17Z" end-time="2026-09-10 12:13:20Z" duration="2.816332" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1003" name="PlayableMotorTests" fullname="OnHold.Tests.PlayableMotorTests" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-09-10 12:13:20Z" end-time="2026-09-10 12:13:24Z" duration="3.912503" total="14" passed="12" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1004" name="S005_DuplicateSpawnCallbackIsIdempotentAndAuthoredSpawnIsClear" fullname="OnHold.Tests.PlayableMotorTests.S005_DuplicateSpawnCallbackIsIdempotentAndAuthoredSpawnIsClear" methodname="S005_DuplicateSpawnCallbackIsIdempotentAndAuthoredSpawnIsClear" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="509260694" result="Passed" start-time="2026-09-10 12:13:20Z" end-time="2026-09-10 12:13:20Z" duration="0.275384" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="S006_NonAuthorityIgnoresLookAndMoveAndPitchIsClamped" fullname="OnHold.Tests.PlayableMotorTests.S006_NonAuthorityIgnoresLookAndMoveAndPitchIsClamped" methodname="S006_NonAuthorityIgnoresLookAndMoveAndPitchIsClamped" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1916925462" result="Passed" start-time="2026-09-10 12:13:20Z" end-time="2026-09-10 12:13:20Z" duration="0.239603" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="S007_ForwardDiagonalYawAndFixedFrequencyHaveEqualSpeed" fullname="OnHold.Tests.PlayableMotorTests.S007_ForwardDiagonalYawAndFixedFrequencyHaveEqualSpeed" methodname="S007_ForwardDiagonalYawAndFixedFrequencyHaveEqualSpeed" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="480198211" result="Passed" start-time="2026-09-10 12:13:20Z" end-time="2026-09-10 12:13:21Z" duration="0.305125" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="S007_StopInputAndAirControlAreBounded" fullname="OnHold.Tests.PlayableMotorTests.S007_StopInputAndAirControlAreBounded" methodname="S007_StopInputAndAirControlAreBounded" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1631063367" result="Passed" start-time="2026-09-10 12:13:21Z" end-time="2026-09-10 12:13:21Z" duration="0.239602" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="S008_EdgeFallsWallIsNotGroundAndKillPlaneRecovers" fullname="OnHold.Tests.PlayableMotorTests.S008_EdgeFallsWallIsNotGroundAndKillPlaneRecovers" methodname="S008_EdgeFallsWallIsNotGroundAndKillPlaneRecovers" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1790838205" result="Passed" start-time="2026-09-10 12:13:21Z" end-time="2026-09-10 12:13:21Z" duration="0.259360" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="S008_RepeatedJumpApexNoAirJumpAndLanding" fullname="OnHold.Tests.PlayableMotorTests.S008_RepeatedJumpApexNoAirJumpAndLanding" methodname="S008_RepeatedJumpApexNoAirJumpAndLanding" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1580616595" result="Passed" start-time="2026-09-10 12:13:21Z" end-time="2026-09-10 12:13:22Z" duration="0.300359" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="S009_NarrowDoorwayAndFloorSeamAreTraversable" fullname="OnHold.Tests.PlayableMotorTests.S009_NarrowDoorwayAndFloorSeamAreTraversable" methodname="S009_NarrowDoorwayAndFloorSeamAreTraversable" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="506118475" result="Passed" start-time="2026-09-10 12:13:22Z" end-time="2026-09-10 12:13:22Z" duration="0.273100" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="S009_WallCornerSeamAndCeilingStayBounded" fullname="OnHold.Tests.PlayableMotorTests.S009_WallCornerSeamAndCeilingStayBounded" methodname="S009_WallCornerSeamAndCeilingStayBounded" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1106208594" result="Passed" start-time="2026-09-10 12:13:22Z" end-time="2026-09-10 12:13:22Z" duration="0.288546" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1015" name="S010_SmallAndMediumStepsPassTallStepBlocks" fullname="OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-10 12:13:22Z" end-time="2026-09-10 12:13:23Z" duration="0.880321" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1012" name="S010_SmallAndMediumStepsPassTallStepBlocks(0.12f,True)" fullname="OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks(0.12f,True)" methodname="S010_SmallAndMediumStepsPassTallStepBlocks" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1098278702" result="Failed" start-time="2026-09-10 12:13:22Z" end-time="2026-09-10 12:13:22Z" duration="0.278073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  height=0.12, pos=(30.00, 0.05, 0.78)
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks (System.Single height, System.Boolean pass) [0x00049] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/PlayableMotorTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1013" name="S010_SmallAndMediumStepsPassTallStepBlocks(0.28f,True)" fullname="OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks(0.28f,True)" methodname="S010_SmallAndMediumStepsPassTallStepBlocks" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="965426912" result="Failed" start-time="2026-09-10 12:13:22Z" end-time="2026-09-10 12:13:23Z" duration="0.287121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  height=0.28, pos=(30.00, 0.21, 0.78)
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks (System.Single height, System.Boolean pass) [0x00049] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/PlayableMotorTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1014" name="S010_SmallAndMediumStepsPassTallStepBlocks(0.8f,False)" fullname="OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks(0.8f,False)" methodname="S010_SmallAndMediumStepsPassTallStepBlocks" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1023232733" result="Passed" start-time="2026-09-10 12:13:23Z" end-time="2026-09-10 12:13:23Z" duration="0.314079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1019" name="S010_WalkableSlopeUphillDownhillAndSteepRejection" fullname="OnHold.Tests.PlayableMotorTests.S010_WalkableSlopeUphillDownhillAndSteepRejection" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-10 12:13:23Z" end-time="2026-09-10 12:13:24Z" duration="0.849095" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1016" name="S010_WalkableSlopeUphillDownhillAndSteepRejection(20.0f,True)" fullname="OnHold.Tests.PlayableMotorTests.S010_WalkableSlopeUphillDownhillAndSteepRejection(20.0f,True)" methodname="S010_WalkableSlopeUphillDownhillAndSteepRejection" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="464388246" result="Passed" start-time="2026-09-10 12:13:23Z" end-time="2026-09-10 12:13:23Z" duration="0.283932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="S010_WalkableSlopeUphillDownhillAndSteepRejection(44.0f,True)" fullname="OnHold.Tests.PlayableMotorTests.S010_WalkableSlopeUphillDownhillAndSteepRejection(44.0f,True)" methodname="S010_WalkableSlopeUphillDownhillAndSteepRejection" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1043286576" result="Passed" start-time="2026-09-10 12:13:23Z" end-time="2026-09-10 12:13:24Z" duration="0.282987" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1018" name="S010_WalkableSlopeUphillDownhillAndSteepRejection(60.0f,False)" fullname="OnHold.Tests.PlayableMotorTests.S010_WalkableSlopeUphillDownhillAndSteepRejection(60.0f,False)" methodname="S010_WalkableSlopeUphillDownhillAndSteepRejection" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1468356775" result="Passed" start-time="2026-09-10 12:13:24Z" end-time="2026-09-10 12:13:24Z" duration="0.281282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1020" name="SoloSessionSmoke" fullname="OnHold.Tests.SoloSessionSmoke" classname="OnHold.Tests.SoloSessionSmoke" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-10 12:13:24Z" end-time="2026-09-10 12:13:25Z" duration="1.404043" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1021" name="SoloSession_StartsAndReachesActiveState_WithoutRelay" fullname="OnHold.Tests.SoloSessionSmoke.SoloSession_StartsAndReachesActiveState_WithoutRelay" methodname="SoloSession_StartsAndReachesActiveState_WithoutRelay" classname="OnHold.Tests.SoloSessionSmoke" runstate="Runnable" seed="2011893503" result="Passed" start-time="2026-09-10 12:13:24Z" end-time="2026-09-10 12:13:25Z" duration="1.403314" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

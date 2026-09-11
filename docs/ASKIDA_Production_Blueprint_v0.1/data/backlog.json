@@ -1,0 +1,749 @@
+[
+  {
+    "acceptance_tests": [
+      "TC-001"
+    ],
+    "actual_hours": null,
+    "dependencies": [],
+    "estimate_hours": {
+      "high": 6,
+      "low": 4
+    },
+    "evidence": null,
+    "id": "W-001",
+    "owner_role": "Spike",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-001"
+    ],
+    "status": "PLANNED",
+    "title": "Karar ve exact sürüm matrisi"
+  },
+  {
+    "acceptance_tests": [
+      "TC-002"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-001"
+    ],
+    "estimate_hours": {
+      "high": 10,
+      "low": 6
+    },
+    "evidence": null,
+    "id": "W-002",
+    "owner_role": "Engineering",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-002"
+    ],
+    "status": "PLANNED",
+    "title": "Temel repo ve temiz build"
+  },
+  {
+    "acceptance_tests": [
+      "TC-003"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-002"
+    ],
+    "estimate_hours": {
+      "high": 14,
+      "low": 8
+    },
+    "evidence": null,
+    "id": "W-003",
+    "owner_role": "Network",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-003"
+    ],
+    "status": "PLANNED",
+    "title": "Tek host-authoritative eşya"
+  },
+  {
+    "acceptance_tests": [
+      "TC-004"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003"
+    ],
+    "estimate_hours": {
+      "high": 18,
+      "low": 10
+    },
+    "evidence": null,
+    "id": "W-004",
+    "owner_role": "Gameplay",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-004"
+    ],
+    "status": "PLANNED",
+    "title": "İki holder kuvvet prototipi"
+  },
+  {
+    "acceptance_tests": [
+      "TC-005"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003"
+    ],
+    "estimate_hours": {
+      "high": 18,
+      "low": 10
+    },
+    "evidence": null,
+    "id": "W-005",
+    "owner_role": "Gameplay",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-005"
+    ],
+    "status": "PLANNED",
+    "title": "Kontrollü platform ve destek kümesi"
+  },
+  {
+    "acceptance_tests": [
+      "TC-006"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003"
+    ],
+    "estimate_hours": {
+      "high": 10,
+      "low": 6
+    },
+    "evidence": null,
+    "id": "W-006",
+    "owner_role": "QA",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-006"
+    ],
+    "status": "PLANNED",
+    "title": "Emülasyon, capture ve debug sayaçları"
+  },
+  {
+    "acceptance_tests": [
+      "TC-007"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003"
+    ],
+    "estimate_hours": {
+      "high": 12,
+      "low": 6
+    },
+    "evidence": null,
+    "id": "W-007",
+    "owner_role": "Network",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-007"
+    ],
+    "status": "PLANNED",
+    "title": "Gerçek internet/davet bağlantı denemesi"
+  },
+  {
+    "acceptance_tests": [
+      "TC-008"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-004",
+      "W-005",
+      "W-006",
+      "W-007"
+    ],
+    "estimate_hours": {
+      "high": 12,
+      "low": 6
+    },
+    "evidence": null,
+    "id": "W-008",
+    "owner_role": "Review",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-008"
+    ],
+    "status": "PLANNED",
+    "title": "Risk testleri ve ADR go/no-go"
+  },
+  {
+    "acceptance_tests": [
+      "TC-009"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-008"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": null,
+    "id": "W-009",
+    "owner_role": "Gameplay",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-009"
+    ],
+    "status": "PLANNED",
+    "title": "Eşya state ve invariant domain katmanı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-010"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-009",
+      "W-005"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": null,
+    "id": "W-010",
+    "owner_role": "Gameplay",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-010"
+    ],
+    "status": "PLANNED",
+    "title": "Anchor ve secure işlemleri"
+  },
+  {
+    "acceptance_tests": [
+      "TC-011",
+      "TC-013"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-009"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": null,
+    "id": "W-011",
+    "owner_role": "Gameplay",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-011",
+      "REQ-013"
+    ],
+    "status": "PLANNED",
+    "title": "Delivery ve tek sonuç işlemi"
+  },
+  {
+    "acceptance_tests": [
+      "TC-012",
+      "TC-014"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-009"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": null,
+    "id": "W-012",
+    "owner_role": "Gameplay",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-012",
+      "REQ-014"
+    ],
+    "status": "PLANNED",
+    "title": "Hasar ve kurtarma uygulaması"
+  },
+  {
+    "acceptance_tests": [
+      "TC-015",
+      "TC-016",
+      "TC-017"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-007",
+      "W-009"
+    ],
+    "estimate_hours": {
+      "high": 48,
+      "low": 24
+    },
+    "evidence": null,
+    "id": "W-013",
+    "owner_role": "Network",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-015",
+      "REQ-016",
+      "REQ-017"
+    ],
+    "status": "PLANNED",
+    "title": "Lobi, reconnect ve host-loss UX"
+  },
+  {
+    "acceptance_tests": [
+      "TC-018",
+      "TC-019"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-011"
+    ],
+    "estimate_hours": {
+      "high": 40,
+      "low": 20
+    },
+    "evidence": null,
+    "id": "W-014",
+    "owner_role": "Persistence",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-018",
+      "REQ-019"
+    ],
+    "status": "PLANNED",
+    "title": "Kampanya save/migration ve ekonomi"
+  },
+  {
+    "acceptance_tests": [
+      "TC-020",
+      "TC-021"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-002",
+      "W-009"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": null,
+    "id": "W-015",
+    "owner_role": "Tooling",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-020",
+      "REQ-021"
+    ],
+    "status": "PLANNED",
+    "title": "Registry, import ve lifecycle validator"
+  },
+  {
+    "acceptance_tests": [
+      "TC-022"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003",
+      "W-013"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": null,
+    "id": "W-016",
+    "owner_role": "Security",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-022"
+    ],
+    "status": "PLANNED",
+    "title": "Protocol fuzz ve rate-limit kontrolleri"
+  },
+  {
+    "acceptance_tests": [
+      "TC-023"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-008"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": null,
+    "id": "W-017",
+    "owner_role": "Art",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-023"
+    ],
+    "status": "PLANNED",
+    "title": "Art validation ve ana paket kararı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-024"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-017"
+    ],
+    "estimate_hours": {
+      "high": 12,
+      "low": 6
+    },
+    "evidence": null,
+    "id": "W-018",
+    "owner_role": "Audit",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-024"
+    ],
+    "status": "PLANNED",
+    "title": "Provenance/lisans kayıtları"
+  },
+  {
+    "acceptance_tests": [
+      "TC-025"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-015",
+      "W-017",
+      "W-018"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": null,
+    "id": "W-019",
+    "owner_role": "Art",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-025"
+    ],
+    "status": "PLANNED",
+    "title": "Bir final aday prop pipeline'ı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-026"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-017",
+      "W-018"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": null,
+    "id": "W-020",
+    "owner_role": "Tooling",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-026"
+    ],
+    "status": "PLANNED",
+    "title": "Blender parametrik deck/export deneyi"
+  },
+  {
+    "acceptance_tests": [
+      "TC-027",
+      "TC-028"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-004",
+      "W-017",
+      "W-018"
+    ],
+    "estimate_hours": {
+      "high": 48,
+      "low": 24
+    },
+    "evidence": null,
+    "id": "W-021",
+    "owner_role": "Animation",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-027",
+      "REQ-028"
+    ],
+    "status": "PLANNED",
+    "title": "Karakter rig ve carry animasyon seti"
+  },
+  {
+    "acceptance_tests": [
+      "TC-029"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-017"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": null,
+    "id": "W-022",
+    "owner_role": "Art",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-029"
+    ],
+    "status": "PLANNED",
+    "title": "Shared materyal ve ışık profili"
+  },
+  {
+    "acceptance_tests": [
+      "TC-030",
+      "TC-031"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-010",
+      "W-011",
+      "W-018"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": null,
+    "id": "W-023",
+    "owner_role": "AudioVFX",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-030",
+      "REQ-031"
+    ],
+    "status": "PLANNED",
+    "title": "VFX ve ses P0 seti"
+  },
+  {
+    "acceptance_tests": [
+      "TC-032"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-008",
+      "W-009"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": null,
+    "id": "W-024",
+    "owner_role": "Level",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-032"
+    ],
+    "status": "PLANNED",
+    "title": "Avlu blockout ve tek görev rotası"
+  },
+  {
+    "acceptance_tests": [
+      "TC-033"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-011",
+      "W-024"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": null,
+    "id": "W-025",
+    "owner_role": "Design",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-033"
+    ],
+    "status": "PLANNED",
+    "title": "12 sözleşme kartı ve data validator"
+  },
+  {
+    "acceptance_tests": [
+      "TC-034"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-011",
+      "W-013",
+      "W-014"
+    ],
+    "estimate_hours": {
+      "high": 40,
+      "low": 20
+    },
+    "evidence": null,
+    "id": "W-026",
+    "owner_role": "UX",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-034"
+    ],
+    "status": "PLANNED",
+    "title": "HUD, sonuç ve bağlantı ekranları"
+  },
+  {
+    "acceptance_tests": [
+      "TC-035",
+      "TC-036"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-026"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": null,
+    "id": "W-027",
+    "owner_role": "UX",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-035",
+      "REQ-036"
+    ],
+    "status": "PLANNED",
+    "title": "Erişilebilirlik ve yerelleştirme temeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-037"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-005",
+      "W-022",
+      "W-024"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": null,
+    "id": "W-028",
+    "owner_role": "Performance",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-037"
+    ],
+    "status": "PLANNED",
+    "title": "Referans cihaz ve performance capture"
+  },
+  {
+    "acceptance_tests": [
+      "TC-038"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-002",
+      "W-014"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": null,
+    "id": "W-029",
+    "owner_role": "DevOps",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-038"
+    ],
+    "status": "PLANNED",
+    "title": "CI staging/rollback ve smoke seti"
+  },
+  {
+    "acceptance_tests": [
+      "TC-039"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-001"
+    ],
+    "estimate_hours": {
+      "high": 12,
+      "low": 6
+    },
+    "evidence": null,
+    "id": "W-030",
+    "owner_role": "Knowledge",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-039"
+    ],
+    "status": "PLANNED",
+    "title": "Notebook/manifest/Codex entegrasyon denetimi"
+  },
+  {
+    "acceptance_tests": [
+      "TC-039"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-030"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": null,
+    "id": "W-031",
+    "owner_role": "Knowledge",
+    "phase": "FUTURE_APPROVAL",
+    "requirements": [
+      "REQ-039"
+    ],
+    "status": "PLANNED",
+    "title": "Salt okunur MCP prototipi — ileride, onayla"
+  },
+  {
+    "acceptance_tests": [
+      "TC-040"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-013",
+      "W-018",
+      "W-025",
+      "W-027",
+      "W-028",
+      "W-029"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": null,
+    "id": "W-032",
+    "owner_role": "Production",
+    "phase": "FUTURE_APPROVAL",
+    "requirements": [
+      "REQ-040"
+    ],
+    "status": "PLANNED",
+    "title": "Demo/Steam hazırlık ve RC kontrol listesi"
+  }
+]
+

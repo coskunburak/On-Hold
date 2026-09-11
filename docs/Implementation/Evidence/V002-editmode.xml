@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Failed(Child)" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:38Z" duration="0.2390742">
+  <test-suite type="TestSuite" id="1000" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:38Z" duration="0.239074" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1040" name="OnHold.EditMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.EditMode.Tests.dll" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:38Z" duration="0.191433" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="56959" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1041" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:38Z" duration="0.191126" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1042" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:38Z" duration="0.191009" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="DomainAcceptanceTests" fullname="OnHold.Tests.DomainAcceptanceTests" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:38Z" duration="0.125830" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1024" name="ConfigRejectsInvalidNumerics" fullname="OnHold.Tests.DomainAcceptanceTests.ConfigRejectsInvalidNumerics" methodname="ConfigRejectsInvalidNumerics" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1332437913" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.020697" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="TC003_ActorAlwaysComesFromConnectionAndRevisionSafeRelease" fullname="OnHold.Tests.DomainAcceptanceTests.TC003_ActorAlwaysComesFromConnectionAndRevisionSafeRelease" methodname="TC003_ActorAlwaysComesFromConnectionAndRevisionSafeRelease" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="171604214" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.003998" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="TC005_SupportIdentityHysteresisAndSymmetry" fullname="OnHold.Tests.DomainAcceptanceTests.TC005_SupportIdentityHysteresisAndSymmetry" methodname="TC005_SupportIdentityHysteresisAndSymmetry" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="92066605" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.032775" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="TC009_FailedAttachmentCannotCreatePhantomHolder" fullname="OnHold.Tests.DomainAcceptanceTests.TC009_FailedAttachmentCannotCreatePhantomHolder" methodname="TC009_FailedAttachmentCannotCreatePhantomHolder" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="391431841" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.002069" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="TC009_TwoAxesAndFiftyGrabReleaseCycles" fullname="OnHold.Tests.DomainAcceptanceTests.TC009_TwoAxesAndFiftyGrabReleaseCycles" methodname="TC009_TwoAxesAndFiftyGrabReleaseCycles" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1566991529" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.004915" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="TC009_ZeroIntegrityClearsAnchorAndTerminalNeverResurrects" fullname="OnHold.Tests.DomainAcceptanceTests.TC009_ZeroIntegrityClearsAnchorAndTerminalNeverResurrects" methodname="TC009_ZeroIntegrityClearsAnchorAndTerminalNeverResurrects" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="418344671" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.000852" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="TC010_AnchorReservationRollbackAndHundredCycles" fullname="OnHold.Tests.DomainAcceptanceTests.TC010_AnchorReservationRollbackAndHundredCycles" methodname="TC010_AnchorReservationRollbackAndHundredCycles" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1757804878" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.013795" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="TC010_SecureCannotStealHeldItemAndStaleExclusiveRejected" fullname="OnHold.Tests.DomainAcceptanceTests.TC010_SecureCannotStealHeldItemAndStaleExclusiveRejected" methodname="TC010_SecureCannotStealHeldItemAndStaleExclusiveRejected" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="900944939" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.000286" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="TC011_HeldSecuredAndAngularThresholdCannotDeliver" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_HeldSecuredAndAngularThresholdCannotDeliver" methodname="TC011_HeldSecuredAndAngularThresholdCannotDeliver" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="743558910" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.003798" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1008" name="TC011_IntegrityThresholdDwellAndFloorRounding" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_IntegrityThresholdDwellAndFloorRounding" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.001860" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1006" name="TC011_IntegrityThresholdDwellAndFloorRounding(19,False)" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_IntegrityThresholdDwellAndFloorRounding(19,False)" methodname="TC011_IntegrityThresholdDwellAndFloorRounding" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1117558803" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.000534" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1007" name="TC011_IntegrityThresholdDwellAndFloorRounding(20,True)" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_IntegrityThresholdDwellAndFloorRounding(20,True)" methodname="TC011_IntegrityThresholdDwellAndFloorRounding" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="2074278357" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.000052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1009" name="TC011_InterruptedDwellResetsAndRepeatedEventsDoNotPay" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_InterruptedDwellResetsAndRepeatedEventsDoNotPay" methodname="TC011_InterruptedDwellResetsAndRepeatedEventsDoNotPay" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1496743640" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.000369" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="TC013_FinishVotePinsRosterAndRequiresHostMajority" fullname="OnHold.Tests.DomainAcceptanceTests.TC013_FinishVotePinsRosterAndRequiresHostMajority" methodname="TC013_FinishVotePinsRosterAndRequiresHostMajority" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1027896454" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.001448" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="TC013_NaturalTimeoutPaysPartialButAbortPaysZero" fullname="OnHold.Tests.DomainAcceptanceTests.TC013_NaturalTimeoutPaysPartialButAbortPaysZero" methodname="TC013_NaturalTimeoutPaysPartialButAbortPaysZero" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="843533508" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.000361" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="TC013_TimeoutAndDamageWinBeforeNewDelivery" fullname="OnHold.Tests.DomainAcceptanceTests.TC013_TimeoutAndDamageWinBeforeNewDelivery" methodname="TC013_TimeoutAndDamageWinBeforeNewDelivery" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1684433569" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.000286" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="TC014_TwoRecoveriesThirdLostPreservesDamageAndDeduplicates" fullname="OnHold.Tests.DomainAcceptanceTests.TC014_TwoRecoveriesThirdLostPreservesDamageAndDeduplicates" methodname="TC014_TwoRecoveriesThirdLostPreservesDamageAndDeduplicates" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1939780792" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.000410" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="TC015_FullLobbyAndExpiredReservation" fullname="OnHold.Tests.DomainAcceptanceTests.TC015_FullLobbyAndExpiredReservation" methodname="TC015_FullLobbyAndExpiredReservation" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="256888183" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.001072" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="TC015_LoadingCannotSilentlyDropPlayerAndLateJoinRejected" fullname="OnHold.Tests.DomainAcceptanceTests.TC015_LoadingCannotSilentlyDropPlayerAndLateJoinRejected" methodname="TC015_LoadingCannotSilentlyDropPlayerAndLateJoinRejected" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1559860346" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.001487" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="TC016_DriverWatchdogSafeStopsAndDoesNotTransferIntent" fullname="OnHold.Tests.DomainAcceptanceTests.TC016_DriverWatchdogSafeStopsAndDoesNotTransferIntent" methodname="TC016_DriverWatchdogSafeStopsAndDoesNotTransferIntent" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="437940280" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.001580" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="TC016_ReconnectCleansImmediatelyAndChangesGeneration" fullname="OnHold.Tests.DomainAcceptanceTests.TC016_ReconnectCleansImmediatelyAndChangesGeneration" methodname="TC016_ReconnectCleansImmediatelyAndChangesGeneration" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1617162945" result="Passed" start-time="2026-09-10 09:53:37Z" end-time="2026-09-10 09:53:37Z" duration="0.001729" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="TC022_DedupEvictionStillRejectsOldSequenceAndSpamIsBounded" fullname="OnHold.Tests.DomainAcceptanceTests.TC022_DedupEvictionStillRejectsOldSequenceAndSpamIsBounded" methodname="TC022_DedupEvictionStillRejectsOldSequenceAndSpamIsBounded" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="771106815" result="Passed" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.017348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="TC022_FuzzCannotReachMutation" fullname="OnHold.Tests.DomainAcceptanceTests.TC022_FuzzCannotReachMutation" methodname="TC022_FuzzCannotReachMutation" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1573525402" result="Passed" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.000853" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1025" name="PersistenceAcceptanceTests" fullname="OnHold.Tests.PersistenceAcceptanceTests" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.058504" total="13" passed="3" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1033" name="TC018_BothCorruptFilesRemainUntouched" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_BothCorruptFilesRemainUntouched" methodname="TC018_BothCorruptFilesRemainUntouched" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1862243427" result="Passed" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.021814" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="TC018_ChecksumAndContentReferencesValidated" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_ChecksumAndContentReferencesValidated" methodname="TC018_ChecksumAndContentReferencesValidated" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="792810699" result="Passed" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.014469" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1032" name="TC018_CorruptPrimaryDoesNotWipeAndBackupRequiresExplicitRestore" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_CorruptPrimaryDoesNotWipeAndBackupRequiresExplicitRestore" methodname="TC018_CorruptPrimaryDoesNotWipeAndBackupRequiresExplicitRestore" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1079411807" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.007082" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.ArgumentException : Invalid campaign schema, references, revision or ledger]]></message>
+                <stack-trace><![CDATA[  at OnHold.Domain.Campaign.Validate () [0x00290] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Domain/Campaign.cs:36 
+  at OnHold.Persistence.CampaignStore.Decode (System.String text) [0x00146] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:137 
+  at OnHold.Persistence.CampaignStore.AtomicWrite (System.String text) [0x0007a] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:79 
+  at OnHold.Persistence.CampaignStore.Commit (OnHold.Domain.Campaign next) [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:66 
+  at OnHold.Persistence.CampaignStore.Settle (OnHold.Domain.RunResult result) [0x00021] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:43 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC018_CorruptPrimaryDoesNotWipeAndBackupRequiresExplicitRestore () [0x00017] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:40 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1034" name="TC018_FutureSchemaCannotBeOverwrittenOrDowngradedFromBackup" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_FutureSchemaCannotBeOverwrittenOrDowngradedFromBackup" methodname="TC018_FutureSchemaCannotBeOverwrittenOrDowngradedFromBackup" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="381833776" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.001121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.ArgumentException : Invalid campaign schema, references, revision or ledger]]></message>
+                <stack-trace><![CDATA[  at OnHold.Domain.Campaign.Validate () [0x00290] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Domain/Campaign.cs:36 
+  at OnHold.Persistence.CampaignStore.Decode (System.String text) [0x00146] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:137 
+  at OnHold.Persistence.CampaignStore.AtomicWrite (System.String text) [0x0007a] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:79 
+  at OnHold.Persistence.CampaignStore.Commit (OnHold.Domain.Campaign next) [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:66 
+  at OnHold.Persistence.CampaignStore.Settle (OnHold.Domain.RunResult result) [0x00021] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:43 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC018_FutureSchemaCannotBeOverwrittenOrDowngradedFromBackup () [0x0001d] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:52 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1031" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.004468" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1027" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterTempWrite)" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterTempWrite)" methodname="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1281866930" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.001198" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.ArgumentException : Invalid campaign schema, references, revision or ledger]]></message>
+                  <stack-trace><![CDATA[  at OnHold.Domain.Campaign.Validate () [0x00290] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Domain/Campaign.cs:36 
+  at OnHold.Persistence.CampaignStore.Decode (System.String text) [0x00146] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:137 
+  at OnHold.Persistence.CampaignStore.AtomicWrite (System.String text) [0x0007a] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:79 
+  at OnHold.Persistence.CampaignStore.Commit (OnHold.Domain.Campaign next) [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:66 
+  at OnHold.Persistence.CampaignStore.Settle (OnHold.Domain.RunResult result) [0x00021] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:43 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId (OnHold.Persistence.CommitBoundary boundary) [0x00025] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:32 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1028" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterFlush)" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterFlush)" methodname="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1469629942" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.000801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.ArgumentException : Invalid campaign schema, references, revision or ledger]]></message>
+                  <stack-trace><![CDATA[  at OnHold.Domain.Campaign.Validate () [0x00290] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Domain/Campaign.cs:36 
+  at OnHold.Persistence.CampaignStore.Decode (System.String text) [0x00146] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:137 
+  at OnHold.Persistence.CampaignStore.AtomicWrite (System.String text) [0x0007a] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:79 
+  at OnHold.Persistence.CampaignStore.Commit (OnHold.Domain.Campaign next) [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:66 
+  at OnHold.Persistence.CampaignStore.Settle (OnHold.Domain.RunResult result) [0x00021] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:43 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId (OnHold.Persistence.CommitBoundary boundary) [0x00025] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:32 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1029" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(BeforeReplace)" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(BeforeReplace)" methodname="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1974646403" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.000948" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.ArgumentException : Invalid campaign schema, references, revision or ledger]]></message>
+                  <stack-trace><![CDATA[  at OnHold.Domain.Campaign.Validate () [0x00290] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Domain/Campaign.cs:36 
+  at OnHold.Persistence.CampaignStore.Decode (System.String text) [0x00146] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:137 
+  at OnHold.Persistence.CampaignStore.AtomicWrite (System.String text) [0x0007a] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:79 
+  at OnHold.Persistence.CampaignStore.Commit (OnHold.Domain.Campaign next) [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:66 
+  at OnHold.Persistence.CampaignStore.Settle (OnHold.Domain.RunResult result) [0x00021] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:43 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId (OnHold.Persistence.CommitBoundary boundary) [0x00025] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:32 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1030" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterReplace)" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterReplace)" methodname="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="333893095" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.000794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.ArgumentException : Invalid campaign schema, references, revision or ledger]]></message>
+                  <stack-trace><![CDATA[  at OnHold.Domain.Campaign.Validate () [0x00290] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Domain/Campaign.cs:36 
+  at OnHold.Persistence.CampaignStore.Decode (System.String text) [0x00146] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:137 
+  at OnHold.Persistence.CampaignStore.AtomicWrite (System.String text) [0x0007a] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:79 
+  at OnHold.Persistence.CampaignStore.Commit (OnHold.Domain.Campaign next) [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:66 
+  at OnHold.Persistence.CampaignStore.Settle (OnHold.Domain.RunResult result) [0x00021] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:43 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId (OnHold.Persistence.CommitBoundary boundary) [0x00025] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:32 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1026" name="TC018_ResultRepeatedOneHundredTimesAcrossReloadsPaysOnce" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_ResultRepeatedOneHundredTimesAcrossReloadsPaysOnce" methodname="TC018_ResultRepeatedOneHundredTimesAcrossReloadsPaysOnce" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="821626151" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.001004" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.ArgumentException : Invalid campaign schema, references, revision or ledger]]></message>
+                <stack-trace><![CDATA[  at OnHold.Domain.Campaign.Validate () [0x00290] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Domain/Campaign.cs:36 
+  at OnHold.Persistence.CampaignStore.Decode (System.String text) [0x00146] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:137 
+  at OnHold.Persistence.CampaignStore.AtomicWrite (System.String text) [0x0007a] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:79 
+  at OnHold.Persistence.CampaignStore.Commit (OnHold.Domain.Campaign next) [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:66 
+  at OnHold.Persistence.CampaignStore.Settle (OnHold.Domain.RunResult result) [0x00021] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:43 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC018_ResultRepeatedOneHundredTimesAcrossReloadsPaysOnce () [0x00010] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1035" name="TC018_V1MigrationIsIdempotentAndPreservesOriginalUntilCommit" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_V1MigrationIsIdempotentAndPreservesOriginalUntilCommit" methodname="TC018_V1MigrationIsIdempotentAndPreservesOriginalUntilCommit" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="657312230" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.001625" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[OnHold.Persistence.CheckpointException : Checkpoint is unreadable. Original preserved. Restore a validated backup or export files for recovery.]]></message>
+                <stack-trace><![CDATA[  at OnHold.Persistence.CampaignStore.Load () [0x0009d] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:35 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC018_V1MigrationIsIdempotentAndPreservesOriginalUntilCommit () [0x00051] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:61 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1038" name="TC019_NegativePriceInsufficientFundsAndOverflowRejected" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC019_NegativePriceInsufficientFundsAndOverflowRejected" methodname="TC019_NegativePriceInsufficientFundsAndOverflowRejected" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="68936548" result="Passed" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.000664" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="TC019_PurchaseUsesHostCatalogHubAndDurableIdentity" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC019_PurchaseUsesHostCatalogHubAndDurableIdentity" methodname="TC019_PurchaseUsesHostCatalogHubAndDurableIdentity" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="2015159821" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.002008" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.ArgumentException : Invalid campaign schema, references, revision or ledger]]></message>
+                <stack-trace><![CDATA[  at OnHold.Domain.Campaign.Validate () [0x00290] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Domain/Campaign.cs:36 
+  at OnHold.Persistence.CampaignStore.Decode (System.String text) [0x00146] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:137 
+  at OnHold.Persistence.CampaignStore.AtomicWrite (System.String text) [0x0007a] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:79 
+  at OnHold.Persistence.CampaignStore.Commit (OnHold.Domain.Campaign next) [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:66 
+  at OnHold.Persistence.CampaignStore.Settle (OnHold.Domain.RunResult result) [0x00021] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:43 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC019_PurchaseUsesHostCatalogHubAndDurableIdentity () [0x0000b] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:74 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1039" name="TC019_WriteFailureDoesNotSplitMoneyAndEquipment" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC019_WriteFailureDoesNotSplitMoneyAndEquipment" methodname="TC019_WriteFailureDoesNotSplitMoneyAndEquipment" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1050592856" result="Failed" label="Error" start-time="2026-09-10 09:53:38Z" end-time="2026-09-10 09:53:38Z" duration="0.002193" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.ArgumentException : Invalid campaign schema, references, revision or ledger]]></message>
+                <stack-trace><![CDATA[  at OnHold.Domain.Campaign.Validate () [0x00290] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Domain/Campaign.cs:36 
+  at OnHold.Persistence.CampaignStore.Decode (System.String text) [0x00146] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:137 
+  at OnHold.Persistence.CampaignStore.AtomicWrite (System.String text) [0x0007a] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:79 
+  at OnHold.Persistence.CampaignStore.Commit (OnHold.Domain.Campaign next) [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:66 
+  at OnHold.Persistence.CampaignStore.Settle (OnHold.Domain.RunResult result) [0x00021] in /Users/burakcoskun/On Hold/Assets/_OnHold/Runtime/Persistence/CampaignStore.cs:43 
+  at OnHold.Tests.PersistenceAcceptanceTests.TC019_WriteFailureDoesNotSplitMoneyAndEquipment () [0x00016] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/PersistenceAcceptanceTests.cs:90 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

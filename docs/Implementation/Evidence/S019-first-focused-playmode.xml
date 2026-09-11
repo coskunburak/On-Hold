@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="12" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 07:25:50Z" end-time="2026-09-11 07:25:57Z" duration="7.4116563">
+  <test-suite type="TestSuite" id="1076" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-11 07:25:50Z" end-time="2026-09-11 07:25:57Z" duration="7.411656" total="16" passed="12" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1070" name="OnHold.PlayMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.PlayMode.Tests.dll" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-11 07:25:50Z" end-time="2026-09-11 07:25:57Z" duration="7.406942" total="16" passed="12" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27459" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1071" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-11 07:25:50Z" end-time="2026-09-11 07:25:57Z" duration="7.406628" total="16" passed="12" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1072" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-11 07:25:50Z" end-time="2026-09-11 07:25:57Z" duration="7.406471" total="16" passed="12" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1003" name="HeldManipulationTests" fullname="OnHold.Tests.HeldManipulationTests" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-11 07:25:50Z" end-time="2026-09-11 07:25:54Z" duration="4.009056" total="13" passed="9" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1009" name="S019_DestroyHeldCargoWhileWorldContinues" fullname="OnHold.Tests.HeldManipulationTests.S019_DestroyHeldCargoWhileWorldContinues" methodname="S019_DestroyHeldCargoWhileWorldContinues" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="1876013465" result="Passed" start-time="2026-09-11 07:25:50Z" end-time="2026-09-11 07:25:50Z" duration="0.750856" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="S019_DisableCargoAndInvalidGripReleaseWithoutStaleControl" fullname="OnHold.Tests.HeldManipulationTests.S019_DisableCargoAndInvalidGripReleaseWithoutStaleControl" methodname="S019_DisableCargoAndInvalidGripReleaseWithoutStaleControl" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="2100026203" result="Passed" start-time="2026-09-11 07:25:50Z" end-time="2026-09-11 07:25:51Z" duration="0.264705" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="S019_DisabledPlayerCannotRetainManipulation" fullname="OnHold.Tests.HeldManipulationTests.S019_DisabledPlayerCannotRetainManipulation" methodname="S019_DisabledPlayerCannotRetainManipulation" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="2029488682" result="Passed" start-time="2026-09-11 07:25:51Z" end-time="2026-09-11 07:25:51Z" duration="0.245702" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="S019_GrabYawPitchPreservesCommittedGripAndDynamicBody" fullname="OnHold.Tests.HeldManipulationTests.S019_GrabYawPitchPreservesCommittedGripAndDynamicBody" methodname="S019_GrabYawPitchPreservesCommittedGripAndDynamicBody" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="433949517" result="Passed" start-time="2026-09-11 07:25:51Z" end-time="2026-09-11 07:25:51Z" duration="0.266427" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="S019_ModifierExitRetainsTargetAndResetClearsAllState" fullname="OnHold.Tests.HeldManipulationTests.S019_ModifierExitRetainsTargetAndResetClearsAllState" methodname="S019_ModifierExitRetainsTargetAndResetClearsAllState" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="1549022980" result="Passed" start-time="2026-09-11 07:25:51Z" end-time="2026-09-11 07:25:51Z" duration="0.246729" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1014" name="S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize" fullname="OnHold.Tests.HeldManipulationTests.S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-11 07:25:51Z" end-time="2026-09-11 07:25:53Z" duration="1.201795" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1010" name="S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize(0,100.0f)" fullname="OnHold.Tests.HeldManipulationTests.S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize(0,100.0f)" methodname="S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="1867851387" result="Passed" start-time="2026-09-11 07:25:51Z" end-time="2026-09-11 07:25:52Z" duration="0.347848" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[mass=100 size=(2.00, 0.60, 0.70) 1000 steps peak angular=2.922098 rad/s torque=800 Nm
+]]></output>
+              </test-case>
+              <test-case id="1011" name="S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize(1,35.0f)" fullname="OnHold.Tests.HeldManipulationTests.S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize(1,35.0f)" methodname="S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="1164416046" result="Failed" start-time="2026-09-11 07:25:52Z" end-time="2026-09-11 07:25:52Z" duration="0.253040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at OnHold.Tests.HeldManipulationTests.Grab () [0x0001d] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs:48
+at OnHold.Tests.HeldManipulationTests.S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize (System.Int32 index, System.Single mass) [0x00035] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1012" name="S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize(1,5.0f)" fullname="OnHold.Tests.HeldManipulationTests.S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize(1,5.0f)" methodname="S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="1037521783" result="Failed" start-time="2026-09-11 07:25:52Z" end-time="2026-09-11 07:25:52Z" duration="0.248248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at OnHold.Tests.HeldManipulationTests.Grab () [0x0001d] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs:48
+at OnHold.Tests.HeldManipulationTests.S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize (System.Int32 index, System.Single mass) [0x00035] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1013" name="S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize(0,250.0f)" fullname="OnHold.Tests.HeldManipulationTests.S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize(0,250.0f)" methodname="S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="2028663064" result="Passed" start-time="2026-09-11 07:25:52Z" end-time="2026-09-11 07:25:53Z" duration="0.350928" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[mass=250 size=(2.00, 0.60, 0.70) 1000 steps peak angular=3.871356 rad/s torque=800.0001 Nm
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1005" name="S019_ReleaseStopsTorqueAndRegrabInitializesFromOtherObject" fullname="OnHold.Tests.HeldManipulationTests.S019_ReleaseStopsTorqueAndRegrabInitializesFromOtherObject" methodname="S019_ReleaseStopsTorqueAndRegrabInitializesFromOtherObject" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="36474675" result="Passed" start-time="2026-09-11 07:25:53Z" end-time="2026-09-11 07:25:53Z" duration="0.265781" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="S019_ThousandWarmedProductionInputQueryDriveIterationsAllocateZero" fullname="OnHold.Tests.HeldManipulationTests.S019_ThousandWarmedProductionInputQueryDriveIterationsAllocateZero" methodname="S019_ThousandWarmedProductionInputQueryDriveIterationsAllocateZero" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="2119267810" result="Passed" start-time="2026-09-11 07:25:53Z" end-time="2026-09-11 07:25:53Z" duration="0.253572" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[1000 warmed production manipulation input + query + Drive iterations: 0 bytes
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1017" name="S019_WallAndFloorConstrainRotationThroughSolver" fullname="OnHold.Tests.HeldManipulationTests.S019_WallAndFloorConstrainRotationThroughSolver" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-11 07:25:53Z" end-time="2026-09-11 07:25:54Z" duration="0.504809" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1015" name="S019_WallAndFloorConstrainRotationThroughSolver(False)" fullname="OnHold.Tests.HeldManipulationTests.S019_WallAndFloorConstrainRotationThroughSolver(False)" methodname="S019_WallAndFloorConstrainRotationThroughSolver" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="686341569" result="Failed" label="Error" start-time="2026-09-11 07:25:53Z" end-time="2026-09-11 07:25:53Z" duration="0.252825" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[UnityEngine.MissingComponentException : There is no 'Collider' attached to the "LongLoad" game object, but a script is trying to access it.
+You probably need to add a Collider to the game object "LongLoad". Or your script needs to check if the component is attached before using it. Parameter name: colliderA]]></message>
+                  <stack-trace><![CDATA[  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowArgumentNullException (System.Object obj, System.String parameterName) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:53 
+  at UnityEngine.Physics.Query_ComputePenetration (UnityEngine.Collider colliderA, UnityEngine.Vector3 positionA, UnityEngine.Quaternion rotationA, UnityEngine.Collider colliderB, UnityEngine.Vector3 positionB, UnityEngine.Quaternion rotationB, UnityEngine.Vector3& direction, System.Single& distance) [0x00024] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at UnityEngine.Physics.ComputePenetration (UnityEngine.Collider colliderA, UnityEngine.Vector3 positionA, UnityEngine.Quaternion rotationA, UnityEngine.Collider colliderB, UnityEngine.Vector3 positionB, UnityEngine.Quaternion rotationB, UnityEngine.Vector3& direction, System.Single& distance) [0x00014] in /Users/bokken/build/output/unity/unity/Modules/Physics/ScriptBindings/Physics.bindings.cs:789 
+  at OnHold.Tests.HeldManipulationTests.S019_WallAndFloorConstrainRotationThroughSolver (System.Boolean floor) [0x0010e] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs:140 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1016" name="S019_WallAndFloorConstrainRotationThroughSolver(True)" fullname="OnHold.Tests.HeldManipulationTests.S019_WallAndFloorConstrainRotationThroughSolver(True)" methodname="S019_WallAndFloorConstrainRotationThroughSolver" classname="OnHold.Tests.HeldManipulationTests" runstate="Runnable" seed="1251353303" result="Failed" label="Error" start-time="2026-09-11 07:25:53Z" end-time="2026-09-11 07:25:54Z" duration="0.251397" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[UnityEngine.MissingComponentException : There is no 'Collider' attached to the "LongLoad" game object, but a script is trying to access it.
+You probably need to add a Collider to the game object "LongLoad". Or your script needs to check if the component is attached before using it. Parameter name: colliderA]]></message>
+                  <stack-trace><![CDATA[  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowArgumentNullException (System.Object obj, System.String parameterName) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:53 
+  at UnityEngine.Physics.Query_ComputePenetration (UnityEngine.Collider colliderA, UnityEngine.Vector3 positionA, UnityEngine.Quaternion rotationA, UnityEngine.Collider colliderB, UnityEngine.Vector3 positionB, UnityEngine.Quaternion rotationB, UnityEngine.Vector3& direction, System.Single& distance) [0x00024] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at UnityEngine.Physics.ComputePenetration (UnityEngine.Collider colliderA, UnityEngine.Vector3 positionA, UnityEngine.Quaternion rotationA, UnityEngine.Collider colliderB, UnityEngine.Vector3 positionB, UnityEngine.Quaternion rotationB, UnityEngine.Vector3& direction, System.Single& distance) [0x00014] in /Users/bokken/build/output/unity/unity/Modules/Physics/ScriptBindings/Physics.bindings.cs:789 
+  at OnHold.Tests.HeldManipulationTests.S019_WallAndFloorConstrainRotationThroughSolver (System.Boolean floor) [0x0010e] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs:140 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1057" name="SoloPlayableInputTests" fullname="OnHold.Tests.SoloPlayableInputTests" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-11 07:25:54Z" end-time="2026-09-11 07:25:57Z" duration="3.396564" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1064" name="S019_ModifierWithoutCargoMenuDisableAndSessionCleanup" fullname="OnHold.Tests.SoloPlayableInputTests.S019_ModifierWithoutCargoMenuDisableAndSessionCleanup" methodname="S019_ModifierWithoutCargoMenuDisableAndSessionCleanup" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="2095638834" result="Passed" start-time="2026-09-11 07:25:54Z" end-time="2026-09-11 07:25:55Z" duration="0.881857" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+]]></output>
+            </test-case>
+            <test-case id="1063" name="S019_RealModifierRoutesMouseAndRestoresCameraOnRelease" fullname="OnHold.Tests.SoloPlayableInputTests.S019_RealModifierRoutesMouseAndRestoresCameraOnRelease" methodname="S019_RealModifierRoutesMouseAndRestoresCameraOnRelease" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="615442871" result="Passed" start-time="2026-09-11 07:25:55Z" end-time="2026-09-11 07:25:56Z" duration="1.583166" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+]]></output>
+            </test-case>
+            <test-case id="1065" name="S019_ReboundModifierAndGamepadUseSameCameraContract" fullname="OnHold.Tests.SoloPlayableInputTests.S019_ReboundModifierAndGamepadUseSameCameraContract" methodname="S019_ReboundModifierAndGamepadUseSameCameraContract" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="1135396620" result="Passed" start-time="2026-09-11 07:25:56Z" end-time="2026-09-11 07:25:57Z" duration="0.930097" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

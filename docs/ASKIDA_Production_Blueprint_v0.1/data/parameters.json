@@ -1,0 +1,115 @@
+[
+  {
+    "id": "P-PHYSICS-HZ",
+    "value": 50,
+    "unit": "Hz",
+    "owner_doc": "ASK-040",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-SNAPSHOT-HZ",
+    "value": 20,
+    "unit": "Hz",
+    "owner_doc": "ASK-029",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-RECONNECT-SEC",
+    "value": 60,
+    "unit": "s",
+    "owner_doc": "ASK-032",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-HOLDERS-MAX",
+    "value": 2,
+    "unit": "players/item",
+    "owner_doc": "ASK-017",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-PLAYER-MASS",
+    "value": 80,
+    "unit": "kg",
+    "owner_doc": "ASK-018",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-DECK-WIDTH",
+    "value": 2.4,
+    "unit": "m",
+    "owner_doc": "ASK-018",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-DECK-DEPTH",
+    "value": 1.8,
+    "unit": "m",
+    "owner_doc": "ASK-018",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-TILT-MAX",
+    "value": 12,
+    "unit": "deg",
+    "owner_doc": "ASK-018",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-DELIVERY-DWELL",
+    "value": 1,
+    "unit": "s",
+    "owner_doc": "ASK-022",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-DELIVERY-SPEED",
+    "value": 0.15,
+    "unit": "m/s",
+    "owner_doc": "ASK-022",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-DELIVERY-ANGULAR",
+    "value": 5,
+    "unit": "deg/s",
+    "owner_doc": "ASK-022",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-INTEGRITY-MIN",
+    "value": 20,
+    "unit": "integrity/100",
+    "owner_doc": "ASK-022",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-RECOVERY-MAX",
+    "value": 2,
+    "unit": "recoveries/item",
+    "owner_doc": "ASK-025",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-RECOVERY-PENALTY",
+    "value": 15,
+    "unit": "s",
+    "owner_doc": "ASK-025",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-WINCH-SECURE-SPEED",
+    "value": 0.05,
+    "unit": "m/s",
+    "owner_doc": "ASK-020",
+    "status": "PROPOSED_UNBENCHMARKED"
+  },
+  {
+    "id": "P-TARGET-FPS",
+    "value": 60,
+    "unit": "fps at 1080p",
+    "owner_doc": "ASK-065",
+    "status": "PROPOSED_UNBENCHMARKED"
+  }
+]
+

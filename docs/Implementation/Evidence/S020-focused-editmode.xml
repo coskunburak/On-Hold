@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Passed" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.0423042">
+  <test-suite type="TestSuite" id="1000" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.042304" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1118" name="OnHold.EditMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.EditMode.Tests.dll" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.037790" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="48364" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1119" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.036658" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1120" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.035904" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1086" name="ReleaseSafetyTests" fullname="OnHold.Tests.ReleaseSafetyTests" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.034317" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1104" name="S020_AllSolidGameplayLayersBlock" fullname="OnHold.Tests.ReleaseSafetyTests.S020_AllSolidGameplayLayersBlock" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.015240" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1100" name="S020_AllSolidGameplayLayersBlock(8)" fullname="OnHold.Tests.ReleaseSafetyTests.S020_AllSolidGameplayLayersBlock(8)" methodname="S020_AllSolidGameplayLayersBlock" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="639930951" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.011001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1101" name="S020_AllSolidGameplayLayersBlock(9)" fullname="OnHold.Tests.ReleaseSafetyTests.S020_AllSolidGameplayLayersBlock(9)" methodname="S020_AllSolidGameplayLayersBlock" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="330665325" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1102" name="S020_AllSolidGameplayLayersBlock(10)" fullname="OnHold.Tests.ReleaseSafetyTests.S020_AllSolidGameplayLayersBlock(10)" methodname="S020_AllSolidGameplayLayersBlock" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="884774558" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1103" name="S020_AllSolidGameplayLayersBlock(11)" fullname="OnHold.Tests.ReleaseSafetyTests.S020_AllSolidGameplayLayersBlock(11)" methodname="S020_AllSolidGameplayLayersBlock" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1945400649" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000124" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1110" name="S020_ConfigurationRejectsInvalidAndExcessiveLimits" fullname="OnHold.Tests.ReleaseSafetyTests.S020_ConfigurationRejectsInvalidAndExcessiveLimits" methodname="S020_ConfigurationRejectsInvalidAndExcessiveLimits" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1540482773" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.001984" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1087" name="S020_E01_SafeCurrentPoseClassifiedSafe" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E01_SafeCurrentPoseClassifiedSafe" methodname="S020_E01_SafeCurrentPoseClassifiedSafe" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="468803886" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000339" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1088" name="S020_E02_BlockingPenetrationClassifiedUnsafe" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E02_BlockingPenetrationClassifiedUnsafe" methodname="S020_E02_BlockingPenetrationClassifiedUnsafe" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="47342226" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000311" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1089" name="S020_E03_OrdinarySupportContactRemainsSafe" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E03_OrdinarySupportContactRemainsSafe" methodname="S020_E03_OrdinarySupportContactRemainsSafe" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="574064145" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000200" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1090" name="S020_E04_SelfColliderFilteredOut" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E04_SelfColliderFilteredOut" methodname="S020_E04_SelfColliderFilteredOut" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1750896800" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000142" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1091" name="S020_E05_TriggerDoesNotBlockRelease" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E05_TriggerDoesNotBlockRelease" methodname="S020_E05_TriggerDoesNotBlockRelease" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="695256574" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000429" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1092" name="S020_E06_DeterministicCandidateOrdering" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E06_DeterministicCandidateOrdering" methodname="S020_E06_DeterministicCandidateOrdering" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1963677514" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.003234" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1093" name="S020_E07_BoundedSearchNeverExceedsConfiguredDistance" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E07_BoundedSearchNeverExceedsConfiguredDistance" methodname="S020_E07_BoundedSearchNeverExceedsConfiguredDistance" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1044860546" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.001130" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1094" name="S020_E08_FullyEnclosedPoseIsUnsafe" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E08_FullyEnclosedPoseIsUnsafe" methodname="S020_E08_FullyEnclosedPoseIsUnsafe" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1695296881" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000303" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1095" name="S020_E09_LinearVelocityBound" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E09_LinearVelocityBound" methodname="S020_E09_LinearVelocityBound" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="82657134" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000429" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1096" name="S020_E10_AngularVelocityBound" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E10_AngularVelocityBound" methodname="S020_E10_AngularVelocityBound" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="735608031" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000183" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1097" name="S020_E11_ReasonableVelocityPreserved" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E11_ReasonableVelocityPreserved" methodname="S020_E11_ReasonableVelocityPreserved" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1314457953" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000793" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1098" name="S020_E12_NaNInfinityHandledSafely" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E12_NaNInfinityHandledSafely" methodname="S020_E12_NaNInfinityHandledSafely" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1810101875" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000198" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1099" name="S020_E13_InvalidStateDoesNotMoveBody" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E13_InvalidStateDoesNotMoveBody" methodname="S020_E13_InvalidStateDoesNotMoveBody" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="541908337" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000227" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1111" name="S020_E14_WarmedReleaseSafetyChecksAllocateZero" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E14_WarmedReleaseSafetyChecksAllocateZero" methodname="S020_E14_WarmedReleaseSafetyChecksAllocateZero" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1962167747" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000944" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[1000 warmed release safety checks: 0 bytes
+]]></output>
+            </test-case>
+            <test-case id="1106" name="S020_FullQueryBufferIsConservativelyUnsafe" fullname="OnHold.Tests.ReleaseSafetyTests.S020_FullQueryBufferIsConservativelyUnsafe" methodname="S020_FullQueryBufferIsConservativelyUnsafe" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1184506656" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000973" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1105" name="S020_InvalidNumericPoseRejectedBeforePhysicsQuery" fullname="OnHold.Tests.ReleaseSafetyTests.S020_InvalidNumericPoseRejectedBeforePhysicsQuery" methodname="S020_InvalidNumericPoseRejectedBeforePhysicsQuery" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1322522507" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000495" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1109" name="S020_PenetrationToleranceIsDistancePerFace" fullname="OnHold.Tests.ReleaseSafetyTests.S020_PenetrationToleranceIsDistancePerFace" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.001114" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1107" name="S020_PenetrationToleranceIsDistancePerFace(0.02f,True)" fullname="OnHold.Tests.ReleaseSafetyTests.S020_PenetrationToleranceIsDistancePerFace(0.02f,True)" methodname="S020_PenetrationToleranceIsDistancePerFace" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1640712487" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1108" name="S020_PenetrationToleranceIsDistancePerFace(0.04f,False)" fullname="OnHold.Tests.ReleaseSafetyTests.S020_PenetrationToleranceIsDistancePerFace(0.04f,False)" methodname="S020_PenetrationToleranceIsDistancePerFace" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1633230747" result="Passed" start-time="2026-09-11 08:47:55Z" end-time="2026-09-11 08:47:55Z" duration="0.000183" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

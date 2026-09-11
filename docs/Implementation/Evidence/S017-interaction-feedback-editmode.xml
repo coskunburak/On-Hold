@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.055781">
+  <test-suite type="TestSuite" id="1000" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="64" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.055781" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1074" name="OnHold.EditMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.EditMode.Tests.dll" runstate="Runnable" testcasecount="64" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.040653" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="18384" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1075" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="64" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.039885" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1076" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="64" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.036410" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1025" name="InteractionFeedbackTests" fullname="OnHold.Tests.InteractionFeedbackTests" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.034890" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1033" name="S017_EligibilityDoesNotAcquireAttachment" fullname="OnHold.Tests.InteractionFeedbackTests.S017_EligibilityDoesNotAcquireAttachment" methodname="S017_EligibilityDoesNotAcquireAttachment" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="879036325" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.012278" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="S017_NoTargetAndSuppressedNeverExposeAction" fullname="OnHold.Tests.InteractionFeedbackTests.S017_NoTargetAndSuppressedNeverExposeAction" methodname="S017_NoTargetAndSuppressedNeverExposeAction" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="877167749" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.011599" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1031" name="S017_OnlyPlayerFacingReasons" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.002231" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1027" name="S017_OnlyPlayerFacingReasons(TooFar,MoveCloser)" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons(TooFar,MoveCloser)" methodname="S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="946715273" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.000255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1028" name="S017_OnlyPlayerFacingReasons(Busy,NoAvailableGrip)" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons(Busy,NoAvailableGrip)" methodname="S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="1642303022" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.000083" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1029" name="S017_OnlyPlayerFacingReasons(StaleRevision,Unavailable)" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons(StaleRevision,Unavailable)" methodname="S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="1499159077" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.000044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1030" name="S017_OnlyPlayerFacingReasons(InvalidPayload,Unavailable)" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons(InvalidPayload,Unavailable)" methodname="S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="281887614" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.000065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1032" name="S017_SecuredHasDeliberateMessage" fullname="OnHold.Tests.InteractionFeedbackTests.S017_SecuredHasDeliberateMessage" methodname="S017_SecuredHasDeliberateMessage" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="372779583" result="Passed" start-time="2026-09-10 13:10:52Z" end-time="2026-09-10 13:10:52Z" duration="0.000129" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

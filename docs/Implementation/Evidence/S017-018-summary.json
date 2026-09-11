@@ -1,0 +1,37 @@
+{
+  "UnityVersion": "6000.5.0f1 (88b47c5e7076)",
+  "S017Status": "PASS",
+  "S018Status": "PASS",
+  "EditMode": {
+    "Total": 66,
+    "Passed": 66,
+    "Failed": 0,
+    "Skipped": 0
+  },
+  "PlayMode": {
+    "Total": 42,
+    "Passed": 42,
+    "Failed": 0,
+    "Skipped": 0
+  },
+  "Build": {
+    "Target": "macOS",
+    "Result": "PASS",
+    "Path": "/Users/burakcoskun/On Hold/Builds/FeedbackQA/On Hold Feedback.app"
+  },
+  "VisibleAcceptance": {
+    "S017": "PASS",
+    "S018": "PASS"
+  },
+  "Performance": {
+    "S017QueryAllocation": 0,
+    "S018PreviewAllocation": 0
+  },
+  "Regression": {
+    "SpaceJump": "PASS",
+    "Grab": "PASS",
+    "Carry": "PASS",
+    "Release": "PASS"
+  },
+  "NextSprint": "S019"
+}

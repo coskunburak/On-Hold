@@ -1,0 +1,9 @@
+{
+  "name": "OnHold.Domain",
+  "rootNamespace": "OnHold.Domain",
+  "references": [
+    "OnHold.Core"
+  ],
+  "includePlatforms": [],
+  "noEngineReferences": true
+}

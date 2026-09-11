@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="14" result="Failed(Child)" total="14" passed="0" failed="14" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.0651912">
+  <test-suite type="TestSuite" id="1000" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="94" result="Failed" site="Child" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.065191" total="14" passed="0" failed="14" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1107" name="OnHold.EditMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.EditMode.Tests.dll" runstate="Runnable" testcasecount="94" result="Failed" site="Child" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.057333" total="14" passed="0" failed="14" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44778" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1108" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="94" result="Failed" site="Child" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.056063" total="14" passed="0" failed="14" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1109" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="94" result="Failed" site="Child" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.054804" total="14" passed="0" failed="14" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1086" name="ReleaseSafetyTests" fullname="OnHold.Tests.ReleaseSafetyTests" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.048952" total="14" passed="0" failed="14" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1087" name="S020_E01_SafeCurrentPoseClassifiedSafe" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E01_SafeCurrentPoseClassifiedSafe" methodname="S020_E01_SafeCurrentPoseClassifiedSafe" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="742268300" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.010412" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1088" name="S020_E02_BlockingPenetrationClassifiedUnsafe" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E02_BlockingPenetrationClassifiedUnsafe" methodname="S020_E02_BlockingPenetrationClassifiedUnsafe" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="379600707" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000600" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1089" name="S020_E03_OrdinarySupportContactRemainsSafe" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E03_OrdinarySupportContactRemainsSafe" methodname="S020_E03_OrdinarySupportContactRemainsSafe" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="184493046" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000198" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1090" name="S020_E04_SelfColliderFilteredOut" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E04_SelfColliderFilteredOut" methodname="S020_E04_SelfColliderFilteredOut" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1419715749" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000151" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1091" name="S020_E05_TriggerDoesNotBlockRelease" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E05_TriggerDoesNotBlockRelease" methodname="S020_E05_TriggerDoesNotBlockRelease" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1042302700" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000151" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1092" name="S020_E06_DeterministicCandidateOrdering" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E06_DeterministicCandidateOrdering" methodname="S020_E06_DeterministicCandidateOrdering" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="959527921" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000124" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1093" name="S020_E07_BoundedSearchNeverExceedsConfiguredDistance" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E07_BoundedSearchNeverExceedsConfiguredDistance" methodname="S020_E07_BoundedSearchNeverExceedsConfiguredDistance" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1881539369" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1094" name="S020_E08_FullyEnclosedPoseIsUnsafe" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E08_FullyEnclosedPoseIsUnsafe" methodname="S020_E08_FullyEnclosedPoseIsUnsafe" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="881746141" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000136" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1095" name="S020_E09_LinearVelocityBound" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E09_LinearVelocityBound" methodname="S020_E09_LinearVelocityBound" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1449329729" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000409" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1096" name="S020_E10_AngularVelocityBound" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E10_AngularVelocityBound" methodname="S020_E10_AngularVelocityBound" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1447971216" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000222" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1097" name="S020_E11_ReasonableVelocityPreserved" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E11_ReasonableVelocityPreserved" methodname="S020_E11_ReasonableVelocityPreserved" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1627925831" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000346" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1098" name="S020_E12_NaNInfinityHandledSafely" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E12_NaNInfinityHandledSafely" methodname="S020_E12_NaNInfinityHandledSafely" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="1417668488" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000195" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1099" name="S020_E13_ReleaseResultEnumHasExpectedValues" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E13_ReleaseResultEnumHasExpectedValues" methodname="S020_E13_ReleaseResultEnumHasExpectedValues" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="886769680" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000638" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1100" name="S020_E14_WarmedReleaseSafetyChecksAllocateZero" fullname="OnHold.Tests.ReleaseSafetyTests.S020_E14_WarmedReleaseSafetyChecksAllocateZero" methodname="S020_E14_WarmedReleaseSafetyChecksAllocateZero" classname="OnHold.Tests.ReleaseSafetyTests" runstate="Runnable" seed="2116768606" result="Failed" label="Error" start-time="2026-09-11 08:34:01Z" end-time="2026-09-11 08:34:01Z" duration="0.000155" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : UnityEngine.MissingComponentException : There is no 'Rigidbody' attached to the "Cube" game object, but a script is trying to access it.
+You probably need to add a Rigidbody to the game object "Cube". Or your script needs to check if the component is attached before using it.]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b6] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1158 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61 
+  at UnityEngine.Rigidbody.set_useGravity (System.Boolean value) [0x00006] in <d0de90018ba04c66951660f69ae34f4e>:0 
+  at OnHold.Tests.ReleaseSafetyTests.Setup () [0x00059] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs:26 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <299d5c9ae27b4d27af003e5f456f4b13>:0 ]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

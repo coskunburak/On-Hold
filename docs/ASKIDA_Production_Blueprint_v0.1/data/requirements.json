@@ -1,0 +1,525 @@
+[
+  {
+    "acceptance_tests": [
+      "TC-001"
+    ],
+    "id": "REQ-001",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-001",
+      "ASK-004",
+      "ASK-009",
+      "ASK-026"
+    ],
+    "status": "PROPOSED",
+    "title": "Motor ve sürüm kararı kanıtla seçilmeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-002"
+    ],
+    "id": "REQ-002",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-036",
+      "ASK-042"
+    ],
+    "status": "PROPOSED",
+    "title": "Temiz checkout tekrar açılmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-003"
+    ],
+    "id": "REQ-003",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-027",
+      "ASK-028"
+    ],
+    "status": "PROPOSED",
+    "title": "İstemci paylaşılan state'i doğrudan değiştirememeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-004"
+    ],
+    "id": "REQ-004",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-015",
+      "ASK-017"
+    ],
+    "status": "PROPOSED",
+    "title": "İki holder sınırlı kuvvetle aynı eşyayı taşıyabilmeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-005"
+    ],
+    "id": "REQ-005",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-018",
+      "ASK-040"
+    ],
+    "status": "PROPOSED",
+    "title": "Platform destek kütlesini bir kere saymalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-006"
+    ],
+    "id": "REQ-006",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-030",
+      "ASK-035"
+    ],
+    "status": "PROPOSED",
+    "title": "Ağ stresinde state bozulmamalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-007"
+    ],
+    "id": "REQ-007",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-026",
+      "ASK-031"
+    ],
+    "status": "PROPOSED",
+    "title": "Gerçek internet bağlantısı doğrulanmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-008"
+    ],
+    "id": "REQ-008",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-026",
+      "ASK-069",
+      "ASK-074"
+    ],
+    "status": "PROPOSED",
+    "title": "Risk kapısı kanıtla kapanmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-009"
+    ],
+    "id": "REQ-009",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-016",
+      "ASK-067"
+    ],
+    "status": "PROPOSED",
+    "title": "Eşya değişmezleri korunmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-010"
+    ],
+    "id": "REQ-010",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-020",
+      "ASK-028"
+    ],
+    "status": "PROPOSED",
+    "title": "Anchor işlemi tek ve atomik olmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-011"
+    ],
+    "id": "REQ-011",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-022",
+      "ASK-033"
+    ],
+    "status": "PROPOSED",
+    "title": "Teslimat ve ödeme yinelenmemeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-012"
+    ],
+    "id": "REQ-012",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-021",
+      "ASK-040"
+    ],
+    "status": "PROPOSED",
+    "title": "Hasar temas sayısıyla çoğalmamalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-013"
+    ],
+    "id": "REQ-013",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-011",
+      "ASK-023"
+    ],
+    "status": "PROPOSED",
+    "title": "Bitiş sırası ve kısmi ödül tutarlı olmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-014"
+    ],
+    "id": "REQ-014",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-025"
+    ],
+    "status": "PROPOSED",
+    "title": "Kurtarma terminal item'ı canlandırmamalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-015"
+    ],
+    "id": "REQ-015",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-012",
+      "ASK-031"
+    ],
+    "status": "PROPOSED",
+    "title": "Lobi ve content handshake uyumlu olmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-016"
+    ],
+    "id": "REQ-016",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-032",
+      "ASK-029"
+    ],
+    "status": "PROPOSED",
+    "title": "Misafir reconnect temiz snapshot almalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-017"
+    ],
+    "id": "REQ-017",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-032",
+      "ASK-043"
+    ],
+    "status": "PROPOSED",
+    "title": "Host kaybı checkpoint sınırını korumalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-018"
+    ],
+    "id": "REQ-018",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-033",
+      "ASK-043"
+    ],
+    "status": "PROPOSED",
+    "title": "Kayıt atomik ve migrate edilebilir olmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-019"
+    ],
+    "id": "REQ-019",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-024",
+      "ASK-033"
+    ],
+    "status": "PROPOSED",
+    "title": "Satın alma güvenli ve softlock'suz olmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-020"
+    ],
+    "id": "REQ-020",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-039",
+      "ASK-041"
+    ],
+    "status": "PROPOSED",
+    "title": "Content registry hataları build'i engellemeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-021"
+    ],
+    "id": "REQ-021",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-012",
+      "ASK-038"
+    ],
+    "status": "PROPOSED",
+    "title": "Sahne yaşam döngüsü kaynak sızdırmamalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-022"
+    ],
+    "id": "REQ-022",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-028",
+      "ASK-034"
+    ],
+    "status": "PROPOSED",
+    "title": "Bozuk komut sınırlı kaynakla reddedilmeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-023"
+    ],
+    "id": "REQ-023",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-046",
+      "ASK-047"
+    ],
+    "status": "PROPOSED",
+    "title": "Kaynak paketler ortak stil kapısından geçmeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-024"
+    ],
+    "id": "REQ-024",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-048",
+      "ASK-061"
+    ],
+    "status": "PROPOSED",
+    "title": "Shipping varlığı lisansa izlenebilir olmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-025"
+    ],
+    "id": "REQ-025",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-049",
+      "ASK-041"
+    ],
+    "status": "PROPOSED",
+    "title": "Prop tam teknik kabul almalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-026"
+    ],
+    "id": "REQ-026",
+    "priority": "P1",
+    "source_docs": [
+      "ASK-050",
+      "ASK-048"
+    ],
+    "status": "PROPOSED",
+    "title": "AI üretimi gerçek araç ve insan QA ile doğrulanmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-027"
+    ],
+    "id": "REQ-027",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-051"
+    ],
+    "status": "PROPOSED",
+    "title": "Tek rig bütün karakterlerde çalışmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-028"
+    ],
+    "id": "REQ-028",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-052"
+    ],
+    "status": "PROPOSED",
+    "title": "Animasyon gameplay state'i belirlememeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-029"
+    ],
+    "id": "REQ-029",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-053",
+      "ASK-066"
+    ],
+    "status": "PROPOSED",
+    "title": "Materyaller uyumlu ve bütçe içinde olmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-030"
+    ],
+    "id": "REQ-030",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-054"
+    ],
+    "status": "PROPOSED",
+    "title": "VFX tek olay ve sınırlı havuz kullanmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-031"
+    ],
+    "id": "REQ-031",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-055"
+    ],
+    "status": "PROPOSED",
+    "title": "Ses state ile uyumlu ve erişilebilir olmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-032"
+    ],
+    "id": "REQ-032",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-056",
+      "ASK-057",
+      "ASK-058"
+    ],
+    "status": "PROPOSED",
+    "title": "Slice rotası iki/dört oyuncuyla geçilmeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-033"
+    ],
+    "id": "REQ-033",
+    "priority": "P1",
+    "source_docs": [
+      "ASK-023",
+      "ASK-059",
+      "ASK-060"
+    ],
+    "status": "PROPOSED",
+    "title": "Sözleşmeler geçerli ve farklı karar sunmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-034"
+    ],
+    "id": "REQ-034",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-062",
+      "ASK-015"
+    ],
+    "status": "PROPOSED",
+    "title": "UI otorite ve kayıt durumunu doğru göstermeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-035"
+    ],
+    "id": "REQ-035",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-063",
+      "ASK-013"
+    ],
+    "status": "PROPOSED",
+    "title": "Erişim ayarları temel görevi desteklemeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-036"
+    ],
+    "id": "REQ-036",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-064"
+    ],
+    "status": "PROPOSED",
+    "title": "Yerelleştirme metin ve input'u korumalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-037"
+    ],
+    "id": "REQ-037",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-065",
+      "ASK-066"
+    ],
+    "status": "PROPOSED",
+    "title": "Hedef donanım performansı ölçülmeli"
+  },
+  {
+    "acceptance_tests": [
+      "TC-038"
+    ],
+    "id": "REQ-038",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-042",
+      "ASK-070"
+    ],
+    "status": "PROPOSED",
+    "title": "Build/release yolu kontrollü olmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-039"
+    ],
+    "id": "REQ-039",
+    "priority": "P1",
+    "source_docs": [
+      "ASK-076",
+      "ASK-077",
+      "ASK-078",
+      "ASK-079"
+    ],
+    "status": "PROPOSED",
+    "title": "Bilgi tabanı izlenebilir ve salt okunur kullanılmalı"
+  },
+  {
+    "acceptance_tests": [
+      "TC-040"
+    ],
+    "id": "REQ-040",
+    "priority": "P0",
+    "source_docs": [
+      "ASK-048",
+      "ASK-069",
+      "ASK-075"
+    ],
+    "status": "PROPOSED",
+    "title": "Yayın iddiaları kanıta ve lisansa uymalı"
+  }
+]
+

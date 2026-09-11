@@ -105,3 +105,8 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Custom Ignores
+.DS_Store
+/[Aa]ssets/[Aa]ssets/
+/[Aa]ssets/[Aa]ssets.meta

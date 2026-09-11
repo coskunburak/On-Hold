@@ -1,0 +1,1106 @@
+--- before/Assets/_OnHold/Data/Foundation.inputactions
++++ after/Assets/_OnHold/Data/Foundation.inputactions
+@@ -67,6 +67,15 @@
+           "processors": "",
+           "interactions": "",
+           "initialStateCheck": false
++        },
++        {
++          "name": "Manipulate",
++          "type": "Button",
++          "id": "9b421b8c-9675-4e4e-9b31-338ae7586406",
++          "expectedControlType": "Button",
++          "processors": "",
++          "interactions": "",
++          "initialStateCheck": false
+         }
+       ],
+       "bindings": [
+@@ -265,6 +274,28 @@
+           "processors": "",
+           "groups": "",
+           "action": "Jump",
++          "isComposite": false,
++          "isPartOfComposite": false
++        },
++        {
++          "name": "",
++          "id": "af57b13a-9513-4048-8dc2-a06a98dc0dcf",
++          "path": "<Mouse>/rightButton",
++          "interactions": "",
++          "processors": "",
++          "groups": "",
++          "action": "Manipulate",
++          "isComposite": false,
++          "isPartOfComposite": false
++        },
++        {
++          "name": "",
++          "id": "c591eeab-22fe-4310-a621-485219913db9",
++          "path": "<Gamepad>/leftTrigger",
++          "interactions": "",
++          "processors": "",
++          "groups": "",
++          "action": "Manipulate",
+           "isComposite": false,
+           "isPartOfComposite": false
+         }
+--- before/Assets/_OnHold/Data/FoundationConfig.json
++++ after/Assets/_OnHold/Data/FoundationConfig.json
+@@ -4,12 +4,12 @@
+     "HoldersMax": 2,
+     "RecoveryMax": 2,
+     "PlayerMass": 80.0,
+-    "DeckWidth": 2.4000000953674318,
++    "DeckWidth": 2.4000000953674316,
+     "DeckDepth": 1.7999999523162842,
+     "TiltMax": 12.0,
+     "ReconnectSeconds": 60.0,
+     "DeliveryDwell": 1.0,
+-    "DeliverySpeed": 0.15000000596046449,
++    "DeliverySpeed": 0.15000000596046448,
+     "DeliveryAngularDegrees": 5.0,
+     "IntegrityMin": 20.0,
+     "WinchSecureSpeed": 0.05000000074505806,
+@@ -24,14 +24,14 @@
+     "BodySpeedMax": 8.0,
+     "AngularSpeedMax": 6.0,
+     "SupportEnter": 0.05999999865889549,
+-    "SupportExit": 0.14000000059604646,
++    "SupportExit": 0.14000000059604645,
+     "BaseMass": 120.0,
+     "TiltResponse": 3.0,
+     "TiltSpeed": 15.0,
+     "WinchSpeed": 0.6000000238418579,
+     "WinchAcceleration": 1.0,
+     "LeaseTimeout": 0.5,
+-    "DeliveryTolerance": 0.014999999664723874,
++    "DeliveryTolerance": 0.014999999664723873,
+     "DamageThreshold": 2.5,
+     "DamageScale": 8.0,
+     "DamageMax": 40.0,
+@@ -45,11 +45,11 @@
+     "JumpHeight": 1.0,
+     "FallSpeedMax": 30.0,
+     "PlayerHeight": 1.7999999523162842,
+-    "PlayerRadius": 0.30000001192092898,
++    "PlayerRadius": 0.30000001192092896,
+     "EyeHeight": 1.600000023841858,
+     "SlopeLimit": 45.0,
+-    "StepHeight": 0.30000001192092898,
+-    "SkinWidth": 0.029999999329447748,
++    "StepHeight": 0.30000001192092896,
++    "SkinWidth": 0.029999999329447746,
+     "GroundProbe": 0.11999999731779099,
+     "PitchMin": -85.0,
+     "PitchMax": 85.0,
+@@ -60,5 +60,10 @@
+     "InteractionTriggers": 1,
+     "CarryErrorMax": 1.5,
+     "CarryBreakDistance": 4.5,
+-    "CarryAngularDamping": 100.0
+-}+    "CarryAngularDamping": 100.0,
++    "ManipulationSensitivity": 0.2,
++    "ManipulationSpeed": 120,
++    "ManipulationLeadMax": 75,
++    "ManipulationResponse": 6,
++    "ManipulationTorqueMax": 400
++}
+--- before/Assets/_OnHold/Editor/HeldManipulationVerification.cs
++++ after/Assets/_OnHold/Editor/HeldManipulationVerification.cs
+@@ -0,0 +1,46 @@
++using System;
++using System.IO;
++using System.Linq;
++using OnHold.Gameplay;
++using OnHold.Persistence;
++using UnityEditor;
++using UnityEditor.Build.Reporting;
++using UnityEngine;
++
++namespace OnHold.Editor
++{
++    public static class HeldManipulationVerification
++    {
++        public static void RefreshContentHash()
++        {
++            FoundationBuilder.Validate();
++            var world = UnityEngine.Object.FindAnyObjectByType<FoundationWorld>();
++            string hash = CampaignStore.Hash(world.Configuration.text + "|foundation.1|" + string.Join("|", world.Items.Select(i => JsonUtility.ToJson(i.Definition))));
++            const string scene = "Assets/_OnHold/Scenes/Bootstrap.unity";
++            string text = File.ReadAllText(scene);
++            text = text.Replace("  ContentHash: " + world.ContentHash, "  ContentHash: " + hash);
++            File.WriteAllText(scene, text); AssetDatabase.ImportAsset(scene);
++        }
++        public static void BuildDevelopment() => Build(false);
++        public static void BuildVisibleQA() => Build(true);
++        static void Build(bool qa)
++        {
++            var target = EditorUserBuildSettings.activeBuildTarget;
++            if (target != BuildTarget.StandaloneOSX && target != BuildTarget.StandaloneWindows64 && target != BuildTarget.StandaloneLinux64)
++                throw new InvalidOperationException("S019 validation requires the configured desktop target");
++            string directory = qa ? "Builds/S019-QA" : "Builds/S019";
++            string path = directory + "/On Hold" + (target == BuildTarget.StandaloneOSX ? ".app" : target == BuildTarget.StandaloneWindows64 ? ".exe" : "");
++            var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
++                scenes = new[] { "Assets/_OnHold/Scenes/Bootstrap.unity" }, target = target,
++                locationPathName = path, options = BuildOptions.Development,
++                extraScriptingDefines = qa ? new[] { "ONHOLD_MANIPULATION_ACCEPTANCE" } : Array.Empty<string>()
++            });
++            File.WriteAllText("docs/Implementation/Evidence/S019-" + (qa ? "qa" : "development") + "-build.json", JsonUtility.ToJson(new Evidence {
++                result = report.summary.result.ToString(), target = target.ToString(), editor = Application.unityVersion,
++                path = Path.GetFullPath(path), errors = report.summary.totalErrors, warnings = report.summary.totalWarnings,
++                seconds = report.summary.totalTime.TotalSeconds, utc = DateTime.UtcNow.ToString("O") }, true));
++            if (report.summary.result != BuildResult.Succeeded) throw new InvalidOperationException("S019 build failed");
++        }
++        [Serializable] sealed class Evidence { public string result, target, editor, path, utc; public int errors, warnings; public double seconds; }
++    }
++}
+--- before/Assets/_OnHold/Runtime/Core/FoundationConfig.cs
++++ after/Assets/_OnHold/Runtime/Core/FoundationConfig.cs
+@@ -26,6 +26,8 @@
+         // 0 = UseGlobal, 1 = Ignore, 2 = Collide (Unity QueryTriggerInteraction).
+         public int InteractionTriggers = 1;
+         public float CarryErrorMax = 1.5f, CarryBreakDistance = 4.5f, CarryAngularDamping = 100;
++        public float ManipulationSensitivity = .2f, ManipulationSpeed = 120, ManipulationLeadMax = 75;
++        public float ManipulationResponse = 6, ManipulationTorqueMax = 400;
+         public void Validate()
+         {
+             foreach (var f in GetType().GetFields())
+@@ -35,6 +37,9 @@
+             }
+             if (PhysicsHz > 120 || SnapshotHz > PhysicsHz || HoldersMax != 2 || IntegrityMin > 100 || TiltMax > 20)
+                 throw new ArgumentException("Configuration outside foundation limits");
++            if (ManipulationSensitivity > 5 || ManipulationSpeed > 360 || ManipulationLeadMax > 90 ||
++                ManipulationResponse > 20 || ManipulationTorqueMax > TotalTorqueMax)
++                throw new ArgumentException("Invalid manipulation limits");
+             if (AirControl > 1 || PlayerHeight <= 2 * PlayerRadius || EyeHeight >= PlayerHeight - SkinWidth ||
+                 EyeHeight <= PlayerRadius || SkinWidth >= PlayerRadius || StepHeight >= PlayerHeight / 2 ||
+                 GroundProbe >= PlayerRadius || SlopeLimit >= 85 || PitchMin >= PitchMax || PitchMin < -85 || PitchMax > 85 ||
+--- before/Assets/_OnHold/Runtime/Gameplay/CarryableBody.cs
++++ after/Assets/_OnHold/Runtime/Gameplay/CarryableBody.cs
+@@ -18,6 +18,7 @@
+         public int HandleCount => grips.Count;
+         public Vector3 LastForce { get; private set; }
+         public Vector3 LastTorque { get; private set; }
++        public Vector3 LastManipulationTorque { get; private set; }
+         readonly List<Actor> releases = new List<Actor>(2);
+         public bool RecoveryPending;
+         public double RecoveryUntil, SuppressDamageUntil;
+@@ -31,7 +32,7 @@
+         }
+         public void ResetState()
+         {
+-            State?.Dispose(); State = new ItemState(InstanceId, Definition.DefinitionId, Definition.MassKg, Definition.BaseValue);
++            State?.Dispose(); LastForce = LastTorque = LastManipulationTorque = Vector3.zero; State = new ItemState(InstanceId, Definition.DefinitionId, Definition.MassKg, Definition.BaseValue);
+             Body.mass = Definition.MassKg; Body.isKinematic = !World.IsAuthority; Body.position = initialPosition; Body.rotation = initialRotation;
+             if (!Body.isKinematic) { Body.linearVelocity = Vector3.zero; Body.angularVelocity = Vector3.zero; }
+             Body.maxLinearVelocity = World.Config.BodySpeedMax; Body.maxAngularVelocity = World.Config.AngularSpeedMax;
+@@ -56,6 +57,31 @@
+         }
+         public Pose GripWorldPose(int index) => new Pose(Body.position + Body.rotation * Definition.Grips[index], Body.rotation);
+         public int HeldGripIndex(Actor actor) => grips.TryGetValue(actor, out var grip) ? grip.Index : -1;
++        public bool CanManipulate(Actor actor)
++        {
++            return this && isActiveAndEnabled && World && World.IsAuthority && World.Session != null &&
++                World.Session.Phase == SessionPhase.Active && World.Run != null && World.Run.Result == null && World.Now < World.Run.Deadline &&
++                Body && !Body.isKinematic && !RecoveryPending && State != null && State.Lifecycle == Lifecycle.Available &&
++                State.IsHeldBy(actor) && grips.TryGetValue(actor, out var grip) && ValidGrip(grip.Index) &&
++                World.Players.TryGetValue(actor.Id, out var player) && player && player.isActiveAndEnabled && player.Actor.Equals(actor) &&
++                (!World.Platform.Lease.Driver.HasValue || !World.Platform.Lease.Driver.Value.Equals(actor));
++        }
++        bool ValidGrip(int index) => Definition && Definition.Grips != null && index >= 0 && index < Definition.Grips.Length && SafeMath.Finite(Definition.Grips[index]);
++        public bool TryHeldOrientation(Actor actor, out HeldOrientation orientation)
++        {
++            orientation = default;
++            if (!CanManipulate(actor)) return false;
++            orientation = grips[actor].Orientation; return true;
++        }
++        public bool UpdateManipulation(Actor actor, bool active, Vector2 degrees, Quaternion view, float dt)
++        {
++            if (!CanManipulate(actor)) { EndManipulation(actor); return false; }
++            return grips[actor].Orientation.Update(active, degrees, view, Body.rotation, dt, World.Config);
++        }
++        public void EndManipulation(Actor actor)
++        {
++            if (grips.TryGetValue(actor, out var grip)) grip.Orientation.EndInput();
++        }
+         public IAttachment CreateGrip(Actor actor)
+         {
+             int choice = SelectGrip(actor);
+@@ -67,9 +93,11 @@
+             readonly CarryableBody owner;
+             public readonly Actor Actor;
+             public readonly int Index;
++            public HeldOrientation Orientation;
+             bool disposed;
+-            public GripHandle(CarryableBody owner, Actor actor, int index) { this.owner = owner; Actor = actor; Index = index; }
+-            public void Dispose() { if (disposed) return; disposed = true; owner.grips.Remove(Actor); }
++            public GripHandle(CarryableBody owner, Actor actor, int index) { this.owner = owner; Actor = actor; Index = index; Orientation.Initialize(owner.Body.rotation); }
++            public void Dispose() { if (disposed) return; disposed = true; Orientation.Reset(); owner.grips.Remove(Actor);
++                if (owner.grips.Count == 0) owner.LastForce = owner.LastTorque = owner.LastManipulationTorque = Vector3.zero; }
+         }
+         public static bool TryGripForce(FoundationConfig config, Vector3 error, Vector3 pointVelocity,
+             Vector3 playerVelocity, float massShare, out Vector3 force)
+@@ -82,20 +110,23 @@
+             if (!SafeMath.Finite(force)) { force = Vector3.zero; return false; }
+             force = Vector3.ClampMagnitude(force, config.HandForceMax); return true;
+         }
+-        public void Drive()
++        public void Drive() => Drive(1f / World.Config.PhysicsHz);
++        public void Drive(float dt)
+         {
+-            LastForce = LastTorque = Vector3.zero;
+-            if (!World.IsAuthority || State.Lifecycle != Lifecycle.Available || Body.isKinematic || RecoveryPending) return;
++            LastForce = LastTorque = LastManipulationTorque = Vector3.zero;
++            if (!isActiveAndEnabled || !Body) { State?.ClearAttachments(); return; }
++            if (!World.IsAuthority) return;
++            if (State.Lifecycle != Lifecycle.Available || Body.isKinematic || RecoveryPending) { State.ClearAttachments(); return; }
+             if (!SafeMath.Finite(Body.position) || !SafeMath.Finite(Body.rotation) ||
+                 !SafeMath.Finite(Body.linearVelocity) || !SafeMath.Finite(Body.angularVelocity))
+             {
+                 State.MarkLost(); Body.isKinematic = true;
+                 Debug.LogError("Invalid carry body quarantined: " + InstanceId); return;
+             }
+-            Vector3 force = Vector3.zero, torque = Vector3.zero; releases.Clear();
++            Vector3 force = Vector3.zero, torque = Vector3.zero, orientationTorque = Vector3.zero; int oriented = 0; releases.Clear();
+             foreach (var handle in grips.Values)
+             {
+-                if (!World.Players.TryGetValue(handle.Actor.Id, out var p) || !p.Actor.Equals(handle.Actor))
++                if (!World.Players.TryGetValue(handle.Actor.Id, out var p) || !p || !p.isActiveAndEnabled || !p.Actor.Equals(handle.Actor) || !ValidGrip(handle.Index))
+                 { releases.Add(handle.Actor); continue; }
+                 var point = Body.position + Body.rotation * Definition.Grips[handle.Index];
+                 var target = p.Eye + p.Forward * World.Config.CarryDistance;
+@@ -106,16 +137,23 @@
+                 if (!TryGripForce(World.Config, target - point, Body.GetPointVelocity(point), p.Velocity,
+                     Body.mass / Mathf.Max(1, grips.Count), out var f)) { releases.Add(handle.Actor); continue; }
+                 force += f; torque += Vector3.Cross(point - Body.worldCenterOfMass, f);
++                if (handle.Orientation.Engaged && CanManipulate(handle.Actor))
++                {
++                    orientationTorque += HeldOrientation.Correction(Body.rotation, handle.Orientation.Target,
++                        Body.angularVelocity, Body.inertiaTensor, Body.inertiaTensorRotation, dt, World.Config); oriented++;
++                }
+             }
+             foreach (var actor in releases) State.Release(actor);
+             force = Vector3.ClampMagnitude(force, World.Config.TotalForceMax);
+-            torque = Vector3.ClampMagnitude(torque - Body.angularVelocity * World.Config.CarryAngularDamping, World.Config.TotalTorqueMax);
++            LastManipulationTorque = oriented > 0 ? orientationTorque / oriented : Vector3.zero;
++            torque = Vector3.ClampMagnitude(torque + (oriented > 0 ? LastManipulationTorque :
++                -Body.angularVelocity * World.Config.CarryAngularDamping), World.Config.TotalTorqueMax);
+             if (grips.Count > 0 && SafeMath.Finite(force) && SafeMath.Finite(torque))
+             { LastForce = force; LastTorque = torque; Body.AddForce(force); Body.AddTorque(torque); }
+         }
+         public void BoundPostSimulationVelocity()
+         {
+-            if (Body.isKinematic) return;
++            if (!Body || Body.isKinematic) return;
+             // PhysX max velocities apply before simulation; contacts may exceed them during a step.
+             if (SafeMath.Finite(Body.linearVelocity)) Body.linearVelocity = Vector3.ClampMagnitude(Body.linearVelocity, World.Config.BodySpeedMax);
+             if (SafeMath.Finite(Body.angularVelocity)) Body.angularVelocity = Vector3.ClampMagnitude(Body.angularVelocity, World.Config.AngularSpeedMax);
+@@ -133,6 +171,7 @@
+             foreach (var c in GetComponentsInChildren<Collider>()) c.enabled = false;
+             foreach (var r in GetComponentsInChildren<Renderer>()) r.enabled = false;
+         }
+-        void OnDestroy() => State?.Dispose();
++        void OnDisable() => State?.ClearAttachments();
++        void OnDestroy() { State?.MarkLost(); State?.Dispose(); if (World && World.Platform) World.Platform.Support.Remove(InstanceId); }
+     }
+ }
+--- before/Assets/_OnHold/Runtime/Gameplay/ControlledPlatform.cs
++++ after/Assets/_OnHold/Runtime/Gameplay/ControlledPlatform.cs
+@@ -49,12 +49,14 @@
+             var c = world.Config;
+             foreach (var item in world.Items)
+             {
+-                if (item.State.Lifecycle != Lifecycle.Available || item.RecoveryPending) { Support.Remove(item.InstanceId); continue; }
++                if (!item) continue;
++                if (!item.Body || !item.isActiveAndEnabled || item.State.Lifecycle != Lifecycle.Available || item.RecoveryPending) { Support.Remove(item.InstanceId); continue; }
+                 var p = transform.InverseTransformPoint(item.Body.worldCenterOfMass);
+                 Support.Observe(item.InstanceId, item.Definition.MassKg, p.x, p.z, DeckContact(item), item.State.Handling == Handling.Secured, world.Now, c);
+             }
+             foreach (var player in world.Players.Values)
+             {
++                if (!player || !player.isActiveAndEnabled) continue;
+                 var p = transform.InverseTransformPoint(player.transform.position);
+                 bool supported = Mathf.Abs(p.x) <= c.DeckWidth / 2 && Mathf.Abs(p.z) <= c.DeckDepth / 2 && p.y > .08f && p.y < .4f;
+                 Support.Observe("player." + player.Actor.Id, c.PlayerMass, p.x, p.z, supported, false, world.Now, c);
+--- before/Assets/_OnHold/Runtime/Gameplay/FoundationWorld.cs
++++ after/Assets/_OnHold/Runtime/Gameplay/FoundationWorld.cs
+@@ -48,7 +48,7 @@
+         bool initialized;
+         ulong lastSnapshotTick;
+         public int QueuedCommands => commands.Count;
+-        public int ActiveHandles => Items.Sum(i => i.HandleCount);
++        public int ActiveHandles => Items.Sum(i => i ? i.HandleCount : 0);
+         public void Initialize()
+         {
+             if (initialized) return; initialized = true;
+@@ -60,13 +60,13 @@
+         {
+             Initialize(); IsAuthority = true; previousSimulation = Physics.simulationMode; Physics.simulationMode = SimulationMode.Script;
+             Session = new SessionCoordinator(epoch, mode); Now = 0; Tick = lastSnapshotTick = 0;
+-            foreach (var item in Items) item.ResetState(); Platform.ResetState();
+-        }
+-        public void StartGuest() { Initialize(); IsAuthority = false; foreach (var item in Items) item.Body.isKinematic = true; }
++            foreach (var item in Items) if (item && item.Body) item.ResetState(); Platform.ResetState();
++        }
++        public void StartGuest() { Initialize(); IsAuthority = false; foreach (var item in Items) if (item && item.Body) item.Body.isKinematic = true; }
+         public void StopSession()
+         {
+             commands.Clear(); impacts.Clear(); impactCooldown.Clear();
+-            foreach (var item in Items) { item.State?.Dispose(); item.Body.isKinematic = true; }
++            foreach (var item in Items) if (item) { item.State?.Dispose(); if (item.Body) item.Body.isKinematic = true; }
+             Platform.Lease.Stop();
+             foreach (var player in Players.Values) if (player) Destroy(player.gameObject); Players.Clear();
+             if (IsAuthority) Physics.simulationMode = previousSimulation;
+@@ -98,7 +98,7 @@
+         }
+         public void CleanupActor(Actor actor)
+         {
+-            foreach (var item in Items) item.State.Release(actor); Platform.Lease.Release(actor);
++            foreach (var item in Items) if (item) item.State.Release(actor); Platform.Lease.Release(actor);
+         }
+         public void RemovePlayer(Actor actor)
+         {
+@@ -128,7 +128,7 @@
+             index = -1;
+             if (!IsAuthority || Session == null || !Players.TryGetValue(actor.Id, out var player) || !player || !player.Actor.Equals(actor)) return Reason.AuthFailed;
+             if (Session.Phase != SessionPhase.Active || Run == null || Run.Result != null || Now >= Run.Deadline) return Reason.InvalidState;
+-            if (!item || item.World != this || item.State == null) return Reason.InvalidContent;
++            if (!item || !item.isActiveAndEnabled || !item.Body || item.World != this || item.State == null) return Reason.InvalidContent;
+             if (item.RecoveryPending) return Reason.InvalidState;
+             if (!Reach(actor, item.Body.worldCenterOfMass, item)) return Reason.TooFar;
+             foreach (var other in Items)
+@@ -165,10 +165,10 @@
+             {
+                 if (actor.Id != Session.HostId) return Reason.AuthFailed;
+                 if (Session.Phase != SessionPhase.Hub) return Reason.InvalidState;
+-                foreach (var i in Items) i.ResetState(); Platform.ResetState(); Run = null;
++                foreach (var i in Items) if (i && i.Body) i.ResetState(); Platform.ResetState(); Run = null;
+                 return Session.Transition(SessionPhase.Loading, actor.Id);
+             }
+-            if (type == CommandType.Release) { foreach (var i in Items) i.State.Release(actor); return Reason.Accepted; }
++            if (type == CommandType.Release) { foreach (var i in Items) if (i) i.State.Release(actor); return Reason.Accepted; }
+             if (type == CommandType.ReleaseLease) { Platform.Lease.Release(actor); return Reason.Accepted; }
+             if (Session.Phase != SessionPhase.Active || Run == null || Run.Result != null || Now >= Run.Deadline) return Reason.InvalidState;
+             if (type == CommandType.Move) { player.Input(command, Now); return Reason.Accepted; }
+@@ -178,7 +178,7 @@
+             if (type == CommandType.VoteFinish) return Run.Vote(actor.Id, Session.HostId, Session.Members.Where(m => m.Connected).Select(m => m.Actor.Id), Now);
+             if (type == CommandType.Abort) { if (actor.Id != Session.HostId) return Reason.AuthFailed; Run.Finish(FinishReason.Abort); return Reason.Accepted; }
+             if (type == CommandType.Ping) { Pinged?.Invoke(actor.Id); return Reason.Accepted; }
+-            var item = Items.FirstOrDefault(i => i.NetworkId == command.TargetId);
++            var item = Items.FirstOrDefault(i => i && i.NetworkId == command.TargetId);
+             if (!item) return Reason.InvalidContent;
+             if (item.RecoveryPending) return Reason.InvalidState;
+             bool reachable = Reach(actor, item.Body.worldCenterOfMass, item);
+@@ -210,16 +210,16 @@
+             if (active)
+             {
+                 physicsTimer.Restart();
+-                Platform.Drive(dt); foreach (var p in Players.Values) p.Drive(this, dt);
+-                foreach (var item in Items) item.Drive();
++                Platform.Drive(dt); foreach (var p in Players.Values) if (p && p.isActiveAndEnabled) p.Drive(this, dt);
++                foreach (var item in Items) if (item) item.Drive(dt);
+                 Physics.SyncTransforms(); Physics.Simulate(dt);
+-                foreach (var item in Items) item.BoundPostSimulationVelocity();
++                foreach (var item in Items) if (item) item.BoundPostSimulationVelocity();
+                 Platform.DriveAttachments();
+                 physicsTimer.Stop(); PhysicsMilliseconds = physicsTimer.Elapsed.TotalMilliseconds;
+                 foreach (var impact in impacts)
+                 {
+                     if (impactCooldown.TryGetValue(impact.Key, out var until) && Now < until) continue;
+-                    var hit = impact.Value;
++                    var hit = impact.Value; if (!hit.item || !hit.item.isActiveAndEnabled) continue;
+                     hit.item.State.Damage(Mathf.Clamp((hit.speed - Config.DamageThreshold) * Config.DamageScale, 0, Config.DamageMax));
+                     impactCooldown[impact.Key] = Now + Config.DamageCooldown;
+                 }
+@@ -229,6 +229,7 @@
+                 foreach (var key in expiredImpacts) impactCooldown.Remove(key);
+                 foreach (var item in Items)
+                 {
++                    if (!item || !item.Body || !item.isActiveAndEnabled) continue;
+                     if (!SafeMath.Finite(item.Body.position) || !SafeMath.Finite(item.Body.rotation)) { item.State.MarkLost(); UnityEngine.Debug.LogError("Non-finite body quarantined: " + item.InstanceId); }
+                     HandleRecovery(item); item.TerminalPresentation();
+                     Run.EvaluateDelivery(item.State, InsideZone(item), item.Body.linearVelocity.magnitude, item.Body.angularVelocity.magnitude * Mathf.Rad2Deg, Now);
+@@ -292,9 +293,9 @@
+             MandatoryLost = Run?.MandatoryLost ?? false, Connections = Players.Count, Driver = Platform.Lease.Driver?.Id ?? 0,
+             PlatformPosition = Platform.Body.position, PlatformRotation = Platform.Body.rotation, PlatformSpeed = Platform.Speed,
+             CentreX = (float)Platform.Support.CentreX, CentreZ = (float)Platform.Support.CentreZ, SupportMass = Platform.Support.Mass,
+-            Items = Items.Select(i => new BodyFrame { Id = i.NetworkId, Position = i.Body.position, Rotation = i.Body.rotation, Lifecycle = (int)i.State.Lifecycle, Handling = (int)i.State.Handling,
++            Items = Items.Where(i => i && i.Body).Select(i => new BodyFrame { Id = i.NetworkId, Position = i.Body.position, Rotation = i.Body.rotation, Lifecycle = (int)i.State.Lifecycle, Handling = (int)i.State.Handling,
+                 Integrity = (int)i.State.Integrity, Holders = i.State.Holders.Count, Anchor = i.State.Anchor == null ? -1 : Array.IndexOf(Platform.Slots, i.State.Anchor), Revision = i.State.Revision }).ToArray(),
+-            Players = Players.Values.Select(p => new BodyFrame { Id = p.Actor.Id, Position = p.transform.position, Rotation = p.transform.rotation }).ToArray() };
++            Players = Players.Values.Where(p => p).Select(p => new BodyFrame { Id = p.Actor.Id, Position = p.transform.position, Rotation = p.transform.rotation }).ToArray() };
+         readonly List<WorldFrame> remoteFrames = new List<WorldFrame>(32);
+         double receivedAt;
+         public WorldFrame LatestFrame { get; private set; }
+--- before/Assets/_OnHold/Runtime/Gameplay/HeldOrientation.cs
++++ after/Assets/_OnHold/Runtime/Gameplay/HeldOrientation.cs
+@@ -0,0 +1,66 @@
++using UnityEngine;
++using OnHold.Core;
++
++namespace OnHold.Gameplay
++{
++    // Value state owned by the committed grip; never writes a body pose.
++    public struct HeldOrientation
++    {
++        public Quaternion Target { get; private set; }
++        public bool Initialized { get; private set; }
++        public bool Engaged { get; private set; }
++        public bool Active { get; private set; }
++
++        public void Initialize(Quaternion actual)
++        {
++            this = default;
++            if (!ValidRotation(actual)) return;
++            Target = actual.normalized; Initialized = true;
++        }
++        public void EndInput() => Active = false;
++        public void Reset() => this = default;
++        public bool Update(bool active, Vector2 degrees, Quaternion view, Quaternion actual, float dt, FoundationConfig config)
++        {
++            Active = false;
++            if (!Initialized || !active || !ValidRotation(actual) || !ValidRotation(view) ||
++                !Numbers.Finite(degrees.x) || !Numbers.Finite(degrees.y) || !Numbers.Finite(dt) || dt <= 0) return false;
++            // Ordinary carry remains unchanged until the player first asks to orient it.
++            if (!Engaged) { Target = actual.normalized; Engaged = true; }
++            Active = true;
++            double length = System.Math.Sqrt((double)degrees.x * degrees.x + (double)degrees.y * degrees.y);
++            float limit = config.ManipulationSpeed * Mathf.Min(dt, .1f);
++            float scale = length > limit ? (float)(limit / length) : 1;
++            var turn = degrees * scale;
++            var axis = view.normalized * new Vector3(-turn.y, turn.x, 0);
++            float angle = axis.magnitude;
++            if (angle > .00001f) Target = (Quaternion.AngleAxis(angle, axis / angle) * Target).normalized;
++            // Bound stored error under obstruction so repeated input cannot wind up multiple turns.
++            Target = Quaternion.RotateTowards(actual, Target, config.ManipulationLeadMax).normalized;
++            return true;
++        }
++        public static bool ValidRotation(Quaternion q)
++        {
++            float length = Quaternion.Dot(q, q);
++            return SafeMath.Finite(q) && Numbers.Finite(length) && length > .000001f && length < 1000000;
++        }
++        public static Vector3 Correction(Quaternion actual, Quaternion target, Vector3 angularVelocity,
++            Vector3 inertia, Quaternion inertiaRotation, float dt, FoundationConfig config)
++        {
++            if (!ValidRotation(actual) || !ValidRotation(target) || !ValidRotation(inertiaRotation) ||
++                !SafeMath.Finite(angularVelocity) || !SafeMath.Finite(inertia) || inertia.x < 0 || inertia.y < 0 || inertia.z < 0 ||
++                !Numbers.Finite(dt) || dt <= 0) return Vector3.zero;
++            var error = (target.normalized * Quaternion.Inverse(actual.normalized)).normalized;
++            if (error.w < 0) error = new Quaternion(-error.x, -error.y, -error.z, -error.w);
++            error.ToAngleAxis(out float angle, out var axis);
++            var displacement = angle > .001f ? axis * (Mathf.Min(angle, config.ManipulationLeadMax) * Mathf.Deg2Rad) : Vector3.zero;
++            // Implicit critically damped PD response, converted through the body's world inertia.
++            // The torque budget still limits heavy/large cargo; collisions remain solver-owned.
++            float frequency = config.ManipulationResponse, damping = 2 * frequency, stiffness = frequency * frequency;
++            var acceleration = (displacement * stiffness - angularVelocity * (damping + stiffness * dt)) /
++                (1 + damping * dt + stiffness * dt * dt);
++            var frame = actual.normalized * inertiaRotation.normalized;
++            var torque = frame * Vector3.Scale(inertia, Quaternion.Inverse(frame) * acceleration);
++            return SafeMath.Finite(torque) ? Vector3.ClampMagnitude(torque, config.ManipulationTorqueMax) : Vector3.zero;
++        }
++    }
++}
+--- before/Assets/_OnHold/Runtime/Presentation/FoundationFrontend.cs
++++ after/Assets/_OnHold/Runtime/Presentation/FoundationFrontend.cs
+@@ -25,7 +25,10 @@
+         double nextInput, feedbackUntil;
+         float yaw, pitch;
+         InputActionMap gameplay;
+-        InputAction move, look, grab, interact, secure, pause, ping, jump;
++        InputAction move, look, grab, interact, secure, pause, ping, jump, manipulate;
++        CarryableBody heldCargo;
++        bool manipulationActive;
++        public bool ManipulationActive => manipulationActive && heldCargo && heldCargo.CanManipulate(Network.LocalActor);
+         bool soloStarting, feedbackGamepad;
+         SessionPhase? soloSentPhase;
+         Vector2 lastMove;
+@@ -54,7 +57,7 @@
+             Actions = Instantiate(Actions); if (!string.IsNullOrEmpty(settings.InputOverrides)) Actions.LoadBindingOverridesFromJson(settings.InputOverrides);
+             gameplay = Actions.FindActionMap("Gameplay", true);
+             move = gameplay.FindAction("Move"); look = gameplay.FindAction("Look"); grab = gameplay.FindAction("Grab"); interact = gameplay.FindAction("Interact"); secure = gameplay.FindAction("Secure"); ping = gameplay.FindAction("Ping");
+-            jump = gameplay.FindAction("Jump", true);
++            jump = gameplay.FindAction("Jump", true); manipulate = gameplay.FindAction("Manipulate", true);
+             pause = Actions.FindAction("UI/Pause"); pause.Enable();
+             Network.Rejected += Rejection; World.SettlementRequested += Settle;
+             Application.runInBackground = true; SetMenu(true);
+@@ -95,14 +98,15 @@
+             if (wasFocused && !Application.isFocused) SetMenu(true); wasFocused = Application.isFocused;
+             if (World.IsAuthority)
+             {
+-                holding = false;
+-                foreach (var item in World.Items) if (item && item.State != null) foreach (var actor in item.State.Holders)
+-                    if (actor.Equals(Network.LocalActor)) holding = true;
++                CarryableBody nextHeld = null;
++                foreach (var item in World.Items) if (item && item.State != null && item.State.IsHeldBy(Network.LocalActor)) { nextHeld = item; break; }
++                if (heldCargo != nextHeld) { StopManipulation(); heldCargo = nextHeld; }
++                holding = heldCargo != null;
+             }
+             if (!menu && Network.Connected && phase == SessionPhase.Active)
+             {
+                 Vector2 delta = look.ReadValue<Vector2>();
+-                ApplyLook(delta, look.activeControl?.device is Gamepad, Time.deltaTime);
++                RouteLookInput(delta, look.activeControl?.device is Gamepad, Time.deltaTime, manipulate.IsPressed());
+                 var input = move.ReadValue<Vector2>();
+                 bool driver = frame.Driver == Network.LocalActor.Id;
+                 if (Time.realtimeSinceStartupAsDouble >= nextInput || input != lastMove)
+@@ -133,7 +137,7 @@
+         }
+         void LateUpdate()
+         {
+-            if (Network.Connected && World.Players.TryGetValue(Network.LocalActor.Id, out var local))
++            if (Network.Connected && World.Players.TryGetValue(Network.LocalActor.Id, out var local) && local)
+             {
+                 ViewCamera.transform.SetPositionAndRotation(local.Eye, Quaternion.Euler(pitch, yaw, 0));
+                 if (hiddenPlayer != local)
+@@ -142,9 +146,39 @@
+             else ViewCamera.transform.SetPositionAndRotation(new Vector3(9, 7, -10), Quaternion.Euler(25, -35, 0));
+             RefreshInteractionFeedback();
+         }
++        public void RouteLookInput(Vector2 delta, bool stick, float dt, bool requested)
++        {
++            bool eligible = !menu && Network.Connected && isActiveAndEnabled && gameplay.enabled &&
++                heldCargo && heldCargo.CanManipulate(Network.LocalActor);
++            bool next = eligible && requested;
++            // Discard the transition sample on both boundaries; a mouse delta is never replayed to the camera.
++            if (next != manipulationActive)
++            {
++                manipulationActive = next;
++                if (next) heldCargo.UpdateManipulation(Network.LocalActor, true, Vector2.zero, ViewCamera.transform.rotation, dt);
++                else if (heldCargo) heldCargo.EndManipulation(Network.LocalActor);
++                return;
++            }
++            if (next)
++            {
++                float scale = stick ? World.Config.ManipulationSpeed * dt : World.Config.ManipulationSensitivity;
++                if (!Numbers.Finite(delta.x) || !Numbers.Finite(delta.y) || !Numbers.Finite(scale)) return;
++                // Clamp before float multiplication, including synthetic or malformed input magnitudes.
++                var degrees = new Vector2((float)Numbers.Clamp((double)delta.x * scale, -360, 360),
++                    (float)Numbers.Clamp((double)delta.y * scale, -360, 360));
++                if (settings.InvertY) degrees.y = -degrees.y;
++                heldCargo.UpdateManipulation(Network.LocalActor, true, degrees, ViewCamera.transform.rotation, dt);
++            }
++            else ApplyLook(delta, stick, dt);
++        }
++        void StopManipulation()
++        {
++            if (heldCargo && Network) heldCargo.EndManipulation(Network.LocalActor);
++            manipulationActive = false;
++        }
+         public void ApplyLook(Vector2 delta, bool stick, float dt)
+         {
+-            if (menu || !Network.Connected || !World.Players.TryGetValue(Network.LocalActor.Id, out var local) || !Numbers.Finite(delta.x) || !Numbers.Finite(delta.y)) return;
++            if (menu || !Network.Connected || !World.Players.TryGetValue(Network.LocalActor.Id, out var local) || !local || !Numbers.Finite(delta.x) || !Numbers.Finite(delta.y)) return;
+             float scale = stick ? World.Config.StickLookSpeed * dt : settings.Sensitivity;
+             yaw = Mathf.Repeat(yaw + delta.x * scale, 360);
+             pitch = Mathf.Clamp(pitch + delta.y * scale * (settings.InvertY ? 1 : -1), World.Config.PitchMin, World.Config.PitchMax);
+@@ -159,7 +193,7 @@
+         }
+         CarryableBody Target() => InteractionFeedback.Target.Item;
+         uint Revision(CarryableBody item) => Frame?.Items.FirstOrDefault(f => f.Id == item.NetworkId)?.Revision ?? 0;
+-        void Release() { Network.Send(CommandType.Release); holding = false; }
++        void Release() { StopManipulation(); Network.Send(CommandType.Release); holding = false; }
+         public void SetMenu(bool value)
+         {
+             menu = value || !Network.Connected || Frame == null || (SessionPhase)Frame.Phase != SessionPhase.Active;
+@@ -284,18 +318,24 @@
+                     GUILayout.Label("Volume"); settings.MasterVolume = GUILayout.HorizontalSlider(settings.MasterVolume, 0, 1);
+                     if (GUILayout.Button("Save settings")) SaveSettings();
+                 }
+-                GUILayout.Label("Move: WASD / left stick • Look: mouse / right stick\nJump: Space / LB • Grab: left mouse / right trigger • Interact: E / A\nSecure: R / X • Ping: Q / Y • Menu: Esc / Start");
++                GUILayout.Label("Move: WASD / left stick • Look: mouse / right stick\nJump: Space / LB • Grab: left mouse / right trigger • Interact: E / A\nRotate held cargo: hold right mouse / left trigger + look\nSecure: R / X • Ping: Q / Y • Menu: Esc / Start");
+                 GUILayout.EndArea();
+             }
+             if (Time.realtimeSinceStartupAsDouble < feedbackUntil) GUI.Label(new Rect(28, Screen.height / settings.UiScale - 45, 850, 30), feedback);
+             if (Debug.isDebugBuild && frame != null)
+             {
+-                if (World.Players.TryGetValue(Network.LocalActor.Id, out var observed))
++                if (World.Players.TryGetValue(Network.LocalActor.Id, out var observed) && observed)
+                     GUI.Label(new Rect(Screen.width / settings.UiScale - 390, 155, 380, 65),
+                         $"Player {observed.transform.position:F2} · grounded {observed.Grounded}\nVertical {observed.VerticalSpeed:F2} m/s · cursor {Cursor.lockState}");
+                 GUI.Label(new Rect(Screen.width / settings.UiScale - 390, 20, 380, 130), $"{Network.Profile} (ASK-035 v0.1) · actual RTT {Network.Rtt} ms\nEpoch {frame.Epoch} / tick {frame.Tick}\nHandles {World.ActiveHandles} / anchors {World.Platform.AttachmentCount}\nPhysics {World.PhysicsMilliseconds:F2} ms / rejects {Network.Rejects}\nPayload TX {Network.SentBytes} B / RX {Network.ReceivedBytes} B\nSupport {frame.SupportMass:F0} kg · C ({frame.CentreX:F2}, {frame.CentreZ:F2})");
+             }
+         }
++        void OnDisable()
++        {
++            StopManipulation();
++            if (Network && Network.Connected) SetMenu(true);
++            else gameplay?.Disable();
++        }
+         void OnDestroy()
+         {
+             Network.Rejected -= Rejection; World.SettlementRequested -= Settle;
+--- before/Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.cs
++++ after/Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.cs
+@@ -0,0 +1,80 @@
++#if ONHOLD_MANIPULATION_ACCEPTANCE
++using UnityEngine;
++using UnityEngine.InputSystem;
++using OnHold.Domain;
++using OnHold.Gameplay;
++
++namespace OnHold.Presentation
++{
++    // QA-only scene arrangement and telemetry. All gameplay input still goes through the production actions.
++    public sealed class HeldManipulationAcceptance : MonoBehaviour
++    {
++        FoundationFrontend frontend;
++        GameObject wall;
++        int scenario = -1, previousGrip = -1, preview = -1, capture;
++        bool lastActive;
++        float maxAngular, maxTorque;
++        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
++        static void StartQA() => new GameObject("S019 visible acceptance").AddComponent<HeldManipulationAcceptance>();
++        void Start()
++        {
++            Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
++            frontend = FindAnyObjectByType<FoundationFrontend>();
++            // CUA exposes left-button dragging only. Exercise the existing binding override contract.
++            frontend.Actions.FindAction("Gameplay/Grab").ApplyBindingOverride(0, "<Keyboard>/f");
++            frontend.Actions.FindAction("Gameplay/Manipulate").ApplyBindingOverride(0, "<Mouse>/leftButton");
++            frontend.Settings.ToggleHold = true;
++            wall = GameObject.CreatePrimitive(PrimitiveType.Cube); wall.name = "S019 QA wall"; wall.layer = 8;
++            wall.transform.localScale = new Vector3(8, 4, .4f); wall.transform.position = new Vector3(0, 2, -1.65f); wall.SetActive(false);
++        }
++        void Update()
++        {
++            if (!frontend || frontend.World.Session?.Phase != SessionPhase.Active) return;
++            if (Keyboard.current.f6Key.wasPressedThisFrame) Arrange();
++            var cargo = frontend.World.Items[scenario == 2 ? 1 : 0]; var actor = frontend.Network.LocalActor;
++            int grip = cargo.HeldGripIndex(actor);
++            if (frontend.InteractionFeedback.HasGrip) preview = frontend.InteractionFeedback.Grip.GripIndex;
++            if (grip != previousGrip || frontend.ManipulationActive != lastActive)
++            {
++                Debug.Log($"S019 QA scenario={scenario} preview={preview} held={grip} manipulating={frontend.ManipulationActive} cargo={cargo.Body.rotation.eulerAngles} camera={frontend.ViewCamera.transform.rotation.eulerAngles}");
++                previousGrip = grip; lastActive = frontend.ManipulationActive;
++            }
++            maxAngular = Mathf.Max(maxAngular, cargo.Body.angularVelocity.magnitude); maxTorque = Mathf.Max(maxTorque, cargo.LastTorque.magnitude);
++            if (Keyboard.current.f8Key.wasPressedThisFrame)
++            {
++                string directory = System.IO.Path.Combine(Application.persistentDataPath, "S019QA");
++                System.IO.Directory.CreateDirectory(directory);
++                ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory, "S019-scenario-" + scenario + "-" + capture++ + ".png"));
++                Debug.Log($"S019 QA sample scenario={scenario} held={grip} rotation={cargo.Body.rotation.eulerAngles} camera={frontend.ViewCamera.transform.rotation.eulerAngles} peakAngular={maxAngular} peakTorque={maxTorque}");
++            }
++        }
++        void Arrange()
++        {
++            scenario = (scenario + 1) % 3; var world = frontend.World; var actor = frontend.Network.LocalActor;
++            frontend.SetMenu(false); world.Apply(new CommandEnvelope { CommandType = CommandType.Release }, actor);
++            var player = world.Players[actor.Id]; player.Respawn(new Vector3(0, .02f, -4));
++            foreach (var item in world.Items) item.ResetState();
++            var cargo = world.Items[scenario == 2 ? 1 : 0];
++            world.Items[scenario == 2 ? 0 : 1].Body.position = new Vector3(5, 1, -2);
++            cargo.Body.position = new Vector3(0, scenario == 2 ? .34f : .31f, -2.4f); cargo.Body.rotation = Quaternion.identity;
++            wall.SetActive(scenario == 1); Physics.SyncTransforms();
++            var desired = Quaternion.LookRotation(cargo.Body.worldCenterOfMass - player.Eye).eulerAngles;
++            var current = frontend.ViewCamera.transform.eulerAngles;
++            frontend.ApplyLook(new Vector2(Mathf.DeltaAngle(current.y, desired.y), -Mathf.DeltaAngle(current.x, desired.x)) / frontend.Settings.Sensitivity, false, 0);
++            frontend.RefreshInteractionFeedback(); maxAngular = maxTorque = 0;
++            Debug.Log("S019 QA arranged " + scenario + " (0=long free, 1=long wall, 2=crate)");
++        }
++        void OnGUI()
++        {
++            GUI.matrix = Matrix4x4.identity;
++            GUI.Box(new Rect(310, 590, 860, 100), "S019 QA — F6: arrange next cargo / wall scenario — F: grab / release\nLeft drag: manipulate (QA binding override) — mouse: look — WASD / Space unchanged\nF8: telemetry sample — Production defaults: LMB grab, hold RMB + look to rotate");
++            if (frontend && scenario >= 0)
++            {
++                var cargo = frontend.World.Items[scenario == 2 ? 1 : 0];
++                GUI.Label(new Rect(330, 660, 820, 28), $"Scenario {scenario} | active {frontend.ManipulationActive} | grip {cargo.HeldGripIndex(frontend.Network.LocalActor)} | cargo {cargo.Body.rotation.eulerAngles:F1} | max angular {maxAngular:F2} rad/s");
++            }
++        }
++        void OnDestroy() { if (wall) Destroy(wall); }
++    }
++}
++#endif
+--- before/Assets/_OnHold/Scenes/Bootstrap.unity
++++ after/Assets/_OnHold/Scenes/Bootstrap.unity
+@@ -199,7 +199,7 @@
+   m_Name: 
+   m_EditorClassIdentifier: OnHold.Gameplay::OnHold.Gameplay.FoundationWorld
+   Configuration: {fileID: 4900000, guid: 7490a1bbab8e54dd09d535ee19c46204, type: 3}
+-  ContentHash: 023c509c33eadc3f3a354548b68a12437af4cf8d43590b9d26a2fdfb9659abdc
++  ContentHash: 7dbb09a07cc91edbca0a21a5720efdb420bc037dfede2c8811922e76341a1ffc
+   Items:
+   - {fileID: 1163119329}
+   - {fileID: 1039011662}
+--- before/Assets/_OnHold/Tests/EditMode/HeldOrientationTests.cs
++++ after/Assets/_OnHold/Tests/EditMode/HeldOrientationTests.cs
+@@ -0,0 +1,118 @@
++using System;
++using NUnit.Framework;
++using OnHold.Core;
++using OnHold.Gameplay;
++using UnityEngine;
++
++namespace OnHold.Tests
++{
++    public sealed class HeldOrientationTests
++    {
++        readonly FoundationConfig config = new FoundationConfig();
++        [Test] public void S019_InitializationMatchesActualAndDoesNotEngageCorrection()
++        {
++            var state = new HeldOrientation(); var actual = Quaternion.Euler(23, 177, -34);
++            state.Initialize(actual);
++            Assert.IsTrue(state.Initialized); Assert.IsFalse(state.Engaged); Assert.IsFalse(state.Active);
++            Assert.Less(Quaternion.Angle(actual, state.Target), .01f);
++        }
++        [TestCase(1, 0)] [TestCase(-1, 0)] [TestCase(0, 1)] [TestCase(0, -1)]
++        public void S019_InputUsesPredictableCameraAxes(float x, float y)
++        {
++            var state = new HeldOrientation(); state.Initialize(Quaternion.identity);
++            var view = Quaternion.Euler(25, 180, 0);
++            Assert.IsTrue(state.Update(true, new Vector2(x, y), view, Quaternion.identity, .02f, config));
++            var expected = Quaternion.AngleAxis(1, view * new Vector3(-y, x, 0));
++            Assert.Less(Quaternion.Angle(expected, state.Target), .01f);
++        }
++        [Test] public void S019_UninitializedAndInvalidCargoDoNotCaptureInput()
++        {
++            var state = new HeldOrientation();
++            Assert.IsFalse(state.Update(true, Vector2.one, Quaternion.identity, Quaternion.identity, .02f, config));
++            var go = new GameObject("unowned cargo"); var cargo = go.AddComponent<CarryableBody>();
++            try { Assert.IsFalse(cargo.UpdateManipulation(new Actor(1, 1), true, Vector2.one, Quaternion.identity, .02f)); }
++            finally { UnityEngine.Object.DestroyImmediate(go); }
++            Assert.IsFalse(cargo.CanManipulate(new Actor(1, 1)));
++        }
++        [Test] public void S019_FirstEntryCapturesActualThenExitKeepsTarget()
++        {
++            var state = new HeldOrientation(); state.Initialize(Quaternion.identity);
++            var actual = Quaternion.Euler(12, 43, -20);
++            state.Update(true, Vector2.zero, Quaternion.identity, actual, .02f, config);
++            Assert.Less(Quaternion.Angle(actual, state.Target), .01f);
++            state.Update(true, Vector2.one, Quaternion.identity, actual, .02f, config);
++            var requested = state.Target; state.EndInput();
++            Assert.IsFalse(state.Active); Assert.IsTrue(state.Engaged);
++            Assert.AreEqual(requested, state.Target);
++            state.Update(true, Vector2.zero, Quaternion.identity, actual, .02f, config);
++            Assert.Less(Quaternion.Angle(requested, state.Target), .01f);
++            state.Reset(); Assert.IsFalse(state.Initialized); Assert.IsFalse(state.Active); Assert.IsFalse(state.Engaged);
++            state.Initialize(actual); Assert.Less(Quaternion.Angle(actual, state.Target), .01f);
++        }
++        [Test] public void S019_ExtremeInputAndRepeatedObstructionBoundTargetLead()
++        {
++            var state = new HeldOrientation(); state.Initialize(Quaternion.identity);
++            state.Update(true, Vector2.one * float.MaxValue, Quaternion.identity, Quaternion.identity, .02f, config);
++            Assert.That(Quaternion.Angle(Quaternion.identity, state.Target), Is.InRange(2.3f, 2.41f));
++            for (int i = 0; i < 1000; i++) state.Update(true, Vector2.one * float.MaxValue, Quaternion.identity, Quaternion.identity, .02f, config);
++            Assert.LessOrEqual(Quaternion.Angle(Quaternion.identity, state.Target), config.ManipulationLeadMax + .01f);
++            Assert.IsTrue(SafeMath.Finite(state.Target)); Assert.That(Quaternion.Dot(state.Target, state.Target), Is.EqualTo(1).Within(.0001));
++        }
++        [Test] public void S019_TargetSpeedIsConsistentAcrossRenderRates()
++        {
++            Quaternion Target(int hz)
++            {
++                var state = new HeldOrientation(); state.Initialize(Quaternion.identity);
++                for (int i = 0; i < hz / 2; i++) state.Update(true, new Vector2(120f / hz, 0), Quaternion.identity, state.Target, 1f / hz, config);
++                return state.Target;
++            }
++            Assert.Less(Quaternion.Angle(Target(30), Target(120)), .02f);
++        }
++        [Test] public void S019_InvalidInputAndQuaternionSafelyNoOp()
++        {
++            var state = new HeldOrientation(); state.Initialize(default); Assert.IsFalse(state.Initialized);
++            state.Initialize(Quaternion.identity);
++            Assert.IsFalse(state.Update(true, new Vector2(float.NaN, 0), Quaternion.identity, Quaternion.identity, .02f, config));
++            Assert.IsFalse(state.Update(true, Vector2.one, default, Quaternion.identity, .02f, config));
++            Assert.IsFalse(state.Update(true, Vector2.one, Quaternion.identity, Quaternion.identity, float.PositiveInfinity, config));
++            Assert.AreEqual(Quaternion.identity, state.Target);
++            Assert.AreEqual(Vector3.zero, HeldOrientation.Correction(default, Quaternion.identity, Vector3.zero, Vector3.one, Quaternion.identity, .02f, config));
++        }
++        [Test] public void S019_PhysicalTorqueIsBoundedAndTakesShortestArc()
++        {
++            var target = Quaternion.Euler(0, 359, 0);
++            var torque = HeldOrientation.Correction(Quaternion.identity, target, Vector3.zero, Vector3.one, Quaternion.identity, .02f, config);
++            Assert.Less(torque.y, 0); Assert.Less(torque.magnitude, 1);
++            var equivalent = new Quaternion(-target.x, -target.y, -target.z, -target.w);
++            Assert.Less(Vector3.Distance(torque, HeldOrientation.Correction(Quaternion.identity, equivalent, Vector3.zero, Vector3.one, Quaternion.identity, .02f, config)), .001f);
++            torque = HeldOrientation.Correction(Quaternion.identity, Quaternion.Euler(0, 180, 0), Vector3.one * 10000, Vector3.one * 10000, Quaternion.identity, .02f, config);
++            Assert.LessOrEqual(torque.magnitude, config.ManipulationTorqueMax + .001f); Assert.IsTrue(SafeMath.Finite(torque));
++        }
++        [Test] public void S019_InertiaLimitsPreserveHeavyCargoResponse()
++        {
++            var target = Quaternion.Euler(0, 70, 0);
++            var small = HeldOrientation.Correction(Quaternion.identity, target, Vector3.zero, Vector3.one, Quaternion.identity, .02f, config);
++            var large = HeldOrientation.Correction(Quaternion.identity, target, Vector3.zero, Vector3.one * 100, Quaternion.identity, .02f, config);
++            Assert.Greater(small.y, large.y / 100, "Torque saturation slows high inertia rather than bypassing it");
++        }
++        [Test] public void S019_ThousandWarmedTargetAndCorrectionIterationsAllocateZero()
++        {
++            var state = new HeldOrientation(); state.Initialize(Quaternion.identity);
++            for (int i = 0; i < 50; i++) Iterate(ref state);
++            long start = GC.GetAllocatedBytesForCurrentThread();
++            for (int i = 0; i < 1000; i++) Iterate(ref state);
++            long bytes = GC.GetAllocatedBytesForCurrentThread() - start;
++            TestContext.WriteLine("1000 warmed target + correction iterations: " + bytes + " bytes"); Assert.AreEqual(0, bytes);
++        }
++        void Iterate(ref HeldOrientation state)
++        {
++            state.Update(true, Vector2.one, Quaternion.identity, Quaternion.identity, .02f, config);
++            HeldOrientation.Correction(Quaternion.identity, state.Target, Vector3.zero, Vector3.one, Quaternion.identity, .02f, config);
++        }
++        [Test] public void S019_InvalidConfigurationRejectsUnsafeLimits()
++        {
++            var c = new FoundationConfig { ManipulationTorqueMax = 10000 }; Assert.Throws<ArgumentException>(() => c.Validate());
++            c.ManipulationTorqueMax = 400; c.ManipulationResponse = float.NaN; Assert.Throws<ArgumentException>(() => c.Validate());
++        }
++    }
++}
+--- before/Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs
++++ after/Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs
+@@ -0,0 +1,172 @@
++using System;
++using System.Collections;
++using System.Collections.Generic;
++using NUnit.Framework;
++using UnityEngine;
++using UnityEngine.SceneManagement;
++using UnityEngine.TestTools;
++using OnHold.Core;
++using OnHold.Domain;
++using OnHold.Gameplay;
++using OnHold.Presentation;
++using Object = UnityEngine.Object;
++
++namespace OnHold.Tests
++{
++    public sealed class HeldManipulationTests
++    {
++        FoundationWorld world;
++        PlayerBody player;
++        CarryableBody cargo;
++        readonly List<GameObject> fixtures = new List<GameObject>();
++        [UnitySetUp] public IEnumerator Setup()
++        {
++            yield return SceneManager.LoadSceneAsync("Assets/_OnHold/Scenes/Bootstrap.unity");
++            Object.FindAnyObjectByType<FoundationFrontend>().enabled = false;
++            world = Object.FindAnyObjectByType<FoundationWorld>(); world.enabled = false;
++            world.StartAuthority(42, SessionMode.Solo); world.Session.Join("", true, 0, out var member); player = world.AddPlayer(member.Actor);
++            Apply(CommandType.Start); Apply(CommandType.Ready); Apply(CommandType.Start); Apply(CommandType.Start);
++            Box(new Vector3(30, -.25f, 0), new Vector3(24, .5f, 24));
++            player.Respawn(new Vector3(30, .02f, 0)); cargo = world.Items[0];
++            Put(cargo, Quaternion.identity);
++        }
++        [UnityTearDown] public IEnumerator Teardown()
++        { world.StopSession(); foreach (var go in fixtures) if (go) Object.Destroy(go); fixtures.Clear(); yield return null; }
++        Reason Apply(CommandType type, CarryableBody item = null) => world.Apply(new CommandEnvelope { CommandType = type, TargetId = item ? item.NetworkId : 0 }, player.Actor);
++        GameObject Box(Vector3 point, Vector3 size)
++        {
++            var go = GameObject.CreatePrimitive(PrimitiveType.Cube); go.layer = 8; go.transform.position = point; go.transform.localScale = size;
++            fixtures.Add(go); Physics.SyncTransforms(); return go;
++        }
++        void Put(CarryableBody item, Quaternion rotation)
++        {
++            item.ResetState(); item.Body.position = player.Eye + Vector3.forward * 1.7f; item.Body.rotation = rotation;
++            item.SuppressDamageUntil = 1000; Physics.SyncTransforms();
++        }
++        void Grab()
++        {
++            var preview = world.QueryGrabCandidate(player.Actor, cargo); Assert.IsTrue(preview.Success);
++            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Grab, cargo)); Assert.AreEqual(preview.GripIndex, cargo.HeldGripIndex(player.Actor));
++            Assert.IsTrue(cargo.TryHeldOrientation(player.Actor, out var state)); Assert.Less(Quaternion.Angle(cargo.Body.rotation, state.Target), .01f);
++        }
++        void Input(Vector2 degrees)
++        { Assert.IsTrue(cargo.UpdateManipulation(player.Actor, true, degrees, Quaternion.identity, .02f)); }
++        void Tick()
++        {
++            player.Input(new CommandEnvelope(), world.Now); world.Step(.02f);
++            Assert.IsTrue(SafeMath.Finite(cargo.Body.position)); Assert.IsTrue(SafeMath.Finite(cargo.Body.rotation));
++            Assert.IsTrue(SafeMath.Finite(cargo.Body.angularVelocity));
++            Assert.LessOrEqual(cargo.LastTorque.magnitude, world.Config.TotalTorqueMax + .01f);
++            Assert.LessOrEqual(cargo.LastManipulationTorque.magnitude, world.Config.ManipulationTorqueMax + .01f);
++            Assert.LessOrEqual(cargo.Body.angularVelocity.magnitude, world.Config.AngularSpeedMax + .01f);
++            Assert.Less(Vector3.Distance(cargo.Body.position, player.Eye), 6);
++        }
++        [Test] public void S019_GrabYawPitchPreservesCommittedGripAndDynamicBody()
++        {
++            Grab(); int index = cargo.HeldGripIndex(player.Actor); var rotation = cargo.Body.rotation; var parent = cargo.transform.parent;
++            for (int i = 0; i < 50; i++) { Input(new Vector2(1.5f, 0)); Tick(); Assert.AreEqual(index, cargo.HeldGripIndex(player.Actor)); }
++            Assert.Greater(Quaternion.Angle(rotation, cargo.Body.rotation), 15); rotation = cargo.Body.rotation;
++            for (int i = 0; i < 50; i++) { Input(new Vector2(0, 1.5f)); Tick(); }
++            Assert.Greater(Quaternion.Angle(rotation, cargo.Body.rotation), 15);
++            Assert.AreEqual(index, cargo.HeldGripIndex(player.Actor)); Assert.AreSame(parent, cargo.transform.parent); Assert.IsFalse(cargo.Body.isKinematic);
++            foreach (var collider in cargo.GetComponentsInChildren<Collider>()) Assert.IsTrue(collider.enabled);
++        }
++        [Test] public void S019_ReleaseStopsTorqueAndRegrabInitializesFromOtherObject()
++        {
++            Grab(); for (int i = 0; i < 30; i++) { Input(Vector2.one); Tick(); }
++            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
++            Assert.IsFalse(cargo.TryHeldOrientation(player.Actor, out _)); Assert.AreEqual(0, cargo.HandleCount);
++            var velocity = cargo.Body.angularVelocity; cargo.Drive(); Assert.AreEqual(Vector3.zero, cargo.LastTorque);
++            Assert.AreEqual(velocity, cargo.Body.angularVelocity);
++            Assert.IsFalse(cargo.UpdateManipulation(player.Actor, true, Vector2.one, Quaternion.identity, .02f));
++            cargo.Body.position += Vector3.right * 8; cargo = world.Items[1]; var own = Quaternion.Euler(15, -33, 12); Put(cargo, own); Grab();
++            Assert.IsTrue(cargo.TryHeldOrientation(player.Actor, out var state)); Assert.IsFalse(state.Engaged); Assert.Less(Quaternion.Angle(own, state.Target), .01f);
++        }
++        [Test] public void S019_ModifierExitRetainsTargetAndResetClearsAllState()
++        {
++            Grab(); Input(Vector2.one); cargo.TryHeldOrientation(player.Actor, out var before);
++            cargo.EndManipulation(player.Actor); cargo.TryHeldOrientation(player.Actor, out var after);
++            Assert.IsFalse(after.Active); Assert.IsTrue(after.Engaged); Assert.AreEqual(before.Target, after.Target);
++            cargo.ResetState(); Assert.AreEqual(0, cargo.HandleCount); Assert.IsFalse(cargo.TryHeldOrientation(player.Actor, out _));
++        }
++        [Test] public void S019_DisableCargoAndInvalidGripReleaseWithoutStaleControl()
++        {
++            Grab(); Input(Vector2.one); cargo.enabled = false; Assert.AreEqual(0, cargo.HandleCount);
++            Assert.IsFalse(cargo.CanManipulate(player.Actor)); cargo.Drive(); Assert.AreEqual(Vector3.zero, cargo.LastTorque);
++            cargo.enabled = true; Grab();
++            var original = cargo.Definition; var clone = Object.Instantiate(original); cargo.Definition = clone;
++            try { clone.Grips = Array.Empty<Vector3>(); cargo.Drive(); Assert.AreEqual(0, cargo.HandleCount); Assert.IsFalse(cargo.CanManipulate(player.Actor)); }
++            finally { cargo.Definition = original; Object.Destroy(clone); }
++        }
++        [Test] public void S019_DisabledPlayerCannotRetainManipulation()
++        {
++            Grab(); Input(Vector2.one); player.enabled = false; Assert.IsFalse(cargo.CanManipulate(player.Actor));
++            cargo.Drive(); Assert.AreEqual(0, cargo.HandleCount); Assert.AreEqual(Vector3.zero, cargo.LastTorque);
++        }
++        [Test] public void S019_KinematicInvalidationAndWrongActorCannotControlCargo()
++        {
++            Grab(); Input(Vector2.one);
++            Assert.IsFalse(cargo.UpdateManipulation(new Actor(player.Actor.Id, 999), true, Vector2.one, Quaternion.identity, .02f));
++            cargo.Body.isKinematic = true; Assert.IsFalse(cargo.CanManipulate(player.Actor));
++            cargo.Drive(); Assert.AreEqual(0, cargo.HandleCount); Assert.AreEqual(Vector3.zero, cargo.LastTorque);
++        }
++        [UnityTest] public IEnumerator S019_DestroyHeldCargoWhileWorldContinues()
++        {
++            Grab(); Input(Vector2.one); var state = cargo.State; Object.Destroy(cargo.gameObject); yield return null;
++            Assert.AreEqual(0, state.Holders.Count); Assert.AreEqual(Lifecycle.Lost, state.Lifecycle);
++            Assert.DoesNotThrow(() => world.Step(.02f)); Assert.DoesNotThrow(() => world.Capture());
++            Assert.AreEqual(0, world.ActiveHandles); Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
++        }
++        [TestCase(0, 100f)] [TestCase(1, 35f)] [TestCase(1, 5f)] [TestCase(0, 250f)]
++        public void S019_ProlongedAlternatingInputRemainsBoundedAcrossMassAndSize(int index, float mass)
++        {
++            cargo.Body.position += Vector3.right * 8; cargo = world.Items[index]; Put(cargo, Quaternion.identity); cargo.Body.mass = mass; Grab();
++            float peak = 0, torque = 0;
++            for (int i = 0; i < 1000; i++)
++            {
++                Input(new Vector2(i % 40 < 20 ? float.MaxValue : -float.MaxValue, i % 60 < 30 ? 5000 : -5000)); Tick();
++                peak = Mathf.Max(peak, cargo.Body.angularVelocity.magnitude); torque = Mathf.Max(torque, cargo.LastTorque.magnitude);
++                Assert.AreEqual(1, cargo.HandleCount, "Workload must remain held throughout");
++            }
++            TestContext.WriteLine($"mass={mass} size={cargo.Definition.BoundsSize} 1000 steps peak angular={peak} rad/s torque={torque} Nm");
++        }
++        [TestCase(false)] [TestCase(true)]
++        public void S019_WallAndFloorConstrainRotationThroughSolver(bool floor)
++        {
++            Grab();
++            // A nearby surface intersects the desired swept volume, but not the starting pose.
++            var obstacle = floor ? Box(new Vector3(30, .92f, 1.7f), new Vector3(8, .5f, 8)) :
++                Box(new Vector3(30, 1.6f, 2.45f), new Vector3(8, 5, .4f));
++            var colliders = cargo.GetComponentsInChildren<Collider>(); var barrier = obstacle.GetComponent<Collider>();
++            float maxDepth = 0, maxError = 0; bool contact = false;
++            for (int i = 0; i < 250; i++)
++            {
++                Input(floor ? new Vector2(0, 2) : new Vector2(2, 0));
++                var previous = cargo.Body.rotation; Tick();
++                Assert.Less(Quaternion.Angle(previous, cargo.Body.rotation), world.Config.AngularSpeedMax * Mathf.Rad2Deg * .02f + 3);
++                foreach (var collider in colliders)
++                    if (Physics.ComputePenetration(collider, collider.transform.position, collider.transform.rotation, barrier, obstacle.transform.position,
++                        obstacle.transform.rotation, out _, out float depth)) { maxDepth = Mathf.Max(maxDepth, depth); contact = true; }
++                cargo.TryHeldOrientation(player.Actor, out var state); maxError = Mathf.Max(maxError, Quaternion.Angle(state.Target, cargo.Body.rotation));
++                Assert.AreEqual(1, cargo.HandleCount);
++            }
++            TestContext.WriteLine($"floor={floor} contact={contact} max penetration={maxDepth} max orientation error={maxError}");
++            Assert.IsTrue(contact, "Exercise actual contact"); Assert.Less(maxDepth, .08f, "Normal solver tolerance, never force target penetration");
++            Assert.Greater(maxError, 10, "Requested and achieved orientation may differ");
++        }
++        [Test] public void S019_ThousandWarmedProductionInputQueryDriveIterationsAllocateZero()
++        {
++            Grab();
++            for (int i = 0; i < 50; i++) Iterate();
++            long start = GC.GetAllocatedBytesForCurrentThread();
++            for (int i = 0; i < 1000; i++) Iterate();
++            long bytes = GC.GetAllocatedBytesForCurrentThread() - start;
++            TestContext.WriteLine("1000 warmed production manipulation input + query + Drive iterations: " + bytes + " bytes"); Assert.AreEqual(0, bytes);
++        }
++        void Iterate()
++        {
++            cargo.UpdateManipulation(player.Actor, true, Vector2.one, Quaternion.identity, .02f);
++            cargo.TryHeldOrientation(player.Actor, out _); cargo.Drive(.02f);
++        }
++    }
++}
+--- before/Assets/_OnHold/Tests/PlayMode/SoloPlayableInputTests.cs
++++ after/Assets/_OnHold/Tests/PlayMode/SoloPlayableInputTests.cs
+@@ -157,6 +157,80 @@
+             frontend.SetMenu(false); yield return null;
+             network.Stop(); yield return null; Assert.IsFalse(frontend.GripMarkerVisible);
+         }
++        [UnityTest] public IEnumerator S019_RealModifierRoutesMouseAndRestoresCameraOnRelease()
++        {
++            frontend.Settings.ToggleHold = true; yield return PlaceAndClickCargo();
++            var cargo = network.World.Items[0]; int grip = cargo.HeldGripIndex(network.LocalActor);
++            InputSystem.QueueStateEvent(mouse, new MouseState()); yield return null;
++            var camera = frontend.ViewCamera.transform.rotation; var initial = cargo.Body.rotation;
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2, delta = new Vector2(100, 100) }); yield return null;
++            Assert.IsTrue(frontend.ManipulationActive); Assert.Less(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .01f);
++            for (int i = 0; i < 50; i++)
++            {
++                InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2, delta = new Vector2(10, 7) }); yield return new WaitForSeconds(.02f);
++                Assert.AreEqual(grip, cargo.HeldGripIndex(network.LocalActor));
++                Assert.Less(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .01f);
++            }
++            Assert.Greater(Quaternion.Angle(initial, cargo.Body.rotation), 15);
++            InputSystem.QueueStateEvent(mouse, new MouseState { delta = new Vector2(100, 100) }); yield return null;
++            Assert.IsFalse(frontend.ManipulationActive); Assert.Less(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .01f);
++            InputSystem.QueueStateEvent(mouse, new MouseState { delta = new Vector2(15, 0) }); yield return null;
++            Assert.Greater(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .2f);
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2 }); yield return null;
++            Assert.IsTrue(frontend.ManipulationActive);
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 3 }); yield return new WaitForSeconds(.06f);
++            Assert.AreEqual(0, cargo.HandleCount); Assert.IsFalse(frontend.ManipulationActive);
++            camera = frontend.ViewCamera.transform.rotation;
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2, delta = new Vector2(15, 0) }); yield return null;
++            Assert.Greater(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .2f, "Modifier without cargo must not freeze camera");
++        }
++        [UnityTest] public IEnumerator S019_ModifierWithoutCargoMenuDisableAndSessionCleanup()
++        {
++            var camera = frontend.ViewCamera.transform.rotation;
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2, delta = new Vector2(15, 0) }); yield return null;
++            Assert.IsFalse(frontend.ManipulationActive); Assert.Greater(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .2f);
++            frontend.Settings.ToggleHold = true; yield return PlaceAndClickCargo();
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2 }); yield return null; Assert.IsTrue(frontend.ManipulationActive);
++            frontend.enabled = false; yield return new WaitForSeconds(.06f);
++            Assert.IsFalse(frontend.ManipulationActive); Assert.AreEqual(0, network.World.ActiveHandles);
++            Assert.IsFalse(frontend.Actions.FindAction("Gameplay/Manipulate").enabled);
++            frontend.enabled = true; frontend.SetMenu(false); yield return PlaceAndClickCargo();
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2 }); yield return null; Assert.IsTrue(frontend.ManipulationActive);
++            network.Stop(); yield return null; Assert.IsFalse(frontend.ManipulationActive); Assert.IsTrue(frontend.MenuOpen);
++        }
++        [UnityTest] public IEnumerator S019_ReboundModifierAndGamepadUseSameCameraContract()
++        {
++            frontend.Settings.ToggleHold = true; yield return PlaceAndClickCargo();
++            var action = frontend.Actions.FindAction("Gameplay/Manipulate"); action.ApplyBindingOverride(0, "<Keyboard>/f");
++            InputSystem.QueueStateEvent(mouse, new MouseState());
++            InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.F)); yield return null;
++            Assert.IsTrue(frontend.ManipulationActive);
++            InputSystem.QueueStateEvent(keyboard, new KeyboardState()); yield return null;
++            var pad = InputSystem.AddDevice<Gamepad>();
++            try
++            {
++                InputSystem.QueueStateEvent(pad, new GamepadState { leftTrigger = 1 }); yield return null;
++                Assert.IsTrue(frontend.ManipulationActive); var camera = frontend.ViewCamera.transform.rotation;
++                for (int i = 0; i < 20; i++)
++                { InputSystem.QueueStateEvent(pad, new GamepadState { leftTrigger = 1, rightStick = new Vector2(.8f, .5f) }); yield return new WaitForSeconds(.02f); }
++                Assert.Less(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .01f);
++                Assert.IsTrue(network.World.Items[0].TryHeldOrientation(network.LocalActor, out var state)); Assert.IsTrue(state.Engaged);
++                InputSystem.QueueStateEvent(pad, new GamepadState()); yield return null; Assert.IsFalse(frontend.ManipulationActive);
++            }
++            finally { InputSystem.RemoveDevice(pad); }
++        }
++        [UnityTest] public IEnumerator S019_DestroyedCargoImmediatelyRestoresCameraEligibility()
++        {
++            frontend.Settings.ToggleHold = true; yield return PlaceAndClickCargo();
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2 }); yield return null;
++            Assert.IsTrue(frontend.ManipulationActive);
++            UnityEngine.Object.Destroy(network.World.Items[0].gameObject); yield return null; yield return null;
++            Assert.IsFalse(frontend.ManipulationActive); Assert.AreEqual(0, network.World.ActiveHandles);
++            var camera = frontend.ViewCamera.transform.rotation;
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2, delta = new Vector2(15, 0) }); yield return null;
++            Assert.Greater(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .2f);
++            frontend.SetMenu(true); Assert.IsFalse(frontend.ManipulationActive);
++        }
+         IEnumerator PlaceAndClickCargo()
+         {
+             var cargo = network.World.Items[0]; var p = network.World.Players[network.LocalActor.Id];

@@ -1,0 +1,17 @@
+Scope: document helper scripts only. Not game, Unity, networking or MCP implementation tests.
+Execution date: 2026-09-07
+
+test_full_package (__main__.HelperTests.test_full_package) ... ok
+test_id_lookup (__main__.HelperTests.test_id_lookup) ... ok
+test_invalid_id (__main__.HelperTests.test_invalid_id) ... ok
+test_limit_bounds (__main__.HelperTests.test_limit_bounds) ... ok
+test_path_traversal (__main__.HelperTests.test_path_traversal) ... ok
+test_query_search (__main__.HelperTests.test_query_search) ... ok
+test_symlink_escape (__main__.HelperTests.test_symlink_escape) ... ok
+test_turkish_normalization (__main__.HelperTests.test_turkish_normalization) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.081s
+
+OK
+

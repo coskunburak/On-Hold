@@ -1,0 +1,409 @@
+ASKIDA KNOWLEDGE SNAPSHOT v0.1.0
+VOLUME: 07/10
+SNAPSHOT: 3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4
+STATUS: PROPOSED; GAME TESTS NOT RUN; READ-ONLY DERIVED COPY.
+Canonical Markdown documents remain the source of truth.
+
+DOCUMENT: ASK-049
+PATH: docs/04_art/049_prop_asset_spec.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: a80888c47a1a42df25b8f6795b32b77b4095af5044e91a02bc5eee4b2ff2dc34
+
+---
+doc_id: ASK-049
+title: "Her nesne için üretim şartnamesi"
+version: 0.1.0
+status: proposed
+owner_role: TechnicalArtist
+last_reviewed: 2026-09-07
+dependencies: ["ASK-016","ASK-041","ASK-046","ASK-050","ASK-066"]
+---
+
+# Her nesne için üretim şartnamesi
+
+## Asset kartı
+Kimlik, rol, oyun ölçüsü, massKg, davranış ailesi, etkileşim noktaları, teslimat sınırı, kaynak/lisans, poly/texture/material bütçesi, collision planı ve LOD ihtiyacı üretimden önce yazılır. Görsel sanatçı kütleyi hacimden kendiliğinden çıkarmaz; gameplay tasarım verisi kaynaktır.
+
+## DCC standardı
+Kaynak sahnede metre ve transform disiplini; export öncesi uygulanmış scale; temiz hierarchy; isimli mesh parçaları; dışa bakan normal; gereksiz iç geometri temizliği. Pivot yerleştirme amacıyla açıklanır: taşınabilir eşyada alt merkez tercih edilebilir, fizik centerOfMass ayrı alan olabilir. Pivot ile kütle merkezi aynı kavram değildir.
+
+## Geometri/UV
+Yakın tutulacak kahraman eşyada siluet önceliklidir. Ufacık vida geometriyle değil gerektiğinde normal/texture veya tamamen atlanarak çözülür. UV kanal amacı, texel-density sınıfı ve bake gereksinimi belirtilir. Lightmap UV yalnız kullanılan aydınlatma yoluna göre gerekir; dinamik eşya için körlemesine statik flag açılmaz.
+
+## Gameplay socket'leri
+Grip_L/Grip_R veya isimlendirilmiş grip dizisi; kayış temas noktaları; damage VFX noktaları; authored deliveryBounds; gerektiğinde audio emitter. Socket test mesh'iyle görünür doğrulanır. Tutma animasyonu collider'ın içindeki imkânsız noktaya hedeflenmez.
+
+## Prefab
+Tek root Rigidbody; doğru collision layer; domain/network adapter; görsel child; LODGroup gerekiyorsa; materials; ItemDefinition referansı; provenance kimliği. Ortak taşıma socket'leri, collider ve visible mesh aynı metre ölçeğinde eşleşir.
+
+## Kabul masası
+Ölçü küpü yanında görünüm; kapı geçişi; iki oyuncu tutma; drop test; platforma secure; delivery zone dönüş testi; uzaktan LOD; texture ve draw-call incelemesi. Her adım build ve asset sürümüyle kayda geçer. FBX dosyasının Unity'ye girmesi tek başına production kabulü değildir.
+
+## Gereksinim ve test izleri
+- REQ-025 → TC-025 — Prop tam teknik kabul almalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-016 — Eşya semantiği ve değişmezler](../01_gameplay/016_item_state_model.md)
+- [ASK-041 — Editör araçları ve asset kabul otomasyonu](../03_engineering/041_editor_asset_validation.md)
+- [ASK-046 — Sanat yönetimi ve paket uyumu](046_art_direction.md)
+- [ASK-050 — Astra/Codex ile Blender üretimi ve export](050_ai_blender_export.md)
+- [ASK-066 — Başlangıç asset, render ve fizik bütçeleri](../06_quality/066_render_physics_asset_budgets.md)
+
+
+
+DOCUMENT: ASK-050
+PATH: docs/04_art/050_ai_blender_export.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 9c74ffd50c0308b1b15960008ffc0c7b23a7c8a35b98d09093fbe16e2320b791
+
+---
+doc_id: ASK-050
+title: "Astra/Codex ile Blender üretimi ve export"
+version: 0.1.0
+status: proposed
+owner_role: TechnicalArtist
+last_reviewed: 2026-09-07
+dependencies: ["ASK-046","ASK-048","ASK-049","ASK-053","ASK-077"]
+---
+
+# Astra/Codex ile Blender üretimi ve export
+
+## Kısa cevap
+Evet: model, Blender Python/bpy betikleri, parametrik geometri, materyal ayarları, export ve kontrol otomasyonu üretmeye yardımcı olabilir. Gerçek .blend/.fbx/.glb dosyası Blender'ın çalıştığı bir ortamda bu betiğin yürütülmesiyle oluşur. Model adı tek başına kusursuz topoloji, rig, UV, görsel uyum veya çalışan Unity prefab garantisi değildir. Bu teslimatta Blender/Unity üretimi çalıştırılmadı.
+
+## Uygun ilk varlıklar
+Platform deck'i, sandık, metal kasa, duvar braketi, basit korkuluk ve modüler kapı çerçevesi ölçülü parametrik üretime uygundur. Yüz anatomisi, yüksek kaliteli skinning, doğal kumaş deformasyonu, karmaşık el animasyonu ve kahraman karakter insan sanatçı düzeltmesi gerektirir. Tek bir resimden görülemeyen arka yüz ve fiziksel ölçü otomatik doğrulanamaz.
+
+## Üretim döngüsü
+1. ASK-049 kartı ve izinli referansları hazırla.
+2. Betiği yalnız görev çalışma dizininde, dosya silmeyen ve dış ağ gerektirmeyen sınırlı işlemlerle üret.
+3. Blender'da geometriyi yarat; named collection, socket, collider proxy ve materyalleri ayır.
+4. Ön/yan/arka/üst ve oyun kamerası render'larını üret; siluet ve ölçeği insan kontrol etsin.
+5. Mesh/UV/normals/degenerate triangle/transform validator çalıştır.
+6. FBX veya doğrulanmış glTF export al; .blend kaynak ve betik sürümünü koru.
+7. Unity import preset ve prefab assembler uygula.
+8. Fizik/ağ/art kabul sahnelerinde test et; üretim onayı sonra ver.
+
+## Export gerçekleri
+FBX veya seçilen formatın materyal dönüşümü Blender shader grafiğini birebir taşımaz. URP materyalleri proje tarafında kurulmalıdır. Üretimde .blend otomatik import bağımlılığı yerine kontrollü export tercih edilir; [Unity model import rehberi](https://docs.unity3d.com/6000.0/Documentation/Manual/HOWTO-ImportObjectsFrom3DApps.html). GLB/glTF kullanılacaksa importer sürümü ayrıca kilitlenir.
+
+## Örnek görev tarifi
+“2,4×1,8 m deck ölçüsüne uyan görsel platform üret; 12 derece eğim kuralını geometriye gömme; tek shared palette, ayrı collider proxy, dört anchor socket, alt merkez pivot; tüm çıktılar belirtilen klasörde; önceden var olan dosyaları silme.” Bu komut bir sanat brief'idir, gerçek kaldırma ekipmanı üretim talimatı değildir.
+
+## Kanıt ve sınır
+OpenAI'nin [Astra mimari görselleştirme örneği](https://developers.openai.com/blog/architectural-visualization-with-astra) araç destekli geometri/export yaklaşımına örnektir; ASKIDA asset'inin kabul edildiği kanıtı değildir. Kaynak izinleri ve Steam oyuncuya sunulan AI içerik beyanı ayrıca takip edilir.
+
+## Gereksinim ve test izleri
+- REQ-026 → TC-026 — AI üretimi gerçek araç ve insan QA ile doğrulanmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-046 — Sanat yönetimi ve paket uyumu](046_art_direction.md)
+- [ASK-048 — Lisans, kaynak kaydı ve AI kullanımı](048_licenses_provenance.md)
+- [ASK-049 — Her nesne için üretim şartnamesi](049_prop_asset_spec.md)
+- [ASK-053 — Malzeme, texture ve aydınlatma standardı](053_materials_textures_lighting.md)
+- [ASK-077 — Codex görev bağlamı ve güvenilir iş akışı](../08_knowledge/077_codex_task_workflow.md)
+
+
+
+DOCUMENT: ASK-051
+PATH: docs/04_art/051_character_rig.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 4c371a8a7785c3a87036c0c60347e43c5755f07ea092603c64dc137d12e9a615
+
+---
+doc_id: ASK-051
+title: "Karakter, rig ve el IK standardı"
+version: 0.1.0
+status: proposed
+owner_role: Animation
+last_reviewed: 2026-09-07
+dependencies: ["ASK-013","ASK-046","ASK-047","ASK-052"]
+---
+
+# Karakter, rig ve el IK standardı
+
+## Karakter ailesi
+Universal Base Characters ortak humanoid taban adayıdır. Tek iskelet standardı, uyumlu boy aralığı ve dört okunur renk varyantı hedeflenir. Renk seçimi collider veya kütleyi değiştirmez. Ürün sayfasındaki poligon/saç/karakter sayısı ücretsiz tier'ın eksiksiz içeriği sayılmaz; indirilen dosyalar envanterde doğrulanacaktır.
+
+## Rig kabulü
+Bir root, tutarlı pelvis/spine/limb hiyerarşisi, uygulanmış ölçek, eksen dönüşümü belgeli; T/A-pose uyumu; hatalı weight, boş vertex ve aşırı deformation kontrolü. Parmak kemikleri mevcutsa sayısı/isim eşlemesi kayda girer. Humanoid avatar yeşil görünmesi taşıma pozunun iyi göründüğü anlamına gelmez.
+
+## Oyun temsili
+V1 tam active ragdoll controller önermez. Karakter hareketi kontrollü controller; animasyon görseldir. Düşme sırasında kısa cosmetic ragdoll ancak ağ ve konfor bütçesi uygunsa eklenir. Birinci kişi kolları ile diğer oyuncuların gördüğü tam beden ayrı rig/presentation olabilir, fakat eşya socket'i ve el hedefleri aynı dünya anlamını korur.
+
+## IK
+El hedefi authoritative holder bağlantısından türetilen grip socket'idir. İstemci görsel IK ağırlığını yumuşatır; IK eşyanın fizik konumunu belirlemez. Omuz erişim sınırı aşılırsa el sonsuza uzamaz; tutma hedefi/kamera sınırlaması devreye girer. Dirsek hint ve yerel el rotasyon offset'leri her grip ailesi için test edilir. [Unity Two Bone IK](https://docs.unity3d.com/Packages/com.unity.animation.rigging%401.1/manual/constraints/TwoBoneIKConstraint.html) temel araçtır; paket sürüm uyumu ayrıca seçilir.
+
+## Test pozları
+Boş yürüyüş, ağır eşya, baş üstü olmayan yüksek tutuş, ters iki holder, vinç paneli, merdiven ve platform eğimi. Kamera yakınında kol mesh'inin clipping'i ve uzaktan ayak kayması ayrı kontrol edilir. En uzun/kısa avatar aynı kapıdan geçer.
+
+## Kabul
+Bir animasyon klibi tüm onaylı karakterlerde deformasyon kontrolünden geçer; saç/aksesuar sayısı skinned render maliyetini aşmaz. Yeniden bağlanmada eski el IK hedefi silinmiş item'a bağlı kalmaz.
+
+## Gereksinim ve test izleri
+- REQ-027 → TC-027 — Tek rig bütün karakterlerde çalışmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-013 — Kontroller, kamera ve giriş niyetleri](../01_gameplay/013_controls_camera.md)
+- [ASK-046 — Sanat yönetimi ve paket uyumu](046_art_direction.md)
+- [ASK-047 — Seçilecek paketler ve kullanım sınırları](047_package_selection.md)
+- [ASK-052 — Animasyon grafiği ve gerekli klipler](052_animation_graph.md)
+
+
+
+DOCUMENT: ASK-052
+PATH: docs/04_art/052_animation_graph.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 41d95a5e486f082bd5e7388fe7fb71d3e1e98d60a6c63015d5feb4abe55d5074
+
+---
+doc_id: ASK-052
+title: "Animasyon grafiği ve gerekli klipler"
+version: 0.1.0
+status: proposed
+owner_role: Animation
+last_reviewed: 2026-09-07
+dependencies: ["ASK-013","ASK-017","ASK-019","ASK-051"]
+---
+
+# Animasyon grafiği ve gerekli klipler
+
+## Öncelik matrisi
+P0 slice: idle, walk forward/back/strafe, start/stop blend, light carry pose, heavy two-hand carry, grab/release görsel geçişi, vinç kullanım pozu, düşme/geri dönüş geçişi. P1 demo: yön değiştirme, küçük denge düzeltme, başarı/başarısızlık tepkisi. P2 v1: kozmetik emote varyantları; gameplay avantajı yoktur.
+
+## Grafiğin katmanları
+Locomotion blend → upper-body carry mask → el IK → gerekli additive tepki. Oyun state'i animator state adından okunmaz. Animator tamamlanmadı diye authoritative Release geciktirilmez. Animasyon event'leri ses/yerel sunum tetikleyebilir; para, delivery veya holder yaratamaz.
+
+## Root motion kararı
+Çevrimiçi karakter hareketinde ilk öneri in-place klip + controller otoritesidir. Root motion gereken istisna ayrı senkronizasyon tasarımı ister; kaynak pakette root/no-root sürüm bulunduğu her klibin ücretsiz tier'da olduğu anlamına gelmez. Ağ hareketi ile animasyon root'unun çifte translasyonu ayak kayması ve state ayrışması yaratır.
+
+## Retarget hattı
+Kaynak klip lisansı → source avatar → target avatar → loop/seam → ayak temasları → carry mask → IK soket testi → gerçek oyun hızı. Aynı klibi farklı rig'e aktarmak son iş değildir. Düşük hızda foot sliding, omuzun mesh içine gömülmesi ve bilek dönmesi yakından incelenir.
+
+## Senkronizasyon
+Remote oyuncuya gerekli action/state parametreleri gönderilir; bütün kemik transform'ları ağdan akıtılmaz. Kısa tek-seferlik tepki eventId ile dedup edilir. Reconnect'te mevcut carry pose snapshot'tan kurulur, geçmiş tüm animasyon olayları tekrar oynatılmaz.
+
+## Kabul
+Grab reddedildiğinde eller eşyanın üzerinde kalmaz; son holder bırakınca carry katmanı kapanır; driver lease kaybında panel pozu biter. Animasyon sayısını artırmadan önce P0 klipler bütün karakterlerde ve 2/4 kişilik gerçek sahnede geçer.
+
+## Gereksinim ve test izleri
+- REQ-028 → TC-028 — Animasyon gameplay state'i belirlememeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-013 — Kontroller, kamera ve giriş niyetleri](../01_gameplay/013_controls_camera.md)
+- [ASK-017 — Ortak taşıma ve kuvvet modeli](../01_gameplay/017_shared_carrying.md)
+- [ASK-019 — Vinç kontrolü ve kontrol kiralaması](../01_gameplay/019_winch_control.md)
+- [ASK-051 — Karakter, rig ve el IK standardı](051_character_rig.md)
+
+
+
+DOCUMENT: ASK-053
+PATH: docs/04_art/053_materials_textures_lighting.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: faa6788c37d3afa014f9dc7c19e9ad593b08732b1941aee97a29ee371d909fc4
+
+---
+doc_id: ASK-053
+title: "Malzeme, texture ve aydınlatma standardı"
+version: 0.1.0
+status: proposed
+owner_role: TechnicalArtist
+last_reviewed: 2026-09-07
+dependencies: ["ASK-046","ASK-049","ASK-056","ASK-065","ASK-066"]
+---
+
+# Malzeme, texture ve aydınlatma standardı
+
+## Malzeme ailesi
+Env_Plaster, Env_Brick, Env_Metal; Prop_Painted, Prop_Wood, Prop_Fabric; Equipment_Accent; Glass_Simple gibi küçük shared aileler önerilir. Her prefab kendine özgü onlarca materyal açmaz. Renk varyasyonu kontrollü vertex color veya uygun shader parametresiyle çözülür; batch/instancing etkisi ölçülür.
+
+## Görsel birlik
+Bevel ölçeği, roughness aralığı, aşınma maskesinin dağılımı ve renk doygunluğu master profile'dan yönetilir. Her kenarın beyaz parlaması ve aşırı kir ana stile aykırıdır. Nötr ışıkta materyal karşılaştırması yapılmadan hedef sarı ışıkla kusurlar gizlenmez.
+
+## Texture bütçesi
+Kahraman eşya için başlangıç 1K–2K, küçük prop için 256–512, modüler yüzey için ortak tile/atlas önerisi; bunlar sabit zorunluluk değil ekranda kaplanan alana göre karar girdisidir. Texture memory dosya boyutu değildir; çözünürlük, format, mip ve platform sıkıştırmasıyla ölçülür. Aynı texture'ın kopyaları hash ile bulunur.
+
+## Aydınlatma
+Bir ana yönlü ışık ve kontrollü yerel vurgularla başla. Dinamik gölge sayısı, mesafesi ve çözünürlüğü gerçek GPU'da ölçülür. Statik geometri bake kullanıyorsa dynamic item/karakter probe stratejisi hazırlanır; balkon altındaki eşya görünmez siyaha düşmemeli. Cam/pencere fake interior gameplay oda sınırı değildir.
+
+## Teknik dikkat
+SRP Batcher, GPU instancing ve static batching aynı mekanizma değildir; hangisinin gerçekten etkin olduğu Frame Debugger/profiler ile doğrulanır. Shared material üzerine runtime global renk yazıp bütün eşyaları yanlış değiştirme. Per-instance özellik yöntemi seçilen render yolu ile test edilir.
+
+## Kabul
+Ana sahnede karakter/eşya silueti üç kalite seviyesinde okunur; farklı paket malzemeleri tek ışıkta sırıtmıyor; eksik shader ve pembe materyal yoktur. Texture/art iyileştirmesi performans kapısını aşarsa alternatif çözüm veya bütçe istisnası gerekir.
+
+## Gereksinim ve test izleri
+- REQ-029 → TC-029 — Materyaller uyumlu ve bütçe içinde olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-046 — Sanat yönetimi ve paket uyumu](046_art_direction.md)
+- [ASK-049 — Her nesne için üretim şartnamesi](049_prop_asset_spec.md)
+- [ASK-056 — Modüler dünya kiti ve apartman kimliği](../05_content/056_modular_world_kit.md)
+- [ASK-065 — Performans hedefi ve ölçüm disiplini](../06_quality/065_performance_targets.md)
+- [ASK-066 — Başlangıç asset, render ve fizik bütçeleri](../06_quality/066_render_physics_asset_budgets.md)
+
+
+
+DOCUMENT: ASK-054
+PATH: docs/04_art/054_vfx_feedback.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 4a73893d4b19f58739b677d6d4d25d8adb0e178e522398c0bd4ab0ad7acb99eb
+
+---
+doc_id: ASK-054
+title: "VFX, geri bildirim ve havuzlama"
+version: 0.1.0
+status: proposed
+owner_role: VFX
+last_reviewed: 2026-09-07
+dependencies: ["ASK-021","ASK-022","ASK-046","ASK-053","ASK-066"]
+---
+
+# VFX, geri bildirim ve havuzlama
+
+## Olay kataloğu
+Hafif darbe: küçük toz + kısa ses. Ağır darbe: daha yoğun ama görüşü kapatmayan toz ve metal vurgu. Kritik integrity: lokal hasar belirtisi. Secure: kısa kilit ışığı/ikon. Delivery: kontrollü konfeti veya yıldız vurgusu. Recovery: anlaşılır yeniden belirme geçişi. Efektler oyunun state'ini yaratmaz, state'i anlatır.
+
+## Kaynak
+[Kenney Particle Pack](https://kenney.nl/assets/particle-pack) CC0 texture kaynağı adayıdır; hazır Unity URP prefab paketi sayılmaz. Texture'dan kendi particle system/material kurulur. [Cartoon FX Remaster Free](https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-remaster-free-109565) alternatif inceleme kaynağıdır; ürün sayfasındaki eski uyumluluk tablosu hedef Unity sürümünün doğrulandığı anlamına gelmez.
+
+## Teknik profil
+Her efekt süre, maksimum parçacık, emit şekli, material, ışık kullanımı, gölge, ekran kaplama ve pool kapasitesi taşır. Basit efektlerde pahalı ışık veya collision varsayılan kapalıdır. GPU maliyeti çoğunlukla overdraw ve shader olabilir; sadece particle adedine bakılmaz.
+
+## Ağ
+Host önemli event'e kimlik verir; istemci aynı event'i bir kez gösterir. Kozmetik darbe sesi/partikül yerelde tahmin edilebilirse hasar onayıyla çelişmemelidir. Her particle için RPC gönderilmez. Reconnect'te eski delivery konfeti tekrar oynatılmaz, kalıcı hasar görünümü snapshot'tan kurulur.
+
+## Havuz
+Pool başlangıç ve tavanı ölçümle belirlenir. Kapasite dolunca düşük öncelikli efekt düşürülebilir; gameplay state düşürülemez. Pool reset; timer, renk, emitter target ve callback temizliğini içerir. Sonsuz yaşayan child particle bellek sızıntısı sayılır.
+
+## Kabul
+Dört oyuncu ve çoklu darbe sahnesinde eşya kenarı/prompt görünür kalır. Hareket azaltma ve ekran sarsıntısı kapatma çalışır. Tüm VFX kapalıyken oyun semantiği doğru işler; alternatif UI/ses bilgisi vardır.
+
+## Gereksinim ve test izleri
+- REQ-030 → TC-030 — VFX tek olay ve sınırlı havuz kullanmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-021 — Hasar ve kontrollü kırılma](../01_gameplay/021_damage_breakage.md)
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](../01_gameplay/022_delivery_scoring.md)
+- [ASK-046 — Sanat yönetimi ve paket uyumu](046_art_direction.md)
+- [ASK-053 — Malzeme, texture ve aydınlatma standardı](053_materials_textures_lighting.md)
+- [ASK-066 — Başlangıç asset, render ve fizik bütçeleri](../06_quality/066_render_physics_asset_budgets.md)
+
+
+
+DOCUMENT: ASK-055
+PATH: docs/04_art/055_audio_sound_design.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 45662f5f40f06d7961b3fd9421c57264f3a01094926f94658b955351644bf794
+
+---
+doc_id: ASK-055
+title: "Ses tasarımı, miks ve sesli iletişim"
+version: 0.1.0
+status: proposed
+owner_role: Audio
+last_reviewed: 2026-09-07
+dependencies: ["ASK-019","ASK-021","ASK-048","ASK-063"]
+---
+
+# Ses tasarımı, miks ve sesli iletişim
+
+## Ses dili
+Ahşap vurma, metal titreşim, kumaş sürtünme ve vinç motoru farklı yüzey aileleri oluşturur. Ağır eşyanın sesi yalnız ses yüksekliğiyle değil düşük frekans ve kısa gövde karakteriyle ayrışır. Sürekli gıcırtı yorucu olmamalı; denge gerilimi sınırlı katman ve histerezisle yükselir.
+
+## Kaynak/üretim
+Kenney Impact Sounds prototip katmanıdır; tek sesin her temasta tekrar etmesi engellenir. Sonniss veya Freesound ek seslerinde dosya bazlı lisans doğrulanır. Kendi kayıtlarında kaydın içindeki müzik, konuşma ve özel alan izinleri ayrıca değerlendirilir. AI ses kullanımı kaynak/izin ve oyuncuya sunulan içerik envanterine girer.
+
+## Mixer
+Master, SFX, Ambience, Music, UI ayrı gruplardır. V1 oyun içi voice chat şart değildir; harici sohbet kullanan ekip için müzik ve vinç gürültüsü konuşmayı bastırmamalıdır. Dahili voice eklenirse codec, servis/transport, mute/report ve gizlilik yeni kapsamdır; mevcut plan bunu uygulamış saymaz.
+
+## Teknik
+Yakın fizik olayları spatial, UI doğrulaması uygun 2D kanal olabilir. Collision çiftleri ses cooldown'ı taşır; mikro temaslar her tick ses üretmez. Eşzamanlı ses öncelikleri ve voice limit belirlenir. Motor loop'u gerçek winch state/hızından türetilir, client input tuşundan değil.
+
+## Erişilebilirlik
+Kritik bilgi yalnız sesle verilmez: vinç kilidi, kritik hasar ve delivery ret nedeni UI/ping karşılığı taşır. Mono mix ve ayrı volume ayarları düşünülür. Altyazı/olay metni yalnız gerçekten kullanılan konuşma/önemli ses kapsamına göre yazılır.
+
+## Kabul
+Kulaklık ve hoparlör testinde dört oyuncunun darbe trafiği clipping üretmez; motor durunca loop kalmaz; bağlantı tekrarında iki motor loop'u üst üste binmez. Sessiz modda temel görev tamamlanabilir.
+
+## Gereksinim ve test izleri
+- REQ-031 → TC-031 — Ses state ile uyumlu ve erişilebilir olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-019 — Vinç kontrolü ve kontrol kiralaması](../01_gameplay/019_winch_control.md)
+- [ASK-021 — Hasar ve kontrollü kırılma](../01_gameplay/021_damage_breakage.md)
+- [ASK-048 — Lisans, kaynak kaydı ve AI kullanımı](048_licenses_provenance.md)
+- [ASK-063 — Erişilebilirlik ve kamera konforu](../05_content/063_accessibility.md)
+
+
+
+DOCUMENT: ASK-056
+PATH: docs/05_content/056_modular_world_kit.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 8c91cc9decc629e405423519a5f755ab979e8a6c1b3f9b4985b5d154a91c065c
+
+---
+doc_id: ASK-056
+title: "Modüler dünya kiti ve apartman kimliği"
+version: 0.1.0
+status: proposed
+owner_role: LevelDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-046","ASK-047","ASK-053","ASK-057"]
+---
+
+# Modüler dünya kiti ve apartman kimliği
+
+## Kit rolleri
+Görsel cephe modülleri, oynanabilir collision kit'i ve set dressing ayrı katmanlardır. Bir pencere texture'ı gerçek geçiş değildir. Dışarıdan görünen ama erişilmeyen alanlar basit arka plan kit'i kullanır; oyuncunun girdiği balkon/oda gerçek geometri ve collision gerektirir.
+
+## Ölçü standardı
+Grid ve kat yüksekliği ilk blockout'ta seçilir; örneğin 0,25 m alt grid ve 3 m kat yüksekliği başlangıç adayıdır. Paket kaynak ölçülerine göre kör snap yapılmaz. Kapı açıklığı en büyük zorunlu eşyanın döndürülerek geçebildiği ölçüyle doğrulanır. Karakter collision capsule'ı art model boyundan bağımsız kayda girer.
+
+## Özel tamamlayıcılar
+Balkon korkuluğu düz/köşe, klima kutusu ve braketi, tente kapalı/açık görsel varyant, basit kablo hattı, kapı çerçevesi, apartman giriş panosu, korkuluk köşe başlığı, taşıma alanı zemini. Markalı logo ve gerçek kişi/telefon bilgisi kullanılmaz. Yerel kimlik klişe bir çöp/eskilik yığınına indirgenmez.
+
+## Kit bağlantıları
+Socket adları, pivot, grid ölçüsü, trim devamı, UV yönü ve collision seam'leri belgeye girer. İki modül birleşince oyuncu capsule'ı takılmamalıdır. Süs kablo ve küçük vidalar fizik engeli olmaz. Balkon açıklığı hem göze hem collider'a aynı sınırı sunar.
+
+## Üretim sırası
+Önce bir tam oynanabilir duvar/balkon kesiti, sonra köşe ve kat varyantları, sonra arka plan. Hedef oyun ışığında test etmeden bütün şehir kit'ini materyal dönüşümüne sokma. Kullanılmayan paket parçalarını shipping asset manifest'ine ekleme.
+
+## Kabul
+Bir level designer yalnız onaylı kit ile birinci rotayı kurabilir; yeni bespoke mesh ihtiyacı kayıtlıdır. Seams, lightmap/probe geçişi, silhouette ve collision ayrı kontrol edilir. Aynı modülün tekrarını dağıtmak için rastgele ölçekle kapı ölçüsünü bozma.
+
+## Gereksinim ve test izleri
+- REQ-032 → TC-032 — Slice rotası iki/dört oyuncuyla geçilmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-046 — Sanat yönetimi ve paket uyumu](../04_art/046_art_direction.md)
+- [ASK-047 — Seçilecek paketler ve kullanım sınırları](../04_art/047_package_selection.md)
+- [ASK-053 — Malzeme, texture ve aydınlatma standardı](../04_art/053_materials_textures_lighting.md)
+- [ASK-057 — Blockout ve oynanabilir alan metrikleri](057_blockout_metrics.md)
+
+
+

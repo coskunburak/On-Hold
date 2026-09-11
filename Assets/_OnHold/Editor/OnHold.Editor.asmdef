@@ -1,0 +1,20 @@
+{
+  "name": "OnHold.Editor",
+  "rootNamespace": "OnHold.Editor",
+  "references": [
+    "OnHold.Core",
+    "OnHold.Domain",
+    "OnHold.Gameplay",
+    "OnHold.Networking",
+    "OnHold.Persistence",
+    "OnHold.Presentation",
+    "OnHold.Bootstrap",
+    "Unity.Netcode.Runtime",
+    "Unity.InputSystem",
+    "Unity.Networking.Transport"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "noEngineReferences": false
+}

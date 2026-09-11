@@ -1,0 +1,402 @@
+ASKIDA KNOWLEDGE SNAPSHOT v0.1.0
+VOLUME: 06/10
+SNAPSHOT: 3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4
+STATUS: PROPOSED; GAME TESTS NOT RUN; READ-ONLY DERIVED COPY.
+Canonical Markdown documents remain the source of truth.
+
+DOCUMENT: ASK-041
+PATH: docs/03_engineering/041_editor_asset_validation.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: bf7d571f2ee1c9894ef2add66498edfdea53ddc4b0887ebbcf2f03789f56b255
+
+---
+doc_id: ASK-041
+title: "Editör araçları ve asset kabul otomasyonu"
+version: 0.1.0
+status: proposed
+owner_role: TechnicalArtist
+last_reviewed: 2026-09-07
+dependencies: ["ASK-036","ASK-039","ASK-049","ASK-061","ASK-066"]
+---
+
+# Editör araçları ve asset kabul otomasyonu
+
+## İlk araç seti
+AssetValidator seçili prefab veya bütün shipping registry üzerinde çalışır. Kontroller: kök ölçek, birim, pivot, bounds, kütle, collider sayısı, root Rigidbody, network bileşen profili, grip/anchor socket, malzeme/shader, texture import, LOD referansı, localization ve provenance. Araç otomatik “güzel görünür” kararı vermez; görsel kurulun yerine geçmez.
+
+## Sonuç sınıfları
+Error build'i keser: missing prefab, duplicate ID, belirsiz lisans, negatif kütle, dinamik concave collider, eksik zorunlu socket. Warning inceleme ister: üçgen/texture bütçesi aşımı, nadir materyal, eksik uzak LOD. Info öneri verir. Exception'lar kayıt altına alınmış whitelist ile owner ve son kullanma tarihi taşır; küresel ignore yoktur.
+
+## İçe alma
+Kaynak paket staging alana alınır; hash ve lisans kaydı oluşturulur; seçili asset'ler normalize edilip project-owned prefab hazırlanır. Tüm paketi shipping reference listesine koymak yoktur. Import ayarları deterministik preset veya editor script ile uygulanır; elle tıklanan istisnalar belgelenir.
+
+## Yardımcı sahneler
+ArtValidation aynı ışık/kamera altında referans duvar, karakter, platform ve aday eşyayı gösterir. PhysicsValidation merdiven, kapı, düşüş ve deck testlerini taşır. NetworkValidation iki holder ve hareketli platformu tekrar üretir. Bu sahneler ayrı amaca sahiptir; güzel art sahnesi fizik kabulü sayılmaz.
+
+## Otomasyon güvenliği
+Toplu araç dry-run sunar, değişecek GUID/path listesini gösterir. ThirdParty kaynağını yerinde değiştirmez. Yeniden adlandırma .meta ile birlikte Unity API üzerinden yapılır; ham dosya kopyalamayla duplicate GUID yaratılmaz. Her import işleminin araç sürümü tutulur.
+
+## Kabul
+Bilerek bozuk on örnek prefab validator tarafından beklenen sınıfta yakalanır. Sağlam referans prefab yanlış pozitif vermez. CI ve editör aynı kural setini kullanır. Bu teslimatta yalnız belge paketi doğrulayıcısı çalışır; burada tanımlanan Unity AssetValidator henüz yazılmadı.
+
+## Gereksinim ve test izleri
+- REQ-020 → TC-020 — Content registry hataları build'i engellemeli
+- REQ-025 → TC-025 — Prop tam teknik kabul almalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-036 — Unity deposu ve dosya hiyerarşisi](036_unity_repository.md)
+- [ASK-039 — Veri şemaları ve içerik kimlikleri](039_data_schemas.md)
+- [ASK-049 — Her nesne için üretim şartnamesi](../04_art/049_prop_asset_spec.md)
+- [ASK-061 — Varlık envanteri ve üretim kuyruğu](../05_content/061_asset_inventory.md)
+- [ASK-066 — Başlangıç asset, render ve fizik bütçeleri](../06_quality/066_render_physics_asset_budgets.md)
+
+
+
+DOCUMENT: ASK-042
+PATH: docs/03_engineering/042_build_ci_release.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 998fa2406139005cb9c63ec27e8106d7c2da6384deadbbc2947b700bd3dc35c5
+
+---
+doc_id: ASK-042
+title: "Build, CI ve bağımlılık kilitleme"
+version: 0.1.0
+status: proposed
+owner_role: DevOps
+last_reviewed: 2026-09-07
+dependencies: ["ASK-036","ASK-039","ASK-041","ASK-067","ASK-075"]
+---
+
+# Build, CI ve bağımlılık kilitleme
+
+## Tekrarlanabilir build
+Editor exact version, paket manifest/lock, platform SDK sürümü, source commit, content hash ve build configuration her build kaydına girer. “Unity 6” tek başına tekrar üretim bilgisi değildir. Unity build lisansı ve CI agent erişimi ayrıca doğrulanır; ücretsiz/sınırsız build altyapısı varsayılmaz.
+
+## Önerilen pipeline
+Checkout + LFS doğrulama → dependency cache anahtarı kontrolü → statik veri/asset validation → EditMode → PlayMode smoke → Windows development build → artifact hash ve test raporu. Release yolu ayrıca gerçek multiplayer smoke, lisans taraması ve manuel onay gerektirir. İlk aşamada self-hosted build makinesi yeterli olabilir; maliyet/anahtar güvenliği değerlendirilir.
+
+## Cache
+Cache hızlandırmadır, doğruluk kaynağı değildir. Editor ve lock hash'i değişince uygun cache anahtarı değişir. Aralıklı temiz build referansı tutulur. Cache kaynaklı başarı ile temiz checkout başarısı ayrılır. Shipping pakete Library klasörü veya kaynak .blend dosyaları yanlışlıkla girmez.
+
+## Branch ve review
+Kısa ömürlü feature branch, küçük PR, test ve belge bağlantısı önerilir. Ağ/ekonomi değişikliği en az ilgili test kaydıyla incelenir. Aynı scene dosyasını iki kişinin uzun süre düzenlemesi yerine prefab ve additive çalışma sınırları planlanır. Bu teslimatta GitHub veya CI servisine bağlanılmadı.
+
+## Release artifact
+BuildId, commit, editor version, package hash, content hash, save schema, protocol version, desteklenen OS, bilinen hatalar ve rollback build kimliği. Steam upload yetkisi CI'dan ayrı kontrollü olabilir. Üretim anahtarları repo veya notebook'a konmaz.
+
+## Kabul
+Yeni makine belgeli kurulumla aynı içerik hash'li build üretir; binary byte-for-byte determinism ayrıca ölçülmedikçe iddia edilmez. Test başarısızlığı pipeline'ı durdurur; release onayı olmadan otomatik public branch yayınlanmaz.
+
+## Gereksinim ve test izleri
+- REQ-002 → TC-002 — Temiz checkout tekrar açılmalı
+- REQ-038 → TC-038 — Build/release yolu kontrollü olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-036 — Unity deposu ve dosya hiyerarşisi](036_unity_repository.md)
+- [ASK-039 — Veri şemaları ve içerik kimlikleri](039_data_schemas.md)
+- [ASK-041 — Editör araçları ve asset kabul otomasyonu](041_editor_asset_validation.md)
+- [ASK-067 — Test stratejisi ve gereksinim izlenebilirliği](../06_quality/067_test_strategy_traceability.md)
+- [ASK-075 — Steam hazırlığı, demo ve yayın kontrolü](../07_production/075_steam_launch_plan.md)
+
+
+
+DOCUMENT: ASK-043
+PATH: docs/03_engineering/043_save_schema_migration.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: d092cf01c01dbc9c444bd8a4dfe259bcd205d149a6b431f0045de00c1b08f72d
+
+---
+doc_id: ASK-043
+title: "Save şeması, migration ve cloud çatışması"
+version: 0.1.0
+status: proposed
+owner_role: Backend
+last_reviewed: 2026-09-07
+dependencies: ["ASK-024","ASK-033","ASK-042"]
+---
+
+# Save şeması, migration ve cloud çatışması
+
+## Kayıt bölümleri
+Campaign: schemaVersion, campaignId, revision, balance, upgrades, unlockedContracts, completedRuns, contentVersion. Settings: dil, ses, kamera, input tercihleri. Bunlar yaşam döngüsü ve senkronizasyon politikası farklı olduğu için ayrıdır. Runtime rigidbody/joint snapshot'ı campaign kaydı değildir.
+
+## Migration
+Sürüm N'den N+1'e açık, test edilebilir dönüştürücü bulunur. Orijinal dosya başarılı dönüşüm doğrulanana kadar korunur. Bilinmeyen ileri schema okunursa eski build üzerine yazmaz; daha yeni sürüm gerektiğini bildirir. Content ID kaldırılmışsa eşleme veya güvenli fallback tanımlanır; aynı ID başka anlamla kullanılmaz.
+
+## Doğrulama
+JSON parse başarısı yeterli değildir: sayı aralıkları, enumlar, referanslar, revision, cüzdan taşması ve duplicate transaction kayıtları kontrol edilir. Checksum yanlışlıkla bozulmayı saptar; kullanıcı hilesine karşı güvenlik kanıtı değildir. Kullanıcı kaydı bozuksa backup ve dışa aktarma yolu sunulur, sessiz wipe yapılmaz.
+
+## Cloud
+Steam Cloud dosya senkronizasyonu aktif multiplayer transaction veya host migration değildir. [Steam Cloud belgeleri](https://partner.steamgames.com/doc/features/cloud). Hangi dosyaların hangi aşamada senkronize edileceği platform entegrasyonunda belirlenir. Aynı kampanyanın iki cihazda farklı ilerlemesi için revision tek başına küresel zaman sırası kanıtı olmaz; last-modified, cihaz ve içerik özetiyle kullanıcıya çatışma seçimi gerekebilir.
+
+## Test fixture'ları
+Boş yeni kayıt, N-1 kayıt, eksik opsiyonel alan, bozuk JSON, ileri sürüm, negatif bakiye, çok büyük sayı, silinmiş content ID, farklı iki cihaz dalı. Fixture'lar gerçek kullanıcı kişisel verisi taşımaz.
+
+## Kabul
+Migration iki kez çalışınca değer iki kez artmaz; başarısız dönüşüm orijinali korur; eski build yeni kaydı bozmaz. Cloud kapalıyken yerel kampanya çalışır. Geri yükleme UX'i test edilmeden “veri güvenli” denmez.
+
+## Gereksinim ve test izleri
+- REQ-017 → TC-017 — Host kaybı checkpoint sınırını korumalı
+- REQ-018 → TC-018 — Kayıt atomik ve migrate edilebilir olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-024 — İlerleme ve küçük ölçekli ekonomi](../01_gameplay/024_progression_economy.md)
+- [ASK-033 — Kampanya işlemleri ve kayıt otoritesi](../02_network/033_campaign_transaction.md)
+- [ASK-042 — Build, CI ve bağımlılık kilitleme](042_build_ci_release.md)
+
+
+
+DOCUMENT: ASK-044
+PATH: docs/03_engineering/044_telemetry_debugging.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: a17ba572587c1f5edbc36bb09fe61919c26b298840bdcacd5fe769fb670e55d5
+
+---
+doc_id: ASK-044
+title: "Tanı, ölçüm ve gizlilik"
+version: 0.1.0
+status: proposed
+owner_role: QA
+last_reviewed: 2026-09-07
+dependencies: ["ASK-034","ASK-035","ASK-065","ASK-068"]
+---
+
+# Tanı, ölçüm ve gizlilik
+
+## Geliştirme tanısı
+Debug overlay: build/epoch/host tick, phase, actor count, awake rigidbodies, active joints, command rejects, bytes/sec, correction büyüklüğü, delivery ledger count. Overlay shipping'te kullanıcıya zorunlu gösterilmez; destek modu bilinçli açılır. Tam obje listesini her kare string'e çevirmek profiler'ı bozabilir.
+
+## Olay şeması
+EventName, schemaVersion, monotonicTime, buildId, sessionRandomId, contractId, reasonCode ve sınırlı sayısal alanlar. Oyuncunun serbest yazdığı mesaj, ses kaydı, token ve dosya sistemindeki kişisel yol varsayılan telemetri değildir. SessionRandomId farklı oturumlarda kalıcı kimlik takibi yaratmaz.
+
+## Oynanış olayları
+contract_started, first_grab, first_secure, recovery_used, mandatory_lost, contract_settled, reconnect_result. Bu liste her tuşun kaydı anlamına gelmez. Event dedup anahtarı ve örnekleme kararı bulunur. Telemetri gönderilemezse oyun durmaz; kuyruk disk/bellek sınırı taşır.
+
+## Performans ölçümü
+Frame time dağılımı, fizik işleme, GC allocation, active object ve GPU pass maliyeti tutulur. Editor ile release player sonuçları ayrı etiketlenir. Logging açık profilde ölçülen performans son ürün performansı diye sunulmaz. Profiler overhead kontrolü yapılır.
+
+## Kullanıcı araştırması
+Video veya ses kaydı için açık bilgilendirme/onay gerekir; oyun telemetrisine gizlice ses eklenmez. Veri amacı, saklama süresi, erişebilen rol ve silme yöntemi yayın öncesi belirlenir. Bu plan herhangi bir hukuk bölgesinde otomatik uyumluluk sağlamaz.
+
+## Kabul
+Bağlantı bileti ve kişisel dosya yolu log taramasında görünmez; telemetry kapalıyken gameplay aynı çalışır; kuyruk sınırsız büyümez. Hata raporu kullanıcıya export önizlemesi sunar. Test sonucu ile oyuncu yorumu ayrı veri türleri olarak saklanır.
+
+## İlgili kaynak belgeler
+- [ASK-034 — Ağ güvenliği ve kötüye kullanım sınırları](../02_network/034_security_abuse.md)
+- [ASK-035 — Multiplayer test matrisi ve kanıt](../02_network/035_network_test_matrix.md)
+- [ASK-065 — Performans hedefi ve ölçüm disiplini](../06_quality/065_performance_targets.md)
+- [ASK-068 — Oyuncu testi, eğlence ve okunurluk](../06_quality/068_playtest_protocol.md)
+
+
+
+DOCUMENT: ASK-045
+PATH: docs/03_engineering/045_errors_resilience.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 54fd45caa252d6ccf42d3755f60b905f20706b06cac473873cb30798a53fe9c1
+
+---
+doc_id: ASK-045
+title: "Hata sınıfları ve güvenli bozulma"
+version: 0.1.0
+status: proposed
+owner_role: TechLead
+last_reviewed: 2026-09-07
+dependencies: ["ASK-012","ASK-032","ASK-033","ASK-038"]
+---
+
+# Hata sınıfları ve güvenli bozulma
+
+## Hata sınıfları
+UserAction: TooFar/Busy gibi beklenen retler. RecoverableSystem: bağlantı geçici hatası, content yükleme timeout'u. DataIntegrity: invalid save veya item invariant ihlali. FatalSession: host kaybı, uyumsuz protocol. Her sınıf farklı UI ve log seviyesi taşır; beklenen her ret exception değildir.
+
+## Oyuncu mesajı
+Ne oldu, ne korunuyor, ne kaybolabilir, şimdi hangi güvenli eylem var? Örnek: “Host bağlantısı kesildi. Bu turun kaydedilmemiş ilerlemesi korunamadı. Son kayıtlı kampanyadan yeni lobi açabilirsiniz.” Belirsiz “yeniden deneyin” aynı bozuk işlemi sonsuz döngüye sokmamalıdır.
+
+## Yeniden deneme
+Yalnız idempotent işlemler otomatik tekrar edilir; exponential backoff ve deneme tavanı gerekir. Delivery veya spend isteğini farklı requestId'lerle otomatik çoğaltmak yasaktır. Kaydetme tekrarında aynı transactionId korunur. İçerik yükleme iptal edildiyse eski callback yeni sahneye yazmaz.
+
+## Invariant ihlali
+Shipping build'de Lost + Held görülürse nesne karantinaya alınır, ilişkiler kontrollü temizlenir, session error kaydı üretilir; para eklenmez. Bu düzeltme normal oyun mekaniği haline getirilmez. Tekrar üreten hata P0/P1 triage'a girer.
+
+## Dış bağımlılık
+Steam veya seçilen relay erişilemiyorsa frontend ayarlar ve hata bilgisi çalışır; online oyunun çalıştığı iddia edilmez. Üçüncü taraf shader eksikse pembe materyalle public build çıkılmaz. Geliştirme fallback'i ile shipping fallback'i ayrıdır.
+
+## Kabul
+Kaydetme/davet/yükleme işlemlerine kontrollü hata enjeksiyonu yapılır. Spinner süreli ve iptal edilebilir; her hata durumundan ana menüye güvenli dönüş bulunur. Kalan async iş yeni oturum state'ini bozamaz.
+
+## İlgili kaynak belgeler
+- [ASK-012 — Oturum ve görev durum makinesi](../01_gameplay/012_session_state_machine.md)
+- [ASK-032 — Kopma, yeniden bağlanma ve host kaybı](../02_network/032_disconnect_reconnect_hostloss.md)
+- [ASK-033 — Kampanya işlemleri ve kayıt otoritesi](../02_network/033_campaign_transaction.md)
+- [ASK-038 — Bootstrap, servis ömrü ve sahne geçişleri](038_bootstrap_lifecycle.md)
+
+
+
+DOCUMENT: ASK-046
+PATH: docs/04_art/046_art_direction.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 80e596017c170c035ecb99f422218a68b651948a0fdeacf6aab7293f375a656d
+
+---
+doc_id: ASK-046
+title: "Sanat yönetimi ve paket uyumu"
+version: 0.1.0
+status: proposed
+owner_role: ArtLead
+last_reviewed: 2026-09-07
+dependencies: ["ASK-047","ASK-049","ASK-053","ASK-056","ASK-066"]
+---
+
+# Sanat yönetimi ve paket uyumu
+
+## Görsel hedef
+Stilize, ölçüleri okunur, hafif yumuşatılmış kenarlar ve kontrollü yüzey aşınması. Tam fotogerçekçi PBR ile oyuncak gibi çok düşük poligon parçalar aynı sahnede doğrudan karıştırılmaz. Bina arka planı düşük kontrast; etkileşimli ekipman turuncu/sarı vurgu; teslimat bilgisi biçim ve ikonla ayrıca okunur.
+
+## Ana görsel aile
+Quaternius Downtown City MegaKit dış cephe/modüler çekirdek adayıdır. Türkiye apartman hissi için balkon korkuluğu, klima dış ünitesi, tente, duvar kablosu ve kapı etiketi gibi project-owned tamamlayıcılar gerekir. Paket Boston/NYC kökenli görünümüyle tek başına Türk apartmanı kimliği sağlamaz. Fake interior shader gerçek oynanabilir oda değildir.
+
+## Ortak kurallar
+Gerçek ölçüye yakın kapı/eşya oranları; tek bevel ölçeği ailesi; aynı ışık altında benzer roughness; sınırlı malzeme paleti; benzer kenar aşınması yoğunluğu; belirlenmiş texel-density sınıfları. Karakterin baş/el oranı, mobilyanın köşe dili ve duvar detay sıklığı birlikte değerlendirilir. Aynı artist'in farklı yıllarda ürettiği paketler otomatik tutarlı sayılmaz.
+
+## Stil doğrulama sahnesi
+Bir cephe modülü, kapı, balkon, platform, iki farklı eşya ve karakter aynı kamera/ışık altında gösterilir. Nötr ışık kontrolü ile hedef oyun ışığı kontrolü ayrı yapılır. Yakın, orta ve oyun kamerası mesafeleri; gri ton görünüm; silhouette ve renk körlüğü simülasyonu değerlendirilir. Aday paketin kendi demo ışığı kullanılmaz.
+
+## Kabul kartı
+Ölçek 1–5, siluet 1–5, yüzey dili 1–5, renk/malzeme uyumu 1–5, oynanış okunurluğu 1–5, teknik maliyet pass/fail. Skorlar araç değil uzman değerlendirmesidir. İki alanda belirgin uyumsuz varlık “bedava” diye geçmez; yeniden üret, normalize et veya çıkar.
+
+## Sanat kapısı
+Ana platform ve bir kahraman eşya final kalitede görünmeden 100 prop üretimine geçilmez. Güzel konsept görseli, çalışır UV/LOD/collider/prefab teslimi yerine geçmez.
+
+## Gereksinim ve test izleri
+- REQ-023 → TC-023 — Kaynak paketler ortak stil kapısından geçmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-047 — Seçilecek paketler ve kullanım sınırları](047_package_selection.md)
+- [ASK-049 — Her nesne için üretim şartnamesi](049_prop_asset_spec.md)
+- [ASK-053 — Malzeme, texture ve aydınlatma standardı](053_materials_textures_lighting.md)
+- [ASK-056 — Modüler dünya kiti ve apartman kimliği](../05_content/056_modular_world_kit.md)
+- [ASK-066 — Başlangıç asset, render ve fizik bütçeleri](../06_quality/066_render_physics_asset_budgets.md)
+
+
+
+DOCUMENT: ASK-047
+PATH: docs/04_art/047_package_selection.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: fecad3b56c92e84aeaaa53aee649f914b9424e8a667f81b45307832deca50433
+
+---
+doc_id: ASK-047
+title: "Seçilecek paketler ve kullanım sınırları"
+version: 0.1.0
+status: proposed
+owner_role: ArtLead
+last_reviewed: 2026-09-07
+dependencies: ["ASK-046","ASK-048","ASK-050","ASK-061","ASK-080"]
+---
+
+# Seçilecek paketler ve kullanım sınırları
+
+## Önerilen paket sepeti
+| Kaynak | Projedeki görev | Karar |
+|---|---|---|
+| Quaternius Downtown City MegaKit | Cephe/modüler şehir çekirdeği | Ana aday; arşiv denetimi şart |
+| Quaternius Universal Base Characters | Ortak humanoid taban | Rig/stil spike sonrası |
+| Quaternius Universal Animation Library | Genel hareket başlangıcı | Klip bazlı retarget kontrolü |
+| Quaternius Ultimate Furniture | Gri kutu ve boyut referansı | Final mobilya onayı değil |
+| Kenney Particle Pack | Basit VFX texture kaynağı | Kendi URP efektini üret |
+| Kenney Impact Sounds | Geçici/işlenmiş darbe katmanları | Ses miks kontrolü |
+| Kenney Input Prompts | Kontrol simgeleri | Tek UI stiline normalize |
+
+## Doğrudan bağlantılar
+[Downtown City MegaKit](https://quaternius.itch.io/downtown-city-megakit), [Universal Base Characters](https://quaternius.itch.io/universal-base-characters), [Universal Animation Library](https://quaternius.itch.io/universal-animation-library), [Animation Library 2](https://quaternius.itch.io/universal-animation-library-2), [Ultimate Furniture](https://quaternius.com/packs/ultimatefurniture.html), [Particle Pack](https://kenney.nl/assets/particle-pack), [Impact Sounds](https://kenney.nl/assets/impact-sounds), [Input Prompts](https://kenney.nl/assets/input-prompts).
+
+## Ücretsiz ile source ayrımı
+07.09.2026 ürün sayfalarında şehir/karakter/animasyon ürünlerinde ücretsiz Standard ve ücretli Source/Pro seçenekleri ayrılıyor. “Paket 300+ parça/120+ animasyon sunuyor” ifadesi, ücretsiz indirmenin tüm içeriği veya .blend kaynaklarını içerdiği kanıtı değildir. Arşiv bu çalışma kapsamında indirilmedi; dosya bazlı kapsam ve motor uyumu henüz denetlenmedi. Satın almadan önce güncel tier içeriği tekrar okunmalıdır.
+
+## Kullanmayacağımız karışım
+Kenney Furniture Kit ve KayKit Furniture Bits yararlı alternatif/prototip kaynaklarıdır; ana setin yanına ham haliyle ikinci/üçüncü 3D aile olarak konmayacak. Photoreal mobilya veya farklı karakter oranları ana palete boyanarak otomatik uyumlu olmaz. Cartoon FX Free ancak shader ve stil dönüşümü ispatlanırsa seçilir; ana VFX tabanı zorunlu değildir.
+
+## Production-ready yorumu
+Bu bağlantılar tek başına ASKIDA için production-approved paket listesi değildir. Uygun lisans, gerekli tier, Unity sürüm uyumu, collider/rig, görsel uyum ve gerçek cihaz maliyeti doğrulandıktan sonra seçili varlık onaylanır. Ana platform, vinç, grip socket'leri ve Turkish balkon kit'i büyük olasılıkla özel üretim ister.
+
+## Gereksinim ve test izleri
+- REQ-023 → TC-023 — Kaynak paketler ortak stil kapısından geçmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-046 — Sanat yönetimi ve paket uyumu](046_art_direction.md)
+- [ASK-048 — Lisans, kaynak kaydı ve AI kullanımı](048_licenses_provenance.md)
+- [ASK-050 — Astra/Codex ile Blender üretimi ve export](050_ai_blender_export.md)
+- [ASK-061 — Varlık envanteri ve üretim kuyruğu](../05_content/061_asset_inventory.md)
+- [ASK-080 — Kaynaklar, doğrulama sınırları ve açık kanıtlar](../08_knowledge/080_sources_evidence_limits.md)
+
+
+
+DOCUMENT: ASK-048
+PATH: docs/04_art/048_licenses_provenance.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 9097152ffd64bbd2c7bfa33a6a75894094899787780be8c793b2a8420ed36979
+
+---
+doc_id: ASK-048
+title: "Lisans, kaynak kaydı ve AI kullanımı"
+version: 0.1.0
+status: proposed
+owner_role: Producer
+last_reviewed: 2026-09-07
+dependencies: ["ASK-047","ASK-050","ASK-061","ASK-075","ASK-080"]
+---
+
+# Lisans, kaynak kaydı ve AI kullanımı
+
+## Kaynak defteri
+Her varlık için provenanceId, yazar, ürün URL'si, indirme tarihi, dosya hash'i, tier, lisans adı/metni snapshot'ı, satın alma belgesi gerekiyorsa konumu, yapılan türevler, dağıtım/attribution ve AI giriş izni durumu tutulur. “İnternette ücretsiz” lisans değildir. Kaynak paket kullanıcıya bu ZIP içinde yeniden dağıtılmıyor; sadece bağlantılar ve üretim planı bulunur.
+
+## Lisans sınıfları
+CC0 kaynaklarda bile ürünün gerçekten o lisansla dağıtılan dosyası ve üçüncü taraf içerik istisnaları kontrol edilir. CC-BY attribution gerektirir; NC işaretli içerik ticari oyuna izinsiz alınmaz. Mağaza EULA'sı standalone asset yeniden satışını veya dağıtımını yasaklayabilir. Nihai oyun içinde kullanma izni, ham kaynakları GitHub'a koyma izni değildir.
+
+## AI ayrı izin sorusudur
+Paket mesh/texture/animasyonunu modele yüklemek, ticari oyunda kullanmaktan farklıdır. [Unity Asset Store şartları](https://unity.com/legal/as-terms) AI kullanımına ilişkin kısıtlar içerir; varlığı model girdisi yapmadan geçerli metin ve hak sahibinin izni incelenmelidir. AI'a yalnız izinli kendi kaynaklarımızı veya doğrulanmış uygun lisanslı içeriği göndeririz. Bu belge hukuki danışmanlık değildir.
+
+## Ses özel durumları
+[Sonniss GDC koleksiyonu](https://sonniss.com/gameaudiogdc/) ticari kullanım koşulları yanında AI/ML eğitimi yasağı bildirir; kullanım senaryosu ayrıca değerlendirilir. [Freesound](https://freesound.org/help/faq/) her dosyada aynı lisansı kullanmaz. Mixamo kullanımı [Adobe FAQ](https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html) üzerinden kontrol edilir; kaynak animasyonları ayrı asset paketi olarak yeniden dağıtma hakkı varsayılmaz.
+
+## Onay kapısı
+Provenance eksikse placeholder etiketlenir ve public build'e girmez. Lisans değişirse daha önce edinilen sürüm ve koşulların kaydı korunur; güncel sayfa geçmiş lisans kanıtı yerine geçmez. Steam AI beyanı için oyuncunun gördüğü AI içerik envanteri ayrıca tutulur.
+
+## Kabul
+Build'e giren her üçüncü taraf varlık manifest'ten kaynak kaydına izlenebilir. Attribution dosyası gerçek kullanılan içeriği kapsar. Gizli erişim bilgileri, fatura kişisel verisi veya lisanslı ham paket kaynakları notebook aktarımına eklenmez.
+
+## Gereksinim ve test izleri
+- REQ-024 → TC-024 — Shipping varlığı lisansa izlenebilir olmalı
+- REQ-026 → TC-026 — AI üretimi gerçek araç ve insan QA ile doğrulanmalı
+- REQ-040 → TC-040 — Yayın iddiaları kanıta ve lisansa uymalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-047 — Seçilecek paketler ve kullanım sınırları](047_package_selection.md)
+- [ASK-050 — Astra/Codex ile Blender üretimi ve export](050_ai_blender_export.md)
+- [ASK-061 — Varlık envanteri ve üretim kuyruğu](../05_content/061_asset_inventory.md)
+- [ASK-075 — Steam hazırlığı, demo ve yayın kontrolü](../07_production/075_steam_launch_plan.md)
+- [ASK-080 — Kaynaklar, doğrulama sınırları ve açık kanıtlar](../08_knowledge/080_sources_evidence_limits.md)
+
+
+

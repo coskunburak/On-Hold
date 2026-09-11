@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="14" result="Passed" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.0416237">
+  <test-suite type="TestSuite" id="1000" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.041624" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1092" name="OnHold.EditMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.EditMode.Tests.dll" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.037409" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27093" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1093" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.037065" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1094" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.036855" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1025" name="HeldOrientationTests" fullname="OnHold.Tests.HeldOrientationTests" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.036017" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1034" name="S019_ExtremeInputAndRepeatedObstructionBoundTargetLead" fullname="OnHold.Tests.HeldOrientationTests.S019_ExtremeInputAndRepeatedObstructionBoundTargetLead" methodname="S019_ExtremeInputAndRepeatedObstructionBoundTargetLead" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1940375788" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.011424" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="S019_FirstEntryCapturesActualThenExitKeepsTarget" fullname="OnHold.Tests.HeldOrientationTests.S019_FirstEntryCapturesActualThenExitKeepsTarget" methodname="S019_FirstEntryCapturesActualThenExitKeepsTarget" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1630573200" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.002357" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="S019_InertiaLimitsPreserveHeavyCargoResponse" fullname="OnHold.Tests.HeldOrientationTests.S019_InertiaLimitsPreserveHeavyCargoResponse" methodname="S019_InertiaLimitsPreserveHeavyCargoResponse" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1806174884" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.000891" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="S019_InitializationMatchesActualAndDoesNotEngageCorrection" fullname="OnHold.Tests.HeldOrientationTests.S019_InitializationMatchesActualAndDoesNotEngageCorrection" methodname="S019_InitializationMatchesActualAndDoesNotEngageCorrection" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1255389716" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.000160" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1031" name="S019_InputUsesPredictableCameraAxes" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.001536" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1027" name="S019_InputUsesPredictableCameraAxes(1,0)" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes(1,0)" methodname="S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1990705937" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.000209" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1028" name="S019_InputUsesPredictableCameraAxes(-1,0)" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes(-1,0)" methodname="S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1730812201" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.000028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1029" name="S019_InputUsesPredictableCameraAxes(0,1)" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes(0,1)" methodname="S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1030454659" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.000029" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1030" name="S019_InputUsesPredictableCameraAxes(0,-1)" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes(0,-1)" methodname="S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1487673828" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.000030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1040" name="S019_InvalidConfigurationRejectsUnsafeLimits" fullname="OnHold.Tests.HeldOrientationTests.S019_InvalidConfigurationRejectsUnsafeLimits" methodname="S019_InvalidConfigurationRejectsUnsafeLimits" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1231385645" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.001483" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="S019_InvalidInputAndQuaternionSafelyNoOp" fullname="OnHold.Tests.HeldOrientationTests.S019_InvalidInputAndQuaternionSafelyNoOp" methodname="S019_InvalidInputAndQuaternionSafelyNoOp" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="376058284" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.000300" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="S019_PhysicalTorqueIsBoundedAndTakesShortestArc" fullname="OnHold.Tests.HeldOrientationTests.S019_PhysicalTorqueIsBoundedAndTakesShortestArc" methodname="S019_PhysicalTorqueIsBoundedAndTakesShortestArc" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="515908874" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.000350" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="S019_TargetSpeedIsConsistentAcrossRenderRates" fullname="OnHold.Tests.HeldOrientationTests.S019_TargetSpeedIsConsistentAcrossRenderRates" methodname="S019_TargetSpeedIsConsistentAcrossRenderRates" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1358471077" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.000156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="S019_ThousandWarmedTargetAndCorrectionIterationsAllocateZero" fullname="OnHold.Tests.HeldOrientationTests.S019_ThousandWarmedTargetAndCorrectionIterationsAllocateZero" methodname="S019_ThousandWarmedTargetAndCorrectionIterationsAllocateZero" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="57815752" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.001235" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[1000 warmed target + correction iterations: 0 bytes
+]]></output>
+            </test-case>
+            <test-case id="1032" name="S019_UninitializedAndInvalidCargoDoNotCaptureInput" fullname="OnHold.Tests.HeldOrientationTests.S019_UninitializedAndInvalidCargoDoNotCaptureInput" methodname="S019_UninitializedAndInvalidCargoDoNotCaptureInput" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="197669491" result="Passed" start-time="2026-09-11 07:25:12Z" end-time="2026-09-11 07:25:12Z" duration="0.007504" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

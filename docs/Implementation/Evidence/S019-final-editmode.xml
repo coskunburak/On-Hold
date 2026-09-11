@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="80" result="Passed" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:54Z" duration="0.8504398">
+  <test-suite type="TestSuite" id="1000" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:54Z" duration="0.850440" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1092" name="OnHold.EditMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.EditMode.Tests.dll" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:54Z" duration="0.842624" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="39985" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1093" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:54Z" duration="0.842333" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1094" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:54Z" duration="0.842111" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="DomainAcceptanceTests" fullname="OnHold.Tests.DomainAcceptanceTests" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.115067" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1024" name="ConfigRejectsInvalidNumerics" fullname="OnHold.Tests.DomainAcceptanceTests.ConfigRejectsInvalidNumerics" methodname="ConfigRejectsInvalidNumerics" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1801905931" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.011561" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="TC003_ActorAlwaysComesFromConnectionAndRevisionSafeRelease" fullname="OnHold.Tests.DomainAcceptanceTests.TC003_ActorAlwaysComesFromConnectionAndRevisionSafeRelease" methodname="TC003_ActorAlwaysComesFromConnectionAndRevisionSafeRelease" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1753644810" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.007392" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="TC005_SupportIdentityHysteresisAndSymmetry" fullname="OnHold.Tests.DomainAcceptanceTests.TC005_SupportIdentityHysteresisAndSymmetry" methodname="TC005_SupportIdentityHysteresisAndSymmetry" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="890529632" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.004900" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="TC009_FailedAttachmentCannotCreatePhantomHolder" fullname="OnHold.Tests.DomainAcceptanceTests.TC009_FailedAttachmentCannotCreatePhantomHolder" methodname="TC009_FailedAttachmentCannotCreatePhantomHolder" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1755169843" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.012063" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="TC009_TwoAxesAndFiftyGrabReleaseCycles" fullname="OnHold.Tests.DomainAcceptanceTests.TC009_TwoAxesAndFiftyGrabReleaseCycles" methodname="TC009_TwoAxesAndFiftyGrabReleaseCycles" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="309056896" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.006573" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="TC009_ZeroIntegrityClearsAnchorAndTerminalNeverResurrects" fullname="OnHold.Tests.DomainAcceptanceTests.TC009_ZeroIntegrityClearsAnchorAndTerminalNeverResurrects" methodname="TC009_ZeroIntegrityClearsAnchorAndTerminalNeverResurrects" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="609695950" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.001455" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="TC010_AnchorReservationRollbackAndHundredCycles" fullname="OnHold.Tests.DomainAcceptanceTests.TC010_AnchorReservationRollbackAndHundredCycles" methodname="TC010_AnchorReservationRollbackAndHundredCycles" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1213442595" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.012051" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="TC010_SecureCannotStealHeldItemAndStaleExclusiveRejected" fullname="OnHold.Tests.DomainAcceptanceTests.TC010_SecureCannotStealHeldItemAndStaleExclusiveRejected" methodname="TC010_SecureCannotStealHeldItemAndStaleExclusiveRejected" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="488356547" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000296" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="TC011_HeldSecuredAndAngularThresholdCannotDeliver" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_HeldSecuredAndAngularThresholdCannotDeliver" methodname="TC011_HeldSecuredAndAngularThresholdCannotDeliver" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="239040851" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.002012" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1008" name="TC011_IntegrityThresholdDwellAndFloorRounding" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_IntegrityThresholdDwellAndFloorRounding" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.004982" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1006" name="TC011_IntegrityThresholdDwellAndFloorRounding(19,False)" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_IntegrityThresholdDwellAndFloorRounding(19,False)" methodname="TC011_IntegrityThresholdDwellAndFloorRounding" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="277913063" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1007" name="TC011_IntegrityThresholdDwellAndFloorRounding(20,True)" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_IntegrityThresholdDwellAndFloorRounding(20,True)" methodname="TC011_IntegrityThresholdDwellAndFloorRounding" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="453024879" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1009" name="TC011_InterruptedDwellResetsAndRepeatedEventsDoNotPay" fullname="OnHold.Tests.DomainAcceptanceTests.TC011_InterruptedDwellResetsAndRepeatedEventsDoNotPay" methodname="TC011_InterruptedDwellResetsAndRepeatedEventsDoNotPay" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="703961273" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000893" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="TC013_FinishVotePinsRosterAndRequiresHostMajority" fullname="OnHold.Tests.DomainAcceptanceTests.TC013_FinishVotePinsRosterAndRequiresHostMajority" methodname="TC013_FinishVotePinsRosterAndRequiresHostMajority" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="454416227" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.002058" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="TC013_NaturalTimeoutPaysPartialButAbortPaysZero" fullname="OnHold.Tests.DomainAcceptanceTests.TC013_NaturalTimeoutPaysPartialButAbortPaysZero" methodname="TC013_NaturalTimeoutPaysPartialButAbortPaysZero" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="216477728" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000516" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="TC013_TimeoutAndDamageWinBeforeNewDelivery" fullname="OnHold.Tests.DomainAcceptanceTests.TC013_TimeoutAndDamageWinBeforeNewDelivery" methodname="TC013_TimeoutAndDamageWinBeforeNewDelivery" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1420332665" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.001020" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="TC014_TwoRecoveriesThirdLostPreservesDamageAndDeduplicates" fullname="OnHold.Tests.DomainAcceptanceTests.TC014_TwoRecoveriesThirdLostPreservesDamageAndDeduplicates" methodname="TC014_TwoRecoveriesThirdLostPreservesDamageAndDeduplicates" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1342758736" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000795" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="TC015_FullLobbyAndExpiredReservation" fullname="OnHold.Tests.DomainAcceptanceTests.TC015_FullLobbyAndExpiredReservation" methodname="TC015_FullLobbyAndExpiredReservation" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1715796154" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.001066" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="TC015_LoadingCannotSilentlyDropPlayerAndLateJoinRejected" fullname="OnHold.Tests.DomainAcceptanceTests.TC015_LoadingCannotSilentlyDropPlayerAndLateJoinRejected" methodname="TC015_LoadingCannotSilentlyDropPlayerAndLateJoinRejected" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="125191012" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000907" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="TC016_DriverWatchdogSafeStopsAndDoesNotTransferIntent" fullname="OnHold.Tests.DomainAcceptanceTests.TC016_DriverWatchdogSafeStopsAndDoesNotTransferIntent" methodname="TC016_DriverWatchdogSafeStopsAndDoesNotTransferIntent" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="964215841" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000628" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="TC016_ReconnectCleansImmediatelyAndChangesGeneration" fullname="OnHold.Tests.DomainAcceptanceTests.TC016_ReconnectCleansImmediatelyAndChangesGeneration" methodname="TC016_ReconnectCleansImmediatelyAndChangesGeneration" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="1795388041" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000975" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="TC022_DedupEvictionStillRejectsOldSequenceAndSpamIsBounded" fullname="OnHold.Tests.DomainAcceptanceTests.TC022_DedupEvictionStillRejectsOldSequenceAndSpamIsBounded" methodname="TC022_DedupEvictionStillRejectsOldSequenceAndSpamIsBounded" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="929888351" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.021165" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="TC022_FuzzCannotReachMutation" fullname="OnHold.Tests.DomainAcceptanceTests.TC022_FuzzCannotReachMutation" methodname="TC022_FuzzCannotReachMutation" classname="OnHold.Tests.DomainAcceptanceTests" runstate="Runnable" seed="283029519" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000876" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1025" name="HeldOrientationTests" fullname="OnHold.Tests.HeldOrientationTests" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.016758" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1034" name="S019_ExtremeInputAndRepeatedObstructionBoundTargetLead" fullname="OnHold.Tests.HeldOrientationTests.S019_ExtremeInputAndRepeatedObstructionBoundTargetLead" methodname="S019_ExtremeInputAndRepeatedObstructionBoundTargetLead" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="22702843" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.001897" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="S019_FirstEntryCapturesActualThenExitKeepsTarget" fullname="OnHold.Tests.HeldOrientationTests.S019_FirstEntryCapturesActualThenExitKeepsTarget" methodname="S019_FirstEntryCapturesActualThenExitKeepsTarget" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="227634287" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000612" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="S019_InertiaLimitsPreserveHeavyCargoResponse" fullname="OnHold.Tests.HeldOrientationTests.S019_InertiaLimitsPreserveHeavyCargoResponse" methodname="S019_InertiaLimitsPreserveHeavyCargoResponse" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="646233527" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000744" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="S019_InitializationMatchesActualAndDoesNotEngageCorrection" fullname="OnHold.Tests.HeldOrientationTests.S019_InitializationMatchesActualAndDoesNotEngageCorrection" methodname="S019_InitializationMatchesActualAndDoesNotEngageCorrection" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="2125040806" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000151" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1031" name="S019_InputUsesPredictableCameraAxes" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000911" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1027" name="S019_InputUsesPredictableCameraAxes(1,0)" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes(1,0)" methodname="S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="920430226" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1028" name="S019_InputUsesPredictableCameraAxes(-1,0)" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes(-1,0)" methodname="S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="611713493" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1029" name="S019_InputUsesPredictableCameraAxes(0,1)" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes(0,1)" methodname="S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1399395470" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1030" name="S019_InputUsesPredictableCameraAxes(0,-1)" fullname="OnHold.Tests.HeldOrientationTests.S019_InputUsesPredictableCameraAxes(0,-1)" methodname="S019_InputUsesPredictableCameraAxes" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1244542539" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000048" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1040" name="S019_InvalidConfigurationRejectsUnsafeLimits" fullname="OnHold.Tests.HeldOrientationTests.S019_InvalidConfigurationRejectsUnsafeLimits" methodname="S019_InvalidConfigurationRejectsUnsafeLimits" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1574983190" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000248" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="S019_InvalidInputAndQuaternionSafelyNoOp" fullname="OnHold.Tests.HeldOrientationTests.S019_InvalidInputAndQuaternionSafelyNoOp" methodname="S019_InvalidInputAndQuaternionSafelyNoOp" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="2084129330" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000270" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="S019_PhysicalTorqueIsBoundedAndTakesShortestArc" fullname="OnHold.Tests.HeldOrientationTests.S019_PhysicalTorqueIsBoundedAndTakesShortestArc" methodname="S019_PhysicalTorqueIsBoundedAndTakesShortestArc" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="118333749" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000243" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="S019_TargetSpeedIsConsistentAcrossRenderRates" fullname="OnHold.Tests.HeldOrientationTests.S019_TargetSpeedIsConsistentAcrossRenderRates" methodname="S019_TargetSpeedIsConsistentAcrossRenderRates" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1752663187" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000150" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="S019_ThousandWarmedTargetAndCorrectionIterationsAllocateZero" fullname="OnHold.Tests.HeldOrientationTests.S019_ThousandWarmedTargetAndCorrectionIterationsAllocateZero" methodname="S019_ThousandWarmedTargetAndCorrectionIterationsAllocateZero" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="2028559092" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.001164" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[1000 warmed target + correction iterations: 0 bytes
+]]></output>
+            </test-case>
+            <test-case id="1032" name="S019_UninitializedAndInvalidCargoDoNotCaptureInput" fullname="OnHold.Tests.HeldOrientationTests.S019_UninitializedAndInvalidCargoDoNotCaptureInput" methodname="S019_UninitializedAndInvalidCargoDoNotCaptureInput" classname="OnHold.Tests.HeldOrientationTests" runstate="Runnable" seed="1641748858" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.007994" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1041" name="InteractionFeedbackTests" fullname="OnHold.Tests.InteractionFeedbackTests" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.025998" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1049" name="S017_EligibilityDoesNotAcquireAttachment" fullname="OnHold.Tests.InteractionFeedbackTests.S017_EligibilityDoesNotAcquireAttachment" methodname="S017_EligibilityDoesNotAcquireAttachment" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="1515793596" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.006019" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="S017_NoTargetAndSuppressedNeverExposeAction" fullname="OnHold.Tests.InteractionFeedbackTests.S017_NoTargetAndSuppressedNeverExposeAction" methodname="S017_NoTargetAndSuppressedNeverExposeAction" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="515196652" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.009393" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1047" name="S017_OnlyPlayerFacingReasons" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.001476" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1043" name="S017_OnlyPlayerFacingReasons(TooFar,MoveCloser)" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons(TooFar,MoveCloser)" methodname="S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="1046320132" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1044" name="S017_OnlyPlayerFacingReasons(Busy,NoAvailableGrip)" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons(Busy,NoAvailableGrip)" methodname="S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="1497661234" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1045" name="S017_OnlyPlayerFacingReasons(StaleRevision,Unavailable)" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons(StaleRevision,Unavailable)" methodname="S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="1191314987" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000099" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1046" name="S017_OnlyPlayerFacingReasons(InvalidPayload,Unavailable)" fullname="OnHold.Tests.InteractionFeedbackTests.S017_OnlyPlayerFacingReasons(InvalidPayload,Unavailable)" methodname="S017_OnlyPlayerFacingReasons" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="1727268212" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000117" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1048" name="S017_SecuredHasDeliberateMessage" fullname="OnHold.Tests.InteractionFeedbackTests.S017_SecuredHasDeliberateMessage" methodname="S017_SecuredHasDeliberateMessage" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="575662529" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000083" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="S018_DefaultAndRejectedCandidatesCannotBePresentedAsValid" fullname="OnHold.Tests.InteractionFeedbackTests.S018_DefaultAndRejectedCandidatesCannotBePresentedAsValid" methodname="S018_DefaultAndRejectedCandidatesCannotBePresentedAsValid" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="527831634" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.002930" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="S018_DomainPreviewRejectsSecuredTerminalAndInvalidActors" fullname="OnHold.Tests.InteractionFeedbackTests.S018_DomainPreviewRejectsSecuredTerminalAndInvalidActors" methodname="S018_DomainPreviewRejectsSecuredTerminalAndInvalidActors" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="259065926" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.000238" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1052" name="PersistenceAcceptanceTests" fullname="OnHold.Tests.PersistenceAcceptanceTests" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:54Z" duration="0.637417" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1054" name="CurrentCheckpointReplacesInitializedCollectionDefaults" fullname="OnHold.Tests.PersistenceAcceptanceTests.CurrentCheckpointReplacesInitializedCollectionDefaults" methodname="CurrentCheckpointReplacesInitializedCollectionDefaults" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1111194911" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.259937" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1061" name="TC018_BothCorruptFilesRemainUntouched" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_BothCorruptFilesRemainUntouched" methodname="TC018_BothCorruptFilesRemainUntouched" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1259015500" result="Passed" start-time="2026-09-11 07:54:53Z" end-time="2026-09-11 07:54:53Z" duration="0.006906" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1064" name="TC018_ChecksumAndContentReferencesValidated" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_ChecksumAndContentReferencesValidated" methodname="TC018_ChecksumAndContentReferencesValidated" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1808082461" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.002151" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1060" name="TC018_CorruptPrimaryDoesNotWipeAndBackupRequiresExplicitRestore" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_CorruptPrimaryDoesNotWipeAndBackupRequiresExplicitRestore" methodname="TC018_CorruptPrimaryDoesNotWipeAndBackupRequiresExplicitRestore" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="642098218" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.008153" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1062" name="TC018_FutureSchemaCannotBeOverwrittenOrDowngradedFromBackup" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_FutureSchemaCannotBeOverwrittenOrDowngradedFromBackup" methodname="TC018_FutureSchemaCannotBeOverwrittenOrDowngradedFromBackup" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="651141102" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.002624" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1059" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.026996" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1055" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterTempWrite)" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterTempWrite)" methodname="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="76583171" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.005435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1056" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterFlush)" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterFlush)" methodname="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="2021724910" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.004506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1057" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(BeforeReplace)" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(BeforeReplace)" methodname="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1163723343" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.004775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1058" name="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterReplace)" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId(AfterReplace)" methodname="TC018_InterruptionBoundaryPreservesOldOrNewAndRetrySameId" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="992744840" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.005494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1053" name="TC018_ResultRepeatedOneHundredTimesAcrossReloadsPaysOnce" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_ResultRepeatedOneHundredTimesAcrossReloadsPaysOnce" methodname="TC018_ResultRepeatedOneHundredTimesAcrossReloadsPaysOnce" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1398234451" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.035736" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1063" name="TC018_V1MigrationIsIdempotentAndPreservesOriginalUntilCommit" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC018_V1MigrationIsIdempotentAndPreservesOriginalUntilCommit" methodname="TC018_V1MigrationIsIdempotentAndPreservesOriginalUntilCommit" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="1035310084" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.005518" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1066" name="TC019_NegativePriceInsufficientFundsAndOverflowRejected" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC019_NegativePriceInsufficientFundsAndOverflowRejected" methodname="TC019_NegativePriceInsufficientFundsAndOverflowRejected" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="824450713" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.001515" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1065" name="TC019_PurchaseUsesHostCatalogHubAndDurableIdentity" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC019_PurchaseUsesHostCatalogHubAndDurableIdentity" methodname="TC019_PurchaseUsesHostCatalogHubAndDurableIdentity" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="393086389" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.007116" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1067" name="TC019_WriteFailureDoesNotSplitMoneyAndEquipment" fullname="OnHold.Tests.PersistenceAcceptanceTests.TC019_WriteFailureDoesNotSplitMoneyAndEquipment" methodname="TC019_WriteFailureDoesNotSplitMoneyAndEquipment" classname="OnHold.Tests.PersistenceAcceptanceTests" runstate="Runnable" seed="917577644" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.003454" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1068" name="PlayerConfigurationTests" fullname="OnHold.Tests.PlayerConfigurationTests" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.039143" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1085" name="S008_JumpUsesExistingCommandValidationAndDeduplication" fullname="OnHold.Tests.PlayerConfigurationTests.S008_JumpUsesExistingCommandValidationAndDeduplication" methodname="S008_JumpUsesExistingCommandValidationAndDeduplication" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="1765594184" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000937" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1069" name="S011_DefaultConfigurationIsValid" fullname="OnHold.Tests.PlayerConfigurationTests.S011_DefaultConfigurationIsValid" methodname="S011_DefaultConfigurationIsValid" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="219404382" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000396" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1084" name="S011_InvalidTuningFailsEarly" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.035960" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1070" name="S011_InvalidTuningFailsEarly(&quot;PlayerSpeed&quot;,-1.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;PlayerSpeed&quot;,-1.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="1078862622" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1071" name="S011_InvalidTuningFailsEarly(&quot;PlayerRadius&quot;,0.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;PlayerRadius&quot;,0.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="52041140" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1072" name="S011_InvalidTuningFailsEarly(&quot;Gravity&quot;,float.NaN)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;Gravity&quot;,float.NaN)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="559645972" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1073" name="S011_InvalidTuningFailsEarly(&quot;JumpHeight&quot;,-1.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;JumpHeight&quot;,-1.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="566317345" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1074" name="S011_InvalidTuningFailsEarly(&quot;AirControl&quot;,1.1f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;AirControl&quot;,1.1f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="871992828" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1075" name="S011_InvalidTuningFailsEarly(&quot;EyeHeight&quot;,2.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;EyeHeight&quot;,2.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="1930712178" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1076" name="S011_InvalidTuningFailsEarly(&quot;StepHeight&quot;,1.8f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;StepHeight&quot;,1.8f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="159205248" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000498" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1077" name="S011_InvalidTuningFailsEarly(&quot;PitchMin&quot;,86.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;PitchMin&quot;,86.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="1100852103" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1078" name="S011_InvalidTuningFailsEarly(&quot;PitchMax&quot;,-86.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;PitchMax&quot;,-86.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="1917747975" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1079" name="S011_InvalidTuningFailsEarly(&quot;Reach&quot;,0.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;Reach&quot;,0.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="884055149" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.029089" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1080" name="S011_InvalidTuningFailsEarly(&quot;HandForceMax&quot;,-1.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;HandForceMax&quot;,-1.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="1635480373" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000262" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1081" name="S011_InvalidTuningFailsEarly(&quot;TotalTorqueMax&quot;,-1.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;TotalTorqueMax&quot;,-1.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="2142965919" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1082" name="S011_InvalidTuningFailsEarly(&quot;CarryBreakDistance&quot;,1.0f)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;CarryBreakDistance&quot;,1.0f)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="628083767" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1083" name="S011_InvalidTuningFailsEarly(&quot;CarryAngularDamping&quot;,float.PositiveInfinity)" fullname="OnHold.Tests.PlayerConfigurationTests.S011_InvalidTuningFailsEarly(&quot;CarryAngularDamping&quot;,float.PositiveInfinity)" methodname="S011_InvalidTuningFailsEarly" classname="OnHold.Tests.PlayerConfigurationTests" runstate="Runnable" seed="732466560" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000106" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1086" name="SessionCoordinatorModeTests" fullname="OnHold.Tests.SessionCoordinatorModeTests" classname="OnHold.Tests.SessionCoordinatorModeTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.005104" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1090" name="CoopMode_ModeSpecificRejectionDoesNotMutateSessionIncorrectly" fullname="OnHold.Tests.SessionCoordinatorModeTests.CoopMode_ModeSpecificRejectionDoesNotMutateSessionIncorrectly" methodname="CoopMode_ModeSpecificRejectionDoesNotMutateSessionIncorrectly" classname="OnHold.Tests.SessionCoordinatorModeTests" runstate="Runnable" seed="79069424" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000984" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1088" name="CoopMode_OnePlayer_CannotTransitionToLoading" fullname="OnHold.Tests.SessionCoordinatorModeTests.CoopMode_OnePlayer_CannotTransitionToLoading" methodname="CoopMode_OnePlayer_CannotTransitionToLoading" classname="OnHold.Tests.SessionCoordinatorModeTests" runstate="Runnable" seed="447366760" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000190" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1089" name="CoopMode_TwoPlayers_CanTransitionToLoading" fullname="OnHold.Tests.SessionCoordinatorModeTests.CoopMode_TwoPlayers_CanTransitionToLoading" methodname="CoopMode_TwoPlayers_CanTransitionToLoading" classname="OnHold.Tests.SessionCoordinatorModeTests" runstate="Runnable" seed="1239358638" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000243" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1087" name="SoloMode_OnePlayer_CanTransitionToLoading" fullname="OnHold.Tests.SessionCoordinatorModeTests.SoloMode_OnePlayer_CanTransitionToLoading" methodname="SoloMode_OnePlayer_CanTransitionToLoading" classname="OnHold.Tests.SessionCoordinatorModeTests" runstate="Runnable" seed="994012537" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000098" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1091" name="SoloMode_UsesNormalLifecycle" fullname="OnHold.Tests.SessionCoordinatorModeTests.SoloMode_UsesNormalLifecycle" methodname="SoloMode_UsesNormalLifecycle" classname="OnHold.Tests.SessionCoordinatorModeTests" runstate="Runnable" seed="1168153220" result="Passed" start-time="2026-09-11 07:54:54Z" end-time="2026-09-11 07:54:54Z" duration="0.000326" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

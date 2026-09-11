@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-10 12:25:47Z" end-time="2026-09-10 12:25:48Z" duration="0.5126404">
+  <test-suite type="TestSuite" id="1041" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-09-10 12:25:47Z" end-time="2026-09-10 12:25:48Z" duration="0.512640" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1035" name="OnHold.PlayMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.PlayMode.Tests.dll" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-09-10 12:25:47Z" end-time="2026-09-10 12:25:48Z" duration="0.507942" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="88087" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1036" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-09-10 12:25:47Z" end-time="2026-09-10 12:25:48Z" duration="0.507597" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1037" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-09-10 12:25:47Z" end-time="2026-09-10 12:25:48Z" duration="0.507372" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1020" name="PlayablePhysicsTests" fullname="OnHold.Tests.PlayablePhysicsTests" classname="OnHold.Tests.PlayablePhysicsTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-10 12:25:47Z" end-time="2026-09-10 12:25:48Z" duration="0.506665" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1022" name="S013_PushIsMassDependentBoundedAndIgnoresKinematicBodies" fullname="OnHold.Tests.PlayablePhysicsTests.S013_PushIsMassDependentBoundedAndIgnoresKinematicBodies" methodname="S013_PushIsMassDependentBoundedAndIgnoresKinematicBodies" classname="OnHold.Tests.PlayablePhysicsTests" runstate="Runnable" seed="1049858898" result="Passed" start-time="2026-09-10 12:25:47Z" end-time="2026-09-10 12:25:48Z" duration="0.499869" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[heavy tick=0, p=(30.00, 0.03, 0.06), c=(30.00, 0.35, 1.30), speed=(0.00, -0.20, 0.00), push=0
+heavy tick=5, p=(30.00, 0.03, 0.36), c=(30.00, 0.30, 1.30), speed=(0.00, -0.09, 0.00), push=0
+heavy tick=10, p=(30.00, 0.03, 0.62), c=(30.00, 0.30, 1.30), speed=(0.00, 0.00, 0.05), push=1200
+heavy tick=15, p=(30.00, 0.03, 0.63), c=(30.00, 0.30, 1.31), speed=(-0.01, 0.04, 0.07), push=1200
+heavy tick=20, p=(30.00, 0.03, 0.64), c=(30.00, 0.31, 1.32), speed=(0.00, 0.09, 0.10), push=1200
+heavy tick=25, p=(30.00, 0.03, 0.67), c=(30.00, 0.32, 1.33), speed=(0.00, 0.16, 0.15), push=1200
+heavy tick=30, p=(30.00, 0.03, 0.68), c=(30.00, 0.34, 1.35), speed=(0.00, 0.24, 0.26), push=1200
+Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

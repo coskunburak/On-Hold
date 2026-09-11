@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "scope": "Document structure only; no Unity build, gameplay, network, visual or performance test executed",
+  "sprints": 24,
+  "task_cards": 144,
+  "markdown_files": 35,
+  "canonical_documents": 34,
+  "merged_exports": 1,
+  "local_links_checked": 262,
+  "baseline_requirement_ids_covered": 40,
+  "planned_hours": 1920,
+  "reserve_hours": 480,
+  "checks": [
+    "Unique task ids",
+    "Task dependency ordering and existence",
+    "Baseline reference existence",
+    "Per-sprint capacity totals",
+    "All task statuses PLANNED",
+    "Internal file links",
+    "Code fence parity",
+    "Combined export content equality"
+  ],
+  "errors": []
+}

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="20" result="Passed" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 08:50:08Z" end-time="2026-09-11 08:50:14Z" duration="5.8281989">
+  <test-suite type="TestSuite" id="1100" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 08:50:08Z" end-time="2026-09-11 08:50:14Z" duration="5.828199" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1094" name="OnHold.PlayMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.PlayMode.Tests.dll" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 08:50:08Z" end-time="2026-09-11 08:50:14Z" duration="5.823834" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="48710" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1095" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 08:50:08Z" end-time="2026-09-11 08:50:14Z" duration="5.823591" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1096" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-09-11 08:50:08Z" end-time="2026-09-11 08:50:14Z" duration="5.823444" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1003" name="CarryReleaseSafetyTests" fullname="OnHold.Tests.CarryReleaseSafetyTests" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-11 08:50:08Z" end-time="2026-09-11 08:50:13Z" duration="5.121449" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1019" name="S020_InvalidReleaseStatePreservesCommittedGrip" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_InvalidReleaseStatePreservesCommittedGrip" methodname="S020_InvalidReleaseStatePreservesCommittedGrip" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="458238676" result="Passed" start-time="2026-09-11 08:50:08Z" end-time="2026-09-11 08:50:09Z" duration="0.507532" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="S020_P01_NormalCarryAndRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P01_NormalCarryAndRelease" methodname="S020_P01_NormalCarryAndRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1182420563" result="Passed" start-time="2026-09-11 08:50:09Z" end-time="2026-09-11 08:50:09Z" duration="0.273182" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="S020_P02_ManipulateBeforeRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P02_ManipulateBeforeRelease" methodname="S020_P02_ManipulateBeforeRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1493056437" result="Passed" start-time="2026-09-11 08:50:09Z" end-time="2026-09-11 08:50:09Z" duration="0.239557" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="S020_P03_FloorSupportedRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P03_FloorSupportedRelease" methodname="S020_P03_FloorSupportedRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1158757236" result="Passed" start-time="2026-09-11 08:50:09Z" end-time="2026-09-11 08:50:10Z" duration="0.229095" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="S020_P04_WallContactRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P04_WallContactRelease" methodname="S020_P04_WallContactRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="997980088" result="Passed" start-time="2026-09-11 08:50:10Z" end-time="2026-09-11 08:50:10Z" duration="0.228477" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="S020_P05_DeepObstructedReleaseBlocked" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P05_DeepObstructedReleaseBlocked" methodname="S020_P05_DeepObstructedReleaseBlocked" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1773934007" result="Passed" start-time="2026-09-11 08:50:10Z" end-time="2026-09-11 08:50:10Z" duration="0.227640" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="S020_P06_NearbySafeResolution" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P06_NearbySafeResolution" methodname="S020_P06_NearbySafeResolution" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1012709060" result="Passed" start-time="2026-09-11 08:50:10Z" end-time="2026-09-11 08:50:10Z" duration="0.230566" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Resolved release displacement: 0.15 m
+]]></output>
+            </test-case>
+            <test-case id="1010" name="S020_P07_NoSafePoseRejection" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P07_NoSafePoseRejection" methodname="S020_P07_NoSafePoseRejection" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1980367317" result="Passed" start-time="2026-09-11 08:50:10Z" end-time="2026-09-11 08:50:10Z" duration="0.231196" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="S020_P08_RetryAfterBlockedRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P08_RetryAfterBlockedRelease" methodname="S020_P08_RetryAfterBlockedRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="939347252" result="Passed" start-time="2026-09-11 08:50:10Z" end-time="2026-09-11 08:50:11Z" duration="0.226832" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="S020_P09_ProlongedObstruction" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P09_ProlongedObstruction" methodname="S020_P09_ProlongedObstruction" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1878277654" result="Passed" start-time="2026-09-11 08:50:11Z" end-time="2026-09-11 08:50:11Z" duration="0.290792" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Obstruction duration=10s linear=2.049621 angular=3.448818 force=1400 torque=800.0001 penetration=0.004762888
+]]></output>
+            </test-case>
+            <test-case id="1013" name="S020_P10_ReleaseAfterProlongedObstruction" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P10_ReleaseAfterProlongedObstruction" methodname="S020_P10_ReleaseAfterProlongedObstruction" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="99508786" result="Passed" start-time="2026-09-11 08:50:11Z" end-time="2026-09-11 08:50:11Z" duration="0.379008" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Obstruction duration=10s linear=2.049621 angular=3.448818 force=1400 torque=800.0001 penetration=0.004762888
+Recovery peak=1.260435; release linear=0.00252208 angular=0.002368329
+]]></output>
+            </test-case>
+            <test-case id="1014" name="S020_P11_RapidManipulationBeforeRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P11_RapidManipulationBeforeRelease" methodname="S020_P11_RapidManipulationBeforeRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1900508553" result="Passed" start-time="2026-09-11 08:50:11Z" end-time="2026-09-11 08:50:12Z" duration="0.264057" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="S020_P12_ReGrab" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P12_ReGrab" methodname="S020_P12_ReGrab" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="155631270" result="Passed" start-time="2026-09-11 08:50:12Z" end-time="2026-09-11 08:50:12Z" duration="0.255656" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="S020_P13_DestroyedHeldCargo" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P13_DestroyedHeldCargo" methodname="S020_P13_DestroyedHeldCargo" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="784543472" result="Passed" start-time="2026-09-11 08:50:12Z" end-time="2026-09-11 08:50:12Z" duration="0.256468" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="S020_P14_RepeatedBlockedReleaseRequests" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P14_RepeatedBlockedReleaseRequests" methodname="S020_P14_RepeatedBlockedReleaseRequests" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1231702330" result="Passed" start-time="2026-09-11 08:50:12Z" end-time="2026-09-11 08:50:12Z" duration="0.273951" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[1000 warmed blocked production release requests: 0 bytes
+]]></output>
+            </test-case>
+            <test-case id="1018" name="S020_P15_PlayerControlsRegression" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P15_PlayerControlsRegression" methodname="S020_P15_PlayerControlsRegression" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1672116178" result="Passed" start-time="2026-09-11 08:50:12Z" end-time="2026-09-11 08:50:13Z" duration="0.260051" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1022" name="S020_ProductionReleaseVelocityPolicy" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_ProductionReleaseVelocityPolicy" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-11 08:50:13Z" end-time="2026-09-11 08:50:13Z" duration="0.495227" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1020" name="S020_ProductionReleaseVelocityPolicy(1.0f,1.0f)" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_ProductionReleaseVelocityPolicy(1.0f,1.0f)" methodname="S020_ProductionReleaseVelocityPolicy" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="861812930" result="Passed" start-time="2026-09-11 08:50:13Z" end-time="2026-09-11 08:50:13Z" duration="0.243015" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Velocity input=1/1, released=1/1
+]]></output>
+              </test-case>
+              <test-case id="1021" name="S020_ProductionReleaseVelocityPolicy(8.0f,6.0f)" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_ProductionReleaseVelocityPolicy(8.0f,6.0f)" methodname="S020_ProductionReleaseVelocityPolicy" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="844420258" result="Passed" start-time="2026-09-11 08:50:13Z" end-time="2026-09-11 08:50:13Z" duration="0.250603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Velocity input=8/6, released=5/4
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1023" name="S020_ThousandWarmedCarryReleaseSafetyOperationsAllocateZero" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_ThousandWarmedCarryReleaseSafetyOperationsAllocateZero" methodname="S020_ThousandWarmedCarryReleaseSafetyOperationsAllocateZero" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1285288799" result="Passed" start-time="2026-09-11 08:50:13Z" end-time="2026-09-11 08:50:13Z" duration="0.243610" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[1000 warmed carry/release safety operations: 0 bytes
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1079" name="SoloPlayableInputTests" fullname="OnHold.Tests.SoloPlayableInputTests" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-09-11 08:50:13Z" end-time="2026-09-11 08:50:14Z" duration="0.700997" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1089" name="S020_BlockedMouseReleasePreservesManipulationAndRetries" fullname="OnHold.Tests.SoloPlayableInputTests.S020_BlockedMouseReleasePreservesManipulationAndRetries" methodname="S020_BlockedMouseReleasePreservesManipulationAndRetries" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="1589617935" result="Passed" start-time="2026-09-11 08:50:13Z" end-time="2026-09-11 08:50:14Z" duration="0.699301" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

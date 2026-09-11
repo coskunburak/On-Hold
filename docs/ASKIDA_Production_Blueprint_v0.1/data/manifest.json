@@ -1,0 +1,1424 @@
+{
+  "project": "ASKIDA",
+  "package_version": "0.1.0",
+  "date": "2026-09-07",
+  "status": "PROPOSED_NOT_IMPLEMENTED",
+  "expected_markdown_count": 80,
+  "game_tests_executed": false,
+  "mcp_server_implemented": false,
+  "documents": [
+    {
+      "id": "ASK-001",
+      "path": "README.md",
+      "title": "ASKIDA — Üretim bilgi tabanı başlangıcı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Product",
+      "dependencies": [
+        "ASK-004",
+        "ASK-007",
+        "ASK-009",
+        "ASK-076",
+        "ASK-080"
+      ],
+      "sha256": "b6f9468238831dee82fb56272ea9b5a382afdde89c4ce460b2170ac2acfd83cd",
+      "word_count": 537,
+      "byte_count": 5436
+    },
+    {
+      "id": "ASK-002",
+      "path": "AGENTS.md",
+      "title": "Codex çalışma sözleşmesi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechLead",
+      "dependencies": [
+        "ASK-009",
+        "ASK-036",
+        "ASK-067",
+        "ASK-077",
+        "ASK-078"
+      ],
+      "sha256": "ed0c250c70e28196baa7b0b8b32d3fb9ffc7690ce2f6261c12753755d179a662",
+      "word_count": 404,
+      "byte_count": 3529
+    },
+    {
+      "id": "ASK-003",
+      "path": "docs/00_foundation/003_document_map.md",
+      "title": "Belge haritası ve okuma rotaları",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Producer",
+      "dependencies": [
+        "ASK-001",
+        "ASK-009",
+        "ASK-076"
+      ],
+      "sha256": "11e603f71716f8e3364ecc5707bd57d6991a590363f37a3dc0af5d7a236a5194",
+      "word_count": 1547,
+      "byte_count": 14058
+    },
+    {
+      "id": "ASK-004",
+      "path": "docs/00_foundation/004_project_charter.md",
+      "title": "Proje bildirgesi ve başarı tanımı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Product",
+      "dependencies": [
+        "ASK-005",
+        "ASK-007",
+        "ASK-009",
+        "ASK-071"
+      ],
+      "sha256": "6ae438830af7ec374b4239a8d2fb16fa631d14f24b350dc51a29b5adf710acfa",
+      "word_count": 359,
+      "byte_count": 3199
+    },
+    {
+      "id": "ASK-005",
+      "path": "docs/00_foundation/005_vision_hook.md",
+      "title": "Vizyon, özgün kanca ve deneyim",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "GameDesign",
+      "dependencies": [
+        "ASK-004",
+        "ASK-008",
+        "ASK-018",
+        "ASK-058"
+      ],
+      "sha256": "c6b4094791c6e43f01349fe5347affeed452cedc17f741c201cb9031eef51f7f",
+      "word_count": 320,
+      "byte_count": 2710
+    },
+    {
+      "id": "ASK-006",
+      "path": "docs/00_foundation/006_audience_market_validation.md",
+      "title": "Hedef kitle ve ticari doğrulama",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Product",
+      "dependencies": [
+        "ASK-005",
+        "ASK-068",
+        "ASK-071",
+        "ASK-075"
+      ],
+      "sha256": "e3569ac0c561ea9ff6c07ebe1b9427f2d108a8fe80afaf167db337ca538e9f86",
+      "word_count": 334,
+      "byte_count": 2868
+    },
+    {
+      "id": "ASK-007",
+      "path": "docs/00_foundation/007_scope_matrix.md",
+      "title": "Kapsam, sürümler ve kesme sırası",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Producer",
+      "dependencies": [
+        "ASK-009",
+        "ASK-023",
+        "ASK-059",
+        "ASK-071"
+      ],
+      "sha256": "e4e5b0349a2220ffd15b3c45d992c91bc6848811666aaa8a67a005e5407c0c4b",
+      "word_count": 352,
+      "byte_count": 2856
+    },
+    {
+      "id": "ASK-008",
+      "path": "docs/00_foundation/008_design_pillars.md",
+      "title": "Tasarım ilkeleri ve anti-hedefler",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "GameDesign",
+      "dependencies": [
+        "ASK-005",
+        "ASK-015",
+        "ASK-063",
+        "ASK-068"
+      ],
+      "sha256": "1bf7ff79071e87225084fd446f187d260b39b1afc597e8acfed93bb17cc8afbd",
+      "word_count": 317,
+      "byte_count": 2887
+    },
+    {
+      "id": "ASK-009",
+      "path": "docs/00_foundation/009_decision_register.md",
+      "title": "Karar kaydı ve onay bekleyenler",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Producer",
+      "dependencies": [
+        "ASK-004",
+        "ASK-026",
+        "ASK-046",
+        "ASK-071",
+        "ASK-080"
+      ],
+      "sha256": "46993e3f5ed95faaac0c9b3870d60c84dbaca618d8b6fbe6014e48d93d99a365",
+      "word_count": 439,
+      "byte_count": 3493
+    },
+    {
+      "id": "ASK-010",
+      "path": "docs/00_foundation/010_glossary_parameters.md",
+      "title": "Sözlük, birimler ve başlangıç parametreleri",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "GameDesign",
+      "dependencies": [
+        "ASK-016",
+        "ASK-018",
+        "ASK-022",
+        "ASK-030",
+        "ASK-065"
+      ],
+      "sha256": "b50060b42e964ef34bc2fa33b3740852f245fceb690859a0326e583374bdd346",
+      "word_count": 402,
+      "byte_count": 3254
+    },
+    {
+      "id": "ASK-011",
+      "path": "docs/01_gameplay/011_core_loop.md",
+      "title": "Temel oyun döngüsü ve zaman çizgisi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "GameDesign",
+      "dependencies": [
+        "ASK-012",
+        "ASK-018",
+        "ASK-022",
+        "ASK-023",
+        "ASK-024"
+      ],
+      "sha256": "2e12837d946ad3a7792af53ed6bad825872975104c3325350a13b36c607bd4f7",
+      "word_count": 387,
+      "byte_count": 3309
+    },
+    {
+      "id": "ASK-012",
+      "path": "docs/01_gameplay/012_session_state_machine.md",
+      "title": "Oturum ve görev durum makinesi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-011",
+        "ASK-031",
+        "ASK-032",
+        "ASK-033"
+      ],
+      "sha256": "2d95f938d2ce01c335a0b4e294e7f8703095d78c9da17a2e43b529ecf4ce4b0c",
+      "word_count": 397,
+      "byte_count": 3170
+    },
+    {
+      "id": "ASK-013",
+      "path": "docs/01_gameplay/013_controls_camera.md",
+      "title": "Kontroller, kamera ve giriş niyetleri",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "UX",
+      "dependencies": [
+        "ASK-015",
+        "ASK-017",
+        "ASK-019",
+        "ASK-052",
+        "ASK-063"
+      ],
+      "sha256": "0413ae16b1792547333806235cdcb47e16b0f8a8cead62d3d3ee802c72acdc16",
+      "word_count": 342,
+      "byte_count": 2961
+    },
+    {
+      "id": "ASK-014",
+      "path": "docs/01_gameplay/014_cooperation_roles.md",
+      "title": "Co-op roller ve oyuncu sayısı ölçekleme",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "GameDesign",
+      "dependencies": [
+        "ASK-017",
+        "ASK-018",
+        "ASK-019",
+        "ASK-023"
+      ],
+      "sha256": "8c03fc6f7dd0da074a667278194e86ab04388561efbaaeec74a94755fafdc2f4",
+      "word_count": 330,
+      "byte_count": 2747
+    },
+    {
+      "id": "ASK-015",
+      "path": "docs/01_gameplay/015_interaction_contract.md",
+      "title": "Etkileşim sorgusu ve komut sözleşmesi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-016",
+        "ASK-017",
+        "ASK-020",
+        "ASK-027",
+        "ASK-028"
+      ],
+      "sha256": "e4fd36b0bf1739a04c97befc75b809382848ec99a46abd877b99f83360e3452c",
+      "word_count": 373,
+      "byte_count": 3273
+    },
+    {
+      "id": "ASK-016",
+      "path": "docs/01_gameplay/016_item_state_model.md",
+      "title": "Eşya semantiği ve değişmezler",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-015",
+        "ASK-017",
+        "ASK-020",
+        "ASK-021",
+        "ASK-022",
+        "ASK-025"
+      ],
+      "sha256": "0f5a6bf01876cd28093b9567819b62dc378cbc4943825fd7697d367c52416105",
+      "word_count": 522,
+      "byte_count": 4198
+    },
+    {
+      "id": "ASK-017",
+      "path": "docs/01_gameplay/017_shared_carrying.md",
+      "title": "Ortak taşıma ve kuvvet modeli",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-013",
+        "ASK-015",
+        "ASK-016",
+        "ASK-018",
+        "ASK-030",
+        "ASK-040"
+      ],
+      "sha256": "973d0128368857670c79103a0536a8b567418107192df410491c2682a56aa313",
+      "word_count": 392,
+      "byte_count": 3439
+    },
+    {
+      "id": "ASK-018",
+      "path": "docs/01_gameplay/018_platform_balance.md",
+      "title": "Platform, destek kütlesi ve kontrollü eğim",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-010",
+        "ASK-017",
+        "ASK-019",
+        "ASK-020",
+        "ASK-040",
+        "ASK-066"
+      ],
+      "sha256": "098d25d1ce32a78c129e14b6551ed2bda3e3a469427628347cac61f44657fc8a",
+      "word_count": 449,
+      "byte_count": 3977
+    },
+    {
+      "id": "ASK-019",
+      "path": "docs/01_gameplay/019_winch_control.md",
+      "title": "Vinç kontrolü ve kontrol kiralaması",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-015",
+        "ASK-018",
+        "ASK-020",
+        "ASK-027",
+        "ASK-032"
+      ],
+      "sha256": "30ad370ea11dbabb32defd37313f10a4cfcb56731c1a4911c23e0184f98b64be",
+      "word_count": 322,
+      "byte_count": 2739
+    },
+    {
+      "id": "ASK-020",
+      "path": "docs/01_gameplay/020_straps_anchors.md",
+      "title": "Sabitleme, kayış ve anchor sözleşmesi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-016",
+        "ASK-018",
+        "ASK-019",
+        "ASK-049"
+      ],
+      "sha256": "214a7526407a33e2bd42a45ededde162bb8d16de5e354761c56289951a2314dd",
+      "word_count": 385,
+      "byte_count": 3316
+    },
+    {
+      "id": "ASK-021",
+      "path": "docs/01_gameplay/021_damage_breakage.md",
+      "title": "Hasar ve kontrollü kırılma",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-016",
+        "ASK-022",
+        "ASK-025",
+        "ASK-040",
+        "ASK-054"
+      ],
+      "sha256": "a6f8916b82b32765ce38c160bc135234f551ccb79b5218a3a746c0229310f0b7",
+      "word_count": 359,
+      "byte_count": 3164
+    },
+    {
+      "id": "ASK-022",
+      "path": "docs/01_gameplay/022_delivery_scoring.md",
+      "title": "Teslimat doğrulaması ve tek seferlik sonuç",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-010",
+        "ASK-016",
+        "ASK-023",
+        "ASK-033"
+      ],
+      "sha256": "a201f546292b2d78084e21cb57e338bde6a9b0518f1659109b08d31bdc0237b2",
+      "word_count": 402,
+      "byte_count": 3516
+    },
+    {
+      "id": "ASK-023",
+      "path": "docs/01_gameplay/023_contract_rules.md",
+      "title": "Sözleşme tanımı, başarı ve bitirme",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "GameDesign",
+      "dependencies": [
+        "ASK-011",
+        "ASK-022",
+        "ASK-024",
+        "ASK-060"
+      ],
+      "sha256": "c5278cc093c59623446c4dae6eab377e8fbe3ff4906ccb30c5309e07b5dd8f3a",
+      "word_count": 380,
+      "byte_count": 3301
+    },
+    {
+      "id": "ASK-024",
+      "path": "docs/01_gameplay/024_progression_economy.md",
+      "title": "İlerleme ve küçük ölçekli ekonomi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "GameDesign",
+      "dependencies": [
+        "ASK-022",
+        "ASK-023",
+        "ASK-033",
+        "ASK-043"
+      ],
+      "sha256": "db0bdb21be565b9cb3b2aa624c4ade540a7fb37422a7681c94a53d189871cf45",
+      "word_count": 354,
+      "byte_count": 3067
+    },
+    {
+      "id": "ASK-025",
+      "path": "docs/01_gameplay/025_recovery_failures.md",
+      "title": "Düşme, sıkışma ve kurtarma kuralları",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-016",
+        "ASK-021",
+        "ASK-023",
+        "ASK-032"
+      ],
+      "sha256": "7e9fdd9b47ebf9c5e9e439eb0d992da3a4a86101413ed915790fd40f9d1c3f28",
+      "word_count": 348,
+      "byte_count": 3075
+    },
+    {
+      "id": "ASK-026",
+      "path": "docs/02_network/026_network_adr_spike.md",
+      "title": "Ağ çözümü seçimi ve risk prototipi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechLead",
+      "dependencies": [
+        "ASK-009",
+        "ASK-027",
+        "ASK-030",
+        "ASK-035",
+        "ASK-040"
+      ],
+      "sha256": "9e6870ba94aeac7eb94789bf43b7c5758e534ae42880b89839db8af0046b5a91",
+      "word_count": 398,
+      "byte_count": 3630
+    },
+    {
+      "id": "ASK-027",
+      "path": "docs/02_network/027_authority_matrix.md",
+      "title": "Otorite, sahiplik ve veri sınırları",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Network",
+      "dependencies": [
+        "ASK-015",
+        "ASK-016",
+        "ASK-028",
+        "ASK-033"
+      ],
+      "sha256": "04f2da8e253cda1de1eea8408279ea448723a5e99b07feb2f1df7e2c744616c2",
+      "word_count": 368,
+      "byte_count": 3082
+    },
+    {
+      "id": "ASK-028",
+      "path": "docs/02_network/028_command_protocol.md",
+      "title": "Komut protokolü, tekrarlar ve sıralama",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Network",
+      "dependencies": [
+        "ASK-015",
+        "ASK-027",
+        "ASK-029",
+        "ASK-034"
+      ],
+      "sha256": "a58c8d767c3f6f3874e2a8f543e05d5dbb9d65aab47cfe44bdbd39a69a8e0f7b",
+      "word_count": 385,
+      "byte_count": 3405
+    },
+    {
+      "id": "ASK-029",
+      "path": "docs/02_network/029_replication_snapshot.md",
+      "title": "Çoğaltma, snapshot ve ağ ilgisi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Network",
+      "dependencies": [
+        "ASK-016",
+        "ASK-018",
+        "ASK-028",
+        "ASK-030",
+        "ASK-032"
+      ],
+      "sha256": "ebf6e7c52fe401bd0da80c095ea95462456db1cf74f31f6981529792b1f6723d",
+      "word_count": 370,
+      "byte_count": 3194
+    },
+    {
+      "id": "ASK-030",
+      "path": "docs/02_network/030_latency_prediction.md",
+      "title": "Gecikme, öngörü ve düzeltme sınırları",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Network",
+      "dependencies": [
+        "ASK-017",
+        "ASK-018",
+        "ASK-026",
+        "ASK-029",
+        "ASK-035"
+      ],
+      "sha256": "75df31076bb3dc6c7f78793a06131a3572e76ee1801af97c93fcc93ececdb7cc",
+      "word_count": 356,
+      "byte_count": 3122
+    },
+    {
+      "id": "ASK-031",
+      "path": "docs/02_network/031_lobby_steam_connectivity.md",
+      "title": "Lobi, Steam daveti ve bağlantı akışı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Network",
+      "dependencies": [
+        "ASK-012",
+        "ASK-026",
+        "ASK-032",
+        "ASK-075"
+      ],
+      "sha256": "9899f9c111f649bd78fb774f682864301e805bbcd28bb56868231d3001ebd93f",
+      "word_count": 343,
+      "byte_count": 3231
+    },
+    {
+      "id": "ASK-032",
+      "path": "docs/02_network/032_disconnect_reconnect_hostloss.md",
+      "title": "Kopma, yeniden bağlanma ve host kaybı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Network",
+      "dependencies": [
+        "ASK-012",
+        "ASK-016",
+        "ASK-019",
+        "ASK-029",
+        "ASK-033"
+      ],
+      "sha256": "33cc8815bf5fd0004dfc23010fed1910026b30fe6c1d426f5ba2300cc2bf7345",
+      "word_count": 362,
+      "byte_count": 3155
+    },
+    {
+      "id": "ASK-033",
+      "path": "docs/02_network/033_campaign_transaction.md",
+      "title": "Kampanya işlemleri ve kayıt otoritesi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Backend",
+      "dependencies": [
+        "ASK-012",
+        "ASK-022",
+        "ASK-024",
+        "ASK-043"
+      ],
+      "sha256": "827a87f73e1f63b381079415d2111b52549b6f76011be9904e0f814d79261307",
+      "word_count": 350,
+      "byte_count": 3085
+    },
+    {
+      "id": "ASK-034",
+      "path": "docs/02_network/034_security_abuse.md",
+      "title": "Ağ güvenliği ve kötüye kullanım sınırları",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Network",
+      "dependencies": [
+        "ASK-027",
+        "ASK-028",
+        "ASK-044",
+        "ASK-078"
+      ],
+      "sha256": "3f718a6aec11fe8dabf30e50f2ff233007d6c4e309f52e34778ca9a3021c7488",
+      "word_count": 330,
+      "byte_count": 2854
+    },
+    {
+      "id": "ASK-035",
+      "path": "docs/02_network/035_network_test_matrix.md",
+      "title": "Multiplayer test matrisi ve kanıt",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "QA",
+      "dependencies": [
+        "ASK-026",
+        "ASK-030",
+        "ASK-032",
+        "ASK-067"
+      ],
+      "sha256": "91cbac7202ef82b825a1f05560fb279900620c5f1c3a4e12358d23956dad85d3",
+      "word_count": 390,
+      "byte_count": 2938
+    },
+    {
+      "id": "ASK-036",
+      "path": "docs/03_engineering/036_unity_repository.md",
+      "title": "Unity deposu ve dosya hiyerarşisi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechLead",
+      "dependencies": [
+        "ASK-002",
+        "ASK-037",
+        "ASK-039",
+        "ASK-041",
+        "ASK-042"
+      ],
+      "sha256": "d4676d7167640f0d04b1c33f071cf191560862fca9394c7bd6f5170351231502",
+      "word_count": 389,
+      "byte_count": 4020
+    },
+    {
+      "id": "ASK-037",
+      "path": "docs/03_engineering/037_module_boundaries.md",
+      "title": "Modüller, assembly sınırları ve bağımlılıklar",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechLead",
+      "dependencies": [
+        "ASK-027",
+        "ASK-036",
+        "ASK-038",
+        "ASK-039"
+      ],
+      "sha256": "94b90c9a27765bf9af16a44026e9f171f9815018c035022e0216208d50021fd3",
+      "word_count": 296,
+      "byte_count": 2724
+    },
+    {
+      "id": "ASK-038",
+      "path": "docs/03_engineering/038_bootstrap_lifecycle.md",
+      "title": "Bootstrap, servis ömrü ve sahne geçişleri",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-012",
+        "ASK-036",
+        "ASK-037",
+        "ASK-045"
+      ],
+      "sha256": "331f7436253f8b23cf78d74016a4e1d9d56c62e3bc0d83764d2ec2003553ae89",
+      "word_count": 329,
+      "byte_count": 2913
+    },
+    {
+      "id": "ASK-039",
+      "path": "docs/03_engineering/039_data_schemas.md",
+      "title": "Veri şemaları ve içerik kimlikleri",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechLead",
+      "dependencies": [
+        "ASK-010",
+        "ASK-016",
+        "ASK-023",
+        "ASK-043",
+        "ASK-061"
+      ],
+      "sha256": "72822d4fdbd112f0708d7b19977c137805e192bce390f88048220dc71d09b80f",
+      "word_count": 327,
+      "byte_count": 3048
+    },
+    {
+      "id": "ASK-040",
+      "path": "docs/03_engineering/040_physics_integration.md",
+      "title": "Unity fizik uygulaması ve teknik sınırlar",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Gameplay",
+      "dependencies": [
+        "ASK-017",
+        "ASK-018",
+        "ASK-020",
+        "ASK-026",
+        "ASK-066"
+      ],
+      "sha256": "a3d7f13cd06c000975f64e7e4f02dbecc4b2991f3a29a61a0baa222447ab55c7",
+      "word_count": 368,
+      "byte_count": 3389
+    },
+    {
+      "id": "ASK-041",
+      "path": "docs/03_engineering/041_editor_asset_validation.md",
+      "title": "Editör araçları ve asset kabul otomasyonu",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechnicalArtist",
+      "dependencies": [
+        "ASK-036",
+        "ASK-039",
+        "ASK-049",
+        "ASK-061",
+        "ASK-066"
+      ],
+      "sha256": "bf7d571f2ee1c9894ef2add66498edfdea53ddc4b0887ebbcf2f03789f56b255",
+      "word_count": 363,
+      "byte_count": 3177
+    },
+    {
+      "id": "ASK-042",
+      "path": "docs/03_engineering/042_build_ci_release.md",
+      "title": "Build, CI ve bağımlılık kilitleme",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "DevOps",
+      "dependencies": [
+        "ASK-036",
+        "ASK-039",
+        "ASK-041",
+        "ASK-067",
+        "ASK-075"
+      ],
+      "sha256": "998fa2406139005cb9c63ec27e8106d7c2da6384deadbbc2947b700bd3dc35c5",
+      "word_count": 353,
+      "byte_count": 3059
+    },
+    {
+      "id": "ASK-043",
+      "path": "docs/03_engineering/043_save_schema_migration.md",
+      "title": "Save şeması, migration ve cloud çatışması",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Backend",
+      "dependencies": [
+        "ASK-024",
+        "ASK-033",
+        "ASK-042"
+      ],
+      "sha256": "d092cf01c01dbc9c444bd8a4dfe259bcd205d149a6b431f0045de00c1b08f72d",
+      "word_count": 328,
+      "byte_count": 2956
+    },
+    {
+      "id": "ASK-044",
+      "path": "docs/03_engineering/044_telemetry_debugging.md",
+      "title": "Tanı, ölçüm ve gizlilik",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "QA",
+      "dependencies": [
+        "ASK-034",
+        "ASK-035",
+        "ASK-065",
+        "ASK-068"
+      ],
+      "sha256": "a17ba572587c1f5edbc36bb09fe61919c26b298840bdcacd5fe769fb670e55d5",
+      "word_count": 279,
+      "byte_count": 2513
+    },
+    {
+      "id": "ASK-045",
+      "path": "docs/03_engineering/045_errors_resilience.md",
+      "title": "Hata sınıfları ve güvenli bozulma",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechLead",
+      "dependencies": [
+        "ASK-012",
+        "ASK-032",
+        "ASK-033",
+        "ASK-038"
+      ],
+      "sha256": "54fd45caa252d6ccf42d3755f60b905f20706b06cac473873cb30798a53fe9c1",
+      "word_count": 276,
+      "byte_count": 2427
+    },
+    {
+      "id": "ASK-046",
+      "path": "docs/04_art/046_art_direction.md",
+      "title": "Sanat yönetimi ve paket uyumu",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "ArtLead",
+      "dependencies": [
+        "ASK-047",
+        "ASK-049",
+        "ASK-053",
+        "ASK-056",
+        "ASK-066"
+      ],
+      "sha256": "80e596017c170c035ecb99f422218a68b651948a0fdeacf6aab7293f375a656d",
+      "word_count": 352,
+      "byte_count": 3108
+    },
+    {
+      "id": "ASK-047",
+      "path": "docs/04_art/047_package_selection.md",
+      "title": "Seçilecek paketler ve kullanım sınırları",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "ArtLead",
+      "dependencies": [
+        "ASK-046",
+        "ASK-048",
+        "ASK-050",
+        "ASK-061",
+        "ASK-080"
+      ],
+      "sha256": "fecad3b56c92e84aeaaa53aee649f914b9424e8a667f81b45307832deca50433",
+      "word_count": 390,
+      "byte_count": 3624
+    },
+    {
+      "id": "ASK-048",
+      "path": "docs/04_art/048_licenses_provenance.md",
+      "title": "Lisans, kaynak kaydı ve AI kullanımı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Producer",
+      "dependencies": [
+        "ASK-047",
+        "ASK-050",
+        "ASK-061",
+        "ASK-075",
+        "ASK-080"
+      ],
+      "sha256": "9097152ffd64bbd2c7bfa33a6a75894094899787780be8c793b2a8420ed36979",
+      "word_count": 389,
+      "byte_count": 3574
+    },
+    {
+      "id": "ASK-049",
+      "path": "docs/04_art/049_prop_asset_spec.md",
+      "title": "Her nesne için üretim şartnamesi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechnicalArtist",
+      "dependencies": [
+        "ASK-016",
+        "ASK-041",
+        "ASK-046",
+        "ASK-050",
+        "ASK-066"
+      ],
+      "sha256": "a80888c47a1a42df25b8f6795b32b77b4095af5044e91a02bc5eee4b2ff2dc34",
+      "word_count": 328,
+      "byte_count": 2979
+    },
+    {
+      "id": "ASK-050",
+      "path": "docs/04_art/050_ai_blender_export.md",
+      "title": "Astra/Codex ile Blender üretimi ve export",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechnicalArtist",
+      "dependencies": [
+        "ASK-046",
+        "ASK-048",
+        "ASK-049",
+        "ASK-053",
+        "ASK-077"
+      ],
+      "sha256": "9c74ffd50c0308b1b15960008ffc0c7b23a7c8a35b98d09093fbe16e2320b791",
+      "word_count": 415,
+      "byte_count": 3723
+    },
+    {
+      "id": "ASK-051",
+      "path": "docs/04_art/051_character_rig.md",
+      "title": "Karakter, rig ve el IK standardı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Animation",
+      "dependencies": [
+        "ASK-013",
+        "ASK-046",
+        "ASK-047",
+        "ASK-052"
+      ],
+      "sha256": "4c371a8a7785c3a87036c0c60347e43c5755f07ea092603c64dc137d12e9a615",
+      "word_count": 344,
+      "byte_count": 3027
+    },
+    {
+      "id": "ASK-052",
+      "path": "docs/04_art/052_animation_graph.md",
+      "title": "Animasyon grafiği ve gerekli klipler",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Animation",
+      "dependencies": [
+        "ASK-013",
+        "ASK-017",
+        "ASK-019",
+        "ASK-051"
+      ],
+      "sha256": "41d95a5e486f082bd5e7388fe7fb71d3e1e98d60a6c63015d5feb4abe55d5074",
+      "word_count": 332,
+      "byte_count": 2831
+    },
+    {
+      "id": "ASK-053",
+      "path": "docs/04_art/053_materials_textures_lighting.md",
+      "title": "Malzeme, texture ve aydınlatma standardı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "TechnicalArtist",
+      "dependencies": [
+        "ASK-046",
+        "ASK-049",
+        "ASK-056",
+        "ASK-065",
+        "ASK-066"
+      ],
+      "sha256": "faa6788c37d3afa014f9dc7c19e9ad593b08732b1941aee97a29ee371d909fc4",
+      "word_count": 335,
+      "byte_count": 3056
+    },
+    {
+      "id": "ASK-054",
+      "path": "docs/04_art/054_vfx_feedback.md",
+      "title": "VFX, geri bildirim ve havuzlama",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "VFX",
+      "dependencies": [
+        "ASK-021",
+        "ASK-022",
+        "ASK-046",
+        "ASK-053",
+        "ASK-066"
+      ],
+      "sha256": "4a73893d4b19f58739b677d6d4d25d8adb0e178e522398c0bd4ab0ad7acb99eb",
+      "word_count": 327,
+      "byte_count": 2995
+    },
+    {
+      "id": "ASK-055",
+      "path": "docs/04_art/055_audio_sound_design.md",
+      "title": "Ses tasarımı, miks ve sesli iletişim",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Audio",
+      "dependencies": [
+        "ASK-019",
+        "ASK-021",
+        "ASK-048",
+        "ASK-063"
+      ],
+      "sha256": "45662f5f40f06d7961b3fd9421c57264f3a01094926f94658b955351644bf794",
+      "word_count": 325,
+      "byte_count": 2747
+    },
+    {
+      "id": "ASK-056",
+      "path": "docs/05_content/056_modular_world_kit.md",
+      "title": "Modüler dünya kiti ve apartman kimliği",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "LevelDesign",
+      "dependencies": [
+        "ASK-046",
+        "ASK-047",
+        "ASK-053",
+        "ASK-057"
+      ],
+      "sha256": "8c91cc9decc629e405423519a5f755ab979e8a6c1b3f9b4985b5d154a91c065c",
+      "word_count": 331,
+      "byte_count": 2868
+    },
+    {
+      "id": "ASK-057",
+      "path": "docs/05_content/057_blockout_metrics.md",
+      "title": "Blockout ve oynanabilir alan metrikleri",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "LevelDesign",
+      "dependencies": [
+        "ASK-013",
+        "ASK-017",
+        "ASK-018",
+        "ASK-056",
+        "ASK-058"
+      ],
+      "sha256": "d43a978630e8c944f3571b43e9cfe6ea363a8e76ca4bbb6a16dac6e85f6250bc",
+      "word_count": 327,
+      "byte_count": 2852
+    },
+    {
+      "id": "ASK-058",
+      "path": "docs/05_content/058_level_one_courtyard.md",
+      "title": "Seviye 1 — Avlu apartmanı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "LevelDesign",
+      "dependencies": [
+        "ASK-005",
+        "ASK-018",
+        "ASK-023",
+        "ASK-057",
+        "ASK-060"
+      ],
+      "sha256": "5356ae4da26b268f30239365bbfd18c3d5dca10357027271fac65a5cc113cad9",
+      "word_count": 335,
+      "byte_count": 2919
+    },
+    {
+      "id": "ASK-059",
+      "path": "docs/05_content/059_levels_two_three.md",
+      "title": "Seviye 2–3 — Kapsamlı varyasyon planı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "LevelDesign",
+      "dependencies": [
+        "ASK-007",
+        "ASK-056",
+        "ASK-058",
+        "ASK-060"
+      ],
+      "sha256": "94db3aa2a1eb717c0e83a90e21fac0318c82740bce737a1f6a03df45f302d485",
+      "word_count": 346,
+      "byte_count": 2771
+    },
+    {
+      "id": "ASK-060",
+      "path": "docs/05_content/060_contract_catalog.md",
+      "title": "On iki sözleşmelik içerik taslağı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "GameDesign",
+      "dependencies": [
+        "ASK-007",
+        "ASK-023",
+        "ASK-058",
+        "ASK-059",
+        "ASK-061"
+      ],
+      "sha256": "3e7a5fcf4af3c3fdc3c8ab184b08bc109dc1feeaf2969d111b8a1d318d769a8e",
+      "word_count": 433,
+      "byte_count": 3213
+    },
+    {
+      "id": "ASK-061",
+      "path": "docs/05_content/061_asset_inventory.md",
+      "title": "Varlık envanteri ve üretim kuyruğu",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "ArtLead",
+      "dependencies": [
+        "ASK-047",
+        "ASK-049",
+        "ASK-056",
+        "ASK-060",
+        "ASK-074"
+      ],
+      "sha256": "15b67471cb6395b5f797642bdb0ed06c7f6707dbdf6194db5ab56fe51703e5ec",
+      "word_count": 400,
+      "byte_count": 3178
+    },
+    {
+      "id": "ASK-062",
+      "path": "docs/05_content/062_ui_information.md",
+      "title": "Arayüz ve bilgi hiyerarşisi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "UX",
+      "dependencies": [
+        "ASK-013",
+        "ASK-015",
+        "ASK-019",
+        "ASK-022",
+        "ASK-032",
+        "ASK-063"
+      ],
+      "sha256": "47348c8a61f6ef4e5f607b2055e496f9d12f90790e3cfa101dc7206a7ca5f98f",
+      "word_count": 319,
+      "byte_count": 2971
+    },
+    {
+      "id": "ASK-063",
+      "path": "docs/05_content/063_accessibility.md",
+      "title": "Erişilebilirlik ve kamera konforu",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "UX",
+      "dependencies": [
+        "ASK-013",
+        "ASK-054",
+        "ASK-055",
+        "ASK-062",
+        "ASK-068"
+      ],
+      "sha256": "8e49d521023db3e07e0241166e7778cacd3f524806922b0631ddfa8150aac286",
+      "word_count": 322,
+      "byte_count": 2840
+    },
+    {
+      "id": "ASK-064",
+      "path": "docs/05_content/064_localization_onboarding.md",
+      "title": "Yerelleştirme ve öğretici tasarımı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "UX",
+      "dependencies": [
+        "ASK-011",
+        "ASK-058",
+        "ASK-062",
+        "ASK-063"
+      ],
+      "sha256": "56afa17fa6e776276100e1651c43e7adb91451a9dd858bab6ae88ff5ecc1c936",
+      "word_count": 302,
+      "byte_count": 2628
+    },
+    {
+      "id": "ASK-065",
+      "path": "docs/06_quality/065_performance_targets.md",
+      "title": "Performans hedefi ve ölçüm disiplini",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Performance",
+      "dependencies": [
+        "ASK-009",
+        "ASK-010",
+        "ASK-040",
+        "ASK-066",
+        "ASK-069"
+      ],
+      "sha256": "cd309393705d6e546b1ce831cf7b23ca22943bd428919ab05a38277bddf6a11f",
+      "word_count": 327,
+      "byte_count": 2950
+    },
+    {
+      "id": "ASK-066",
+      "path": "docs/06_quality/066_render_physics_asset_budgets.md",
+      "title": "Başlangıç asset, render ve fizik bütçeleri",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Performance",
+      "dependencies": [
+        "ASK-018",
+        "ASK-040",
+        "ASK-049",
+        "ASK-053",
+        "ASK-065"
+      ],
+      "sha256": "d7627073a33912e54d48cb7ffbc89c2ad1ed41cf55c067264be465455613e1a4",
+      "word_count": 408,
+      "byte_count": 3417
+    },
+    {
+      "id": "ASK-067",
+      "path": "docs/06_quality/067_test_strategy_traceability.md",
+      "title": "Test stratejisi ve gereksinim izlenebilirliği",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "QA",
+      "dependencies": [
+        "ASK-016",
+        "ASK-022",
+        "ASK-035",
+        "ASK-069",
+        "ASK-074"
+      ],
+      "sha256": "e29db0ef1582e739a85eca9aaea10501cf30901a7c94e9d135db91f191057651",
+      "word_count": 327,
+      "byte_count": 2919
+    },
+    {
+      "id": "ASK-068",
+      "path": "docs/06_quality/068_playtest_protocol.md",
+      "title": "Oyuncu testi, eğlence ve okunurluk",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Research",
+      "dependencies": [
+        "ASK-006",
+        "ASK-008",
+        "ASK-014",
+        "ASK-063"
+      ],
+      "sha256": "5b553320c337dcae099e8344fccbf23306585d3a7e2ec38ffeec54f99cdd8ee7",
+      "word_count": 280,
+      "byte_count": 2430
+    },
+    {
+      "id": "ASK-069",
+      "path": "docs/06_quality/069_quality_gates.md",
+      "title": "Milestone kalite kapıları ve bitmiş iş",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "QA",
+      "dependencies": [
+        "ASK-007",
+        "ASK-035",
+        "ASK-065",
+        "ASK-067",
+        "ASK-071"
+      ],
+      "sha256": "83589d8bf450b32e72b952fab1f13aa6602fee4fdc581b02d278d8f171d0aef1",
+      "word_count": 349,
+      "byte_count": 3007
+    },
+    {
+      "id": "ASK-070",
+      "path": "docs/06_quality/070_release_regression_support.md",
+      "title": "Regresyon, destek ve yayın sonrası triyaj",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "QA",
+      "dependencies": [
+        "ASK-032",
+        "ASK-043",
+        "ASK-069",
+        "ASK-075"
+      ],
+      "sha256": "8f35524c7ed0f2b690da5063712d08e47f707f26bcec17b9a81296cccf940e8e",
+      "word_count": 308,
+      "byte_count": 2720
+    },
+    {
+      "id": "ASK-071",
+      "path": "docs/07_production/071_roadmap_capacity.md",
+      "title": "Üretim yol haritası ve kapasite senaryoları",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Producer",
+      "dependencies": [
+        "ASK-004",
+        "ASK-007",
+        "ASK-009",
+        "ASK-069",
+        "ASK-073",
+        "ASK-074"
+      ],
+      "sha256": "31b04de07aa80134da4ddc0247decb855f0e7a1d6fa87bfafcf889e80d549e8f",
+      "word_count": 358,
+      "byte_count": 3032
+    },
+    {
+      "id": "ASK-072",
+      "path": "docs/07_production/072_team_workflow.md",
+      "title": "Ekip rolleri, review ve çalışma ritmi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Producer",
+      "dependencies": [
+        "ASK-002",
+        "ASK-009",
+        "ASK-036",
+        "ASK-069",
+        "ASK-074"
+      ],
+      "sha256": "c940d625194af7200450c2b013da977daad86698c88d67286ae50f7b1237a828",
+      "word_count": 304,
+      "byte_count": 2540
+    },
+    {
+      "id": "ASK-073",
+      "path": "docs/07_production/073_risk_register.md",
+      "title": "Risk defteri ve azaltma planı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Producer",
+      "dependencies": [
+        "ASK-026",
+        "ASK-046",
+        "ASK-065",
+        "ASK-068",
+        "ASK-071"
+      ],
+      "sha256": "1578a140b16df6b9d2d4a874998074af271a62361e7d2527a9945c734273f3da",
+      "word_count": 377,
+      "byte_count": 2819
+    },
+    {
+      "id": "ASK-074",
+      "path": "docs/07_production/074_backlog_first_sprints.md",
+      "title": "Başlangıç backlog'u ve ilk iki sprint",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Producer",
+      "dependencies": [
+        "ASK-026",
+        "ASK-049",
+        "ASK-067",
+        "ASK-069",
+        "ASK-071"
+      ],
+      "sha256": "e2cec7fd6b1ec36faffe6e5257d8cf7b42a1d886e6b137e5b1083c45d810fb71",
+      "word_count": 437,
+      "byte_count": 3517
+    },
+    {
+      "id": "ASK-075",
+      "path": "docs/07_production/075_steam_launch_plan.md",
+      "title": "Steam hazırlığı, demo ve yayın kontrolü",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Product",
+      "dependencies": [
+        "ASK-006",
+        "ASK-048",
+        "ASK-069",
+        "ASK-070",
+        "ASK-080"
+      ],
+      "sha256": "1a9c3af9c2270e29b18ff09e6618d9a6cf6070b731a1bbb1be84c1b5f309854a",
+      "word_count": 352,
+      "byte_count": 3203
+    },
+    {
+      "id": "ASK-076",
+      "path": "docs/08_knowledge/076_notebook_import.md",
+      "title": "Notebook aktarımı ve tek kaynak ilkesi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Knowledge",
+      "dependencies": [
+        "ASK-001",
+        "ASK-003",
+        "ASK-077",
+        "ASK-079"
+      ],
+      "sha256": "0cc2ab7e7d7281e7f192cb2e43564107bbf71f0780a02dd8e447a11d93ef8024",
+      "word_count": 366,
+      "byte_count": 3189
+    },
+    {
+      "id": "ASK-077",
+      "path": "docs/08_knowledge/077_codex_task_workflow.md",
+      "title": "Codex görev bağlamı ve güvenilir iş akışı",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Knowledge",
+      "dependencies": [
+        "ASK-002",
+        "ASK-009",
+        "ASK-067",
+        "ASK-074",
+        "ASK-078"
+      ],
+      "sha256": "03afbed76534498aefd7a2b66c351701c78d5766d19bf4e1c16b8ed32ddde688",
+      "word_count": 345,
+      "byte_count": 3084
+    },
+    {
+      "id": "ASK-078",
+      "path": "docs/08_knowledge/078_mcp_readonly_spec.md",
+      "title": "Salt okunur MCP bilgi servisi şartnamesi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Knowledge",
+      "dependencies": [
+        "ASK-002",
+        "ASK-034",
+        "ASK-076",
+        "ASK-077",
+        "ASK-079"
+      ],
+      "sha256": "3a302226ff9cebc407c8afca76e1e2e7fa4e544743048c196f9a9067159dacc1",
+      "word_count": 353,
+      "byte_count": 3261
+    },
+    {
+      "id": "ASK-079",
+      "path": "docs/08_knowledge/079_versioning_templates.md",
+      "title": "Belge sürümleme, şablonlar ve değişiklik yönetimi",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Knowledge",
+      "dependencies": [
+        "ASK-003",
+        "ASK-009",
+        "ASK-067",
+        "ASK-076",
+        "ASK-078"
+      ],
+      "sha256": "c9779152200b9cded1bb83c9b001863d0120a8653f3de1a997ef7b27c264017d",
+      "word_count": 337,
+      "byte_count": 3134
+    },
+    {
+      "id": "ASK-080",
+      "path": "docs/08_knowledge/080_sources_evidence_limits.md",
+      "title": "Kaynaklar, doğrulama sınırları ve açık kanıtlar",
+      "version": "0.1.0",
+      "status": "proposed",
+      "owner_role": "Knowledge",
+      "dependencies": [
+        "ASK-009",
+        "ASK-026",
+        "ASK-047",
+        "ASK-048",
+        "ASK-050",
+        "ASK-076"
+      ],
+      "sha256": "9bf0d6c2ce991bf13127ab1344613920a6f4fbd3e0917e419899291b543d9356",
+      "word_count": 368,
+      "byte_count": 3522
+    }
+  ],
+  "snapshot_sha256": "3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4",
+  "total_source_words": 29961
+}

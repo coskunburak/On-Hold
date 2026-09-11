@@ -1,0 +1,802 @@
+[
+  {
+    "doc_id": "ASK-001",
+    "title": "ASKIDA — Üretim bilgi tabanı başlangıcı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/README.md",
+    "sha256": "b6f9468238831dee82fb56272ea9b5a382afdde89c4ce460b2170ac2acfd83cd",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-002",
+    "title": "Codex çalışma sözleşmesi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/AGENTS.md",
+    "sha256": "ed0c250c70e28196baa7b0b8b32d3fb9ffc7690ce2f6261c12753755d179a662",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-003",
+    "title": "Belge haritası ve okuma rotaları",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/00_foundation/003_document_map.md",
+    "sha256": "11e603f71716f8e3364ecc5707bd57d6991a590363f37a3dc0af5d7a236a5194",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-004",
+    "title": "Proje bildirgesi ve başarı tanımı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/00_foundation/004_project_charter.md",
+    "sha256": "6ae438830af7ec374b4239a8d2fb16fa631d14f24b350dc51a29b5adf710acfa",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-005",
+    "title": "Vizyon, özgün kanca ve deneyim",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/00_foundation/005_vision_hook.md",
+    "sha256": "c6b4094791c6e43f01349fe5347affeed452cedc17f741c201cb9031eef51f7f",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-006",
+    "title": "Hedef kitle ve ticari doğrulama",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/00_foundation/006_audience_market_validation.md",
+    "sha256": "e3569ac0c561ea9ff6c07ebe1b9427f2d108a8fe80afaf167db337ca538e9f86",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-007",
+    "title": "Kapsam, sürümler ve kesme sırası",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/00_foundation/007_scope_matrix.md",
+    "sha256": "e4e5b0349a2220ffd15b3c45d992c91bc6848811666aaa8a67a005e5407c0c4b",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-008",
+    "title": "Tasarım ilkeleri ve anti-hedefler",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/00_foundation/008_design_pillars.md",
+    "sha256": "1bf7ff79071e87225084fd446f187d260b39b1afc597e8acfed93bb17cc8afbd",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-009",
+    "title": "Karar kaydı ve onay bekleyenler",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/00_foundation/009_decision_register.md",
+    "sha256": "46993e3f5ed95faaac0c9b3870d60c84dbaca618d8b6fbe6014e48d93d99a365",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-010",
+    "title": "Sözlük, birimler ve başlangıç parametreleri",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/00_foundation/010_glossary_parameters.md",
+    "sha256": "b50060b42e964ef34bc2fa33b3740852f245fceb690859a0326e583374bdd346",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-011",
+    "title": "Temel oyun döngüsü ve zaman çizgisi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/011_core_loop.md",
+    "sha256": "2e12837d946ad3a7792af53ed6bad825872975104c3325350a13b36c607bd4f7",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-012",
+    "title": "Oturum ve görev durum makinesi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/012_session_state_machine.md",
+    "sha256": "2d95f938d2ce01c335a0b4e294e7f8703095d78c9da17a2e43b529ecf4ce4b0c",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-013",
+    "title": "Kontroller, kamera ve giriş niyetleri",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/013_controls_camera.md",
+    "sha256": "0413ae16b1792547333806235cdcb47e16b0f8a8cead62d3d3ee802c72acdc16",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-014",
+    "title": "Co-op roller ve oyuncu sayısı ölçekleme",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/014_cooperation_roles.md",
+    "sha256": "8c03fc6f7dd0da074a667278194e86ab04388561efbaaeec74a94755fafdc2f4",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-015",
+    "title": "Etkileşim sorgusu ve komut sözleşmesi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/015_interaction_contract.md",
+    "sha256": "e4fd36b0bf1739a04c97befc75b809382848ec99a46abd877b99f83360e3452c",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-016",
+    "title": "Eşya semantiği ve değişmezler",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/016_item_state_model.md",
+    "sha256": "0f5a6bf01876cd28093b9567819b62dc378cbc4943825fd7697d367c52416105",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-017",
+    "title": "Ortak taşıma ve kuvvet modeli",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/017_shared_carrying.md",
+    "sha256": "973d0128368857670c79103a0536a8b567418107192df410491c2682a56aa313",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-018",
+    "title": "Platform, destek kütlesi ve kontrollü eğim",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/018_platform_balance.md",
+    "sha256": "098d25d1ce32a78c129e14b6551ed2bda3e3a469427628347cac61f44657fc8a",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-019",
+    "title": "Vinç kontrolü ve kontrol kiralaması",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/019_winch_control.md",
+    "sha256": "30ad370ea11dbabb32defd37313f10a4cfcb56731c1a4911c23e0184f98b64be",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-020",
+    "title": "Sabitleme, kayış ve anchor sözleşmesi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/020_straps_anchors.md",
+    "sha256": "214a7526407a33e2bd42a45ededde162bb8d16de5e354761c56289951a2314dd",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-021",
+    "title": "Hasar ve kontrollü kırılma",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/021_damage_breakage.md",
+    "sha256": "a6f8916b82b32765ce38c160bc135234f551ccb79b5218a3a746c0229310f0b7",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-022",
+    "title": "Teslimat doğrulaması ve tek seferlik sonuç",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/022_delivery_scoring.md",
+    "sha256": "a201f546292b2d78084e21cb57e338bde6a9b0518f1659109b08d31bdc0237b2",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-023",
+    "title": "Sözleşme tanımı, başarı ve bitirme",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/023_contract_rules.md",
+    "sha256": "c5278cc093c59623446c4dae6eab377e8fbe3ff4906ccb30c5309e07b5dd8f3a",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-024",
+    "title": "İlerleme ve küçük ölçekli ekonomi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/024_progression_economy.md",
+    "sha256": "db0bdb21be565b9cb3b2aa624c4ade540a7fb37422a7681c94a53d189871cf45",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-025",
+    "title": "Düşme, sıkışma ve kurtarma kuralları",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/01_gameplay/025_recovery_failures.md",
+    "sha256": "7e9fdd9b47ebf9c5e9e439eb0d992da3a4a86101413ed915790fd40f9d1c3f28",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-026",
+    "title": "Ağ çözümü seçimi ve risk prototipi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/026_network_adr_spike.md",
+    "sha256": "9e6870ba94aeac7eb94789bf43b7c5758e534ae42880b89839db8af0046b5a91",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-027",
+    "title": "Otorite, sahiplik ve veri sınırları",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/027_authority_matrix.md",
+    "sha256": "04f2da8e253cda1de1eea8408279ea448723a5e99b07feb2f1df7e2c744616c2",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-028",
+    "title": "Komut protokolü, tekrarlar ve sıralama",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/028_command_protocol.md",
+    "sha256": "a58c8d767c3f6f3874e2a8f543e05d5dbb9d65aab47cfe44bdbd39a69a8e0f7b",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-029",
+    "title": "Çoğaltma, snapshot ve ağ ilgisi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/029_replication_snapshot.md",
+    "sha256": "ebf6e7c52fe401bd0da80c095ea95462456db1cf74f31f6981529792b1f6723d",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-030",
+    "title": "Gecikme, öngörü ve düzeltme sınırları",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/030_latency_prediction.md",
+    "sha256": "75df31076bb3dc6c7f78793a06131a3572e76ee1801af97c93fcc93ececdb7cc",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-031",
+    "title": "Lobi, Steam daveti ve bağlantı akışı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/031_lobby_steam_connectivity.md",
+    "sha256": "9899f9c111f649bd78fb774f682864301e805bbcd28bb56868231d3001ebd93f",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-032",
+    "title": "Kopma, yeniden bağlanma ve host kaybı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/032_disconnect_reconnect_hostloss.md",
+    "sha256": "33cc8815bf5fd0004dfc23010fed1910026b30fe6c1d426f5ba2300cc2bf7345",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-033",
+    "title": "Kampanya işlemleri ve kayıt otoritesi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/033_campaign_transaction.md",
+    "sha256": "827a87f73e1f63b381079415d2111b52549b6f76011be9904e0f814d79261307",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-034",
+    "title": "Ağ güvenliği ve kötüye kullanım sınırları",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/034_security_abuse.md",
+    "sha256": "3f718a6aec11fe8dabf30e50f2ff233007d6c4e309f52e34778ca9a3021c7488",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-035",
+    "title": "Multiplayer test matrisi ve kanıt",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/02_network/035_network_test_matrix.md",
+    "sha256": "91cbac7202ef82b825a1f05560fb279900620c5f1c3a4e12358d23956dad85d3",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-036",
+    "title": "Unity deposu ve dosya hiyerarşisi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/036_unity_repository.md",
+    "sha256": "d4676d7167640f0d04b1c33f071cf191560862fca9394c7bd6f5170351231502",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-037",
+    "title": "Modüller, assembly sınırları ve bağımlılıklar",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/037_module_boundaries.md",
+    "sha256": "94b90c9a27765bf9af16a44026e9f171f9815018c035022e0216208d50021fd3",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-038",
+    "title": "Bootstrap, servis ömrü ve sahne geçişleri",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/038_bootstrap_lifecycle.md",
+    "sha256": "331f7436253f8b23cf78d74016a4e1d9d56c62e3bc0d83764d2ec2003553ae89",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-039",
+    "title": "Veri şemaları ve içerik kimlikleri",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/039_data_schemas.md",
+    "sha256": "72822d4fdbd112f0708d7b19977c137805e192bce390f88048220dc71d09b80f",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-040",
+    "title": "Unity fizik uygulaması ve teknik sınırlar",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/040_physics_integration.md",
+    "sha256": "a3d7f13cd06c000975f64e7e4f02dbecc4b2991f3a29a61a0baa222447ab55c7",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-041",
+    "title": "Editör araçları ve asset kabul otomasyonu",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/041_editor_asset_validation.md",
+    "sha256": "bf7d571f2ee1c9894ef2add66498edfdea53ddc4b0887ebbcf2f03789f56b255",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-042",
+    "title": "Build, CI ve bağımlılık kilitleme",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/042_build_ci_release.md",
+    "sha256": "998fa2406139005cb9c63ec27e8106d7c2da6384deadbbc2947b700bd3dc35c5",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-043",
+    "title": "Save şeması, migration ve cloud çatışması",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/043_save_schema_migration.md",
+    "sha256": "d092cf01c01dbc9c444bd8a4dfe259bcd205d149a6b431f0045de00c1b08f72d",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-044",
+    "title": "Tanı, ölçüm ve gizlilik",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/044_telemetry_debugging.md",
+    "sha256": "a17ba572587c1f5edbc36bb09fe61919c26b298840bdcacd5fe769fb670e55d5",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-045",
+    "title": "Hata sınıfları ve güvenli bozulma",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/03_engineering/045_errors_resilience.md",
+    "sha256": "54fd45caa252d6ccf42d3755f60b905f20706b06cac473873cb30798a53fe9c1",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-046",
+    "title": "Sanat yönetimi ve paket uyumu",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/046_art_direction.md",
+    "sha256": "80e596017c170c035ecb99f422218a68b651948a0fdeacf6aab7293f375a656d",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-047",
+    "title": "Seçilecek paketler ve kullanım sınırları",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/047_package_selection.md",
+    "sha256": "fecad3b56c92e84aeaaa53aee649f914b9424e8a667f81b45307832deca50433",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-048",
+    "title": "Lisans, kaynak kaydı ve AI kullanımı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/048_licenses_provenance.md",
+    "sha256": "9097152ffd64bbd2c7bfa33a6a75894094899787780be8c793b2a8420ed36979",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-049",
+    "title": "Her nesne için üretim şartnamesi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/049_prop_asset_spec.md",
+    "sha256": "a80888c47a1a42df25b8f6795b32b77b4095af5044e91a02bc5eee4b2ff2dc34",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-050",
+    "title": "Astra/Codex ile Blender üretimi ve export",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/050_ai_blender_export.md",
+    "sha256": "9c74ffd50c0308b1b15960008ffc0c7b23a7c8a35b98d09093fbe16e2320b791",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-051",
+    "title": "Karakter, rig ve el IK standardı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/051_character_rig.md",
+    "sha256": "4c371a8a7785c3a87036c0c60347e43c5755f07ea092603c64dc137d12e9a615",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-052",
+    "title": "Animasyon grafiği ve gerekli klipler",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/052_animation_graph.md",
+    "sha256": "41d95a5e486f082bd5e7388fe7fb71d3e1e98d60a6c63015d5feb4abe55d5074",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-053",
+    "title": "Malzeme, texture ve aydınlatma standardı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/053_materials_textures_lighting.md",
+    "sha256": "faa6788c37d3afa014f9dc7c19e9ad593b08732b1941aee97a29ee371d909fc4",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-054",
+    "title": "VFX, geri bildirim ve havuzlama",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/054_vfx_feedback.md",
+    "sha256": "4a73893d4b19f58739b677d6d4d25d8adb0e178e522398c0bd4ab0ad7acb99eb",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-055",
+    "title": "Ses tasarımı, miks ve sesli iletişim",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/04_art/055_audio_sound_design.md",
+    "sha256": "45662f5f40f06d7961b3fd9421c57264f3a01094926f94658b955351644bf794",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-056",
+    "title": "Modüler dünya kiti ve apartman kimliği",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/05_content/056_modular_world_kit.md",
+    "sha256": "8c91cc9decc629e405423519a5f755ab979e8a6c1b3f9b4985b5d154a91c065c",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-057",
+    "title": "Blockout ve oynanabilir alan metrikleri",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/05_content/057_blockout_metrics.md",
+    "sha256": "d43a978630e8c944f3571b43e9cfe6ea363a8e76ca4bbb6a16dac6e85f6250bc",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-058",
+    "title": "Seviye 1 — Avlu apartmanı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/05_content/058_level_one_courtyard.md",
+    "sha256": "5356ae4da26b268f30239365bbfd18c3d5dca10357027271fac65a5cc113cad9",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-059",
+    "title": "Seviye 2–3 — Kapsamlı varyasyon planı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/05_content/059_levels_two_three.md",
+    "sha256": "94db3aa2a1eb717c0e83a90e21fac0318c82740bce737a1f6a03df45f302d485",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-060",
+    "title": "On iki sözleşmelik içerik taslağı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/05_content/060_contract_catalog.md",
+    "sha256": "3e7a5fcf4af3c3fdc3c8ab184b08bc109dc1feeaf2969d111b8a1d318d769a8e",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-061",
+    "title": "Varlık envanteri ve üretim kuyruğu",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/05_content/061_asset_inventory.md",
+    "sha256": "15b67471cb6395b5f797642bdb0ed06c7f6707dbdf6194db5ab56fe51703e5ec",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-062",
+    "title": "Arayüz ve bilgi hiyerarşisi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/05_content/062_ui_information.md",
+    "sha256": "47348c8a61f6ef4e5f607b2055e496f9d12f90790e3cfa101dc7206a7ca5f98f",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-063",
+    "title": "Erişilebilirlik ve kamera konforu",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/05_content/063_accessibility.md",
+    "sha256": "8e49d521023db3e07e0241166e7778cacd3f524806922b0631ddfa8150aac286",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-064",
+    "title": "Yerelleştirme ve öğretici tasarımı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/05_content/064_localization_onboarding.md",
+    "sha256": "56afa17fa6e776276100e1651c43e7adb91451a9dd858bab6ae88ff5ecc1c936",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-065",
+    "title": "Performans hedefi ve ölçüm disiplini",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/06_quality/065_performance_targets.md",
+    "sha256": "cd309393705d6e546b1ce831cf7b23ca22943bd428919ab05a38277bddf6a11f",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-066",
+    "title": "Başlangıç asset, render ve fizik bütçeleri",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/06_quality/066_render_physics_asset_budgets.md",
+    "sha256": "d7627073a33912e54d48cb7ffbc89c2ad1ed41cf55c067264be465455613e1a4",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-067",
+    "title": "Test stratejisi ve gereksinim izlenebilirliği",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/06_quality/067_test_strategy_traceability.md",
+    "sha256": "e29db0ef1582e739a85eca9aaea10501cf30901a7c94e9d135db91f191057651",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-068",
+    "title": "Oyuncu testi, eğlence ve okunurluk",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/06_quality/068_playtest_protocol.md",
+    "sha256": "5b553320c337dcae099e8344fccbf23306585d3a7e2ec38ffeec54f99cdd8ee7",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-069",
+    "title": "Milestone kalite kapıları ve bitmiş iş",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/06_quality/069_quality_gates.md",
+    "sha256": "83589d8bf450b32e72b952fab1f13aa6602fee4fdc581b02d278d8f171d0aef1",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-070",
+    "title": "Regresyon, destek ve yayın sonrası triyaj",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/06_quality/070_release_regression_support.md",
+    "sha256": "8f35524c7ed0f2b690da5063712d08e47f707f26bcec17b9a81296cccf940e8e",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-071",
+    "title": "Üretim yol haritası ve kapasite senaryoları",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/07_production/071_roadmap_capacity.md",
+    "sha256": "31b04de07aa80134da4ddc0247decb855f0e7a1d6fa87bfafcf889e80d549e8f",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-072",
+    "title": "Ekip rolleri, review ve çalışma ritmi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/07_production/072_team_workflow.md",
+    "sha256": "c940d625194af7200450c2b013da977daad86698c88d67286ae50f7b1237a828",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-073",
+    "title": "Risk defteri ve azaltma planı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/07_production/073_risk_register.md",
+    "sha256": "1578a140b16df6b9d2d4a874998074af271a62361e7d2527a9945c734273f3da",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-074",
+    "title": "Başlangıç backlog'u ve ilk iki sprint",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/07_production/074_backlog_first_sprints.md",
+    "sha256": "e2cec7fd6b1ec36faffe6e5257d8cf7b42a1d886e6b137e5b1083c45d810fb71",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-075",
+    "title": "Steam hazırlığı, demo ve yayın kontrolü",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/07_production/075_steam_launch_plan.md",
+    "sha256": "1a9c3af9c2270e29b18ff09e6618d9a6cf6070b731a1bbb1be84c1b5f309854a",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-076",
+    "title": "Notebook aktarımı ve tek kaynak ilkesi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/08_knowledge/076_notebook_import.md",
+    "sha256": "0cc2ab7e7d7281e7f192cb2e43564107bbf71f0780a02dd8e447a11d93ef8024",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-077",
+    "title": "Codex görev bağlamı ve güvenilir iş akışı",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/08_knowledge/077_codex_task_workflow.md",
+    "sha256": "03afbed76534498aefd7a2b66c351701c78d5766d19bf4e1c16b8ed32ddde688",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-078",
+    "title": "Salt okunur MCP bilgi servisi şartnamesi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/08_knowledge/078_mcp_readonly_spec.md",
+    "sha256": "3a302226ff9cebc407c8afca76e1e2e7fa4e544743048c196f9a9067159dacc1",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-079",
+    "title": "Belge sürümleme, şablonlar ve değişiklik yönetimi",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/08_knowledge/079_versioning_templates.md",
+    "sha256": "c9779152200b9cded1bb83c9b001863d0120a8653f3de1a997ef7b27c264017d",
+    "read_status": "REFERENCE_INDEXED"
+  },
+  {
+    "doc_id": "ASK-080",
+    "title": "Kaynaklar, doğrulama sınırları ve açık kanıtlar",
+    "version": "0.1.0",
+    "status": "proposed",
+    "last_reviewed": "2026-09-07",
+    "path": "docs/ASKIDA_Production_Blueprint_v0.1/docs/08_knowledge/080_sources_evidence_limits.md",
+    "sha256": "9bf0d6c2ce991bf13127ab1344613920a6f4fbd3e0917e419899291b543d9356",
+    "read_status": "REFERENCE_INDEXED"
+  }
+]

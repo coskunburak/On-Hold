@@ -1,0 +1,414 @@
+ASKIDA KNOWLEDGE SNAPSHOT v0.1.0
+VOLUME: 04/10
+SNAPSHOT: 3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4
+STATUS: PROPOSED; GAME TESTS NOT RUN; READ-ONLY DERIVED COPY.
+Canonical Markdown documents remain the source of truth.
+
+DOCUMENT: ASK-025
+PATH: docs/01_gameplay/025_recovery_failures.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 7e9fdd9b47ebf9c5e9e439eb0d992da3a4a86101413ed915790fd40f9d1c3f28
+
+---
+doc_id: ASK-025
+title: "Düşme, sıkışma ve kurtarma kuralları"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-016","ASK-021","ASK-023","ASK-032"]
+---
+
+# Düşme, sıkışma ve kurtarma kuralları
+
+## Oyuncu düşmesi
+Oyuncu kill volume'a girince gameplay incapacitated durumuna alınır; holder ve driver hakları temizlenir. Kısa görsel geçişten sonra host tarafından seçilen güvenli oyuncu noktasına döner. Kalıcı can/ölüm ekonomisi v1'de yoktur. Kamera düşüşü rahatsız edici hızda devam ettirilmez; hareket azaltma tercihi uygulanır. Taşıdığı eşya otomatik cebine ışınlanmaz.
+
+## Eşya dünya dışı kurtarması
+Available ve integrity sıfırdan büyük eşya kill volume'a girerse, recoveryCount sınırın altındaysa son doğrulanmış item recovery noktasına Free olarak alınır. Holder ve anchor temizlenir; doğrusal/açısal hız sıfırlanır; mevcut hasar korunur. RecoveryCount artar. Başlangıç önerisi her kurtarmada kalan görev süresinden 15 saniye düşmektir; bunun ekonomi değil zaman cezası olduğu UI'da görünür. Süre sıfıra iner ise normal Settling başlar.
+
+İki kurtarma hakkı kullanılmış eşyada sonraki dünya dışı olay Lost üretir. Terminal Delivered/Lost item kurtarılamaz. Kurtarma alanı boş değilse sıradaki authored nokta denenir; hepsi doluysa kontrollü bekleme/kuyruk kullanılır, başka item'ın içine spawn yapılmaz.
+
+## Sıkışma
+Oyuncu “sıkıştım” kurtarma isteği için kısa bekleme ve cooldown kullanabilir; host güvenli nokta doğrular. Eşyaya sınırsız isteğe bağlı teleport v1'de verilmez; rota atlatma sömürüsü yaratır. Teknik olarak takılan eşya raporu tanı verisine girer. Geliştirme debug rescue'su yayın build'inde ekonomik oyun kuralı değildir.
+
+## İletişim
+Oyuncuya düşmenin maliyeti ve geri dönüş yeri önceden öğretilir. Ağ düzeltmesi veya sahne yükleme hatası normal oyuncu cezası olarak gizlenmez. Sistem kaynaklı reset ayrıca reasonCode taşır; shipping hatasını “oyunun kaosu” diye kabul etmeyin.
+
+## Test
+Aynı kill volume callback'i tekrarında sayaç bir artar; eşzamanlı hasar ve kurtarmada sıfır integrity canlanmaz; dolu kurtarma alanı penetrasyon üretmez; oyuncu koparken düşerse hayalet avatar kalmaz. Platform üzerinde oyuncu yeniden doğurtulmaz; güvenli sabit zemin tercih edilir.
+
+## Gereksinim ve test izleri
+- REQ-014 → TC-014 — Kurtarma terminal item'ı canlandırmamalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-016 — Eşya semantiği ve değişmezler](016_item_state_model.md)
+- [ASK-021 — Hasar ve kontrollü kırılma](021_damage_breakage.md)
+- [ASK-023 — Sözleşme tanımı, başarı ve bitirme](023_contract_rules.md)
+- [ASK-032 — Kopma, yeniden bağlanma ve host kaybı](../02_network/032_disconnect_reconnect_hostloss.md)
+
+
+
+DOCUMENT: ASK-026
+PATH: docs/02_network/026_network_adr_spike.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 9e6870ba94aeac7eb94789bf43b7c5758e534ae42880b89839db8af0046b5a91
+
+---
+doc_id: ASK-026
+title: "Ağ çözümü seçimi ve risk prototipi"
+version: 0.1.0
+status: proposed
+owner_role: TechLead
+last_reviewed: 2026-09-07
+dependencies: ["ASK-009","ASK-027","ASK-030","ASK-035","ASK-040"]
+---
+
+# Ağ çözümü seçimi ve risk prototipi
+
+## Öneri ve açık karar
+Host-authoritative listen-server önerilir; ağ framework'ü ve internet taşıma yolu henüz seçilmedi. Unity NGO bir adaydır, seçilmiş üretim bağımlılığı değildir. Steam lobi hizmeti, rigidbody replication veya NAT bağlantısının tamamı değildir. Lobi kimliği ile oyun bağlantısı ayrı katmanlardır.
+
+## Karşılaştırma alanı
+A adayı: NGO + doğrulanmış Unity transport/hizmet yolu. B adayı: NGO ile uyumluluğu kanıtlanmış SteamNetworkingSockets/SDR adapter yolu. B için bakımlı adapter, lisans, platform binary'leri, API uyumu ve test gerekir; resmi yerleşik NGO Steam transport varsayılmaz. Başka framework eklemek yalnız adaylar kritik ölçütleri karşılamazsa gerekçeli ADR değişikliğiyle olur. İki framework birlikte oyuna alınmaz.
+
+## İki haftalık risk çalışması
+Gün 1–2: sürüm matrisi, host/client build, tek shared item. Gün 3–5: iki holder, hareketli platform, uzaktan input ve tanı kayıtları. Gün 6–7: gerçek internet bağlantısı ve davet yolu, iki ayrı makine/ağ. Gün 8–9: 2/4 oyuncu, gecikme/kayıp, disconnect cleanup. Gün 10: test klipleri, ölçüm, aday karşılaştırması ve devam/daralt kararı. Bu bir zaman kutusudur; başarı garantisi değildir.
+
+## Ölçüm
+150 ms RTT ve %1 kayıpta ortak taşıma okunurluğu; platform üzerinde relative poz hatası; correction büyüklüğü/sıklığı; host fizik süresi; oyuncu başı trafik; bağlantı başarısızlık nedeni; release sonrası kalan holder/joint. Rakamlar seçili build, makine ve network profiliyle saklanır. Editor localhost testi tek kanıt olamaz.
+
+## Resmi davranış ve sınır
+NGO NetworkRigidbody belgeleri otorite dışında kinematik simülasyon ve NetworkTransform otorite ilişkisini açıklar. Bu mekanizma kendi başına yüksek kaliteli ortak taşıma tahmini sağlamaz. [Unity NetworkRigidbody](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.9/manual/components/helper/networkrigidbody.html). Unreal alternatifi de gecikme ve fizik çarpışmalarını ücretsiz çözmez; [Networked Physics Overview](https://dev.epicgames.com/documentation/unreal-engine/networked-physics-overview).
+
+## Karar kapısı
+İki adaydan geçen seçilir ve exact version, license, sample commit, known issues ADR'ye yazılır. Hiçbiri geçmezse platformu daha kısıtlı hareket ettir veya eşya kuvvet modelini sadeleştir; kötü ağ hissinin üzerine üç bina üretme.
+
+## Gereksinim ve test izleri
+- REQ-001 → TC-001 — Motor ve sürüm kararı kanıtla seçilmeli
+- REQ-007 → TC-007 — Gerçek internet bağlantısı doğrulanmalı
+- REQ-008 → TC-008 — Risk kapısı kanıtla kapanmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-009 — Karar kaydı ve onay bekleyenler](../00_foundation/009_decision_register.md)
+- [ASK-027 — Otorite, sahiplik ve veri sınırları](027_authority_matrix.md)
+- [ASK-030 — Gecikme, öngörü ve düzeltme sınırları](030_latency_prediction.md)
+- [ASK-035 — Multiplayer test matrisi ve kanıt](035_network_test_matrix.md)
+- [ASK-040 — Unity fizik uygulaması ve teknik sınırlar](../03_engineering/040_physics_integration.md)
+
+
+
+DOCUMENT: ASK-027
+PATH: docs/02_network/027_authority_matrix.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 04f2da8e253cda1de1eea8408279ea448723a5e99b07feb2f1df7e2c744616c2
+
+---
+doc_id: ASK-027
+title: "Otorite, sahiplik ve veri sınırları"
+version: 0.1.0
+status: proposed
+owner_role: Network
+last_reviewed: 2026-09-07
+dependencies: ["ASK-015","ASK-016","ASK-028","ASK-033"]
+---
+
+# Otorite, sahiplik ve veri sınırları
+
+## Otorite matrisi
+| Veri/iş | Host | İstemci |
+|---|---|---|
+| Shared item poz/hız | Simüle eder | Görsel çoğaltma |
+| Tutma/sabitleme kabulü | Doğrular ve değiştirir | Niyet yollar |
+| Platform denge/vinç | Hesaplar | Input ve gösterim |
+| Hasar/teslimat/para | Tek kaynak | Salt okunur |
+| Kamera/yerel UI | Gerekmez | Yönetir |
+| Kozmetik parçacık | Event kimliği üretir | Havuzdan gösterir |
+| Kampanya kaydı | Kalıcı yazar | Host değilse yazmaz |
+
+Host oyuncusu da mümkün olduğunca aynı komut doğrulama yolundan geçer. Sadece “yerel olduğu için” mesafe, bakiye veya handling koşulunu atlamaz. Ağ framework ownership'ünü istemciye vermek domain otoritesini devretme kararı değildir.
+
+## Bileşen sınırı
+NetworkAdapter giriş paketini DomainCommand'a çevirir. DomainService önkoşulları ve state değişimini yönetir. PhysicsAdapter güvenli motor etkisini uygular. Presentation domain olaylarını gösterir. UI'dan Rigidbody veya CampaignStore'a gizli doğrudan çağrı yapılamaz. Ancak her küçük sınıf için gereksiz servis zinciri de kurulmaz; sınır gerçek güvenlik veya test ihtiyacına dayanır.
+
+## Host'un güven sınırı
+Listen host teknik olarak kendi oyununun belleğini değiştirebilir. V1 bu konuda güçlü anti-cheat veya rekabet adaleti iddiası taşımaz. Buna rağmen uzak istemcinin yetkisiz komutu, yanlış item kimliği veya kasten aşırı paket trafiği sınırlandırılır. Host hilesini engellemek ayrı sunucu mimarisi ve işletim maliyetidir.
+
+## Yayınlanabilir veri
+İstemciye gönderilen snapshot minimum gerekli görev ve item durumunu içerir. Yerel dosya yolu, token, kullanıcı e-postası veya gereksiz Steam profil verisi gönderilmez. Görünüm kimlikleri whitelist içeriğe referans verir; istemcinin arbitrary asset path yükletmesi mümkün olmamalıdır.
+
+## Kabul
+Bir istemci script'i kendi transform'unu veya local cüzdan UI değerini değiştirince authoritative teslimat/para etkilenmez. Host-local ile remote aynı geçersiz komutu aynı reasonCode ile reddeder. Authority geçişi v1'de gizli bir eşya sahipliği devriyle yapılmaz.
+
+## Gereksinim ve test izleri
+- REQ-003 → TC-003 — İstemci paylaşılan state'i doğrudan değiştirememeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-015 — Etkileşim sorgusu ve komut sözleşmesi](../01_gameplay/015_interaction_contract.md)
+- [ASK-016 — Eşya semantiği ve değişmezler](../01_gameplay/016_item_state_model.md)
+- [ASK-028 — Komut protokolü, tekrarlar ve sıralama](028_command_protocol.md)
+- [ASK-033 — Kampanya işlemleri ve kayıt otoritesi](033_campaign_transaction.md)
+
+
+
+DOCUMENT: ASK-028
+PATH: docs/02_network/028_command_protocol.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: a58c8d767c3f6f3874e2a8f543e05d5dbb9d65aab47cfe44bdbd39a69a8e0f7b
+
+---
+doc_id: ASK-028
+title: "Komut protokolü, tekrarlar ve sıralama"
+version: 0.1.0
+status: proposed
+owner_role: Network
+last_reviewed: 2026-09-07
+dependencies: ["ASK-015","ASK-027","ASK-029","ASK-034"]
+---
+
+# Komut protokolü, tekrarlar ve sıralama
+
+## Önerilen zarf
+CommandEnvelope: protocolVersion, sessionEpoch, connectionGeneration, requestId, sequence, targetId, expectedRevision, commandType, boundedPayload. Actor kimliği payload'dan değil doğrulanmış bağlantı eşlemesinden alınır. ClientTime yalnız tanı veya sınırlandırılmış tahmin için olabilir; zaman aşımını geriye almak için güvenilmez.
+
+## İşleme
+Parse ve boyut sınırı → oturum/protokol → actor eşlemesi → rate limit → request dedup → komut özel doğrulaması → domain transaction → revision/event → sonuç. Yanıt requestId, accepted/rejected, reasonCode, authoritativeRevision ve gerekirse küçük düzeltme state'i taşır.
+
+## Tekrar yönetimi
+Kontrol komutları için bağlantı başına sınırlı dedup cache tutulur; başlangıç hedefi son 256 request ve en az 10 saniyelik pencere, gerçek trafikle ayarlanır. Sequence eski veya cache dışı tekrarları reddetmek için de kullanılır; reconnect aynı sessionEpoch içinde yeni connectionGeneration ve sequence bağlamıyla başlar. Teslimat ve kalıcı ödeme için yalnız bu geçici cache yeterli değildir: item/run ve transactionId kayıtları kalıcı semantik idempotency sağlar.
+
+## Revision politikası
+Destructive veya münhasır eylem güncel revision gerektirir. İkinci Grab hedefinin revision'ı değişmişse yeni state üzerinde boş yuva ve erişim yeniden değerlendirilerek kontrollü kabul edilebilir; bunu genel “stale her zaman kabul” kuralına çevirmeyin. Release kendi holder hakkını kaldırırken eski revision nedeniyle kilitlenmez. Secure ve satın alma stale ise açık ret ve güncelleme gerekir.
+
+## Paket türleri
+Sık hareket niyetleri sıra numaralı, eski veri atılabilir kanalda; yaşam döngüsü ve sonuçlar güvenilir kanalda taşınabilir. Güvenilir kanal kayıp altında head-of-line gecikmesi üretebileceğinden bütün transform'ları güvenilir yapmak doğru değildir. Kesin kanal seçimi seçilen framework'ün davranışıyla doğrulanır.
+
+## Fuzz testleri
+NaN/Infinity hedef, eksi ID, çok uzun string, bilinmeyen enum, 1 MB payload, sahte actor, eski epoch, yinelenen sequence. Hepsi sınırlı kaynak kullanımıyla reddedilmeli; exception storm veya log diski dolması yaratmamalıdır. Kütle/fiyat/hasar miktarı istemciden kabul edilen alan değildir.
+
+## Gereksinim ve test izleri
+- REQ-003 → TC-003 — İstemci paylaşılan state'i doğrudan değiştirememeli
+- REQ-010 → TC-010 — Anchor işlemi tek ve atomik olmalı
+- REQ-022 → TC-022 — Bozuk komut sınırlı kaynakla reddedilmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-015 — Etkileşim sorgusu ve komut sözleşmesi](../01_gameplay/015_interaction_contract.md)
+- [ASK-027 — Otorite, sahiplik ve veri sınırları](027_authority_matrix.md)
+- [ASK-029 — Çoğaltma, snapshot ve ağ ilgisi](029_replication_snapshot.md)
+- [ASK-034 — Ağ güvenliği ve kötüye kullanım sınırları](034_security_abuse.md)
+
+
+
+DOCUMENT: ASK-029
+PATH: docs/02_network/029_replication_snapshot.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: ebf6e7c52fe401bd0da80c095ea95462456db1cf74f31f6981529792b1f6723d
+
+---
+doc_id: ASK-029
+title: "Çoğaltma, snapshot ve ağ ilgisi"
+version: 0.1.0
+status: proposed
+owner_role: Network
+last_reviewed: 2026-09-07
+dependencies: ["ASK-016","ASK-018","ASK-028","ASK-030","ASK-032"]
+---
+
+# Çoğaltma, snapshot ve ağ ilgisi
+
+## Veri sınıfları
+Düşük frekanslı güvenilir state: lifecycle, handling, holderIds, anchor, integrity değişimi, görev durumu. Yüksek frekanslı pose: item/platform poz ve hızları, server tick. Yerel kozmetik: el lerp'i, toz, metal gıcırtısı. Bir VFX spawn'ı için ayrı network rigidbody oluşturulmaz.
+
+## Başlangıç snapshot'ı
+Reconnect snapshot'ı sessionEpoch, ContractRun, görev saati, phase, item registry, platform state, active players, delivery ledger özeti ve son committed campaign revision taşır. Client registry kurulmadan pose uygulanmaz. Snapshot sırasında oluşan olaylar baseline tick sonrası tamponlanır veya yeni snapshot alınır; karışık iki zaman düzeyi yüklenmez.
+
+## Hareketli referans çerçevesi
+Platform üzerinde local-space render interpolation faydalı olabilir ama otoriter world state ile ilişki açık olmalıdır. Platform world pozu ve item world pozu farklı gecikme tamponlarından gösterilirse eşya kayıyormuş gibi görünür. Aynı render zamanına örnekleme, parent değiştirme sınırı ve unsecure world pose koruması ayrı test edilir.
+
+## Ağ ilgisi
+Küçük tek bina seviyesinde önce tüm gameplay nesnelerini açıkça çoğaltarak doğruluk sağlanır. Interest management yalnız trafik ölçümü ihtiyaç gösterirse eklenir. Oyuncudan uzak diye mandatory item semantiği unutulamaz. Uyuyan serbest eşyaların pose sıklığı azaltılabilir; uyandırma ve state geçişleri güvenilir biçimde görünür olmalıdır.
+
+## Bant genişliği hesabı
+N aktif obje × gönderim/saniye × payload byte × alıcı sayısı kaba host çıkışını verir; protokol başlıkları, güvenilir tekrarlar ve şifreleme ayrıca ölçülür. Örnek 30 × 20 × 48 × 3 = 86.400 byte/s ham pose verisidir; gerçek trafik veya garanti edilmiş paket boyutu değildir. Profiler/wire capture ile doğrulama gerekir.
+
+## Kabul
+Late snapshot alan oyuncu doğru anchor ve holder'ları görür; Delivered eşya yeniden spawn olmaz; uyuyan item hareket edince kalıcı donuk kalmaz. UI revision ile pose tick aynı kavram sayılmaz. Serialize schema değişiminde protokol uyumsuzluğu açıkça reddedilir.
+
+## Gereksinim ve test izleri
+- REQ-016 → TC-016 — Misafir reconnect temiz snapshot almalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-016 — Eşya semantiği ve değişmezler](../01_gameplay/016_item_state_model.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](../01_gameplay/018_platform_balance.md)
+- [ASK-028 — Komut protokolü, tekrarlar ve sıralama](028_command_protocol.md)
+- [ASK-030 — Gecikme, öngörü ve düzeltme sınırları](030_latency_prediction.md)
+- [ASK-032 — Kopma, yeniden bağlanma ve host kaybı](032_disconnect_reconnect_hostloss.md)
+
+
+
+DOCUMENT: ASK-030
+PATH: docs/02_network/030_latency_prediction.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 75df31076bb3dc6c7f78793a06131a3572e76ee1801af97c93fcc93ececdb7cc
+
+---
+doc_id: ASK-030
+title: "Gecikme, öngörü ve düzeltme sınırları"
+version: 0.1.0
+status: proposed
+owner_role: Network
+last_reviewed: 2026-09-07
+dependencies: ["ASK-017","ASK-018","ASK-026","ASK-029","ASK-035"]
+---
+
+# Gecikme, öngörü ve düzeltme sınırları
+
+## Üç ayrı gecikme
+Input'un host'a ulaşması, host sonucunun gelmesi ve interpolation tamponunun gösterim gecikmesi birbirinden ayrılır. 150 ms RTT için her yönde sabit 75 ms varsayımı ölçüm yerine geçmez. Jitter ve paket kaybı, ortalama RTT kadar önemlidir.
+
+## İlk yaklaşım
+Paylaşılan rigidbody'ler host simülasyonu + istemci interpolasyonu kullanır. Yerel oyuncu hareketinde prediction/reconciliation ihtiyacı ayrı değerlendirilir. Yerel el ve etkileşim highlight'ı hızlı niyet gösterebilir; eşyanın kabul edilmemiş pozunu kesin gerçekmiş gibi otoriteye yazmaz. İlk prototip ağır objelerde tam fizik rollback içermez.
+
+## Düzeltme politikası
+Küçük görsel hata kısa süreli blend, büyük veya güvenlik açısından geçersiz poz hard correction gerektirebilir. Eşikler metre ve derece olarak profile'da açık tutulur; henüz sayısal kabul eşiği dondurulmadı. Collider authoritative temsil ile render child ayrımı düşünülür. Sonsuz smoothing item'ı duvar içinde bırakmamalıdır.
+
+## Platform riski
+Karakter platform hareketini hem base velocity hem transform parent ile iki kez alırsa kayma/fırlama oluşur. NetworkTransform ile custom servo aynı rigidbody'yi aynı anda sürerse jitter oluşur. Tek veri sahibi ve tek uygulama noktası şarttır. Platformun dönme noktasına göre noktasal hız, center velocity'den farklıdır; indirme/bırakma testinde bu fark görünür olur.
+
+## Gerileme senaryoları
+0/50/100/150/250 ms RTT; 0/15/40 ms jitter; %0/%1/%3/%5 kayıp ayrı profillerde sınanır. Her kombinasyonun tam çarpımını ilk sprintte çalıştırmak gerekmez; risk matrisi çiftleri seçer. 250 ms/%5 profili konfor garantisi değil kontrollü bozulma testidir: crash, sonsuz kilit veya para hatası olmamalıdır.
+
+## Kabul kanıtı
+Host ve istemci eşzamanlı video, server tick log'u, correction histogramı ve oyuncu gözlemi birlikte değerlendirilir. “Localhost'ta iyi” karar değildir. Eşiği geçmeyen shared carry varsa daha hızlı snapshot'a körlemesine geçmeden input/otorite ve moving-base hatası araştırılır.
+
+## Gereksinim ve test izleri
+- REQ-006 → TC-006 — Ağ stresinde state bozulmamalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-017 — Ortak taşıma ve kuvvet modeli](../01_gameplay/017_shared_carrying.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](../01_gameplay/018_platform_balance.md)
+- [ASK-026 — Ağ çözümü seçimi ve risk prototipi](026_network_adr_spike.md)
+- [ASK-029 — Çoğaltma, snapshot ve ağ ilgisi](029_replication_snapshot.md)
+- [ASK-035 — Multiplayer test matrisi ve kanıt](035_network_test_matrix.md)
+
+
+
+DOCUMENT: ASK-031
+PATH: docs/02_network/031_lobby_steam_connectivity.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 9899f9c111f649bd78fb774f682864301e805bbcd28bb56868231d3001ebd93f
+
+---
+doc_id: ASK-031
+title: "Lobi, Steam daveti ve bağlantı akışı"
+version: 0.1.0
+status: proposed
+owner_role: Network
+last_reviewed: 2026-09-07
+dependencies: ["ASK-012","ASK-026","ASK-032","ASK-075"]
+---
+
+# Lobi, Steam daveti ve bağlantı akışı
+
+## Katmanları karıştırma
+Steam lobby grup keşfi/daveti ve metadata taşımak için kullanılabilir. Oyun durumunu çoğaltan netcode ve gerçek paketleri taşıyan transport ayrı işlerdir. Başarılı Steam daveti, peer bağlantısının başarılı olduğu veya NAT sorununun çözüldüğü anlamına gelmez. [Steam multiplayer belgeleri](https://partner.steamgames.com/doc/features/multiplayer) ve [matchmaking](https://partner.steamgames.com/doc/features/multiplayer/matchmaking).
+
+## Bağlantı sırası
+Davet veya lobby seçimi → erişim uygunluğu → build/protocol/content manifest kontrolü → transport bağlantısı → oturum doğrulaması → oyuncu yuvası → lobi snapshot → hazır. Lobby metadata'sı güvenilir gameplay kararı değildir; host handshake tekrar doğrular. Maksimum dört oyuncu kontrolü hem lobby hem host giriş sınırında yapılır.
+
+## V1 politikası
+Arkadaş/davet odaklı erişim; rastgele public matchmaking zorunlu değil. Lobby/Hub'da yeni oyuncu alınır. Active içinde yeni kimlikli oyuncu spectate veya oynama hakkı almaz; açık mesajla sonraki turu bekler. Önceden başlamış oyuncunun rezervli reconnect'i ayrı akıştır.
+
+## Transport seçimi
+SteamNetworkingSockets veya SDR kullanımının gerektirdiği SDK/adapter, dağıtım dosyaları ve test hesapları karar kaydına girer. Unity hizmet yolu seçilirse servis maliyeti, hesap gereksinimi ve Steam davetini o bağlantı bilgisine eşleme yöntemi ayrıca belirtilir. [Steam Datagram Relay](https://partner.steamgames.com/doc/features/multiplayer/steamdatagramrelay). Bu arşiv etkin Steamworks hesabı veya çalışan adapter içermez.
+
+## Hata deneyimi
+BuildMismatch, ContentMismatch, LobbyFull, SessionInProgress, AuthFailed, ConnectTimeout ve HostUnavailable ayrı yerelleştirme anahtarlarıdır. “Bir hata oluştu” tek sonucu yeterli değildir. Yeniden deneme tekrar slot yaratmaz; iptal cleanup tamamlanmadan yeni bağlantı başlatılmaz.
+
+## Kabul
+İki fiziksel PC ve mümkünse farklı ağlarla davet, iptal, tam lobi ve sürüm uyuşmazlığı sınanır. Özel token ve bağlantı bileti loglanmaz. Steam servisinin erişilemez olduğu durumda kullanıcı sonsuz spinner'da kalmaz.
+
+## Gereksinim ve test izleri
+- REQ-007 → TC-007 — Gerçek internet bağlantısı doğrulanmalı
+- REQ-015 → TC-015 — Lobi ve content handshake uyumlu olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-012 — Oturum ve görev durum makinesi](../01_gameplay/012_session_state_machine.md)
+- [ASK-026 — Ağ çözümü seçimi ve risk prototipi](026_network_adr_spike.md)
+- [ASK-032 — Kopma, yeniden bağlanma ve host kaybı](032_disconnect_reconnect_hostloss.md)
+- [ASK-075 — Steam hazırlığı, demo ve yayın kontrolü](../07_production/075_steam_launch_plan.md)
+
+
+
+DOCUMENT: ASK-032
+PATH: docs/02_network/032_disconnect_reconnect_hostloss.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 33cc8815bf5fd0004dfc23010fed1910026b30fe6c1d426f5ba2300cc2bf7345
+
+---
+doc_id: ASK-032
+title: "Kopma, yeniden bağlanma ve host kaybı"
+version: 0.1.0
+status: proposed
+owner_role: Network
+last_reviewed: 2026-09-07
+dependencies: ["ASK-012","ASK-016","ASK-019","ASK-029","ASK-033"]
+---
+
+# Kopma, yeniden bağlanma ve host kaybı
+
+## Misafir kopması
+Host bağlantı kaybını belirleyince holder ve driver haklarını temizler, avatarı gameplay temasından çıkarır ve yuvasını P-RECONNECT-SEC süresince aynı doğrulanmış oyuncu kimliğine ayırır. Dünya ve zamanlayıcı devam eder; genel pause yoktur. Holder cleanup grace süresini beklemez.
+
+## Yeniden bağlanma
+Doğrulanan aynı oyuncu, geçerli epoch ve rezerv varsa güncel snapshot alır. Yeni input sequence bağlamı açılır; eski bağlantının tampon komutları işletilmez. Oyuncu sabit güvenli spawn noktasına gelir, platform üzerinde kaldığı poz otomatik geri yüklenmez. Önceki tuttuğu eşya tekrar eline yapışmaz; bu sırada başka oyuncu onu teslim etmiş olabilir.
+
+## Rezerv bitimi
+Rezerv bittiğinde aktif turda yeni oyuncuya yuva açılmaz; sonraki Lobby/Hub aşamasına kadar başlangıç roster'ı korunur. Eski oyuncu geç gelirse tur devam ediyor mesajı görür. Oyuncu sayısına göre görev hedefleri Active sırasında değişmez.
+
+## Yalnız kalan host
+Tur zaten başlamışsa host tek başına sürdürmeyi veya abort etmeyi seçebilir. Tek kişi yeni tur başlatamaz. Tamamlama mümkün değilse abort mevcut tur kazançlarını kaybettirir; önceki kampanya ilerlemesini değil. İşlerin iki kişi tasarlandığı ve tek başına bitişin garanti olmadığı açıklanır.
+
+## Host kaybı
+V1 host migration içermez. İstemciler bağlantı kaybı ekranı ve yeniden lobi seçenekleri alır. Tur ortası fizik checkpoint'i yoktur; host yeniden açtığında son başarıyla commit edilmiş kampanya checkpoint'i yüklenir. Aktif turdaki teslimatlar ve henüz kaydedilmemiş sonuç kaybolabilir. UI bu sınırlamayı gizlemez.
+
+## Test
+Holder kopması, vinç sürücüsü kopması, reconnect snapshot sırasında ikinci kopma, aynı hesabın çift giriş denemesi, host'un Settling öncesi/sonrası kapanması. İki aktif avatar veya tekrar ödeme olmamalıdır. Bağlantı tespiti süresi transport ayarına bağlıdır; 60 saniye rezerv, ağın kopmayı anında anlayacağı garantisi değildir.
+
+## Gereksinim ve test izleri
+- REQ-016 → TC-016 — Misafir reconnect temiz snapshot almalı
+- REQ-017 → TC-017 — Host kaybı checkpoint sınırını korumalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-012 — Oturum ve görev durum makinesi](../01_gameplay/012_session_state_machine.md)
+- [ASK-016 — Eşya semantiği ve değişmezler](../01_gameplay/016_item_state_model.md)
+- [ASK-019 — Vinç kontrolü ve kontrol kiralaması](../01_gameplay/019_winch_control.md)
+- [ASK-029 — Çoğaltma, snapshot ve ağ ilgisi](029_replication_snapshot.md)
+- [ASK-033 — Kampanya işlemleri ve kayıt otoritesi](033_campaign_transaction.md)
+
+
+

@@ -1,0 +1,421 @@
+ASKIDA KNOWLEDGE SNAPSHOT v0.1.0
+VOLUME: 10/10
+SNAPSHOT: 3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4
+STATUS: PROPOSED; GAME TESTS NOT RUN; READ-ONLY DERIVED COPY.
+Canonical Markdown documents remain the source of truth.
+
+DOCUMENT: ASK-073
+PATH: docs/07_production/073_risk_register.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 1578a140b16df6b9d2d4a874998074af271a62361e7d2527a9945c734273f3da
+
+---
+doc_id: ASK-073
+title: "Risk defteri ve azaltma planı"
+version: 0.1.0
+status: proposed
+owner_role: Producer
+last_reviewed: 2026-09-07
+dependencies: ["ASK-026","ASK-046","ASK-065","ASK-068","ASK-071"]
+---
+
+# Risk defteri ve azaltma planı
+
+## İlk risk kaydı
+| Risk | Olasılık/etki başlangıcı | Erken sinyal | Azaltma / sahibi |
+|---|---|---|---|
+| R01 Moving-platform co-op jitter | Yüksek/yüksek | Uzak elde sürekli düzeltme | İlk spike / TechLead |
+| R02 Denge kancası anlaşılmıyor | Orta/yüksek | Oyuncu rastgele sanıyor | Gri kutu test / Design |
+| R03 Paket stil uyumsuzluğu | Yüksek/orta | Materyal değişse de siluet ayrı | Tek art sahnesi / ArtLead |
+| R04 Scope büyümesi | Yüksek/yüksek | Yeni sistemli her level | Kesme listesi / Product |
+| R05 Save/ödül çoğaltma | Orta/yüksek | Tekrar commit farkı | Transaction test / Backend |
+| R06 Ekip kapasitesi yetersiz | Bilinmiyor/yüksek | Tahmin/saat sapması | Kapasite onayı / Producer |
+| R07 Lisans/AI giriş belirsizliği | Orta/yüksek | Provenance eksik | Import kapısı / Producer |
+| R08 Host cihaz darboğazı | Orta/yüksek | 4 oyuncuda fizik spike | Erken benchmark / TechLead |
+| R09 Oyuncu grubu oluşturma | Orta/yüksek | Demo solo ziyaretçi terk ediyor | Açık co-op iletişimi / Product |
+| R10 Yayın sonrası destek yükü | Orta/orta | Tekrarlayan bağlantı raporu | Tanı ve kapasite / QA |
+
+Bunlar nicel olasılık ölçümü değil başlangıç sınıflandırmasıdır. Kullanıcı verisi ve teknik kanıtla güncellenir; renkli risk tablosu çözümün uygulandığı anlamına gelmez.
+
+## Her riskin kaydı
+Kimlik, tanım, tetikleyici, etki alanı, sahip, azaltma işi, fallback, son inceleme, kapanış kanıtı. “Dikkat edeceğiz” azaltma değildir. R01 fallback'i fiziksel halat eklemek değil kontrollü platform hareketini daha da sınırlandırmak olabilir.
+
+## İnceleme
+Her milestone ve yeni kritik bağımlılıkta ilk beş risk tekrar sıralanır. Kapanan riskin kanıtı saklanır; aynı sorun yeni sürümde dönerse yeniden açılır. Maliyet gerçekleşmişse risk değil issue olarak işlenir.
+
+## Kapı
+R01/R02 kapanmadan üç bina final art üretimi başlatılmaz. Lisansı belirsiz player-facing içerik public build'e girmez. Ekip kapasitesi bilinmeden yayın tarihi dışarıya verilmez.
+
+## İlgili kaynak belgeler
+- [ASK-026 — Ağ çözümü seçimi ve risk prototipi](../02_network/026_network_adr_spike.md)
+- [ASK-046 — Sanat yönetimi ve paket uyumu](../04_art/046_art_direction.md)
+- [ASK-065 — Performans hedefi ve ölçüm disiplini](../06_quality/065_performance_targets.md)
+- [ASK-068 — Oyuncu testi, eğlence ve okunurluk](../06_quality/068_playtest_protocol.md)
+- [ASK-071 — Üretim yol haritası ve kapasite senaryoları](071_roadmap_capacity.md)
+
+
+
+DOCUMENT: ASK-074
+PATH: docs/07_production/074_backlog_first_sprints.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: e2cec7fd6b1ec36faffe6e5257d8cf7b42a1d886e6b137e5b1083c45d810fb71
+
+---
+doc_id: ASK-074
+title: "Başlangıç backlog'u ve ilk iki sprint"
+version: 0.1.0
+status: proposed
+owner_role: Producer
+last_reviewed: 2026-09-07
+dependencies: ["ASK-026","ASK-049","ASK-067","ASK-069","ASK-071"]
+---
+
+# Başlangıç backlog'u ve ilk iki sprint
+
+## Önce en pahalı belirsizlik
+İlk çalışma tam oyun sistemi kurmak değil, ASKIDA'nın ayırt edici fiziğinin uzaktan oynanabilirliğini kanıtlamaktır. data/backlog.json ilk 32 iş kartını içerir; tüm oyun için eksiksiz maliyet dökümü değildir. Hiçbir iş tamamlanmış işaretlenmedi.
+
+## Sprint 0 / ilk iki hafta
+İki kişi ve kişi başı 25 net saat/hafta varsayımında toplam 100 saat üst plan kapasitesi:
+- W-001 karar ve sürüm matrisi: 6 saat üst tahmin.
+- W-002 repository/temel build: 10 saat.
+- W-003 tek otoriter eşya bağlantısı: 14 saat.
+- W-004 iki holder kuvvet prototipi: 18 saat.
+- W-005 kontrollü platform prototipi: 18 saat.
+- W-006 ağ emülasyonu ve tanı: 10 saat.
+- W-007 gerçek internet bağlantısı denemesi: 12 saat.
+- W-008 test videosu, ölçüm ve ADR kararı: 12 saat.
+
+Toplam üst tahmin 100 saattir; tüm belirsizliği karşılayan rezerv içermez. Bu yüzden hedef zaman kutusu sonunda kanıt/karar üretmektir, her özelliği bitirme garantisi değil. Tek kişi 25 saat/haftada aynı kapsam en az dört hafta kapasite ister; teknik belirsizlik ayrıca uzatabilir.
+
+## Sprint 1 / sonraki dilim
+G1 geçtiyse domain state, secure, delivery transaction, reconnect ve temel kayıt. Geçmediyse G1 sorununu daralt. Art tarafında yalnız bir platform + bir kahraman eşyanın stil onayı. UI'da prompt/ret nedeni ve basit sonuç. Bu dilimden önce bütün 12 sözleşmenin final tasarımı yapılmaz.
+
+## İş sırası
+Her W bağımlı W'leri ve REQ kimliklerini taşır. Estimate low/high planlama aralığıdır, gerçek çalışma saati değildir. Blocked nedeninin kapanması status alanını otomatik Done yapmaz; kabul kanıtı gerekir.
+
+## Birlikte ilerleme
+İlk onay görüşmesinde ADR-ENGINE/ART/BUDGET/HARDWARE seçilir. Ardından W-001 kartı üzerinde çalışılır. Her sonraki Codex görevi bir veya küçük ilişkili birkaç W ile sınırlandırılır; görev sonunda gerçek test sonucu ve doküman farkı birlikte sunulur.
+
+## Tahmin toplamının sınırı
+İlk 32 kartın toplam aralığı 408–804 net iş saatidir. Bu liste erken temel ve planlama işlerini kapsar; üç binanın tüm final varlık üretimi, bütün hata düzeltmeleri, kullanıcı test turları ve yayın sonrası destek için tam maliyet değildir. Bu toplamdan doğrudan çıkış tarihi hesaplanmaz. W-031 canlı MCP geliştirmesi gelecekte ayrıca onay gerektirir; bu doküman teslimatı onu gerçekleştirmiş sayılmaz.
+
+## Gereksinim ve test izleri
+- REQ-008 → TC-008 — Risk kapısı kanıtla kapanmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-026 — Ağ çözümü seçimi ve risk prototipi](../02_network/026_network_adr_spike.md)
+- [ASK-049 — Her nesne için üretim şartnamesi](../04_art/049_prop_asset_spec.md)
+- [ASK-067 — Test stratejisi ve gereksinim izlenebilirliği](../06_quality/067_test_strategy_traceability.md)
+- [ASK-069 — Milestone kalite kapıları ve bitmiş iş](../06_quality/069_quality_gates.md)
+- [ASK-071 — Üretim yol haritası ve kapasite senaryoları](071_roadmap_capacity.md)
+
+
+
+DOCUMENT: ASK-075
+PATH: docs/07_production/075_steam_launch_plan.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 1a9c3af9c2270e29b18ff09e6618d9a6cf6070b731a1bbb1be84c1b5f309854a
+
+---
+doc_id: ASK-075
+title: "Steam hazırlığı, demo ve yayın kontrolü"
+version: 0.1.0
+status: proposed
+owner_role: Product
+last_reviewed: 2026-09-07
+dependencies: ["ASK-006","ASK-048","ASK-069","ASK-070","ASK-080"]
+---
+
+# Steam hazırlığı, demo ve yayın kontrolü
+
+## Ürün sunumu
+Kısa video ilk saniyelerde dış cephe yük taşıma ve oyuncunun karşı ağırlık oluşunu göstermeli. Sadece çevre gezisi veya logo açılışı özgün kancayı açıklamaz. Mağaza görseli gerçek oynanabilir deneyimi temsil eder; AI konseptini çalışır oyun görüntüsü gibi kullanmayın. Satış garantisi veya doğrulanmamış ödül/review iddiası yoktur.
+
+## Platform işleri
+Steamworks erişimi, uygulama yapılandırması, branch/depot düzeni, build yükleme, mağaza varlıkları, içerik anketi, destek bağlantısı, minimum/önerilen sistem gereksinimi ve yayın inceleme süreci güncel resmi belgelerden tekrar doğrulanır. Hesap, ücret, vergi ve tarih kuralları burada sabitlenmedi; kullanıcı adına dış işlem yapılmadı.
+
+## Demo
+Bir bina/üç sözleşme önerisi; arkadaş daveti, açıklayıcı co-op gereksinimi, onboarding, geri bildirim yolu ve açık known limitations. Demo ile tam oyun farklı content manifest taşıyabilir; uyumsuz oyuncular aynı run'a alınmaz. Demo save ilerlemesinin tam oyuna taşınıp taşınmayacağı ayrı ADR ister; otomatik vaat edilmez.
+
+## AI beyanı
+Oyuncuya ulaşan AI destekli görsel, ses veya başka içerik envanteri tutulur; yayın anında Steam anketinin güncel gereksinimi kontrol edilir. Kodla üretilmiş mesh “nasıl olsa kod” diye otomatik kapsam dışı sayılmaz. [Steam içerik anketi](https://partner.steamgames.com/doc/gettingstarted/contentsurvey). Genel geliştirme verimliliği ile oyuncunun tükettiği içerik ayrımı uygulanırken platformun geçerli metni esas alınır.
+
+## Release kapısı
+Kritik bug yok; save ve rollback testli; gerçek internet co-op; hedef donanım verisi; lisans/provenance; dil/erişilebilirlik; store açıklamasıyla özellik uyumu; destek sorumlusu. Yayın takvimi harici inceleme sürelerini ve olası ret düzeltmelerini kapsar.
+
+## Ticari karar
+Fiyat, indirim, çıkış tarihi ve içerik üretici erişimi kullanıcı onayı ve güncel pazar verisi gerektirir. Bu paket ücret ödeme, mağaza açma veya mesaj gönderme yetkisi değildir.
+
+## Gereksinim ve test izleri
+- REQ-040 → TC-040 — Yayın iddiaları kanıta ve lisansa uymalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-006 — Hedef kitle ve ticari doğrulama](../00_foundation/006_audience_market_validation.md)
+- [ASK-048 — Lisans, kaynak kaydı ve AI kullanımı](../04_art/048_licenses_provenance.md)
+- [ASK-069 — Milestone kalite kapıları ve bitmiş iş](../06_quality/069_quality_gates.md)
+- [ASK-070 — Regresyon, destek ve yayın sonrası triyaj](../06_quality/070_release_regression_support.md)
+- [ASK-080 — Kaynaklar, doğrulama sınırları ve açık kanıtlar](../08_knowledge/080_sources_evidence_limits.md)
+
+
+
+DOCUMENT: ASK-076
+PATH: docs/08_knowledge/076_notebook_import.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 0cc2ab7e7d7281e7f192cb2e43564107bbf71f0780a02dd8e447a11d93ef8024
+
+---
+doc_id: ASK-076
+title: "Notebook aktarımı ve tek kaynak ilkesi"
+version: 0.1.0
+status: proposed
+owner_role: Knowledge
+last_reviewed: 2026-09-07
+dependencies: ["ASK-001","ASK-003","ASK-077","ASK-079"]
+---
+
+# Notebook aktarımı ve tek kaynak ilkesi
+
+## Kaynak düzeni
+Kanonik bilgi Git'te yönetilecek Markdown belgeleridir. Notebook aracı sorgulama/özetleme katmanıdır; otomatik ürün kararı veya depo yazma kaynağı değildir. Bu arşivde bir Git deposu veya notebook hesabı oluşturulmadı. Kullanıcı kendi ortamında zip'i açıp kaynakları içe alır.
+
+## Aktarım dosyaları
+notebook_exports/volume_01.txt … volume_10.txt her biri sekiz kaynak belge içerir. Her bölümün başında ASK kimliği, yol, sürüm, durum ve SHA-256 bulunur. TXT ciltleri kaynak Markdown'dan türetilmiştir, elle düzenlenmez. ZIP dosyasının kendisinin tüm belgeleri otomatik içe alacağı varsayılmaz.
+
+## Ürün desteği
+Google'ın güncel yardımında Markdown ve TXT kaynakları destekleniyor; plan başına kaynak sınırı değişebildiği için on cilt pratik bir aktarım seçeneğidir. Yerel dosya yüklemelerini Git ile otomatik senkron saymayın. [Kaynak ekleme ve desteklenen türler](https://support.google.com/notebooklm/answer/16215270?hl=en). Ürün adı/arayüzü ve plan sınırları değişebilir; işlem günü kontrol edin.
+
+## Kullanım adımları
+1. Yeni notebook oluştur; README ve gerekli ciltleri seç.
+2. İlk soruda “Öneri ile onaylı kararı ayır; ASK kimliği ve sürümle cevapla” de.
+3. Her yanıtın işaret ettiği kanonik dosyayı doğrula.
+4. Değişiklik önerisini kullanıcı kararı olarak değil taslak fark olarak kaydet.
+5. Onaylı değişikliği depodaki Markdown'a uygula; validator ve export builder çalıştır.
+6. Eski yerel upload sürümünü yeni ciltle kontrollü değiştir; iki sürümü aynı notebook'ta açık bırakma.
+
+## Sorgu örnekleri
+“ASK-016 ve ASK-022 arasında terminal durum çelişkisi var mı?”; “W-004 için önkoşullar ve TC kimliklerini çıkar”; “ASK-047'de ücretsiz olduğu doğrulanan tier ile henüz arşivi incelenmemiş özellikleri ayır.” Notebook cevabı yeni kaynak değildir; gözden geçirilmemiş cevabı manifest'e eklemeyin.
+
+## Kabul
+Rastgele seçilen üç ASK için araç doğru sürüm ve dosya yolunu gösterebilmeli. Eski export hash'i fark edilirse yeniden üretim gerekir. Notebook sağlayıcısına özel veya lisanslı ham kaynak yüklemek otomatik yetki kapsamı değildir.
+
+## Gereksinim ve test izleri
+- REQ-039 → TC-039 — Bilgi tabanı izlenebilir ve salt okunur kullanılmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-001 — ASKIDA — Üretim bilgi tabanı başlangıcı](../../README.md)
+- [ASK-003 — Belge haritası ve okuma rotaları](../00_foundation/003_document_map.md)
+- [ASK-077 — Codex görev bağlamı ve güvenilir iş akışı](077_codex_task_workflow.md)
+- [ASK-079 — Belge sürümleme, şablonlar ve değişiklik yönetimi](079_versioning_templates.md)
+
+
+
+DOCUMENT: ASK-077
+PATH: docs/08_knowledge/077_codex_task_workflow.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 03afbed76534498aefd7a2b66c351701c78d5766d19bf4e1c16b8ed32ddde688
+
+---
+doc_id: ASK-077
+title: "Codex görev bağlamı ve güvenilir iş akışı"
+version: 0.1.0
+status: proposed
+owner_role: Knowledge
+last_reviewed: 2026-09-07
+dependencies: ["ASK-002","ASK-009","ASK-067","ASK-074","ASK-078"]
+---
+
+# Codex görev bağlamı ve güvenilir iş akışı
+
+## Bağlamı seç
+Önce AGENTS.md ve manifest, sonra ilgili W/REQ/TC ile 3–6 temel ASK belgesi. Her görevde 80 belgenin tamamını talimat olarak yüklemek yerine gerekli domain bilgisi seçilir. AGENTS.md kısa yönlendirme kalır; uzun tasarım metinleri retrieval verisidir. [Codex AGENTS.md rehberi](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
+
+## Görev prompt şablonu
+Amaç: hangi davranışı uygula veya incele. Yetki: sadece analiz / yerel kod değişikliği / test. Kapsam: ilgili W ve ASK kimlikleri. Değişmezler: özellikle bozulmayacak kurallar. Girdi: repo commit, engine lock, asset/protocol sürümü. Kabul: TC kimlikleri ve gerekli gerçek test. Yasaklar: paket yükseltme, yeni framework, harcama, dış yayın yok. Çıktı: fark, çalıştırılan test, kalan risk.
+
+## Örnek
+“W-011 kapsamında teslimat domain validator'ını uygula. ASK-016/022/023/033 oku. Held/Secured teslim edilemez; item başına bir ödül. Unity çalıştıramıyorsan bunu açıkça belirt, sahne testini geçti sayma. Save veya ağ framework'ünü değiştirme. Aynı tick timeout yarışını kapsayan test ekle.” Bu örnek hazır oyun implementasyonu değildir.
+
+## Uygulama döngüsü
+İncele → planla → küçük fark → domain test → gerekiyorsa Unity/build/network test → insan review → doküman ve kayıt güncelleme. AI'ın ürettiği test kendi yanlış varsayımını doğrulayabilir; kabul kriteri kaynak sözleşmeden bağımsız kontrol edilir.
+
+## Araç sınırı
+Codex'in Blender veya Unity çalıştırabilmesi o ortamda program, proje ve yetki bulunmasına bağlıdır. Model yeteneği uygulama erişimi anlamına gelmez. Bu teslimatta çalışan Unity editörü veya MCP server bağlantısı kurulmadı.
+
+## Kabul
+Yanıt “uygulandı”, “test edildi” ve “önerildi” durumlarını ayırır; gerçek build log'u olmadan başarı iddiası yoktur. Görev dışı dosya değişiklikleri açıklanır. Kullanıcı mevcut değişikliği ve gizli bilgiler korunur.
+
+## Gereksinim ve test izleri
+- REQ-039 → TC-039 — Bilgi tabanı izlenebilir ve salt okunur kullanılmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-002 — Codex çalışma sözleşmesi](../../AGENTS.md)
+- [ASK-009 — Karar kaydı ve onay bekleyenler](../00_foundation/009_decision_register.md)
+- [ASK-067 — Test stratejisi ve gereksinim izlenebilirliği](../06_quality/067_test_strategy_traceability.md)
+- [ASK-074 — Başlangıç backlog'u ve ilk iki sprint](../07_production/074_backlog_first_sprints.md)
+- [ASK-078 — Salt okunur MCP bilgi servisi şartnamesi](078_mcp_readonly_spec.md)
+
+
+
+DOCUMENT: ASK-078
+PATH: docs/08_knowledge/078_mcp_readonly_spec.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 3a302226ff9cebc407c8afca76e1e2e7fa4e544743048c196f9a9067159dacc1
+
+---
+doc_id: ASK-078
+title: "Salt okunur MCP bilgi servisi şartnamesi"
+version: 0.1.0
+status: proposed
+owner_role: Knowledge
+last_reviewed: 2026-09-07
+dependencies: ["ASK-002","ASK-034","ASK-076","ASK-077","ASK-079"]
+---
+
+# Salt okunur MCP bilgi servisi şartnamesi
+
+## Durum
+Bu belge kurulmuş bir sunucu değil, ileride uygulanacak read-only MCP servis sözleşmesidir. Arşivde yerel arama/doğrulama yardımcıları vardır; ağda dinleyen MCP implementasyonu, token veya canlı endpoint yoktur. Notebook sağlayıcısının resmi MCP/API desteği varsayılmaz.
+
+## Önerilen araçlar
+search_docs(query, tags?, status?, limit≤10): ASK kimliği, başlık, kısa excerpt, relative path, revision ve hash döndürür. read_doc(doc_id, section?, max_chars≤24000): yalnız manifest'teki belgeyi okur, kesildiyse açık işaretler. get_related_docs(doc_id, depth≤1): doğrudan ilişkileri döndürür. get_task(task_id): W/REQ/TC ve bağımlılıklar. Dosya yazma, shell çalıştırma, paket kurma ve silme aracı yoktur.
+
+## Güvenlik
+Girdi docId üzerinden çözülür; arbitrary path kabul edilmez. Gerçek canonical path kök içinde olmalı; symlink kaçışı, ../ traversal, mutlak path ve URI şemaları reddedilir. Registry whitelist dışında dosya okunmaz. Secrets, lisanslı ham asset ve kullanıcı save'leri servis kökünde bulunmaz. İstek/yanıt boyutu, timeout ve concurrency sınırlıdır.
+
+## Güvenilir bağlam
+Her sonuç kaynak hash'i ve snapshotVersion taşır; istemci farklı snapshot sonuçlarını birleştirdiğinde uyarır. Dış metinler veri olarak sunulur; içerikteki “önceki talimatları yok say” gibi ifadeler yürütülemez. Server dokümandaki öneriyi onaylanmış karar gibi dönüştürmez.
+
+## Bağlantı ortamı
+Codex belgeleri yerel STDIO ve uzak Streamable HTTP seçeneklerini açıklar. CLI/IDE/Desktop'ta ilgili güvenilen yapılandırma yöntemi kullanılır; bu sohbet ortamının yerel config dosyasını otomatik okuyacağı varsayılmaz. Uzak servis için kimlik doğrulama, TLS ve yetki ayrıca kurulur. [Resmi Codex MCP rehberi](https://learn.chatgpt.com/docs/extend/mcp?surface=cli).
+
+## Kabul
+Traversal/symlink, bozuk ID, aşırı limit, stale hash ve prompt injection testleri. Varsayılan yalnız approved seçilecekse bu ilk pakette bütün belgeler proposed olduğundan boş sonuç doğru olabilir; kullanıcı açıkça proposed dahil seçebilir. Kurulum öncesi kullanıcıdan hosting ve erişim sınırı onayı alınır.
+
+## Gereksinim ve test izleri
+- REQ-039 → TC-039 — Bilgi tabanı izlenebilir ve salt okunur kullanılmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-002 — Codex çalışma sözleşmesi](../../AGENTS.md)
+- [ASK-034 — Ağ güvenliği ve kötüye kullanım sınırları](../02_network/034_security_abuse.md)
+- [ASK-076 — Notebook aktarımı ve tek kaynak ilkesi](076_notebook_import.md)
+- [ASK-077 — Codex görev bağlamı ve güvenilir iş akışı](077_codex_task_workflow.md)
+- [ASK-079 — Belge sürümleme, şablonlar ve değişiklik yönetimi](079_versioning_templates.md)
+
+
+
+DOCUMENT: ASK-079
+PATH: docs/08_knowledge/079_versioning_templates.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: c9779152200b9cded1bb83c9b001863d0120a8653f3de1a997ef7b27c264017d
+
+---
+doc_id: ASK-079
+title: "Belge sürümleme, şablonlar ve değişiklik yönetimi"
+version: 0.1.0
+status: proposed
+owner_role: Knowledge
+last_reviewed: 2026-09-07
+dependencies: ["ASK-003","ASK-009","ASK-067","ASK-076","ASK-078"]
+---
+
+# Belge sürümleme, şablonlar ve değişiklik yönetimi
+
+## Frontmatter sözleşmesi
+doc_id, title, version, status, owner_role, last_reviewed, dependencies. Bu pakette bütün belgeler version 0.1.0 ve proposed durumundadır. Kullanıcı ihtiyacının doğrulanmış olduğu cümleler ürün bildirgesinde açıkça ayrılır. owner_role gerçek kişi atanmış demek değildir.
+
+## Sürüm
+Patch yazım/bağlantı düzeltmesi; minor anlamlı ama geriye uyumlu tasarım genişletmesi; major temel semantik veya tüketici şema kırılması için önerilir. Uygulama sürümü ve belge sürümü ayrı kavramdır. Hash herhangi bir byte farkını gösterir, semantik önemini göstermez.
+
+## Değişiklik isteği şablonu
+CR ID; problem/kanıt; eski kural; önerilen yeni kural; etkilenen ASK/REQ/TC/W; save/protocol/asset etkisi; maliyet; alternatif; onay sahibi; karar; uygulanma build'i; doğrulama sonucu. “AI böyle önerdi” tek başına gerekçe değildir.
+
+## Yeni belge şablonu
+Amaç/kapsam; öneri veya onay durumu; giriş/çıkış verileri; normatif kurallar; hata/eşzamanlılık; uygulama sınırı; kabul/kanıt; ilişkiler/kaynaklar. Her belge bütün başlıkları mekanik doldurmak zorunda değildir, ancak belirsiz davranışlar gizlenemez. Yeni ASK kimliği tekrar kullanılmaz.
+
+## Türetilmiş dosyalar
+Manifest hash'leri ve notebook ciltleri build_exports.py ile tekrar üretilir. data/requirements.json ve test_cases.json normatif plan kayıtlarıdır, elle gözden geçirilen değişiklik ister. validation_report.json yalnız en son yapısal kontrolü yansıtır; gerçek oyun test raporu değildir.
+
+## Merge ve arşiv
+İki çelişen karar sessizce birleştirilmez; ASK-009 kayıt sahibi çözer. Retired belge bir süre yönlendirme için kalabilir; 80 dosya sayısını korumak kalite hedefi değildir. Bu ilk teslimatın sayısı 80'dir, gelecekte ihtiyaçla değişebilir.
+
+## Kabul
+Hash ve dependency kontrolleri geçer; stale notebook cildi saptanır. Değişikliğin neden yapıldığı commit/CR kaydından bulunur. Onay alan bir belgeye bağımlı öneri otomatik onaylanmaz.
+
+## Gereksinim ve test izleri
+- REQ-039 → TC-039 — Bilgi tabanı izlenebilir ve salt okunur kullanılmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-003 — Belge haritası ve okuma rotaları](../00_foundation/003_document_map.md)
+- [ASK-009 — Karar kaydı ve onay bekleyenler](../00_foundation/009_decision_register.md)
+- [ASK-067 — Test stratejisi ve gereksinim izlenebilirliği](../06_quality/067_test_strategy_traceability.md)
+- [ASK-076 — Notebook aktarımı ve tek kaynak ilkesi](076_notebook_import.md)
+- [ASK-078 — Salt okunur MCP bilgi servisi şartnamesi](078_mcp_readonly_spec.md)
+
+
+
+DOCUMENT: ASK-080
+PATH: docs/08_knowledge/080_sources_evidence_limits.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 9bf0d6c2ce991bf13127ab1344613920a6f4fbd3e0917e419899291b543d9356
+
+---
+doc_id: ASK-080
+title: "Kaynaklar, doğrulama sınırları ve açık kanıtlar"
+version: 0.1.0
+status: proposed
+owner_role: Knowledge
+last_reviewed: 2026-09-07
+dependencies: ["ASK-009","ASK-026","ASK-047","ASK-048","ASK-050","ASK-076"]
+---
+
+# Kaynaklar, doğrulama sınırları ve açık kanıtlar
+
+## Araştırma tarihi ve yöntem
+Dış kaynaklar 07.09.2026 tarihinde resmi ürün, motor, platform ve yardım sayfalarından incelendi. Ürün sayfası erişimi, indirilen paket arşivinin incelenmesi veya hedef Unity sürümünde test edilmesi değildir. Fiyat/tier/uyumluluk değişebilir; satın alma ve release öncesi yeniden doğrulayın. Belgelerdeki oyun mekaniği ve kapasite rakamları özgün öneridir, dış kaynaklardan ölçülmüş sonuç değildir.
+
+## Kaynak aileleri
+Varlıklar: Quaternius ürün sayfaları; Kenney asset sayfaları. Lisanslar: Unity Asset Store şartları, Adobe Mixamo FAQ, Sonniss/Freesound koşulları. Motor: Unity NetworkRigidbody/compound collider/model import, Unreal Networked Physics. Dağıtım: Steam multiplayer, matchmaking, SDR, Cloud ve içerik anketi. Bilgi araçları: Codex AGENTS/MCP ve Google notebook kaynak desteği. Doğrudan bağlantılar ilgili belgelerde, toplu URL/kapsam kaydı data/sources.json içindedir.
+
+## Ek inceleme kaynakları
+[Kenney Furniture Kit](https://kenney.nl/assets/furniture-kit) ve [KayKit Furniture Bits](https://kaylousberg.itch.io/furniture-bits) alternatif görsel ailelerdir; ana sete otomatik eklenmez. [Poly Haven lisansı](https://polyhaven.com/license) ve [ambientCG lisansı](https://docs.ambientcg.com/license/) seçili texture/HDRI için kaynak olabilir; fotogerçekçi estetiği olduğu gibi aktarma kararı değildir. [Fab EULA](https://www.fab.com/eula) satın alınan ürünün güncel lisans bağlamıyla okunur.
+
+## Bu teslimatta olmayan kanıt
+Unity/Unreal projesi veya oyun build'i yok. Asset archive import testi yok. Ağ benchmark'ı yok. Minimum donanım testi yok. Kullanıcı playtest'i yok. Mağaza satış araştırmasından çıkarılmış talep ölçümü yok. Modelle üretilmiş/Blender'da kontrol edilmiş mesh yok. Çalışan MCP server ve otomatik notebook sync yok. Hiçbir ADR kullanıcı adına onaylanmadı.
+
+## Bu teslimatta sağlanan kanıt
+80 Markdown kaynak belgesinin varlığı, benzersiz kimliği, dahili bağlantı/dependency çözümü, gereksinim-test-iş eşleşmeleri, export içerik/hash tutarlılığı ve ZIP bütünlüğü yerel kontrollerle sınanır. Sonuç validation_report.json ve arşiv testinden görülebilir. Yapısal kontrol, tasarımın eğlenceli veya oyun kodunun production-ready olduğunu kanıtlamaz.
+
+## Sonraki araştırma
+Motor exact version ve transport adapter için çalışan örnek + lisans incelemesi; ücretsiz asset tier arşivi; gerçek hedef cihaz; 5–8 grup nitel test; bütçe ve ekip kapasitesi. Bu sorular kapanınca v0.2 tasarım tabanı hazırlanmalıdır.
+
+## İlgili kaynak belgeler
+- [ASK-009 — Karar kaydı ve onay bekleyenler](../00_foundation/009_decision_register.md)
+- [ASK-026 — Ağ çözümü seçimi ve risk prototipi](../02_network/026_network_adr_spike.md)
+- [ASK-047 — Seçilecek paketler ve kullanım sınırları](../04_art/047_package_selection.md)
+- [ASK-048 — Lisans, kaynak kaydı ve AI kullanımı](../04_art/048_licenses_provenance.md)
+- [ASK-050 — Astra/Codex ile Blender üretimi ve export](../04_art/050_ai_blender_export.md)
+- [ASK-076 — Notebook aktarımı ve tek kaynak ilkesi](076_notebook_import.md)
+
+
+

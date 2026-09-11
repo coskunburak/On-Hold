@@ -1,0 +1,10 @@
+{
+  "name": "OnHold.Gameplay",
+  "rootNamespace": "OnHold.Gameplay",
+  "references": [
+    "OnHold.Core",
+    "OnHold.Domain"
+  ],
+  "includePlatforms": [],
+  "noEngineReferences": false
+}

@@ -1,0 +1,21 @@
+[
+  "Assets/_OnHold/Data/Foundation.inputactions",
+  "Assets/_OnHold/Data/FoundationConfig.json",
+  "Assets/_OnHold/Editor/HeldManipulationVerification.cs",
+  "Assets/_OnHold/Editor/HeldManipulationVerification.cs.meta",
+  "Assets/_OnHold/Runtime/Core/FoundationConfig.cs",
+  "Assets/_OnHold/Runtime/Gameplay/CarryableBody.cs",
+  "Assets/_OnHold/Runtime/Gameplay/ControlledPlatform.cs",
+  "Assets/_OnHold/Runtime/Gameplay/FoundationWorld.cs",
+  "Assets/_OnHold/Runtime/Gameplay/HeldOrientation.cs",
+  "Assets/_OnHold/Runtime/Gameplay/HeldOrientation.cs.meta",
+  "Assets/_OnHold/Runtime/Presentation/FoundationFrontend.cs",
+  "Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.cs",
+  "Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.cs.meta",
+  "Assets/_OnHold/Scenes/Bootstrap.unity",
+  "Assets/_OnHold/Tests/EditMode/HeldOrientationTests.cs",
+  "Assets/_OnHold/Tests/EditMode/HeldOrientationTests.cs.meta",
+  "Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs",
+  "Assets/_OnHold/Tests/PlayMode/HeldManipulationTests.cs.meta",
+  "Assets/_OnHold/Tests/PlayMode/SoloPlayableInputTests.cs"
+]

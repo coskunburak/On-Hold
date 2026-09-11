@@ -1,0 +1,14 @@
+{
+  "name": "OnHold.Presentation",
+  "rootNamespace": "OnHold.Presentation",
+  "references": [
+    "OnHold.Core",
+    "OnHold.Domain",
+    "OnHold.Gameplay",
+    "OnHold.Networking",
+    "OnHold.Persistence",
+    "Unity.InputSystem"
+  ],
+  "includePlatforms": [],
+  "noEngineReferences": false
+}

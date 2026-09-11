@@ -1,0 +1,407 @@
+ASKIDA KNOWLEDGE SNAPSHOT v0.1.0
+VOLUME: 03/10
+SNAPSHOT: 3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4
+STATUS: PROPOSED; GAME TESTS NOT RUN; READ-ONLY DERIVED COPY.
+Canonical Markdown documents remain the source of truth.
+
+DOCUMENT: ASK-017
+PATH: docs/01_gameplay/017_shared_carrying.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 973d0128368857670c79103a0536a8b567418107192df410491c2682a56aa313
+
+---
+doc_id: ASK-017
+title: "Ortak taşıma ve kuvvet modeli"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-013","ASK-015","ASK-016","ASK-018","ASK-030","ASK-040"]
+---
+
+# Ortak taşıma ve kuvvet modeli
+
+## Hedef his
+Eşya ağırlığı hissedilir ancak oyuncuyu kontrol edilemez sarkaç haline getirmez. En fazla iki holder vardır. İkinci oyuncu ek kontrol ve sınırlı toplam kuvvet sağlar; her yeni elin limitsiz enerji eklemesi yasaktır. Kesin yay/sönüm sabitleri burada uydurulmaz; prefab kütlesi ve ağ koşullarına göre spike çıktısı olarak kilitlenir.
+
+## Host uygulaması
+Her holder için eşya yerel koordinatında bir grip noktası ve oyuncu önünde sınırlandırılmış hedef vardır. Host hedef mesafesini, görüş yolunu ve hızını doğrular. Servo kuvveti konum hatası ve bağıl hızdan hesaplanır, eşya ailesine göre clamp edilir. İki holder'ın kuvvetleri önce ayrı sınırlandırılır, sonra toplam kuvvet/tork limiti uygulanır. Aynı rigidbody'ye istemciler doğrudan force uygulamaz.
+
+## Ağ hissi
+Yerel el ve prompt hemen niyet gösterebilir. Otoriter eşya pozu sunucudan gelir; istemci pozunun keyfî kesinleştirilmesi kabul edilmez. Tam tahmin/geri sarma seçeneği yalnız risk çalışması ispatlarsa eklenir. İlk hedef fizik objelerinde görsel interpolasyon, karakterde sınırlandırılmış hareket öngörüsüdür; NGO'nun bunu otomatik sağladığı varsayılmaz.
+
+## Geometri ve bırakma
+Tutma noktası oyuncunun içinden veya duvar içinden geçemez. Eşya doorway'e sıkışınca force biriktirilmez; hedef mesafe sınırı ve kuvvet clamp devreye girer. Son holder bırakınca mevcut güvenli fizik hızı korunur, ek “fırlatma” darbesi verilmez. V1 ayrı atma özelliği içermez. Kopma holder'ı kaldırır; kalan oyuncunun grip noktası korunur.
+
+## Platformla birleşim
+Eşya platforma temas ediyorsa supported kütle hesabına bir kez girer. Havada tutulan eşyanın ağırlığı karakterin sabit 80 kg değerine ayrıca eklenmez; bu kontrollü arcade yaklaşımın açık sadeleştirmesidir. Gerçek yük aktarımı simülasyonu v1 hedefi değildir. Bu kural denge göstergesiyle tutarlı kalmalıdır.
+
+## Kritik testler
+İki oyuncu ters yönlere çektiğinde sonlu kuvvetler; iki elde 150 ms RTT altında kabul edilebilir kontrol; biri kopunca joint temizliği; düşük FPS istemcisinin diğerinin eşyasını hızlandırmaması; kapıda 60 saniye sıkışmada enerji patlamaması. Kabul eşikleri spike'ta ölçülüp dondurulacaktır.
+
+## Gereksinim ve test izleri
+- REQ-004 → TC-004 — İki holder sınırlı kuvvetle aynı eşyayı taşıyabilmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-013 — Kontroller, kamera ve giriş niyetleri](013_controls_camera.md)
+- [ASK-015 — Etkileşim sorgusu ve komut sözleşmesi](015_interaction_contract.md)
+- [ASK-016 — Eşya semantiği ve değişmezler](016_item_state_model.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](018_platform_balance.md)
+- [ASK-030 — Gecikme, öngörü ve düzeltme sınırları](../02_network/030_latency_prediction.md)
+- [ASK-040 — Unity fizik uygulaması ve teknik sınırlar](../03_engineering/040_physics_integration.md)
+
+
+
+DOCUMENT: ASK-018
+PATH: docs/01_gameplay/018_platform_balance.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 098d25d1ce32a78c129e14b6551ed2bda3e3a469427628347cac61f44657fc8a
+
+---
+doc_id: ASK-018
+title: "Platform, destek kütlesi ve kontrollü eğim"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-010","ASK-017","ASK-019","ASK-020","ASK-040","ASK-066"]
+---
+
+# Platform, destek kütlesi ve kontrollü eğim
+
+## V1 simülasyon kararı
+Platform halatlarla tamamen serbest asılı bir rigidbody zinciri değildir. Kaldırma rayı boyunca kontrollü yükseklik ve sınırlandırılmış pitch/roll kullanılır. Halatlar görseldir. Platform hareketi host'un tek otoriter adımında hesaplanır. Amaç arkadaşların karşı ağırlık hareketini okunabilir kılmak, gerçek kaldırma sistemi mühendisliğini taklit etmek değildir.
+
+## Destek kümeleri
+Her tick için platform local-space içinde SupportedSet oluşturulur: deck üzerindeki aktif oyuncular; deck tarafından desteklendiği sınıflandırılmış Available eşyalar; o platforma Secured eşyalar. Aynı item kimliği kümeye en fazla bir kere girer. Süs props'ları ve efekt parçaları girmez. Oyuncu görünümü ağırlığı değiştirmez.
+
+Temas titremesini azaltmak için giriş/çıkış histerezisi gerekir: bir tek anlık collision callback ile kütle eklenip çıkarılmaz. Kesin süre ve temas eşiği spike'ta belirlenir. Held olup deck teması olmayan eşya kümeye girmez; taşıyıcının kütlesine dolaylı eklenmez. Bu sadeleştirme fiziken tam gerçekçi değildir, denetlenebilir oyun kuralıdır.
+
+## Denge hesabı
+Platform yerel yatay eksenleri x/z olsun. Toplam destek kütlesi M, ağırlıklı merkez C = Σ(m_i × p_i) / M olarak hesaplanır. Boş platformda C sıfır kabul edilir; platform öz kütlesi ve başlangıç dengeleyici terimi profile tanımlanır. C'nin deck merkezinden normalize edilmiş sapması hedef eğime çevrilir. Hedef açı ±P-TILT-MAX ile sınırlanır; motor yaklaşma hızı ve sönüm ayrıca sınırlandırılır. Oyuncu görsel göstergesi bu aynı C ve sınır hesabını okur.
+
+## Hareket ve çarpışma
+Kinematik/controlled platform ile karakter ve serbest rigidbody ilişkisi motor spike'ının ana riskidir. Transform'u render Update içinde teleport etmek yoktur. Kaldırma hızı, üstteki karakter taşıma hızı ve collision sonucu aynı physics zaman tabanına bağlanır. Penetrasyon, server/client divergence ve hareketli referans çerçevesi ölçülmeden içerik genişletilmez.
+
+## Okunurluk
+Deck üzerinde merkez işareti, kenarda denge yönü, işitsel gerilim katmanı ve yük konumu bulunur. Renk tek kanal değildir. Maksimum eğimde platform rastgele oyuncu fırlatmaz; yük kayabilir, vinç güvenlik kilidi devreye girebilir. Kilit eşiği ve tekrar açılma histerezisi ayrı profile alanıdır.
+
+## Kabul
+İki eşit kütle karşılıklı durunca merkez yaklaşık dengeli; tek kişi sağa yürüyünce doğru yönde eğim; secured eşya iki kez sayılmaz; oyuncu zıplaması tek karede aşırı eğim üretmez; boş platform kendiliğinden enerji kazanmaz. Fiziksel “approximately” toleransları test cihazında kayda geçirilir; evrensel deterministik PhysX sözü verilmez.
+
+## Gereksinim ve test izleri
+- REQ-005 → TC-005 — Platform destek kütlesini bir kere saymalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-010 — Sözlük, birimler ve başlangıç parametreleri](../00_foundation/010_glossary_parameters.md)
+- [ASK-017 — Ortak taşıma ve kuvvet modeli](017_shared_carrying.md)
+- [ASK-019 — Vinç kontrolü ve kontrol kiralaması](019_winch_control.md)
+- [ASK-020 — Sabitleme, kayış ve anchor sözleşmesi](020_straps_anchors.md)
+- [ASK-040 — Unity fizik uygulaması ve teknik sınırlar](../03_engineering/040_physics_integration.md)
+- [ASK-066 — Başlangıç asset, render ve fizik bütçeleri](../06_quality/066_render_physics_asset_budgets.md)
+
+
+
+DOCUMENT: ASK-019
+PATH: docs/01_gameplay/019_winch_control.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 30ad370ea11dbabb32defd37313f10a4cfcb56731c1a4911c23e0184f98b64be
+
+---
+doc_id: ASK-019
+title: "Vinç kontrolü ve kontrol kiralaması"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-015","ASK-018","ASK-020","ASK-027","ASK-032"]
+---
+
+# Vinç kontrolü ve kontrol kiralaması
+
+## İşlev
+Vinç operatörü yükselt/alçalt/dur niyeti gönderir. V1'de platform bir tanımlı dikey rota boyunca ilerler; serbest 3D vinç inşası yoktur. Alt/üst durak, güvenli park konumu ve rota engelleri level verisidir.
+
+## Tek sürücü
+DriverLease oyuncu, platform, alınan epoch ve son yenileme zamanını taşır. Aynı anda bir sürücü vardır. İki geçerli istekte ilk host kabulü kazanır, diğerine Busy döner. Lease yalnız kontrol paneline erişim ve geçerli oyuncu durumu sürerken yenilenir. Menü, mesafe ihlali, kopma veya süre aşımı sürüş niyetini sıfırlar.
+
+## Güvenlik duruşu
+Komut akışı kesilince mevcut yükseltme niyeti sonsuza dek tutulmaz. Watchdog güvenli durdurma uygular. Duruşun anlık mı sınırlı ivmeli mi olduğu hissiyat testinde seçilir; her durumda maksimum hız ve ivme vardır. İstemci panel animasyonu platformun gerçek hareket otoritesi değildir.
+
+## Engeller
+Platform route sweep'i veya motorun fiziksel collision sonucu engel saptarsa devam komutu durumu zorla aşamaz. UI “Yukarıda engel var” der; engelin kimliği/gerekçesi tanıda tutulur. Maksimum eğim kilidi ile rota engeli farklı reasonCode'lardır. Açılma koşulu sağlanınca kendiliğinden tekrar hareket başlamaz; yeni oyuncu niyeti gerekir.
+
+## Sabitleme ilişkisi
+Yeni Secure/Unsecure için platform hızının P-WINCH-SECURE-SPEED altında olması gerekir. Hareket sırasında kopmayan görsel kayış simüle edilir; gerçek kopabilir rope veya düğüm çözme yoktur. Vinçte bekleyen oyuncu rolü bırakabilir; kontrolü alan kişi otomatik önceki yönü devralmaz.
+
+## Test
+İki oyuncu aynı karede kontrol alır; sürücü kablosu kesilir; yukarı tuşu basılıyken menü açılır; üst durakta paket tekrar gelir; engel kaldırılır. Her durumda tek sürücü, sınırlar içinde yükseklik ve güvenli sıfır niyet beklenir. Uzak istemcide panel ışığı ile gerçek driver bilgisi aynı authority kaynağından güncellenir.
+
+## İlgili kaynak belgeler
+- [ASK-015 — Etkileşim sorgusu ve komut sözleşmesi](015_interaction_contract.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](018_platform_balance.md)
+- [ASK-020 — Sabitleme, kayış ve anchor sözleşmesi](020_straps_anchors.md)
+- [ASK-027 — Otorite, sahiplik ve veri sınırları](../02_network/027_authority_matrix.md)
+- [ASK-032 — Kopma, yeniden bağlanma ve host kaybı](../02_network/032_disconnect_reconnect_hostloss.md)
+
+
+
+DOCUMENT: ASK-020
+PATH: docs/01_gameplay/020_straps_anchors.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 214a7526407a33e2bd42a45ededde162bb8d16de5e354761c56289951a2314dd
+
+---
+doc_id: ASK-020
+title: "Sabitleme, kayış ve anchor sözleşmesi"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-016","ASK-018","ASK-019","ASK-049"]
+---
+
+# Sabitleme, kayış ve anchor sözleşmesi
+
+## Basitleştirme
+Kayış sisteminin amacı taşıma sırasında eşyayı güvenli hale getirmektir. V1 kayışı serbest halat fiziği değildir; platform üzerinde önceden tanımlanmış anchor slotu, kısıtlı uygun eşya ve görsel bağlantı kullanır. Bir item aynı anda yalnız bir platforma Secured olabilir.
+
+## Secure önkoşulları
+Available + Free; holder sayısı sıfır; item deck üzerinde geçerli alan içinde; vinç hızı eşik altında; oyuncu erişim mesafesinde; anchor boş; eşya ailesi slot kapasitesine uygun. “R'ye bastım, herkesin elinden zorla aldım” davranışı yoktur. Geçersizse neyin düzeltilmesi gerektiği gösterilir.
+
+## İşlem sınırı
+Host anchor rezervasyonu, handling değişimi ve platform-local bağlı poz kaydını tek işlemde yapar. Fizik uygulaması güvenli bağlı temsil oluşturamazsa rezervasyon geri alınır. Görsel kayış sonradan yüklenemese bile oyun kilidi doğru kalır; görünmez kayış oyuncuya kabul edilebilir shipping sonuç değildir, art/QA hatasıdır.
+
+Secured item serbest dinamik simülasyon ile ayrıca sürülmez. Kütlesi SupportedSet'e bir kere girer. Öneri bağlı kinematik temsil veya doğrulanmış constraint yaklaşımıdır; seçimin collision ve ağ etkisi spike'ta karşılaştırılır. Mesh'i parent etmek tek başına fizik çözümü sayılmaz.
+
+## Unsecure
+Available + Secured; mevcut platform ilişkisi; vinç güvenli duruşta; erişim geçerli. Bağ kaldırılırken world pose korunur. Yeni serbest rigidbody'ye platformun doğrulanmış noktasal hızı aktarılır, kopyalanmış render farkından rastgele hız üretilmez. Çok hızlı hareket veya penetrasyon varsa ret ve düzeltme mesajı gerekir.
+
+## Kayış kapasitesi ve üretim
+Anchor sayısı görev platform profilinde tanımlanır. Yeni anchor mesh'i eklemek gameplay kapasitesini otomatik artırmaz. Kayış uçları authored socket'lardan alınır; nesneye göre minimum iki görünür temas noktası stil kontrolünden geçer. Kayış renginin okunması tek doğrulama değildir; kilit simgesi ve kısa ses gerekir.
+
+## Test
+İki Secure isteği aynı slota gelir: bir kabul. Biri Unsecure yaparken host kopar: kalıcı mid-run fizik kaydı olmadığı için bir sonraki açılış eski checkpoint'e döner. Eşya Lost olursa anchor temizlenir; slot sonsuza kadar dolu kalmaz. Kayış görseli yeniden bağlanmada snapshot'tan üretilebilir olmalıdır.
+
+## Gereksinim ve test izleri
+- REQ-010 → TC-010 — Anchor işlemi tek ve atomik olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-016 — Eşya semantiği ve değişmezler](016_item_state_model.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](018_platform_balance.md)
+- [ASK-019 — Vinç kontrolü ve kontrol kiralaması](019_winch_control.md)
+- [ASK-049 — Her nesne için üretim şartnamesi](../04_art/049_prop_asset_spec.md)
+
+
+
+DOCUMENT: ASK-021
+PATH: docs/01_gameplay/021_damage_breakage.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: a6f8916b82b32765ce38c160bc135234f551ccb79b5218a3a746c0229310f0b7
+
+---
+doc_id: ASK-021
+title: "Hasar ve kontrollü kırılma"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-016","ASK-022","ASK-025","ASK-040","ASK-054"]
+---
+
+# Hasar ve kontrollü kırılma
+
+## Hasar otoritesi
+Integrity yalnız host tarafından değişir. Çarpışma sesi hasar verildiği anlamına gelmez; istemci kozmetik çarpışma gözleyebilir fakat integrity yazamaz. Hasar için bağıl darbe büyüklüğü, temas türü, eşya ailesi ve cooldown profili değerlendirilir. Gerçek fizik enerji hesabı ile arcade hasar eğrisi ayrı kavramlardır.
+
+## Hesap tasarımı
+Her eşya ailesinin hasarsız darbe eşiği, artış eğrisi ve tek olay tavanı bulunur. Aynı rigidbody çiftinin aynı çarpışma bölümündeki çoklu contact noktaları bir olayda birleştirilir. Sürekli zeminde duran eşyanın her fixed tick'te hasar alması yasaktır. Pair cooldown ve yeniden çarpışma ayrımı gerekir; kesin eşikler graybox sonuçlarıyla belirlenecek.
+
+## Davranış
+Integrity 20'nin altına inen eşya teslim edilemez ancak sıfıra kadar Available kalabilir; UI düşük değer gerekçesini gösterir. Integrity sıfırda Lost olur: holder ve anchor ilişkileri temizlenir, görev uygunluğu yeniden değerlendirilir. Kırılma görsel parçaları yerel, süreli ve değersizdir; ekonomik item kimliği veya etkileşim collider'ı edinmez. Runtime mesh fracture v1 kapsamı değildir; önceden hazırlanmış hasar varyantları kullanılır.
+
+## Bilgi tasarımı
+Üç okunur aşama önerilir: sağlam, çizilmiş/hasarlı, kritik. Bunlar tek bir integrity değerinden türetilir; kendi bağımsız HP havuzları yoktur. Çatlak, ses ve simge birlikte kullanılır. Gizli rastgele kritik hasar yoktur. Sağlam görünen ama teslim edilemeyen item kabul edilmez.
+
+## Sömürü ve hata
+İstemciden gelen “collisionDamage” isteği doğrudan çalışmaz. Yerel FPS düşmesi hasarı çoğaltmaz. Güvenli kurtarma teleport'u hasar darbesi yaratmaz; recovery ile çarpışma hasarı aynı tick'te çakışırsa recovery sonrası yapay temas hasarı bastırılır, gerçek önceki hasar silinmez.
+
+## Kabul
+Aynı yükseklikten kontrollü düşüşler tolerans içinde benzer hasar verir; zeminde 60 saniye duran eşya hasar biriktirmez; kopan holder hasar olayı üretmez; Lost eşya tekrar teslim edilemez. Sayısal toleranslar fizik benchmark kaydına işlenir.
+
+## Gereksinim ve test izleri
+- REQ-012 → TC-012 — Hasar temas sayısıyla çoğalmamalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-016 — Eşya semantiği ve değişmezler](016_item_state_model.md)
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](022_delivery_scoring.md)
+- [ASK-025 — Düşme, sıkışma ve kurtarma kuralları](025_recovery_failures.md)
+- [ASK-040 — Unity fizik uygulaması ve teknik sınırlar](../03_engineering/040_physics_integration.md)
+- [ASK-054 — VFX, geri bildirim ve havuzlama](../04_art/054_vfx_feedback.md)
+
+
+
+DOCUMENT: ASK-022
+PATH: docs/01_gameplay/022_delivery_scoring.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: a201f546292b2d78084e21cb57e338bde6a9b0518f1659109b08d31bdc0237b2
+
+---
+doc_id: ASK-022
+title: "Teslimat doğrulaması ve tek seferlik sonuç"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-010","ASK-016","ASK-023","ASK-033"]
+---
+
+# Teslimat doğrulaması ve tek seferlik sonuç
+
+## Geçerli teslimat
+Eşya Available + Free olmalıdır; integrity en az P-INTEGRITY-MIN; teslimat hacminin içinde tamamen bulunmalı; doğrusal hız P-DELIVERY-SPEED ve açısal hız P-DELIVERY-ANGULAR altında kesintisiz P-DELIVERY-DWELL süresi kalmalıdır. Held veya Secured eşya teslim edilmez. Timer herhangi bir koşul bozulursa sıfırlanır, duraklatılmaz.
+
+## Tamamen içeride ne demektir?
+Her prefab authored deliveryBounds köşe noktalarını yerel koordinatta taşır. Host bu noktaları zone koordinatına dönüştürür ve tümünü hacim içinde toleransla denetler. Renderer'ın dünya AABB'si tek başına doğruluk kaynağı değildir; eğik nesnelerde gereksiz büyük kutu oluşur. Tolerans zone profilinde açık tanımlanır; kamera görüntüsünden karar verilmez.
+
+## Domain işlemi
+Host, itemInstanceId'yi ContractRun teslimat defterinde kontrol eder. Yoksa lifecycle Delivered, holder/anchor boş, teslimat kaydı ve geçici sonuç artışı tek transaction içinde yapılır. EventId = contractRunId + itemInstanceId + deliveryRevision gibi çakışmasız alanlarla belirlenir. Aynı komut, trigger veya event tekrar geldiğinde yeni ödeme olmaz.
+
+## Puan ve para
+Geçici eşya değeri = definition baseValue × integrity/100; tam sayı yuvarlama yönü floor olarak tanımlanır. Sözleşme bonusu yalnız zorunlu öğeler ve kota sağlanınca eklenir. Süre bonusu v1 slice'ta yoktur; gizli formül eklenmez. Aktif turdaki toplam, kampanya cüzdanı değildir. Kalıcı cüzdan yalnız Settling'de ASK-033 işlemiyle değişir.
+
+## Görünüm
+Host kabulünden önce ilerleme halkası yerel tahmin olabilir; kesin tik ve ses authoritative event ile gelir. Delivered item kısa görsel geçişten sonra oyun fizik dünyasından çıkarılabilir. Event tekrarı sesi ve konfeti ikinci kez oynatmamalıdır. Sonuç ekranı aynı teslimat defterini kullanır.
+
+## Kritik yarış
+Süre aynı tick başında bittiyse teslimat işlenmez. Item aynı tick'te integrity sıfıra düştüyse Lost geçişi teslimat değerlendirmesinden önce uygulanır. Sıra: doğrulanmış komutlar → fizik/hasar → terminal cleanup → zone koşulları → sonuç değerlendirmesi. Uygulamadaki callback sırası buna uymuyorsa olaylar domain adımında kuyruklanır.
+
+## Kabul
+İki zone overlap'i aynı eşya için bir kayıt üretir; bağlantı tekrarında sonuca ikinci kez eklenmez; zone kenarında dönen nesnenin dwell'i sıfırlanır; 19 integrity reddedilir, 20 diğer koşullarla kabul edilir. Testler disk commit'ten bağımsız domain düzeyinde de çalışır.
+
+## Gereksinim ve test izleri
+- REQ-011 → TC-011 — Teslimat ve ödeme yinelenmemeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-010 — Sözlük, birimler ve başlangıç parametreleri](../00_foundation/010_glossary_parameters.md)
+- [ASK-016 — Eşya semantiği ve değişmezler](016_item_state_model.md)
+- [ASK-023 — Sözleşme tanımı, başarı ve bitirme](023_contract_rules.md)
+- [ASK-033 — Kampanya işlemleri ve kayıt otoritesi](../02_network/033_campaign_transaction.md)
+
+
+
+DOCUMENT: ASK-023
+PATH: docs/01_gameplay/023_contract_rules.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: c5278cc093c59623446c4dae6eab377e8fbe3ff4906ccb30c5309e07b5dd8f3a
+
+---
+doc_id: ASK-023
+title: "Sözleşme tanımı, başarı ve bitirme"
+version: 0.1.0
+status: proposed
+owner_role: GameDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-011","ASK-022","ASK-024","ASK-060"]
+---
+
+# Sözleşme tanımı, başarı ve bitirme
+
+## ContractDefinition alanları
+Sabit definitionId, içerik sürümü, levelId, spawn seti, allowed player counts, başlangıç oyuncu sayısına göre süre/kota, mandatory item kimlikleri, isteğe bağlı eşyalar, base values, başarı bonusu, kurtarma cezası ve kilit açma bağımlılıkları. Rastgele seed alanı ileride dekor varyasyonu için ayrılabilir; v1 prosedürel şehir taahhüdü değildir.
+
+## Başarı kuralı
+Başarı = tüm mandatory eşyalar Delivered ve teslimat sayısı quota'ya en az eşit. Kota mandatory adetinden küçük olamaz, teslim edilebilir toplamdan büyük olamaz. Zorunlu eşya Lost olursa başarı imkânsız olabilir; oyuncuya hemen açıklanır. Ekip kalan eşyalarla kısmi gelir kazanmayı sürdürebilir veya abort edebilir.
+
+## Süre sonu ve abort
+Doğal süre sonunda teslim edilmiş eşyaların geçici değeri ödenir; başarılı değilse başarı bonusu yoktur. Açık Abort kazanç ödemez ve mevcut turu kapatır; onay ekranı bu farkı belirtir. Abort kalıcı kampanyayı silmez. “Başarısız olmak” ile “uygulama çöktüğü için commit olmamak” farklı sonuç nedenleridir.
+
+## Erken bitirme oyu
+Kota ve mandatory koşulları sağlandıysa aktif bağlı oyuncuların salt çoğunluğu, host dahil edilmek şartıyla, erken bitirmeyi onaylayabilir. Host'un oyu zorunludur; sadece host tek başına dört kişilik grubu bitiremez. Oy başlangıcındaki bağlı oyuncu listesi sabitlenir; kopma oyu otomatik kolaylaştırmaz, kısa süre sonunda iptal edilip yeni listeyle yeniden başlatılabilir. Tek bağlı host kalmışsa kendisi bitirebilir. Oylama süresi ve cooldown UI profilinde belirlenir.
+
+## Zorluk tasarımı
+Zorluk sadece ağırlık artırmak değildir: kapı açıklığı, dönüş açısı, yük merkezi, platform durakları ve aynı anda izlenecek işler değişir. Yeni davranış tanıtılan sözleşmede zaman baskısı düşürülür. Gizli rastgele başarısızlık veya tamamlanması imkânsız spawn yoktur.
+
+## Veri kabulü
+Editor validator bütün spawn referanslarını, hedeflerin ulaşılabilirliğine dair authored rota etiketlerini ve iki oyuncu desteğini denetler; gerçek oynanabilirlik yine playtest gerektirir. Zorunlu eşya hiçbir başlangıç varyantında kapıdan geometrik olarak imkânsız olmamalıdır.
+
+## Gereksinim ve test izleri
+- REQ-013 → TC-013 — Bitiş sırası ve kısmi ödül tutarlı olmalı
+- REQ-033 → TC-033 — Sözleşmeler geçerli ve farklı karar sunmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-011 — Temel oyun döngüsü ve zaman çizgisi](011_core_loop.md)
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](022_delivery_scoring.md)
+- [ASK-024 — İlerleme ve küçük ölçekli ekonomi](024_progression_economy.md)
+- [ASK-060 — On iki sözleşmelik içerik taslağı](../05_content/060_contract_catalog.md)
+
+
+
+DOCUMENT: ASK-024
+PATH: docs/01_gameplay/024_progression_economy.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: db0bdb21be565b9cb3b2aa624c4ade540a7fb37422a7681c94a53d189871cf45
+
+---
+doc_id: ASK-024
+title: "İlerleme ve küçük ölçekli ekonomi"
+version: 0.1.0
+status: proposed
+owner_role: GameDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-022","ASK-023","ASK-033","ASK-043"]
+---
+
+# İlerleme ve küçük ölçekli ekonomi
+
+## Sahiplik
+Kampanya host'a aittir. Misafir oyuncular host cüzdanının kopyasını kendi ilerlemeleri gibi kaydetmez. V1 karakter renkleri açıktır ve güç avantajı vermez. Kalıcı misafir ekonomisi, çapraz kampanya transferi ve çevrimiçi pazar yoktur. Bu tercih UI ve Steam açıklamasında anlaşılır olmalıdır.
+
+## İlerleme amacı
+İlerleme temel oyunu açmak için grind zorunluluğu değil, kısa vadeli hedef üretir. Temel vinç ve kayışlar ücretsiz görev ekipmanıdır. Önerilen yükseltmeler park ışığı okunurluğu gibi salt görsel şeylerden ibaret kalmamalı, fakat başarısız grubun oyunu oynayamamasına da yol açmamalıdır. İlk v1 adayları sınırlı vinç hız kademesi, kayış kapasitesi varyantı ve görev seçimi açılımıdır; her biri ayrı denge testi ister.
+
+## Harcama işlemi
+Yükseltme yalnız Hub'da host tarafından alınır. Command; upgradeId ve beklenen campaignRevision taşır. Host tanımı ve fiyatı kendi verisinden okur; yeterli bakiye, mevcut seviye ve bağımlılıkları doğrular. Bakiye düşümü, yükseltme seviyesi ve revision artışı tek kalıcı işlemde olur. İstemci fiyat göndererek indirim elde edemez.
+
+## Softlock önleme
+Kampanya negatif cüzdana düşmez; hata cezası borç yaratmaz. Her zaman başlangıç ekipmanıyla oynanabilir en az bir sözleşme vardır. Eşya kaybı yeni zorunlu ekipman satın alma döngüsü yaratmaz. Yükseltme etkisi küçük hız kazancından çok koordinasyonun yerine geçiyorsa yeniden tasarlanır.
+
+## Denge tablosu
+Her yükseltme için maliyet, etkilediği parametre, üst seviye, beklenen kazanma tur aralığı ve iki/dört kişi sonuç farkı tutulur. Bu arşiv nihai fiyat listesi değildir; önce teslimat değer dağılımı ve tur süresi ölçülmelidir. Ekonomi sayıları data sürümüne girer ve kayıttaki içerik sürümüyle ilişkilendirilir.
+
+## Kabul
+Arka arkaya başarısız olan ekip tekrar oynayabilir; satın alma spam'i tek harcama üretir; disk hatasında bakiye düşüp yükseltmenin kaybolması mümkün olmaz. Misafir ayrıldığında host ilerlemesi değişmez.
+
+## Gereksinim ve test izleri
+- REQ-019 → TC-019 — Satın alma güvenli ve softlock'suz olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](022_delivery_scoring.md)
+- [ASK-023 — Sözleşme tanımı, başarı ve bitirme](023_contract_rules.md)
+- [ASK-033 — Kampanya işlemleri ve kayıt otoritesi](../02_network/033_campaign_transaction.md)
+- [ASK-043 — Save şeması, migration ve cloud çatışması](../03_engineering/043_save_schema_migration.md)
+
+
+

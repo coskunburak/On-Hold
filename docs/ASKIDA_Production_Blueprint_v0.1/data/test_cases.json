@@ -1,0 +1,1036 @@
+[
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Karar sahibi, exact version ve test kanıtı olmadan APPROVED yok",
+    "given": "ADR-ENGINE açık",
+    "id": "TC-001",
+    "layer": "Review",
+    "requirements": [
+      "REQ-001"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-001",
+      "ASK-004",
+      "ASK-009",
+      "ASK-026"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Aday sürümleri kaydet",
+      "aynı graybox'ı iki istemciyle kur",
+      "build ve paket lock bilgisini ekle"
+    ],
+    "title": "Motor ve sürüm kararı kanıtla seçilmeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Missing GUID/shader yok; build kimliği ve lock kaydı var",
+    "given": "İkinci temiz test cihazı",
+    "id": "TC-002",
+    "layer": "Integration",
+    "requirements": [
+      "REQ-002"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-036",
+      "ASK-042"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Belgeli editor ile aç",
+      "dependency restore et",
+      "Windows build al"
+    ],
+    "title": "Temiz checkout tekrar açılmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Otoriter state değişmez; güvenli ret ve sınırlı log",
+    "given": "Host ve bir remote istemci",
+    "id": "TC-003",
+    "layer": "Domain",
+    "requirements": [
+      "REQ-003"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-027",
+      "ASK-028"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Remote kütle/para/poz payload'ını değiştir",
+      "sahte actor gönder"
+    ],
+    "title": "İstemci paylaşılan state'i doğrudan değiştirememeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "En çok iki holder; finite kuvvet; üçüncü reddedilir; kalan grip korunur",
+    "given": "İki oyuncu ve piano",
+    "id": "TC-004",
+    "layer": "Multiplayer",
+    "requirements": [
+      "REQ-004"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-015",
+      "ASK-017"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "İki grip al",
+      "ters yönlere çek",
+      "üçüncü holder iste",
+      "birini bırak"
+    ],
+    "title": "İki holder sınırlı kuvvetle aynı eşyayı taşıyabilmeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Secure kütleyi ikiye katlamaz; doğru yönde sınırlı eğim; boşta drift yok",
+    "given": "Boş platform ve iki eşit kütle",
+    "id": "TC-005",
+    "layer": "PlayMode",
+    "requirements": [
+      "REQ-005"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-018",
+      "ASK-040"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Karşılıklı yerleştir",
+      "birini secure et",
+      "bir oyuncuyu sağa yürüt"
+    ],
+    "title": "Platform destek kütlesini bir kere saymalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "State corruption ve kalıcı holder kilidi yok; his toleransı ayrı değerlendirilir",
+    "given": "N0–N4 profil runner'ı",
+    "id": "TC-006",
+    "layer": "Multiplayer",
+    "requirements": [
+      "REQ-006"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-030",
+      "ASK-035"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Carry/secure/delivery rotasını koş",
+      "host/client capture al"
+    ],
+    "title": "Ağ stresinde state bozulmamalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Bağlantı yolu ve adapter sürümü kayıtlı; yalnız localhost kanıt sayılmaz",
+    "given": "Farklı ağdaki iki test PC",
+    "id": "TC-007",
+    "layer": "Integration",
+    "requirements": [
+      "REQ-007"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-026",
+      "ASK-031"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Davet gönder",
+      "handshake/transport kur",
+      "tur başlat"
+    ],
+    "title": "Gerçek internet bağlantısı doğrulanmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Devam/daralt kararı var; başarısız risk üstüne içerik büyümez",
+    "given": "Spike çıktıları",
+    "id": "TC-008",
+    "layer": "Review",
+    "requirements": [
+      "REQ-008"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-026",
+      "ASK-069",
+      "ASK-074"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Capture ve profilleri karşılaştır",
+      "ADR kararını yaz"
+    ],
+    "title": "Risk kapısı kanıtla kapanmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Terminal state geri dönmez; holder ve anchor kombinasyonları geçerli",
+    "given": "Bütün legal/illegal durum fixture'ları",
+    "id": "TC-009",
+    "layer": "Domain",
+    "requirements": [
+      "REQ-009"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-016",
+      "ASK-067"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Grab/release/secure/deliver/lost geçişlerini uygula"
+    ],
+    "title": "Eşya değişmezleri korunmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Bir rezerv; rollback tam; hareketli vinçte ret; world pose korunur",
+    "given": "İki oyuncu tek boş anchor",
+    "id": "TC-010",
+    "layer": "Multiplayer",
+    "requirements": [
+      "REQ-010"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-020",
+      "ASK-028"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Aynı tick secure gönder",
+      "hata enjekte et",
+      "unsecure dene"
+    ],
+    "title": "Anchor işlemi tek ve atomik olmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Held ret; şartlar sağlanınca bir ledger kaydı; tek gelir katkısı",
+    "given": "Item 20 integrity, geçerli zone",
+    "id": "TC-011",
+    "layer": "Domain",
+    "requirements": [
+      "REQ-011"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-022",
+      "ASK-033"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Held iken dene",
+      "bırak",
+      "dwell tamamla",
+      "event'i 100 kez tekrarla"
+    ],
+    "title": "Teslimat ve ödeme yinelenmemeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Tek darbe bölümü sınırlı hasar; yerde hasar birikmez; Lost cleanup tam",
+    "given": "Kontrollü drop sahnesi",
+    "id": "TC-012",
+    "layer": "PlayMode",
+    "requirements": [
+      "REQ-012"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-021",
+      "ASK-040"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Eşyayı düşür",
+      "zeminde 60 s beklet",
+      "sıfır integrity dene"
+    ],
+    "title": "Hasar temas sayısıyla çoğalmamalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Önce tick timeout; doğal bitişte kısmi gelir; abort sıfır; host içeren çoğunluk",
+    "given": "Timeout ve mandatory fixture'ı",
+    "id": "TC-013",
+    "layer": "Domain",
+    "requirements": [
+      "REQ-013"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-011",
+      "ASK-023"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Aynı tick timeout/delivery",
+      "doğal süre sonu",
+      "abort",
+      "oylama dene"
+    ],
+    "title": "Bitiş sırası ve kısmi ödül tutarlı olmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "İlk iki kurtarma; üçüncü Lost; callback sayaç çoğaltmaz; penetrasyon yok",
+    "given": "Available ve Lost item",
+    "id": "TC-014",
+    "layer": "PlayMode",
+    "requirements": [
+      "REQ-014"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-025"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Üç kez kill volume",
+      "tekrar callback",
+      "dolu recovery alanı"
+    ],
+    "title": "Kurtarma terminal item'ı canlandırmamalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Uyumsuz/dolu/yeni latejoin açıkça reddedilir; ghost slot yok",
+    "given": "Farklı build/content istemcileri",
+    "id": "TC-015",
+    "layer": "Integration",
+    "requirements": [
+      "REQ-015"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-012",
+      "ASK-031"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Uyumsuz bağlan",
+      "lobi doldur",
+      "Active'de yeni hesap dene"
+    ],
+    "title": "Lobi ve content handshake uyumlu olmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Holder hemen temiz; aynı oyuncu tek avatar; eski input işlemez",
+    "given": "Aktif holder olan misafir",
+    "id": "TC-016",
+    "layer": "Multiplayer",
+    "requirements": [
+      "REQ-016"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-032",
+      "ASK-029"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Bağlantıyı kes",
+      "rezerv içinde dön",
+      "eski komut gönder"
+    ],
+    "title": "Misafir reconnect temiz snapshot almalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Host migration yok; önceki kalıcı checkpoint veya tamamlanmış commit; çift ödeme yok",
+    "given": "Aktif tur ve önceki save",
+    "id": "TC-017",
+    "layer": "Integration",
+    "requirements": [
+      "REQ-017"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-032",
+      "ASK-043"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Host'u Active'de kapat",
+      "yeniden aç",
+      "sonra commit sonrası kapat"
+    ],
+    "title": "Host kaybı checkpoint sınırını korumalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Orijinal korunur; transaction bir kez; ileri save eski build tarafından ezilmez",
+    "given": "Save sürüm fixture'ları",
+    "id": "TC-018",
+    "layer": "Integration",
+    "requirements": [
+      "REQ-018"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-033",
+      "ASK-043"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Yazma aşamalarında hata",
+      "migration iki kez",
+      "ileri sürüm yükle"
+    ],
+    "title": "Kayıt atomik ve migrate edilebilir olmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Tek harcama; server fiyatı; bakiye negatif değil; oynanabilir temel görev var",
+    "given": "Hub'da yeterli/yetersiz bakiye",
+    "id": "TC-019",
+    "layer": "Domain",
+    "requirements": [
+      "REQ-019"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-024",
+      "ASK-033"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "İstek tekrarı",
+      "negatif fiyat payload",
+      "bütün başlangıç bütçesini harca"
+    ],
+    "title": "Satın alma güvenli ve softlock'suz olmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Hepsi error; sağlam registry geçer; runtime state tanıma yazılmaz",
+    "given": "Bozuk tanım fixture'ları",
+    "id": "TC-020",
+    "layer": "EditMode",
+    "requirements": [
+      "REQ-020"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-039",
+      "ASK-041"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Duplicate ID",
+      "missing prefab/key",
+      "negatif mass ekle"
+    ],
+    "title": "Content registry hataları build'i engellemeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Servis/abonelik/actor sayısı kalıcı artmaz; yeni epoch eski callback almaz",
+    "given": "Debug sayaçlı build",
+    "id": "TC-021",
+    "layer": "PlayMode",
+    "requirements": [
+      "REQ-021"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-012",
+      "ASK-038"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "20 lobi/görev/sonuç döngüsü",
+      "yarıda loading iptal"
+    ],
+    "title": "Sahne yaşam döngüsü kaynak sızdırmamalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Crash/unauthorized değişim yok; bounded queue/cache/log; token çıkmaz",
+    "given": "İzole test oturumu",
+    "id": "TC-022",
+    "layer": "Security",
+    "requirements": [
+      "REQ-022"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-028",
+      "ASK-034"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "NaN",
+      "oversized payload",
+      "spoof actor",
+      "10x spam"
+    ],
+    "title": "Bozuk komut sınırlı kaynakla reddedilmeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Siluet/ölçek/malzeme uyumu review kaydı; uyumsuz varlık onaysız geçmez",
+    "given": "Nötr ve oyun ışığı sahnesi",
+    "id": "TC-023",
+    "layer": "VisualReview",
+    "requirements": [
+      "REQ-023"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-046",
+      "ASK-047"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Karakter/platform/iki paket eşyasını üç mesafede incele"
+    ],
+    "title": "Kaynak paketler ortak stil kapısından geçmeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Eksik kaynak kaydı public build'i engeller; AI girdisi olarak kullanılan içerikte ilgili izin ayrıca doğrulanır; ham paket dağıtılmaz",
+    "given": "Build asset manifest'i",
+    "id": "TC-024",
+    "layer": "Audit",
+    "requirements": [
+      "REQ-024"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-048",
+      "ASK-061"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Her asset provenance/tier/hash/lisans eşlemesini aç"
+    ],
+    "title": "Shipping varlığı lisansa izlenebilir olmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Tek root body; doğru bounds; kapı ve iki holder testi; kabul kaydı",
+    "given": "Bir final aday piano prefab'ı",
+    "id": "TC-025",
+    "layer": "EditMode+PlayMode",
+    "requirements": [
+      "REQ-025"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-049",
+      "ASK-041"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Scale/pivot/socket/collider/LOD kontrol",
+      "drop/secure/delivery testi"
+    ],
+    "title": "Prop tam teknik kabul almalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Dosyalar gerçekten oluşur; malzeme dönüşümü düzeltilir; lisans ve QA kaydı",
+    "given": "İzinli brief ve Blender ortamı",
+    "id": "TC-026",
+    "layer": "Tooling+Review",
+    "requirements": [
+      "REQ-026"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-050",
+      "ASK-048"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Parametrik deck üret",
+      "export al",
+      "Unity import et",
+      "görsel ve fizik kontrol"
+    ],
+    "title": "AI üretimi gerçek araç ve insan QA ile doğrulanmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Deformasyon/uzayan kol yok; görünüm kütleyi değiştirmez",
+    "given": "Onaylı avatar varyantları",
+    "id": "TC-027",
+    "layer": "AnimationReview",
+    "requirements": [
+      "REQ-027"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-051"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "T-pose",
+      "carry",
+      "winch",
+      "grip IK ve yakın kamera testleri"
+    ],
+    "title": "Tek rig bütün karakterlerde çalışmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Para/state değişmez; el hedefi temiz; snapshot doğru pose kurar",
+    "given": "Grab/release ret senaryosu",
+    "id": "TC-028",
+    "layer": "PlayMode",
+    "requirements": [
+      "REQ-028"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-052"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Animasyon event'ini tekrarla",
+      "Grab reddet",
+      "reconnect yap"
+    ],
+    "title": "Animasyon gameplay state'i belirlememeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Eksik shader yok; shared palet; aşım measured istisnayla açıklı",
+    "given": "Hedef art sahnesi",
+    "id": "TC-029",
+    "layer": "Performance+Visual",
+    "requirements": [
+      "REQ-029"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-053",
+      "ASK-066"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Nötr/oyun ışığı",
+      "material slot ve texture ölçümü"
+    ],
+    "title": "Materyaller uyumlu ve bütçe içinde olmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Tek feedback; bounded pool; gameplay etkilenmez; görüş korunur",
+    "given": "Yoğun darbe sahnesi",
+    "id": "TC-030",
+    "layer": "PlayMode",
+    "requirements": [
+      "REQ-030"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-054"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Event tekrarı",
+      "pool doldurma",
+      "VFX kapatma"
+    ],
+    "title": "VFX tek olay ve sınırlı havuz kullanmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Çift loop/clipping yok; sessiz modda kritik bilgi görünür",
+    "given": "Dört oyuncu ses profili",
+    "id": "TC-031",
+    "layer": "AudioReview",
+    "requirements": [
+      "REQ-031"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-055"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Winch başlat/durdur/kop",
+      "çoklu darbe",
+      "ses kapalı görev"
+    ],
+    "title": "Ses state ile uyumlu ve erişilebilir olmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Geometrik imkânsızlık/kalıcı kilit yok; denge nedeni anlaşılır",
+    "given": "Gerçek item bounds'lu blockout",
+    "id": "TC-032",
+    "layer": "Playtest",
+    "requirements": [
+      "REQ-032"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-056",
+      "ASK-057",
+      "ASK-058"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Dört eşyayı taşı",
+      "kapıda dön",
+      "dört oyuncu panel yaklaşsın"
+    ],
+    "title": "Slice rotası iki/dört oyuncuyla geçilmeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "İmkânsız kota yok; tekrar görevler ayrı planlama sorusu sunar",
+    "given": "12 öneri kartı",
+    "id": "TC-033",
+    "layer": "Data+Playtest",
+    "requirements": [
+      "REQ-033"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-023",
+      "ASK-059",
+      "ASK-060"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Kota/mandatory/spawn validate",
+      "varyasyon playtest'i"
+    ],
+    "title": "Sözleşmeler geçerli ve farklı karar sunmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Sahte başarı yok; kaydedildi doğru; host cüzdanı açık",
+    "given": "Ret/pending/save fail fixture'ları",
+    "id": "TC-034",
+    "layer": "UXTest",
+    "requirements": [
+      "REQ-034"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-062",
+      "ASK-015"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Grab reddet",
+      "save hata",
+      "misafir sonuç ekranı"
+    ],
+    "title": "UI otorite ve kayıt durumunu doğru göstermeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Kilitlenme yok; yalnız renge/sese bağlı bilgi yok; odak erişilir",
+    "given": "Gamepad ve erişim profilleri",
+    "id": "TC-035",
+    "layer": "Accessibility",
+    "requirements": [
+      "REQ-035"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-063",
+      "ASK-013"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Toggle hold",
+      "remap",
+      "sessiz/renksiz",
+      "max UI ölçek"
+    ],
+    "title": "Erişim ayarları temel görevi desteklemeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Taşma/eksik glyph/key yok; gerçek action düğmesi görünür",
+    "given": "TR/EN/pseudo dil",
+    "id": "TC-036",
+    "layer": "Localization",
+    "requirements": [
+      "REQ-036"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-064"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Türkçe glyph",
+      "yüzde30 uzun metin",
+      "remap prompt"
+    ],
+    "title": "Yerelleştirme metin ve input'u korumalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Sayısal hedefler ADR'yle dondurulur; measured rapor; drift ve spike açıklanır",
+    "given": "Onaylanacak reference PC",
+    "id": "TC-037",
+    "layer": "Benchmark",
+    "requirements": [
+      "REQ-037"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-065",
+      "ASK-066"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Host/remote 4 oyuncu capture",
+      "p95/p99",
+      "2h soak"
+    ],
+    "title": "Hedef donanım performansı ölçülmeli"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Başarısız test yayını keser; artifact metadata tam; onaysız public upload yok",
+    "given": "Temiz agent ve staging branch",
+    "id": "TC-038",
+    "layer": "CI+Release",
+    "requirements": [
+      "REQ-038"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-042",
+      "ASK-070"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Validation/test/build",
+      "failed test",
+      "rollback dry run"
+    ],
+    "title": "Build/release yolu kontrollü olmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Belge testleri ayrı rapor; MCP implementasyonu ayrıca test edilmeden hazır sayılmaz",
+    "given": "Bu arşiv ve gelecekte MCP test ortamı",
+    "id": "TC-039",
+    "layer": "Documentation+Security",
+    "requirements": [
+      "REQ-039"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-076",
+      "ASK-077",
+      "ASK-078",
+      "ASK-079"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Validator/export hash",
+      "ID arama",
+      "gelecekte traversal/stale snapshot denemesi"
+    ],
+    "title": "Bilgi tabanı izlenebilir ve salt okunur kullanılmalı"
+  },
+  {
+    "evidence_required": [
+      "Build veya araç sürümü",
+      "Girdi fixture/profile",
+      "Gerçek çıktı/log veya review kaydı"
+    ],
+    "expected": "Store gerçek build'i anlatır; açık P0/P1 ve belirsiz lisansla yayın yok",
+    "given": "RC ve mağaza taslağı",
+    "id": "TC-040",
+    "layer": "ReleaseReview",
+    "requirements": [
+      "REQ-040"
+    ],
+    "result": null,
+    "source_docs": [
+      "ASK-048",
+      "ASK-069",
+      "ASK-075"
+    ],
+    "status": "NOT_RUN",
+    "steps": [
+      "Özellik/video/AI beyanı/lisans/minspec/destek review"
+    ],
+    "title": "Yayın iddiaları kanıta ve lisansa uymalı"
+  }
+]

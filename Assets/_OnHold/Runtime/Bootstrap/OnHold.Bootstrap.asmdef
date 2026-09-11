@@ -1,0 +1,16 @@
+{
+  "name": "OnHold.Bootstrap",
+  "rootNamespace": "OnHold.Bootstrap",
+  "references": [
+    "OnHold.Core",
+    "OnHold.Domain",
+    "OnHold.Gameplay",
+    "OnHold.Networking",
+    "OnHold.Persistence",
+    "OnHold.Presentation",
+    "Unity.Netcode.Runtime",
+    "Unity.InputSystem"
+  ],
+  "includePlatforms": [],
+  "noEngineReferences": false
+}

@@ -1,0 +1,9 @@
+{
+    "result": "PASS",
+    "editor": "6000.5.0f1",
+    "generated": "2026-09-10T14:17:51.1342750Z",
+    "itemIds": "cargo.longload.01:1|cargo.crate.01:2",
+    "objects": 51,
+    "fixtureObjects": 14,
+    "generatedTwice": true
+}

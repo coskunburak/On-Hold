@@ -1,0 +1,421 @@
+ASKIDA KNOWLEDGE SNAPSHOT v0.1.0
+VOLUME: 05/10
+SNAPSHOT: 3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4
+STATUS: PROPOSED; GAME TESTS NOT RUN; READ-ONLY DERIVED COPY.
+Canonical Markdown documents remain the source of truth.
+
+DOCUMENT: ASK-033
+PATH: docs/02_network/033_campaign_transaction.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 827a87f73e1f63b381079415d2111b52549b6f76011be9904e0f814d79261307
+
+---
+doc_id: ASK-033
+title: "Kampanya işlemleri ve kayıt otoritesi"
+version: 0.1.0
+status: proposed
+owner_role: Backend
+last_reviewed: 2026-09-07
+dependencies: ["ASK-012","ASK-022","ASK-024","ASK-043"]
+---
+
+# Kampanya işlemleri ve kayıt otoritesi
+
+## Kalıcı sınır
+Diskteki kampanya yalnız host'a aittir. Active turdaki fizik dünyası kaydedilmez. Kalıcı değişiklikler tur sonucu commit'i ve Hub satın alımıdır. Bu sınırlama tekrar oynanabilirliği korur ve canlı joint/transform geri yükleme karmaşıklığını v1'den çıkarır.
+
+## Tur sonu işlem
+ContractRunUUID önceki committedRunIds içinde varsa mevcut sonucu döndür. Yoksa doğrulanmış teslimat defterinden sonuç hesapla, başarı bonusunu uygula, bakiye ve açılımları türet, yeni campaignRevision üret. Yeni checkpoint transactionId, schemaVersion, contentVersion, result summary ve dedup run kaydı taşır. Kalıcı yazma başarılı olmadan Results “kaydedildi” göstermez.
+
+## Atomiklik
+Öneri geçici dosya + flush + aynı hacimde güvenli replace + son iyi backup yaklaşımıdır; exact OS davranışı uygulamada doğrulanmalıdır. Birden fazla bağımsız JSON dosyasına para ve ilerleme ayrı yazılmaz. Günlük/journal tasarlanırsa recovery kuralları ve disk büyüme sınırı bulunur; “journal var” tek başına atomiklik kanıtı değildir.
+
+## Çökme pencereleri
+Sonuç hesaplandı/yazılmadı: önceki checkpoint. Geçici dosya yazıldı/replace olmadı: geçerli ana kayıt veya doğrulanmış kurtarma. Replace oldu/UI görmedi: run UUID tekrarında ek para yok. Backup bozuk: hata görünür, geçersiz veri sessizce yeni oyun diye üzerine yazılmaz.
+
+## Misafir deneyimi
+Konuk sonuç ekranında grup kazancını görür; kendi cüzdanına eklendiği izlenimi yaratılmaz. Kendi ses/kamera/tuş tercihleri ayrı yerel ayar dosyasıdır. Host kimliği değiştiğinde başka kampanya açıldığı anlaşılır.
+
+## Kabul
+Her disk aşamasına yapay hata enjekte edilir. Aynı result 100 kere uygulanınca para bir kez artar. Negatif fiyat ve taşan integer reddedilir. Gerçek para ekonomisi veya sunucu destekli değer bulunmadığından ağır güvenlik iddiası yoktur; buna rağmen kullanıcı verisi korunur.
+
+## Gereksinim ve test izleri
+- REQ-011 → TC-011 — Teslimat ve ödeme yinelenmemeli
+- REQ-018 → TC-018 — Kayıt atomik ve migrate edilebilir olmalı
+- REQ-019 → TC-019 — Satın alma güvenli ve softlock'suz olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-012 — Oturum ve görev durum makinesi](../01_gameplay/012_session_state_machine.md)
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](../01_gameplay/022_delivery_scoring.md)
+- [ASK-024 — İlerleme ve küçük ölçekli ekonomi](../01_gameplay/024_progression_economy.md)
+- [ASK-043 — Save şeması, migration ve cloud çatışması](../03_engineering/043_save_schema_migration.md)
+
+
+
+DOCUMENT: ASK-034
+PATH: docs/02_network/034_security_abuse.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 3f718a6aec11fe8dabf30e50f2ff233007d6c4e309f52e34778ca9a3021c7488
+
+---
+doc_id: ASK-034
+title: "Ağ güvenliği ve kötüye kullanım sınırları"
+version: 0.1.0
+status: proposed
+owner_role: Network
+last_reviewed: 2026-09-07
+dependencies: ["ASK-027","ASK-028","ASK-044","ASK-078"]
+---
+
+# Ağ güvenliği ve kötüye kullanım sınırları
+
+## Tehdit modeli
+Arkadaş oturumu içinde bozuk veya değiştirilmiş istemci, paket spam'i, yanlış içerik sürümü, tekrar oynatılan komut ve hassas verinin log'a sızması ele alınır. Listen host'un kendi belleğini değiştirmesi v1'de önlenemez; rekabetçi anti-cheat vaat edilmez.
+
+## Girdi sınırları
+Komut boyutu, string uzunluğu, enum alanı, finite float, dünya koordinatı ve işlem sıklığı denetlenir. Actor bağlantıdan çözülür. Arbitrary asset path, dosya yolu, Lua/C# metni veya işletim sistemi komutu network payload olarak kabul edilmez. Unknown fields sürüm politikasıyla reddedilir veya güvenli atlanır; sessiz şema kayması yoktur.
+
+## Kaynak tüketimi
+Bağlantı başına input rate ve pahalı etkileşim sorgusu kotası farklıdır. İhlal sırasıyla sınırlama, uyarı ve koparma üretebilir. Her ret için büyük stack trace basılmaz; örnekleme ve sayıcılar kullanılır. Dedup cache, pending request ve reconnect rezervleri kapasite sınırlıdır.
+
+## Kimlik ve gizlilik
+Steam doğrulama biletleri ve servis anahtarları loglarda bulunmaz. Gameplay actorId oturumluk kimliktir; analitik için mümkün olduğunca kalıcı kişisel profil toplanmaz. Retention ve telemetry varsayılanı yayın öncesi yerel hukuk ve platform şartlarıyla doğrulanmalıdır; bu belge hukuki görüş değildir.
+
+## Yetki kontrolleri
+Yalnız host görev seçer ve kampanya harcar; driver yalnız kendi lease'i boyunca vinç yönü yollar; holder yalnız kendi hakkını bırakır. Host-local kod yolu da aynı domain koşullarına girer. Remote oyuncu Kick isteğiyle başka oyuncuyu çıkaramaz.
+
+## Kabul
+Fuzz girdilerde crash yok; 10 kat komut hızında host kaynak tüketimi kontrollü; token log taraması temiz; content hash uyuşmazlığı başlangıcı engeller. Güvenlik testi izole test oturumunda yapılır, kullanıcıya ait üçüncü taraf sistem hedeflenmez.
+
+## Gereksinim ve test izleri
+- REQ-022 → TC-022 — Bozuk komut sınırlı kaynakla reddedilmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-027 — Otorite, sahiplik ve veri sınırları](027_authority_matrix.md)
+- [ASK-028 — Komut protokolü, tekrarlar ve sıralama](028_command_protocol.md)
+- [ASK-044 — Tanı, ölçüm ve gizlilik](../03_engineering/044_telemetry_debugging.md)
+- [ASK-078 — Salt okunur MCP bilgi servisi şartnamesi](../08_knowledge/078_mcp_readonly_spec.md)
+
+
+
+DOCUMENT: ASK-035
+PATH: docs/02_network/035_network_test_matrix.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 91cbac7202ef82b825a1f05560fb279900620c5f1c3a4e12358d23956dad85d3
+
+---
+doc_id: ASK-035
+title: "Multiplayer test matrisi ve kanıt"
+version: 0.1.0
+status: proposed
+owner_role: QA
+last_reviewed: 2026-09-07
+dependencies: ["ASK-026","ASK-030","ASK-032","ASK-067"]
+---
+
+# Multiplayer test matrisi ve kanıt
+
+## Temel matris
+| Profil | RTT | Jitter | Kayıp | Beklenti |
+|---|---:|---:|---:|---|
+| N0 | Yerel ölçüm | 0 | 0 | İşlevsel referans |
+| N1 | 50 ms | 15 ms | %0 | Normal his |
+| N2 | 100 ms | 15 ms | %1 | Normal kullanım |
+| N3 | 150 ms | 40 ms | %1 | Hedef stres |
+| N4 | 250 ms | 40 ms | %5 | Güvenli bozulma |
+
+Bu değerler emülasyon girdisidir; gerçek ölçülen RTT ayrıca raporlanır. N4'te akıcı deneyim vaat edilmez; state corruption, çoğaltılmış para ve cleanup hatası kabul edilmez.
+
+## Her turda temel senaryolar
+2/3/4 oyuncu; host güçlü/zayıf cihaz; iki holder aynı eşya; dolu platform yükselmesi; sürücünün kopması; sağ/sol kenara eşzamanlı yürüyüş; secure/unsecure; timer ile delivery yarışı; Results commit sırasında bağlantı kaybı. Her kontrol tüm kombinasyonlarda her commit'te koşmaz: PR smoke, gece matrisi, milestone soak olarak ayrılır.
+
+## Ölçümler
+p50/p95/p99 correction mesafesi, platform relative hata, authoritative fizik ms, istemci frame time, byte/s ve packet/s, retransmit oranı, komut ret nedeni, holder/joint sayısı. Ortalama ping tek başına rapor değildir. Host/client saat eşlemesi server tick üzerinden yapılır; duvar saatlerinin senkron olduğu varsayılmaz.
+
+## Süre
+PR smoke 5–10 dakikalık sabit rota; milestone 30 dakikalık yinelenen görev; release adayı en az 2 saatlik 4 oyuncu soak önerisi. Bunlar henüz koşulmuş testler değildir. Soak sırasında memory drift, ağ obje sayısı ve pool kapasitesi takip edilir.
+
+## Hata raporu
+Build hash, dependency lock hash, map/contract ID, roster, emülasyon profili, actual RTT, reproduction adımları, beklenen/gerçek sonuç, log bundle ve eşzamanlı videolar. “Bazen lag oluyor” yerine tick aralığı ve etkilenen nesne kimliği gerekir.
+
+## Kapı
+Kritik state mismatch veya kalıcı holder kilidi açıkken içerik milestone'u teknik olarak geçmiş sayılmaz. Hissiyat toleransları ilk spike'ta belirlenir ve sonradan geçmek için sessizce gevşetilmez.
+
+## Gereksinim ve test izleri
+- REQ-006 → TC-006 — Ağ stresinde state bozulmamalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-026 — Ağ çözümü seçimi ve risk prototipi](026_network_adr_spike.md)
+- [ASK-030 — Gecikme, öngörü ve düzeltme sınırları](030_latency_prediction.md)
+- [ASK-032 — Kopma, yeniden bağlanma ve host kaybı](032_disconnect_reconnect_hostloss.md)
+- [ASK-067 — Test stratejisi ve gereksinim izlenebilirliği](../06_quality/067_test_strategy_traceability.md)
+
+
+
+DOCUMENT: ASK-036
+PATH: docs/03_engineering/036_unity_repository.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: d4676d7167640f0d04b1c33f071cf191560862fca9394c7bd6f5170351231502
+
+---
+doc_id: ASK-036
+title: "Unity deposu ve dosya hiyerarşisi"
+version: 0.1.0
+status: proposed
+owner_role: TechLead
+last_reviewed: 2026-09-07
+dependencies: ["ASK-002","ASK-037","ASK-039","ASK-041","ASK-042"]
+---
+
+# Unity deposu ve dosya hiyerarşisi
+
+## Motor durumu
+Öneri Unity 6 + URP; exact editor patch ve paket sürümleri ADR-ENGINE sonrası kilitlenecek. “Latest” bağımlılık kullanılmaz. Bu arşivde Unity projesi oluşturulmadı; aşağıdaki ağacın üretim deposunda kurulması planlanır.
+
+## Depo ağacı
+- Game/Assets/_Askida/Runtime/{Core,Gameplay,Network,UI,Audio,Presentation}
+- Game/Assets/_Askida/Editor/{Validation,Import,Build}
+- Game/Assets/_Askida/Tests/{EditMode,PlayMode,Integration}
+- Game/Assets/_Askida/Art/{Meshes,Materials,Textures,Animations,VFX}
+- Game/Assets/_Askida/Prefabs/{Players,Items,Platform,Environment,UI}
+- Game/Assets/_Askida/Data/{Items,Contracts,Levels,Profiles,Localization}
+- Game/Assets/_Askida/Scenes/{Bootstrap,Frontend,Hub,Levels,Validation}
+- Game/Assets/ThirdParty/<Publisher>/<Package>/<Version>/
+- Game/Packages/{manifest.json,packages-lock.json}
+- Game/ProjectSettings/
+- SourceArt/{Blender,Textures,Audio,Exports,Provenance}
+- Docs/ASKIDA/ — bu arşivin bütünü, kendi README/AGENTS/data/tools düzeniyle
+- Tools/{AssetBuild,Validation,Release}
+- Builds/ — üretilmiş, Git dışında
+
+## Sürüm kontrolü
+Bilgi tabanı kökü ile oyun deposu kökü aynı olmak zorunda değildir. Önerilen entegrasyonda bu arşivin içeriği Docs/ASKIDA/ altına bütünüyle taşınır; göreli belge bağlantıları değişmez. Yardımcı komutları o dizinde çalıştırın. Oyun deposunun kök AGENTS.md dosyası, Docs/ASKIDA/AGENTS.md ve görevle ilgili ASK belgelerini açıkça okuma yönlendirmesi taşımalıdır; alt klasördeki AGENTS kurallarının Game/ koduna otomatik uygulanacağını varsaymayın. Kök yönergede çalışma deposunun gerçek yolları kullanılır, bu paketin data/ yolunu yanlışlıkla repo kökünde aramayın.
+
+Assets ve .meta dosyaları birlikte sürümlenir; GUID korunur. ProjectSettings ve paket lock dosyası depoya alınır. Library, Temp, Obj, Logs, UserSettings ve build çıktıları kaynak depoya alınmaz. Büyük .blend, ses ve texture kaynaklarında Git LFS önerilir; ekip kota ve erişimini onaylamadan etkinleştirilmez. Metin serialization ve görünür meta ayarları doğrulanır.
+
+## Dosya adları
+PF_Item_Piano_A, SM_Platform_Deck_A, MAT_Equipment_Orange, SO_Item_Piano_A, SCN_Level_Courtyard gibi tür önekleri; dosyalarda ASCII ve kararlı isimler. Kod namespace Askida.Gameplay.Carrying benzeri alan tabanlıdır. Türkçe görünen metinler localization tablosunda bulunur, sınıf adlarında değil.
+
+## Üçüncü taraf sınırı
+Paket demosu doğrudan shipping sahne olmaz. Ham kaynak Assets/ThirdParty altında korunur; oyun prefab türevleri _Askida altında oluşturulur. Yeniden import bütün değişiklikleri ezmesin diye upstream mesh'i elle düzeltmek yerine project-owned türevi ve provenance kaydı kullanılır.
+
+## Kabul
+Temiz checkout farklı geliştirici cihazında belgeli editor ile açılır; missing GUID, beklenmeyen import farkı ve kayıp shader yoktur. Kurulum eksikleri README/setup görevi olarak kayda girer; “benim makinemde açıldı” yeterli değildir.
+
+## Gereksinim ve test izleri
+- REQ-002 → TC-002 — Temiz checkout tekrar açılmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-002 — Codex çalışma sözleşmesi](../../AGENTS.md)
+- [ASK-037 — Modüller, assembly sınırları ve bağımlılıklar](037_module_boundaries.md)
+- [ASK-039 — Veri şemaları ve içerik kimlikleri](039_data_schemas.md)
+- [ASK-041 — Editör araçları ve asset kabul otomasyonu](041_editor_asset_validation.md)
+- [ASK-042 — Build, CI ve bağımlılık kilitleme](042_build_ci_release.md)
+
+
+DOCUMENT: ASK-037
+PATH: docs/03_engineering/037_module_boundaries.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 94b90c9a27765bf9af16a44026e9f171f9815018c035022e0216208d50021fd3
+
+---
+doc_id: ASK-037
+title: "Modüller, assembly sınırları ve bağımlılıklar"
+version: 0.1.0
+status: proposed
+owner_role: TechLead
+last_reviewed: 2026-09-07
+dependencies: ["ASK-027","ASK-036","ASK-038","ASK-039"]
+---
+
+# Modüller, assembly sınırları ve bağımlılıklar
+
+## Önerilen modüller
+Core kimlikler, sonuç türleri ve zaman soyutlamasını; Domain eşya/görev/ekonomi kurallarını; Gameplay Unity fizik ve hareket adaptörlerini; Networking framework entegrasyonunu; Presentation ses/VFX/UI'ı; Persistence kayıt uygulamasını; Editor doğrulama araçlarını taşır. Her birine sınırsız “Manager” eklenmez.
+
+## Bağımlılık yönü
+Domain motor veya Steam API'si bilmez. Gameplay ve Networking Domain sözleşmelerini kullanır. Presentation salt okunur state ve domain olaylarından görünüm türetir. Bootstrap somut adaptörleri bağlar. Editor kodu runtime assembly'ye sızmaz; test yardımcıları shipping binary'ye girmez.
+
+## Dar arayüz örnekleri
+ICommandGateway komut kabul sınırı; IWorldQuery erişim/geometri sorgusu; IPhysicsHandle motor etkisi; ICampaignStore atomik checkpoint; ISessionTransport bağlantı ve mesaj; IClock host monotonik zaman. Gerçek ikinci implementasyon veya test ihtiyacı olmayan her sınıf için interface yazılması şart değildir.
+
+## Olay ve işlem farkı
+Command yapılması istenen niyettir; Event kabul edilmiş sonuçtur. UI DeliveryCompleted event'ini tekrar göndererek para yaratamaz. Event bus global ve türsüz string kanalı olmamalı; yaşam süresi ve unsubscribe denetlenir. Snapshot değişimi ile tek seferlik sunum olayı ayrı taşınır.
+
+## Ortak tuzaklar
+NetworkBehaviour içinde bütün ekonomi; ScriptableObject üzerinde runtime oyuncu durumu; static service locator ile sahneler arası eski bağlantı; UnityEvent üzerinden gizli kayıt işlemi. Bunlar test ve state ownership'ünü belirsizleştirir. Domain ayrımı aşırı soyut değil, önemli kuralların motordan bağımsız test edilebilmesini amaçlar.
+
+## Kabul
+Domain testleri Unity sahnesi yüklemeden çalışabilir; Unity bağımlılıkları bilinen adaptör sınırındadır. asmdef referans döngüsü yoktur. Networking paketi kaldırıldığında compile sorunlarının hangi dar modülde toplanacağı öngörülebilir. Architecture validator ve code review ile sınır korunur.
+
+## İlgili kaynak belgeler
+- [ASK-027 — Otorite, sahiplik ve veri sınırları](../02_network/027_authority_matrix.md)
+- [ASK-036 — Unity deposu ve dosya hiyerarşisi](036_unity_repository.md)
+- [ASK-038 — Bootstrap, servis ömrü ve sahne geçişleri](038_bootstrap_lifecycle.md)
+- [ASK-039 — Veri şemaları ve içerik kimlikleri](039_data_schemas.md)
+
+
+
+DOCUMENT: ASK-038
+PATH: docs/03_engineering/038_bootstrap_lifecycle.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 331f7436253f8b23cf78d74016a4e1d9d56c62e3bc0d83764d2ec2003553ae89
+
+---
+doc_id: ASK-038
+title: "Bootstrap, servis ömrü ve sahne geçişleri"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-012","ASK-036","ASK-037","ASK-045"]
+---
+
+# Bootstrap, servis ömrü ve sahne geçişleri
+
+## Tek başlangıç
+Bootstrap scene yapılandırmayı okur, yerel ayarları yükler, platform servislerini başlatır ve Frontend'e geçer. Üretim build'i rastgele gameplay sahnesinden başlamaz. Editor hızlı oynatma aracı eksik bootstrap'ı görünür biçimde oluşturabilir; gizli singleton zinciriyle farklı davranış üretmez.
+
+## Ömürler
+Application lifetime: ayarlar, platform adapter, log yöneticisi. Session lifetime: transport, roster, epoch, command gateway. Contract lifetime: item registry, platform, delivery ledger, timer. Scene presentation lifetime: kamera, HUD, ses emitters. Contract kapanınca application servisi yanlışlıkla silinmez; session kapanınca eski item referansları kalmaz.
+
+## Başlatma sırası
+Config validation → platform init → frontend. Host session: transport → handshake registry → level load → spawn registry → snapshot ready → Briefing. Her adım cancellation token veya eşdeğer kontrollü iptal yolu taşır. Bir sonraki adım hata alırsa kurulan önceki kaynaklar ters sırada temizlenir.
+
+## Teardown
+Yeni input'u kapat; domain phase'i bitir; holder/driver haklarını kaldır; network spawn'ları kontrollü kaldır; event aboneliklerini bırak; sahneyi boşalt; session cache'i sıfırla. Teardown ikinci çağrıda crash olmamalıdır. DontDestroyOnLoad nesneleri adına bakarak çoğaltılmaz.
+
+## İçerik yükleme
+V1 küçük içerikte standart scene/prefab referansları yeterliyse Addressables zorunlu değildir. Ölçüm ve paketleme gereksinimi gösterirse ek ADR ile seçilir. Asenkron yükleme sırasında progress kullanıcıya gerçek aşamayı anlatır; sahte yüzde son aşamada sonsuza dek takılmaz.
+
+## Test
+Arka arkaya 20 lobi → görev → sonuç → lobi geçişinde servis/abonelik sayısı artmaz. İptal edilen yükleme UI'ı kilitlemez. Offline frontend servis başlatma hatasını açıklayabilir. Testte hangi sahnenin yüklü olduğu ve active session epoch debug panelinde görünür.
+
+## Gereksinim ve test izleri
+- REQ-021 → TC-021 — Sahne yaşam döngüsü kaynak sızdırmamalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-012 — Oturum ve görev durum makinesi](../01_gameplay/012_session_state_machine.md)
+- [ASK-036 — Unity deposu ve dosya hiyerarşisi](036_unity_repository.md)
+- [ASK-037 — Modüller, assembly sınırları ve bağımlılıklar](037_module_boundaries.md)
+- [ASK-045 — Hata sınıfları ve güvenli bozulma](045_errors_resilience.md)
+
+
+
+DOCUMENT: ASK-039
+PATH: docs/03_engineering/039_data_schemas.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 72822d4fdbd112f0708d7b19977c137805e192bce390f88048220dc71d09b80f
+
+---
+doc_id: ASK-039
+title: "Veri şemaları ve içerik kimlikleri"
+version: 0.1.0
+status: proposed
+owner_role: TechLead
+last_reviewed: 2026-09-07
+dependencies: ["ASK-010","ASK-016","ASK-023","ASK-043","ASK-061"]
+---
+
+# Veri şemaları ve içerik kimlikleri
+
+## Tanım ve örnek ayrımı
+ItemDefinition tasarım verisidir: id, version, displayNameKey, massKg, behaviorFamily, gripSockets, deliveryBounds, damageProfile, visualPrefab, collisionProfile. ItemInstance runtime state'tir; ScriptableObject asset'ine integrity veya holder yazılmaz. ContractDefinition ve ContractRun aynı ayrımı izler.
+
+## Kimlik
+Kararlı ASCII content ID kullanılır: item.piano.upright.a, level.courtyard.a, contract.courtyard.01. Unity GUID asset referansını yönetir; save/network kimliği olarak renderer adı veya array index kullanılmaz. Silinen content ID yeniden başka eşya için kullanılmaz. Registry build'de duplicate ID hatasında durur.
+
+## Şema örneği
+Item kaydı en az schemaVersion=1, definitionId, massKg>0, behaviorFamily enum, min/max bounds, damageProfileId ve provenanceId taşır. Bu plan içindeki JSON kayıtlar doküman/backlog içindir; henüz oyun runtime şemasının çalışan implementasyonu değildir. Oyun şeması kod ve validator ile birlikte üretilecektir.
+
+## Doğrulama
+Eksik localization key, kayıp prefab, negatif kütle, deliveryBounds olmaması, iki ayrı root Rigidbody, missing network component, desteklenmeyen collider ve lisanssız kaynak build öncesi raporlanır. Uyarı ile hata ayrımı açık olur; kritik gameplay referansı uyarıya düşürülmez.
+
+## Denge sürümü
+Kütle, hasar veya ödül verisi değişince contentVersion artar ve test etkisi değerlendirilir. Aktif oturum iki farklı manifest ile başlamaz. Save migration görsel prefab değişimi ile ekonomik anlam değişimini ayırır. Content hash deterministik sıralanmış kayıtlar üzerinden üretilir; JSON alan sırası tesadüfüne bırakılmaz.
+
+## Kabul
+Aynı tanımdan iki item spawn etmek bağımsız integrity üretir; editör play mode'dan çıkınca kaynak tanım kirlenmez. Registry bütün referansları çözebilir. Eksik item tanımında eski save sessizce yanlış tür eşya üretmez; migration veya açık hata gerekir.
+
+## Gereksinim ve test izleri
+- REQ-020 → TC-020 — Content registry hataları build'i engellemeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-010 — Sözlük, birimler ve başlangıç parametreleri](../00_foundation/010_glossary_parameters.md)
+- [ASK-016 — Eşya semantiği ve değişmezler](../01_gameplay/016_item_state_model.md)
+- [ASK-023 — Sözleşme tanımı, başarı ve bitirme](../01_gameplay/023_contract_rules.md)
+- [ASK-043 — Save şeması, migration ve cloud çatışması](043_save_schema_migration.md)
+- [ASK-061 — Varlık envanteri ve üretim kuyruğu](../05_content/061_asset_inventory.md)
+
+
+
+DOCUMENT: ASK-040
+PATH: docs/03_engineering/040_physics_integration.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: a3d7f13cd06c000975f64e7e4f02dbecc4b2991f3a29a61a0baa222447ab55c7
+
+---
+doc_id: ASK-040
+title: "Unity fizik uygulaması ve teknik sınırlar"
+version: 0.1.0
+status: proposed
+owner_role: Gameplay
+last_reviewed: 2026-09-07
+dependencies: ["ASK-017","ASK-018","ASK-020","ASK-026","ASK-066"]
+---
+
+# Unity fizik uygulaması ve teknik sınırlar
+
+## Fizik sahnesi
+Fixed-step başlangıç önerisi 50 Hz; renderer 60 FPS hedefinden bağımsızdır. Maksimum catch-up ve aşırı host yükünde davranış profille seçilir. Sahneye daha fazla substep eklemek yanlış kuvvet modelini düzeltmez. Dünya küçük ölçekte tutulur; kilometrelerce şehir koordinatı v1 gereği değildir.
+
+## Collider standardı
+Dinamik eşyalarda basit compound primitive collider veya uygun convex mesh tercih edilir. Girintili mobilyanın görsel triangle mesh'ini otomatik dinamik collider yapmak yasaktır. Bir eşya kökü tek Rigidbody, altında collision parçaları taşır. Statik bina collider'ları oynanabilir yüzeyi destekler; küçük süs çıkıntıları gereksiz takılma yaratmaz. [Unity compound collider](https://docs.unity3d.com/6000.0/Documentation/Manual/compound-colliders-introduction.html).
+
+## Collision layer önerisi
+WorldStatic, Player, Carryable, Platform, Trigger, Cosmetic. Collision matrix bilinçli tanımlanır; Cosmetic fizik simülasyonuna girmez. Player-Player çarpışması spike sonucuna göre seçilir; çarpışmayı kapatmak item-player sorununu da çözmüş sayılmaz. Trigger ve collider callback'leri domain event kuyruğuna veri sağlar.
+
+## Servo ve platform
+Force/torque FixedUpdate veya seçilen network physics tick ile tek yerde uygulanır. NetworkTransform, parent hareketi ve custom servo aynı body'yi farklı zamanlarda sürmez. Platform taşıma hızı ve dönme noktasal hızı karakter controller'a yalnız bir kez eklenir. CCD yalnız hızlı/kritik item'larda ölçümle açılır; her objede pahalı ayar kullanmak varsayılan değildir.
+
+## Kararlılık araçları
+NaN guard, hız/tork üst sınırı, penetration tanısı, sleeping body sayacı, joint sayacı, temas çifti görselleştirmesi. Guard fizik patlamasını gizli teleportlarla sürekli örtmemelidir; reasonCode ve ölçüm bırakır. Fizik deterministik lockstep kabul edilmez, state host'tan çoğaltılır.
+
+## Kabul
+Kapı sıkışması, üst üste yük, kenarda tek teker temas, düşen piano ve platform üzerindeki dört oyuncu benchmark sahnesinde test edilir. 10 dakika boyunca enerji birikmesi veya sürekli correction döngüsü varsa sanat üretim kapısı açılmaz.
+
+## Gereksinim ve test izleri
+- REQ-005 → TC-005 — Platform destek kütlesini bir kere saymalı
+- REQ-012 → TC-012 — Hasar temas sayısıyla çoğalmamalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-017 — Ortak taşıma ve kuvvet modeli](../01_gameplay/017_shared_carrying.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](../01_gameplay/018_platform_balance.md)
+- [ASK-020 — Sabitleme, kayış ve anchor sözleşmesi](../01_gameplay/020_straps_anchors.md)
+- [ASK-026 — Ağ çözümü seçimi ve risk prototipi](../02_network/026_network_adr_spike.md)
+- [ASK-066 — Başlangıç asset, render ve fizik bütçeleri](../06_quality/066_render_physics_asset_budgets.md)
+
+
+

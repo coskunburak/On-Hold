@@ -1,0 +1,631 @@
+[
+  {
+    "acceptance_tests": [
+      "TC-001"
+    ],
+    "actual_hours": null,
+    "dependencies": [],
+    "estimate_hours": {
+      "high": 6,
+      "low": 4
+    },
+    "evidence": [],
+    "id": "W-001",
+    "owner_role": "Spike",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-001"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Karar ve exact sürüm matrisi",
+    "newer_cards": [
+      "SP-00-01",
+      "SP-00-02",
+      "SP-00-03",
+      "SP-00-04",
+      "SP-00-05",
+      "SP-00-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-002"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-001"
+    ],
+    "estimate_hours": {
+      "high": 10,
+      "low": 6
+    },
+    "evidence": [],
+    "id": "W-002",
+    "owner_role": "Engineering",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-002"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Temel repo ve temiz build",
+    "newer_cards": [
+      "SP-00-01",
+      "SP-00-02",
+      "SP-00-03",
+      "SP-00-04",
+      "SP-00-05",
+      "SP-00-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-003"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-002"
+    ],
+    "estimate_hours": {
+      "high": 14,
+      "low": 8
+    },
+    "evidence": [],
+    "id": "W-003",
+    "owner_role": "Network",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-003"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Tek host-authoritative eşya",
+    "newer_cards": [
+      "SP-00-01",
+      "SP-00-02",
+      "SP-00-03",
+      "SP-00-04",
+      "SP-00-05",
+      "SP-00-06",
+      "SP-01-01",
+      "SP-01-02",
+      "SP-01-03",
+      "SP-01-04",
+      "SP-01-05",
+      "SP-01-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-004"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003"
+    ],
+    "estimate_hours": {
+      "high": 18,
+      "low": 10
+    },
+    "evidence": [],
+    "id": "W-004",
+    "owner_role": "Gameplay",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-004"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "İki holder kuvvet prototipi",
+    "newer_cards": [
+      "SP-01-01",
+      "SP-01-02",
+      "SP-01-03",
+      "SP-01-04",
+      "SP-01-05",
+      "SP-01-06",
+      "SP-02-01",
+      "SP-02-02",
+      "SP-02-03",
+      "SP-02-04",
+      "SP-02-05",
+      "SP-02-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-005"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003"
+    ],
+    "estimate_hours": {
+      "high": 18,
+      "low": 10
+    },
+    "evidence": [],
+    "id": "W-005",
+    "owner_role": "Gameplay",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-005"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Kontrollü platform ve destek kümesi",
+    "newer_cards": [
+      "SP-02-01",
+      "SP-02-02",
+      "SP-02-03",
+      "SP-02-04",
+      "SP-02-05",
+      "SP-02-06",
+      "SP-16-01",
+      "SP-16-02",
+      "SP-16-03",
+      "SP-16-04",
+      "SP-16-05",
+      "SP-16-06",
+      "SP-19-01",
+      "SP-19-02",
+      "SP-19-03",
+      "SP-19-04",
+      "SP-19-05",
+      "SP-19-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-006"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003"
+    ],
+    "estimate_hours": {
+      "high": 10,
+      "low": 6
+    },
+    "evidence": [],
+    "id": "W-006",
+    "owner_role": "QA",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-006"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Emülasyon, capture ve debug sayaçları",
+    "newer_cards": [
+      "SP-02-01",
+      "SP-02-02",
+      "SP-02-03",
+      "SP-02-04",
+      "SP-02-05",
+      "SP-02-06",
+      "SP-03-01",
+      "SP-03-02",
+      "SP-03-03",
+      "SP-03-04",
+      "SP-03-05",
+      "SP-03-06",
+      "SP-20-01",
+      "SP-20-02",
+      "SP-20-03",
+      "SP-20-04",
+      "SP-20-05",
+      "SP-20-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-007"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003"
+    ],
+    "estimate_hours": {
+      "high": 12,
+      "low": 6
+    },
+    "evidence": [],
+    "id": "W-007",
+    "owner_role": "Network",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-007"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Gerçek internet/davet bağlantı denemesi",
+    "newer_cards": [
+      "SP-03-01",
+      "SP-03-02",
+      "SP-03-03",
+      "SP-03-04",
+      "SP-03-05",
+      "SP-03-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-008"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-004",
+      "W-005",
+      "W-006",
+      "W-007"
+    ],
+    "estimate_hours": {
+      "high": 12,
+      "low": 6
+    },
+    "evidence": [],
+    "id": "W-008",
+    "owner_role": "Review",
+    "phase": "G1_RISK",
+    "requirements": [
+      "REQ-008"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Risk testleri ve ADR go/no-go",
+    "newer_cards": [
+      "SP-03-01",
+      "SP-03-02",
+      "SP-03-03",
+      "SP-03-04",
+      "SP-03-05",
+      "SP-03-06",
+      "SP-11-01",
+      "SP-11-02",
+      "SP-11-03",
+      "SP-11-04",
+      "SP-11-05",
+      "SP-11-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-009"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-008"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": [],
+    "id": "W-009",
+    "owner_role": "Gameplay",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-009"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Eşya state ve invariant domain katmanı",
+    "newer_cards": [
+      "SP-01-01",
+      "SP-01-02",
+      "SP-01-03",
+      "SP-01-04",
+      "SP-01-05",
+      "SP-01-06",
+      "SP-04-01",
+      "SP-04-02",
+      "SP-04-03",
+      "SP-04-04",
+      "SP-04-05",
+      "SP-04-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-010"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-009",
+      "W-005"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": [],
+    "id": "W-010",
+    "owner_role": "Gameplay",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-010"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Anchor ve secure işlemleri",
+    "newer_cards": [
+      "SP-05-01",
+      "SP-05-02",
+      "SP-05-03",
+      "SP-05-04",
+      "SP-05-05",
+      "SP-05-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-011",
+      "TC-013"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-009"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": [],
+    "id": "W-011",
+    "owner_role": "Gameplay",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-011",
+      "REQ-013"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Delivery ve tek sonuç işlemi",
+    "newer_cards": [
+      "SP-06-01",
+      "SP-06-02",
+      "SP-06-03",
+      "SP-06-04",
+      "SP-06-05",
+      "SP-06-06",
+      "SP-17-01",
+      "SP-17-02",
+      "SP-17-03",
+      "SP-17-04",
+      "SP-17-05",
+      "SP-17-06",
+      "SP-20-01",
+      "SP-20-02",
+      "SP-20-03",
+      "SP-20-04",
+      "SP-20-05",
+      "SP-20-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-012",
+      "TC-014"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-009"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": [],
+    "id": "W-012",
+    "owner_role": "Gameplay",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-012",
+      "REQ-014"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Hasar ve kurtarma uygulaması",
+    "newer_cards": [
+      "SP-05-01",
+      "SP-05-02",
+      "SP-05-03",
+      "SP-05-04",
+      "SP-05-05",
+      "SP-05-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-015",
+      "TC-016",
+      "TC-017"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-007",
+      "W-009"
+    ],
+    "estimate_hours": {
+      "high": 48,
+      "low": 24
+    },
+    "evidence": [],
+    "id": "W-013",
+    "owner_role": "Network",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-015",
+      "REQ-016",
+      "REQ-017"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Lobi, reconnect ve host-loss UX",
+    "newer_cards": [
+      "SP-03-01",
+      "SP-03-02",
+      "SP-03-03",
+      "SP-03-04",
+      "SP-03-05",
+      "SP-03-06",
+      "SP-06-01",
+      "SP-06-02",
+      "SP-06-03",
+      "SP-06-04",
+      "SP-06-05",
+      "SP-06-06",
+      "SP-07-01",
+      "SP-07-02",
+      "SP-07-03",
+      "SP-07-04",
+      "SP-07-05",
+      "SP-07-06",
+      "SP-20-01",
+      "SP-20-02",
+      "SP-20-03",
+      "SP-20-04",
+      "SP-20-05",
+      "SP-20-06",
+      "SP-23-01",
+      "SP-23-02",
+      "SP-23-03",
+      "SP-23-04",
+      "SP-23-05",
+      "SP-23-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-018",
+      "TC-019"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-011"
+    ],
+    "estimate_hours": {
+      "high": 40,
+      "low": 20
+    },
+    "evidence": [],
+    "id": "W-014",
+    "owner_role": "Persistence",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-018",
+      "REQ-019"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Kampanya save/migration ve ekonomi",
+    "newer_cards": [
+      "SP-06-01",
+      "SP-06-02",
+      "SP-06-03",
+      "SP-06-04",
+      "SP-06-05",
+      "SP-06-06",
+      "SP-17-01",
+      "SP-17-02",
+      "SP-17-03",
+      "SP-17-04",
+      "SP-17-05",
+      "SP-17-06",
+      "SP-20-01",
+      "SP-20-02",
+      "SP-20-03",
+      "SP-20-04",
+      "SP-20-05",
+      "SP-20-06",
+      "SP-23-01",
+      "SP-23-02",
+      "SP-23-03",
+      "SP-23-04",
+      "SP-23-05",
+      "SP-23-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-020",
+      "TC-021"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-002",
+      "W-009"
+    ],
+    "estimate_hours": {
+      "high": 32,
+      "low": 16
+    },
+    "evidence": [],
+    "id": "W-015",
+    "owner_role": "Tooling",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-020",
+      "REQ-021"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Registry, import ve lifecycle validator",
+    "newer_cards": [
+      "SP-04-01",
+      "SP-04-02",
+      "SP-04-03",
+      "SP-04-04",
+      "SP-04-05",
+      "SP-04-06",
+      "SP-07-01",
+      "SP-07-02",
+      "SP-07-03",
+      "SP-07-04",
+      "SP-07-05",
+      "SP-07-06",
+      "SP-14-01",
+      "SP-14-02",
+      "SP-14-03",
+      "SP-14-04",
+      "SP-14-05",
+      "SP-14-06"
+    ]
+  },
+  {
+    "acceptance_tests": [
+      "TC-022"
+    ],
+    "actual_hours": null,
+    "dependencies": [
+      "W-003",
+      "W-013"
+    ],
+    "estimate_hours": {
+      "high": 24,
+      "low": 12
+    },
+    "evidence": [],
+    "id": "W-016",
+    "owner_role": "Security",
+    "phase": "SLICE_FOUNDATION",
+    "requirements": [
+      "REQ-022"
+    ],
+    "status": "IN_PROGRESS",
+    "title": "Protocol fuzz ve rate-limit kontrolleri",
+    "newer_cards": [
+      "SP-03-01",
+      "SP-03-02",
+      "SP-03-03",
+      "SP-03-04",
+      "SP-03-05",
+      "SP-03-06",
+      "SP-04-01",
+      "SP-04-02",
+      "SP-04-03",
+      "SP-04-04",
+      "SP-04-05",
+      "SP-04-06",
+      "SP-07-01",
+      "SP-07-02",
+      "SP-07-03",
+      "SP-07-04",
+      "SP-07-05",
+      "SP-07-06",
+      "SP-20-01",
+      "SP-20-02",
+      "SP-20-03",
+      "SP-20-04",
+      "SP-20-05",
+      "SP-20-06"
+    ]
+  }
+]

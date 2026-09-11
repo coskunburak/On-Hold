@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="42" result="Passed" total="42" passed="42" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-10 14:15:30Z" end-time="2026-09-10 14:15:56Z" duration="26.029728">
+  <test-suite type="TestSuite" id="1057" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-09-10 14:15:30Z" end-time="2026-09-10 14:15:56Z" duration="26.029728" total="42" passed="42" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1051" name="OnHold.PlayMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.PlayMode.Tests.dll" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-09-10 14:15:30Z" end-time="2026-09-10 14:15:56Z" duration="26.000320" total="42" passed="42" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="56956" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1052" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-09-10 14:15:30Z" end-time="2026-09-10 14:15:56Z" duration="25.999483" total="42" passed="42" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1053" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-09-10 14:15:30Z" end-time="2026-09-10 14:15:56Z" duration="25.999091" total="42" passed="42" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="BootstrapRuntimeSmoke" fullname="OnHold.Tests.BootstrapRuntimeSmoke" classname="OnHold.Tests.BootstrapRuntimeSmoke" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-10 14:15:30Z" end-time="2026-09-10 14:15:34Z" duration="3.147516" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="BootstrapScene_LoadsAndInitializes_WithoutFatalErrors" fullname="OnHold.Tests.BootstrapRuntimeSmoke.BootstrapScene_LoadsAndInitializes_WithoutFatalErrors" methodname="BootstrapScene_LoadsAndInitializes_WithoutFatalErrors" classname="OnHold.Tests.BootstrapRuntimeSmoke" runstate="Runnable" seed="1354206357" result="Passed" start-time="2026-09-10 14:15:30Z" end-time="2026-09-10 14:15:34Z" duration="3.128971" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1003" name="InteractionFeedbackIntegrationTests" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-10 14:15:34Z" end-time="2026-09-10 14:15:37Z" duration="3.462941" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1006" name="S017_ChildColliderSeamsNormalizeToSameOwner" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S017_ChildColliderSeamsNormalizeToSameOwner" methodname="S017_ChildColliderSeamsNormalizeToSameOwner" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="192287873" result="Passed" start-time="2026-09-10 14:15:34Z" end-time="2026-09-10 14:15:34Z" duration="0.272896" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="S017_SuppressedAndDestroyedTargetsClearImmediately" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S017_SuppressedAndDestroyedTargetsClearImmediately" methodname="S017_SuppressedAndDestroyedTargetsClearImmediately" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="1363455304" result="Passed" start-time="2026-09-10 14:15:34Z" end-time="2026-09-10 14:15:34Z" duration="0.242418" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="S017_TargetTransitionsClearStableIdentityAndAction" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S017_TargetTransitionsClearStableIdentityAndAction" methodname="S017_TargetTransitionsClearStableIdentityAndAction" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="1808096338" result="Passed" start-time="2026-09-10 14:15:34Z" end-time="2026-09-10 14:15:34Z" duration="0.241426" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="S017_ThousandWarmedQueriesDoNotMutateOrCreateObjects" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S017_ThousandWarmedQueriesDoNotMutateOrCreateObjects" methodname="S017_ThousandWarmedQueriesDoNotMutateOrCreateObjects" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="1711741632" result="Passed" start-time="2026-09-10 14:15:34Z" end-time="2026-09-10 14:15:35Z" duration="0.247324" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[1000 warmed feedback queries allocated 0 bytes
+]]></output>
+            </test-case>
+            <test-case id="1005" name="S017_WallAndRangeNeverShowFalseGrab" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S017_WallAndRangeNeverShowFalseGrab" methodname="S017_WallAndRangeNeverShowFalseGrab" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="1544007310" result="Passed" start-time="2026-09-10 14:15:35Z" end-time="2026-09-10 14:15:35Z" duration="0.247168" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="S018_AuthorityRevalidatesAfterPreviewBecomesInvalid" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S018_AuthorityRevalidatesAfterPreviewBecomesInvalid" methodname="S018_AuthorityRevalidatesAfterPreviewBecomesInvalid" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="395328265" result="Passed" start-time="2026-09-10 14:15:35Z" end-time="2026-09-10 14:15:35Z" duration="0.251813" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="S018_CenterInReachDoesNotMakeAnOutOfReachGripActionable" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S018_CenterInReachDoesNotMakeAnOutOfReachGripActionable" methodname="S018_CenterInReachDoesNotMakeAnOutOfReachGripActionable" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="1757637065" result="Passed" start-time="2026-09-10 14:15:35Z" end-time="2026-09-10 14:15:35Z" duration="0.273153" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="S018_DestroyedSelectedOwnerClearsWithoutPresentationException" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S018_DestroyedSelectedOwnerClearsWithoutPresentationException" methodname="S018_DestroyedSelectedOwnerClearsWithoutPresentationException" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="26347802" result="Passed" start-time="2026-09-10 14:15:35Z" end-time="2026-09-10 14:15:36Z" duration="0.327543" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="S018_MultipleGripsCameraJitterTieBreakAndWorldPoseAreStable" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S018_MultipleGripsCameraJitterTieBreakAndWorldPoseAreStable" methodname="S018_MultipleGripsCameraJitterTieBreakAndWorldPoseAreStable" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="1786806948" result="Passed" start-time="2026-09-10 14:15:36Z" end-time="2026-09-10 14:15:36Z" duration="0.308621" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="S018_PreviewIsReadOnlyAndCommitUsesThePreviewedAuthoredGrip" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S018_PreviewIsReadOnlyAndCommitUsesThePreviewedAuthoredGrip" methodname="S018_PreviewIsReadOnlyAndCommitUsesThePreviewedAuthoredGrip" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="223084061" result="Passed" start-time="2026-09-10 14:15:36Z" end-time="2026-09-10 14:15:36Z" duration="0.281435" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[1000 warmed grip previews allocated 0 bytes
+]]></output>
+            </test-case>
+            <test-case id="1010" name="S018_RangeOcclusionRecoveryAndInvalidActorRejectPreview" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S018_RangeOcclusionRecoveryAndInvalidActorRejectPreview" methodname="S018_RangeOcclusionRecoveryAndInvalidActorRejectPreview" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="529656367" result="Passed" start-time="2026-09-10 14:15:36Z" end-time="2026-09-10 14:15:36Z" duration="0.257643" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="S018_SecuredAndCapacityAreUnavailableWithoutReservation" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S018_SecuredAndCapacityAreUnavailableWithoutReservation" methodname="S018_SecuredAndCapacityAreUnavailableWithoutReservation" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="1964091857" result="Passed" start-time="2026-09-10 14:15:36Z" end-time="2026-09-10 14:15:37Z" duration="0.246047" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="S018_TerminalLostAndDeliveredNeverOfferGrip" fullname="OnHold.Tests.InteractionFeedbackIntegrationTests.S018_TerminalLostAndDeliveredNeverOfferGrip" methodname="S018_TerminalLostAndDeliveredNeverOfferGrip" classname="OnHold.Tests.InteractionFeedbackIntegrationTests" runstate="Runnable" seed="1956392605" result="Passed" start-time="2026-09-10 14:15:37Z" end-time="2026-09-10 14:15:37Z" duration="0.260983" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1017" name="PlayableMotorTests" fullname="OnHold.Tests.PlayableMotorTests" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-10 14:15:37Z" end-time="2026-09-10 14:15:41Z" duration="3.965436" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1018" name="S005_DuplicateSpawnCallbackIsIdempotentAndAuthoredSpawnIsClear" fullname="OnHold.Tests.PlayableMotorTests.S005_DuplicateSpawnCallbackIsIdempotentAndAuthoredSpawnIsClear" methodname="S005_DuplicateSpawnCallbackIsIdempotentAndAuthoredSpawnIsClear" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1265994976" result="Passed" start-time="2026-09-10 14:15:37Z" end-time="2026-09-10 14:15:37Z" duration="0.277210" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="S006_NonAuthorityIgnoresLookAndMoveAndPitchIsClamped" fullname="OnHold.Tests.PlayableMotorTests.S006_NonAuthorityIgnoresLookAndMoveAndPitchIsClamped" methodname="S006_NonAuthorityIgnoresLookAndMoveAndPitchIsClamped" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1159564367" result="Passed" start-time="2026-09-10 14:15:37Z" end-time="2026-09-10 14:15:38Z" duration="0.253482" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="S007_ForwardDiagonalYawAndFixedFrequencyHaveEqualSpeed" fullname="OnHold.Tests.PlayableMotorTests.S007_ForwardDiagonalYawAndFixedFrequencyHaveEqualSpeed" methodname="S007_ForwardDiagonalYawAndFixedFrequencyHaveEqualSpeed" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1617865170" result="Passed" start-time="2026-09-10 14:15:38Z" end-time="2026-09-10 14:15:38Z" duration="0.433718" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="S007_StopInputAndAirControlAreBounded" fullname="OnHold.Tests.PlayableMotorTests.S007_StopInputAndAirControlAreBounded" methodname="S007_StopInputAndAirControlAreBounded" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1755590497" result="Passed" start-time="2026-09-10 14:15:38Z" end-time="2026-09-10 14:15:38Z" duration="0.235314" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="S008_EdgeFallsWallIsNotGroundAndKillPlaneRecovers" fullname="OnHold.Tests.PlayableMotorTests.S008_EdgeFallsWallIsNotGroundAndKillPlaneRecovers" methodname="S008_EdgeFallsWallIsNotGroundAndKillPlaneRecovers" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="953323498" result="Passed" start-time="2026-09-10 14:15:38Z" end-time="2026-09-10 14:15:38Z" duration="0.265889" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="S008_RepeatedJumpApexNoAirJumpAndLanding" fullname="OnHold.Tests.PlayableMotorTests.S008_RepeatedJumpApexNoAirJumpAndLanding" methodname="S008_RepeatedJumpApexNoAirJumpAndLanding" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="442327167" result="Passed" start-time="2026-09-10 14:15:38Z" end-time="2026-09-10 14:15:39Z" duration="0.333933" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="S009_NarrowDoorwayAndFloorSeamAreTraversable" fullname="OnHold.Tests.PlayableMotorTests.S009_NarrowDoorwayAndFloorSeamAreTraversable" methodname="S009_NarrowDoorwayAndFloorSeamAreTraversable" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="2102640261" result="Passed" start-time="2026-09-10 14:15:39Z" end-time="2026-09-10 14:15:39Z" duration="0.249655" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1024" name="S009_WallCornerSeamAndCeilingStayBounded" fullname="OnHold.Tests.PlayableMotorTests.S009_WallCornerSeamAndCeilingStayBounded" methodname="S009_WallCornerSeamAndCeilingStayBounded" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1096047432" result="Passed" start-time="2026-09-10 14:15:39Z" end-time="2026-09-10 14:15:39Z" duration="0.311800" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1029" name="S010_SmallAndMediumStepsPassTallStepBlocks" fullname="OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-10 14:15:39Z" end-time="2026-09-10 14:15:40Z" duration="0.770728" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1026" name="S010_SmallAndMediumStepsPassTallStepBlocks(0.12f,True)" fullname="OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks(0.12f,True)" methodname="S010_SmallAndMediumStepsPassTallStepBlocks" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="225838880" result="Passed" start-time="2026-09-10 14:15:39Z" end-time="2026-09-10 14:15:40Z" duration="0.257138" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1027" name="S010_SmallAndMediumStepsPassTallStepBlocks(0.28f,True)" fullname="OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks(0.28f,True)" methodname="S010_SmallAndMediumStepsPassTallStepBlocks" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="741484348" result="Passed" start-time="2026-09-10 14:15:40Z" end-time="2026-09-10 14:15:40Z" duration="0.256669" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1028" name="S010_SmallAndMediumStepsPassTallStepBlocks(0.8f,False)" fullname="OnHold.Tests.PlayableMotorTests.S010_SmallAndMediumStepsPassTallStepBlocks(0.8f,False)" methodname="S010_SmallAndMediumStepsPassTallStepBlocks" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="63341243" result="Passed" start-time="2026-09-10 14:15:40Z" end-time="2026-09-10 14:15:40Z" duration="0.253980" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1033" name="S010_WalkableSlopeUphillDownhillAndSteepRejection" fullname="OnHold.Tests.PlayableMotorTests.S010_WalkableSlopeUphillDownhillAndSteepRejection" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-10 14:15:40Z" end-time="2026-09-10 14:15:41Z" duration="0.826399" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1030" name="S010_WalkableSlopeUphillDownhillAndSteepRejection(20.0f,True)" fullname="OnHold.Tests.PlayableMotorTests.S010_WalkableSlopeUphillDownhillAndSteepRejection(20.0f,True)" methodname="S010_WalkableSlopeUphillDownhillAndSteepRejection" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="44828482" result="Passed" start-time="2026-09-10 14:15:40Z" end-time="2026-09-10 14:15:40Z" duration="0.279796" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1031" name="S010_WalkableSlopeUphillDownhillAndSteepRejection(45.0f,True)" fullname="OnHold.Tests.PlayableMotorTests.S010_WalkableSlopeUphillDownhillAndSteepRejection(45.0f,True)" methodname="S010_WalkableSlopeUphillDownhillAndSteepRejection" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="1343725262" result="Passed" start-time="2026-09-10 14:15:40Z" end-time="2026-09-10 14:15:41Z" duration="0.282420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1032" name="S010_WalkableSlopeUphillDownhillAndSteepRejection(60.0f,False)" fullname="OnHold.Tests.PlayableMotorTests.S010_WalkableSlopeUphillDownhillAndSteepRejection(60.0f,False)" methodname="S010_WalkableSlopeUphillDownhillAndSteepRejection" classname="OnHold.Tests.PlayableMotorTests" runstate="Runnable" seed="2129167331" result="Passed" start-time="2026-09-10 14:15:41Z" end-time="2026-09-10 14:15:41Z" duration="0.260528" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1034" name="PlayablePhysicsTests" fullname="OnHold.Tests.PlayablePhysicsTests" classname="OnHold.Tests.PlayablePhysicsTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-10 14:15:41Z" end-time="2026-09-10 14:15:43Z" duration="2.211507" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1035" name="S012_RayNearestRangeWallLayersTriggersAndNoHotPathAllocation" fullname="OnHold.Tests.PlayablePhysicsTests.S012_RayNearestRangeWallLayersTriggersAndNoHotPathAllocation" methodname="S012_RayNearestRangeWallLayersTriggersAndNoHotPathAllocation" classname="OnHold.Tests.PlayablePhysicsTests" runstate="Runnable" seed="1141461896" result="Passed" start-time="2026-09-10 14:15:41Z" end-time="2026-09-10 14:15:41Z" duration="0.246674" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="S013_PushIsMassDependentBoundedAndIgnoresKinematicBodies" fullname="OnHold.Tests.PlayablePhysicsTests.S013_PushIsMassDependentBoundedAndIgnoresKinematicBodies" methodname="S013_PushIsMassDependentBoundedAndIgnoresKinematicBodies" classname="OnHold.Tests.PlayablePhysicsTests" runstate="Runnable" seed="761466202" result="Passed" start-time="2026-09-10 14:15:41Z" end-time="2026-09-10 14:15:41Z" duration="0.279416" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[heavy tick=0, p=(30.00, 0.03, 0.06), c=(30.00, 0.35, 1.30), speed=(0.00, -0.20, 0.00), push=0
+heavy tick=5, p=(30.00, 0.03, 0.36), c=(30.00, 0.30, 1.30), speed=(0.00, -0.09, 0.00), push=0
+heavy tick=10, p=(30.00, 0.03, 0.62), c=(30.00, 0.30, 1.30), speed=(0.00, 0.00, 0.05), push=1200
+heavy tick=15, p=(30.00, 0.03, 0.63), c=(30.00, 0.30, 1.31), speed=(-0.01, 0.04, 0.07), push=1200
+heavy tick=20, p=(30.00, 0.03, 0.64), c=(30.00, 0.31, 1.32), speed=(0.00, 0.09, 0.10), push=1200
+heavy tick=25, p=(30.00, 0.03, 0.67), c=(30.00, 0.32, 1.33), speed=(0.00, 0.16, 0.15), push=1200
+heavy tick=30, p=(30.00, 0.03, 0.68), c=(30.00, 0.34, 1.35), speed=(0.00, 0.24, 0.26), push=1200
+]]></output>
+            </test-case>
+            <test-case id="1037" name="S014_EligibleGrabDuplicateWrongActorDistanceAndTerminalRules" fullname="OnHold.Tests.PlayablePhysicsTests.S014_EligibleGrabDuplicateWrongActorDistanceAndTerminalRules" methodname="S014_EligibleGrabDuplicateWrongActorDistanceAndTerminalRules" classname="OnHold.Tests.PlayablePhysicsTests" runstate="Runnable" seed="2079174895" result="Passed" start-time="2026-09-10 14:15:41Z" end-time="2026-09-10 14:15:42Z" duration="0.251344" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="S015_TwentyPhysicalGrabReleaseCyclesLeaveNoAttachments" fullname="OnHold.Tests.PlayablePhysicsTests.S015_TwentyPhysicalGrabReleaseCyclesLeaveNoAttachments" methodname="S015_TwentyPhysicalGrabReleaseCyclesLeaveNoAttachments" classname="OnHold.Tests.PlayablePhysicsTests" runstate="Runnable" seed="2136896551" result="Passed" start-time="2026-09-10 14:15:42Z" end-time="2026-09-10 14:15:42Z" duration="0.298714" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="S016_DistanceBreakAndInvalidForceInputCleanlyRelease" fullname="OnHold.Tests.PlayablePhysicsTests.S016_DistanceBreakAndInvalidForceInputCleanlyRelease" methodname="S016_DistanceBreakAndInvalidForceInputCleanlyRelease" classname="OnHold.Tests.PlayablePhysicsTests" runstate="Runnable" seed="767940635" result="Passed" start-time="2026-09-10 14:15:42Z" end-time="2026-09-10 14:15:42Z" duration="0.244325" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1040" name="S016_TwelveLongCargoWalkStrafeTurnDoorwayJumpReverseReleaseCycles" fullname="OnHold.Tests.PlayablePhysicsTests.S016_TwelveLongCargoWalkStrafeTurnDoorwayJumpReverseReleaseCycles" methodname="S016_TwelveLongCargoWalkStrafeTurnDoorwayJumpReverseReleaseCycles" classname="OnHold.Tests.PlayablePhysicsTests" runstate="Runnable" seed="2130523776" result="Passed" start-time="2026-09-10 14:15:42Z" end-time="2026-09-10 14:15:43Z" duration="0.885361" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[cycle=1, cargo=(29.50, 0.65, 3.77), integrity=39.2, speed=1.875
+cycle=2, cargo=(30.34, 0.94, 4.14), integrity=38.1, speed=1.597
+cycle=3, cargo=(29.50, 0.65, 3.77), integrity=39.2, speed=1.875
+cycle=4, cargo=(29.50, 0.65, 3.77), integrity=39.2, speed=1.875
+cycle=5, cargo=(30.34, 0.94, 4.14), integrity=38.1, speed=1.597
+cycle=6, cargo=(30.34, 0.94, 4.14), integrity=38.1, speed=1.597
+cycle=7, cargo=(29.50, 0.65, 3.77), integrity=39.2, speed=1.875
+cycle=8, cargo=(30.47, 0.58, 3.78), integrity=38.1, speed=2.602
+cycle=9, cargo=(29.50, 0.65, 3.77), integrity=39.2, speed=1.875
+cycle=10, cargo=(29.50, 0.65, 3.77), integrity=39.2, speed=1.875
+cycle=11, cargo=(30.34, 0.94, 4.14), integrity=38.1, speed=1.597
+cycle=12, cargo=(29.50, 0.65, 3.77), integrity=39.2, speed=1.875
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1041" name="SoloPlayableInputTests" fullname="OnHold.Tests.SoloPlayableInputTests" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-10 14:15:43Z" end-time="2026-09-10 14:15:55Z" duration="11.850568" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1042" name="S005_OneClickSoloOwnsOneCameraAndListenerAcrossThreeSessions" fullname="OnHold.Tests.SoloPlayableInputTests.S005_OneClickSoloOwnsOneCameraAndListenerAcrossThreeSessions" methodname="S005_OneClickSoloOwnsOneCameraAndListenerAcrossThreeSessions" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="610541410" result="Passed" start-time="2026-09-10 14:15:43Z" end-time="2026-09-10 14:15:45Z" duration="2.247622" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+]]></output>
+            </test-case>
+            <test-case id="1044" name="S006_MouseDeltaPitchClampSensitivityAndFramePartition" fullname="OnHold.Tests.SoloPlayableInputTests.S006_MouseDeltaPitchClampSensitivityAndFramePartition" methodname="S006_MouseDeltaPitchClampSensitivityAndFramePartition" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="1484348664" result="Passed" start-time="2026-09-10 14:15:45Z" end-time="2026-09-10 14:15:46Z" duration="0.674951" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+]]></output>
+            </test-case>
+            <test-case id="1048" name="S007_RealWASDAndEscapeImmediatelyStopHorizontalIntent" fullname="OnHold.Tests.SoloPlayableInputTests.S007_RealWASDAndEscapeImmediatelyStopHorizontalIntent" methodname="S007_RealWASDAndEscapeImmediatelyStopHorizontalIntent" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="1279594431" result="Passed" start-time="2026-09-10 14:15:46Z" end-time="2026-09-10 14:15:47Z" duration="1.111451" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+]]></output>
+            </test-case>
+            <test-case id="1043" name="S008_RealSpaceBindingSinglePressHoldNoAirJumpMenuBlocksInput" fullname="OnHold.Tests.SoloPlayableInputTests.S008_RealSpaceBindingSinglePressHoldNoAirJumpMenuBlocksInput" methodname="S008_RealSpaceBindingSinglePressHoldNoAirJumpMenuBlocksInput" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="1012021066" result="Passed" start-time="2026-09-10 14:15:47Z" end-time="2026-09-10 14:15:50Z" duration="3.181134" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+]]></output>
+            </test-case>
+            <test-case id="1047" name="S014_S015_RealMouseHoldToggleMenuAndSessionExitCleanUp" fullname="OnHold.Tests.SoloPlayableInputTests.S014_S015_RealMouseHoldToggleMenuAndSessionExitCleanUp" methodname="S014_S015_RealMouseHoldToggleMenuAndSessionExitCleanUp" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="1354068726" result="Passed" start-time="2026-09-10 14:15:50Z" end-time="2026-09-10 14:15:53Z" duration="2.663135" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+]]></output>
+            </test-case>
+            <test-case id="1045" name="S017_ProductionHudUsesGameplayOwnershipAndBindingOverrides" fullname="OnHold.Tests.SoloPlayableInputTests.S017_ProductionHudUsesGameplayOwnershipAndBindingOverrides" methodname="S017_ProductionHudUsesGameplayOwnershipAndBindingOverrides" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="1545306477" result="Passed" start-time="2026-09-10 14:15:53Z" end-time="2026-09-10 14:15:54Z" duration="0.788688" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+]]></output>
+            </test-case>
+            <test-case id="1046" name="S018_RealMousePreviewCommitReleaseAndMenuMarkerLifetime" fullname="OnHold.Tests.SoloPlayableInputTests.S018_RealMousePreviewCommitReleaseAndMenuMarkerLifetime" methodname="S018_RealMousePreviewCommitReleaseAndMenuMarkerLifetime" classname="OnHold.Tests.SoloPlayableInputTests" runstate="Runnable" seed="393003602" result="Passed" start-time="2026-09-10 14:15:54Z" end-time="2026-09-10 14:15:55Z" duration="1.173893" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Native cursor lock is unavailable in headless Unity; verify in the visible Development Build.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1049" name="SoloSessionSmoke" fullname="OnHold.Tests.SoloSessionSmoke" classname="OnHold.Tests.SoloSessionSmoke" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-10 14:15:55Z" end-time="2026-09-10 14:15:56Z" duration="1.356365" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1050" name="SoloSession_StartsAndReachesActiveState_WithoutRelay" fullname="OnHold.Tests.SoloSessionSmoke.SoloSession_StartsAndReachesActiveState_WithoutRelay" methodname="SoloSession_StartsAndReachesActiveState_WithoutRelay" classname="OnHold.Tests.SoloSessionSmoke" runstate="Runnable" seed="2031742232" result="Passed" start-time="2026-09-10 14:15:55Z" end-time="2026-09-10 14:15:56Z" duration="1.355564" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ONHOLD connected actors=1 tick=0
+Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

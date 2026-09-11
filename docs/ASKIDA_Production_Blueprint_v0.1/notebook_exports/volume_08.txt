@@ -1,0 +1,424 @@
+ASKIDA KNOWLEDGE SNAPSHOT v0.1.0
+VOLUME: 08/10
+SNAPSHOT: 3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4
+STATUS: PROPOSED; GAME TESTS NOT RUN; READ-ONLY DERIVED COPY.
+Canonical Markdown documents remain the source of truth.
+
+DOCUMENT: ASK-057
+PATH: docs/05_content/057_blockout_metrics.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: d43a978630e8c944f3571b43e9cfe6ea363a8e76ca4bbb6a16dac6e85f6250bc
+
+---
+doc_id: ASK-057
+title: "Blockout ve oynanabilir alan metrikleri"
+version: 0.1.0
+status: proposed
+owner_role: LevelDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-013","ASK-017","ASK-018","ASK-056","ASK-058"]
+---
+
+# Blockout ve oynanabilir alan metrikleri
+
+## Gri kutu önce gelir
+İlk seviye yalnız kutu ve renklerden oluşabilir, ancak gerçek item bounds, platform ölçüsü ve controller capsule'ı kullanmalıdır. Küçük placeholder kutuyla kanıtlanan kapıdan final piano geçeceği varsayılmaz. Blockout art onayı değil mekanik doğrulama aracıdır.
+
+## Zorunlu alanlar
+Güvenli brifing zemini; iki kişinin eşya çevresine eriştiği kaynak oda; platforma yükleme eşiği; operatör paneli; karşı ağırlık için açık deck; hedef balkon; tam delivery bounds alanı; iki güvenli item recovery noktası. Her alan işlevi nedeniyle boyutlandırılır.
+
+## Rota ilkeleri
+Tek bir daralma ilk öğreticide yeterlidir. Aynı anda kapı, yüksek eğim ve zaman baskısı tanıtılmaz. Dengeleyici oyuncunun deck kenarını görmesi, operatörün tehlikeyi okuyabilmesi gerekir. Kaynak ile hedef arasında kaybolmayı önleyen siluet ve yön ipuçları bulunur.
+
+## Ölçüm kartı
+Kapı net genişlik/yükseklik; köşe dönüş yarıçapı; eşik yüksekliği; platform durak farkı; güvenli yaya geçişi; item teslimat hacmi; vinç görüş çizgisi. Her ölçüm metre olarak level kartına yazılır. “Biraz geniş” revizyon talebi kabul edilmez; gözlenen sorun ve yeni ölçü belirtilir.
+
+## Debug görünümleri
+Collision-only, item deliveryBounds, grip socket, platform support alanı, kill/recovery volume, occlusion ve network relevance. Görsel balkonun dışındaki invisible collider oyuncu güvenini kırar; hata gizlenmez. Drop zone gerçek yürüme alanıyla çakışmaz.
+
+## Kabul
+İki farklı ekip dört prototip eşyayı rota üzerinden taşıyabilir; en az bir ağır eşya iki kişiyle dönüş gerektirir ama fiziksel imkânsızlık yoktur. Dört oyuncu kritik panel önünde kalıcı kilit oluşturmaz. Video ve ölçü revizyonları saklanır.
+
+## Gereksinim ve test izleri
+- REQ-032 → TC-032 — Slice rotası iki/dört oyuncuyla geçilmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-013 — Kontroller, kamera ve giriş niyetleri](../01_gameplay/013_controls_camera.md)
+- [ASK-017 — Ortak taşıma ve kuvvet modeli](../01_gameplay/017_shared_carrying.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](../01_gameplay/018_platform_balance.md)
+- [ASK-056 — Modüler dünya kiti ve apartman kimliği](056_modular_world_kit.md)
+- [ASK-058 — Seviye 1 — Avlu apartmanı](058_level_one_courtyard.md)
+
+
+
+DOCUMENT: ASK-058
+PATH: docs/05_content/058_level_one_courtyard.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 5356ae4da26b268f30239365bbfd18c3d5dca10357027271fac65a5cc113cad9
+
+---
+doc_id: ASK-058
+title: "Seviye 1 — Avlu apartmanı"
+version: 0.1.0
+status: proposed
+owner_role: LevelDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-005","ASK-018","ASK-023","ASK-057","ASK-060"]
+---
+
+# Seviye 1 — Avlu apartmanı
+
+## Tasarım görevi
+Avlu apartmanı güvenli hazırlık ve tek net dikey yük hattıyla özgün kancayı öğretir. Birinci kat kaynak balkon, avlu park alanı ve bir üst hedef durak önerilir; final kat sayısı kamera/performans testine bağlıdır. Açık dünya sokakları yerine küçük çevre kapsülü vardır.
+
+## Öğretim sırası
+Önce tek kişinin taşıdığı sandık; sonra iki grip'li kanepe; sonra yüksek kütle merkezli buzdolabı; son olarak uzun/yoğun piano prototipi. Slice'ta bunlar dört model prototipidir; altı davranış ailesinin hepsi gerekmez. Her yeni item öncekinden bir yeni sorun ekler.
+
+## Alan tasarımı
+Kaynak odada eşyayı çevirmek için bir güvenli dönüş cebi bulunur. Balkon eşiği yükün yönünü seçtirir, milimetrik fizik takılması istemez. Platform alt durağında secure öğretimi için durağan alan; hedef balkonda delivery bekleme halkasının görüldüğü temiz zemin vardır. Avlu props'ları rota sınırını gösterir ama gereksiz ağ objesi olmaz.
+
+## Anlatı
+Kısa görev metni: “Yeni kiracı üst kata taşınıyor; piyano çizilmesin.” Diyalog sistemi, NPC kalabalığı veya sinematik gerektirmez. Apartman kişiliği renk, kapı numarası ve küçük nesne düzeniyle kurulur. Gerçek kişi, marka veya adres bilgisi kullanılmaz.
+
+## Scriptlenmiş öğretim
+İlk başarılı Grab prompt'u kapatır; ilk Secured onayı sonraki görevi açar. Bunlar host state'inden türetilir. Öğretici eşyayı gizlice teleport ederek başarılı göstermez. Deneyimli ekip öğretici metin yoğunluğunu azaltabilir; güvenlik kuralları değişmez.
+
+## Kapı
+Bir sözleşme hazırlıktan commit edilmiş sonuca kesintisiz çalışmalı; iki/dört oyuncu, controller, ping ve ağ stres kontrolü bulunmalı. Final art yalnız onaylı rota üzerine uygulanır. Oyuncu “neden eğildiğini” açıklayamıyorsa ikinci seviye tasarımına geçilmez.
+
+## Gereksinim ve test izleri
+- REQ-032 → TC-032 — Slice rotası iki/dört oyuncuyla geçilmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-005 — Vizyon, özgün kanca ve deneyim](../00_foundation/005_vision_hook.md)
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](../01_gameplay/018_platform_balance.md)
+- [ASK-023 — Sözleşme tanımı, başarı ve bitirme](../01_gameplay/023_contract_rules.md)
+- [ASK-057 — Blockout ve oynanabilir alan metrikleri](057_blockout_metrics.md)
+- [ASK-060 — On iki sözleşmelik içerik taslağı](060_contract_catalog.md)
+
+
+
+DOCUMENT: ASK-059
+PATH: docs/05_content/059_levels_two_three.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 94db3aa2a1eb717c0e83a90e21fac0318c82740bce737a1f6a03df45f302d485
+
+---
+doc_id: ASK-059
+title: "Seviye 2–3 — Kapsamlı varyasyon planı"
+version: 0.1.0
+status: proposed
+owner_role: LevelDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-007","ASK-056","ASK-058","ASK-060"]
+---
+
+# Seviye 2–3 — Kapsamlı varyasyon planı
+
+## Seviye 2: Dar sokak
+Amaç aynı mekaniği farklı yükleme yönü ve dar görüş çizgisiyle kullanmak. Kaynak odadan platforma 90 derece dönüş; iki güvenli durak; operatörün yük tarafını her zaman doğrudan görmemesi ping ihtiyacını artırır. Yeni winch sistemi veya araç sürüşü eklenmez. Görsel kimlik farklı cephe paleti ve sokak genişliğiyle kurulur.
+
+## Seviye 3: Köşe teras
+Amaç yük dağılımı ve hazırlık sırasını birleştirmek. İki kaynak grup aynı platformu paylaşır; hedefte geniş ama tek erişim hattı olan teras. Birden fazla eşya yükleme kararı verilir. Platformun serbest yatay uçuşu, ikinci vinç veya fiziksel halat inşası bu seviye için gizlice eklenmez.
+
+## Ortak kit kullanımı
+Çekirdek duvar, pencere, balkon ve ekipman aynı sanat ailesindedir. Yeni level için sınırsız benzersiz malzeme yoktur. Her seviye bir “hero silhouette” ve az sayıda özel modülle ayrışır. Yeni modül sayısı ve üretim saatleri backlog'a girer.
+
+## Değişkenler
+Dar sokak daha zor dönüş ve görünürlük; teras daha çok yük planlama. Rastgele rüzgâr, yağmurda kayganlık, hareketli trafik veya NPC sabotajı v1 zorunlu değildir. Bunlar fizik ve ağ test yüzeyini ciddi büyütür; ayrı teklif gerektirir.
+
+## İçerik kapısı
+Seviye 1 demo testinde başarı/konfor ve asset üretim hızı ölçülmeden 2–3'e final art bütçesi ayrılmaz. V1 önerisi her binada dört sözleşme, toplam 12'dir. Seviye 3 ilk kapsam kesme adayıdır; 8 sözleşmeli iki bina sürümü ürün sahibi kararıyla değerlendirilebilir.
+
+## Kabul
+Her level yeni mekanik kodu olmadan en az iki anlamlı görev varyasyonu sunar; iki kişi zorunlu rotayı bitirebilir. Görüş ve collision testleri dört oyuncuyla geçer. Hedef cihazda eş zamanlı görünür cephe miktarı performans bütçesine sığar.
+
+## Gereksinim ve test izleri
+- REQ-033 → TC-033 — Sözleşmeler geçerli ve farklı karar sunmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-007 — Kapsam, sürümler ve kesme sırası](../00_foundation/007_scope_matrix.md)
+- [ASK-056 — Modüler dünya kiti ve apartman kimliği](056_modular_world_kit.md)
+- [ASK-058 — Seviye 1 — Avlu apartmanı](058_level_one_courtyard.md)
+- [ASK-060 — On iki sözleşmelik içerik taslağı](060_contract_catalog.md)
+
+
+
+DOCUMENT: ASK-060
+PATH: docs/05_content/060_contract_catalog.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 3e7a5fcf4af3c3fdc3c8ab184b08bc109dc1feeaf2969d111b8a1d318d769a8e
+
+---
+doc_id: ASK-060
+title: "On iki sözleşmelik içerik taslağı"
+version: 0.1.0
+status: proposed
+owner_role: GameDesign
+last_reviewed: 2026-09-07
+dependencies: ["ASK-007","ASK-023","ASK-058","ASK-059","ASK-061"]
+---
+
+# On iki sözleşmelik içerik taslağı
+
+## Öneri kataloğu
+| ID | Bina | Odak | Özel doğrulama |
+|---|---|---|---|
+| C01 İlk Yük | Avlu | Sandık ve temel kontrol | Öğreticisiz ikinci tekrar |
+| C02 İki El Bir Kanepe | Avlu | İki holder, dönüş | İki kişi tamamlanabilir |
+| C03 Denge Meselesi | Avlu | Dik/ağır yük | Karşı ağırlık okunur |
+| C04 Son Kat Piyanosu | Avlu | Birleşik beceri | Hasar/teslimat dengesi |
+| C05 Dar Kapı | Sokak | Yön değiştirme | Geometrik geçiş mümkün |
+| C06 Kör Nokta | Sokak | Ping ve operatör iletişimi | Sessiz iletişim yeterli |
+| C07 Çift Sefer | Sokak | Yük sırası | Tek sefer sömürüsü yok |
+| C08 Kırılgan Komşu | Sokak | Hasar yönetimi | Görsel hasar okunur |
+| C09 Teras Düzeni | Teras | Yeni rota okuma | Yol bulma süresi |
+| C10 Ağırlık Dağılımı | Teras | Birden çok destek yükü | Kütle bir kez sayılır |
+| C11 Önce Hangisi | Teras | İş paralelleştirme | Dört kişi boş beklemez |
+| C12 Büyük Taşınma | Teras | Final birleşim | Soak ve kayıt güvenliği |
+
+Bu adlar çalışma adıdır, yerelleştirme metni değildir. Slice C01'in birleşik teknik varyantını, dış demo C01–C03'ü içerir. V1'de dört Avlu sözleşmesi bulunur; demo sayısı ile tam sürüm sayısı karıştırılmaz.
+
+## Her sözleşmenin doldurulacak kartı
+Definition ID ve sürüm; tam spawn listesi; mandatory item'lar; 2/3/4 oyuncu için kota/süre; eşya değerleri; başarı bonusu; açık/kapalı öğretim adımları; kaynak/hedef alanlar; recovery noktaları; kabul testleri; ölçülen ortalama tamamlama süresi. Bu sürüm nihai denge değerlerini içermez çünkü oynanış verisi yoktur.
+
+## Altı davranış ailesi
+Kompakt-kutu, uzun-geniş, dik-ağır, hassas-kırılgan, yuvarlanmaya eğilimli, dengesiz-kütle-merkezli. Aile özelliği yeni network actor türü olmak zorunda değildir; aynı item sistemi profile üzerinden çalışır. İlk dört modelin hepsi benzersiz mekanik kod gerektirmez.
+
+## Çeşitlilik sınırı
+Yalnız süreyi kısaltıp aynı görevi dört kez satmak yeterli içerik değildir. Her sözleşme en az bir farklı planlama sorusu sorar. Bunun oyuncularca algılanıp algılanmadığı ASK-068 testinde sınanır.
+
+## Gereksinim ve test izleri
+- REQ-033 → TC-033 — Sözleşmeler geçerli ve farklı karar sunmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-007 — Kapsam, sürümler ve kesme sırası](../00_foundation/007_scope_matrix.md)
+- [ASK-023 — Sözleşme tanımı, başarı ve bitirme](../01_gameplay/023_contract_rules.md)
+- [ASK-058 — Seviye 1 — Avlu apartmanı](058_level_one_courtyard.md)
+- [ASK-059 — Seviye 2–3 — Kapsamlı varyasyon planı](059_levels_two_three.md)
+- [ASK-061 — Varlık envanteri ve üretim kuyruğu](061_asset_inventory.md)
+
+
+
+DOCUMENT: ASK-061
+PATH: docs/05_content/061_asset_inventory.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 15b67471cb6395b5f797642bdb0ed06c7f6707dbdf6194db5ab56fe51703e5ec
+
+---
+doc_id: ASK-061
+title: "Varlık envanteri ve üretim kuyruğu"
+version: 0.1.0
+status: proposed
+owner_role: ArtLead
+last_reviewed: 2026-09-07
+dependencies: ["ASK-047","ASK-049","ASK-056","ASK-060","ASK-074"]
+---
+
+# Varlık envanteri ve üretim kuyruğu
+
+## Envanter alanları
+assetId, kategori, stage, gameplay rolü, kaynak adayı, lisans/provenance, owner, estimate range, source path, export path, prefab ID, acceptance state, bağımlılıklar. “Done” için yalnız mesh bitmiş olması yeterli değildir; texture/rig/collider/prefab/test durumları ayrı işaretlenir.
+
+## Slice varlık listesi
+| Varlık | Kaynak/üretim | Öncelik |
+|---|---|---|
+| Platform deck + korkuluk + ankraj | Özel parametrik üretim | P0 |
+| Vinç gövdesi + panel + görsel halat | Özel/kit türevi | P0 |
+| Sandık, kanepe, buzdolabı, piano | Prototip + stil normalize | P0 |
+| Tek rig, dört renk varyantı | Quaternius aday | P0 |
+| Oynanabilir balkon/oda kapısı | Ana kit + özel collision | P0 |
+| Teslimat alanı işareti ve HUD | Özel UI/VFX | P0 |
+| Grip/secure/delivery sesleri | Lisanslı kaynak + miks | P0 |
+| Klima, tente, kapı panosu | Özel tamamlayıcı | P1 |
+| Uzak cephe dolgu varyantları | Ana kit | P1 |
+
+## V1 büyüme
+Yeni model miktarı sözleşme çeşitliliğiyle ilişkilendirilir. Altı davranış ailesi 60 benzersiz mesh gerektirmez. Aynı rig ve materyal ailesinin yeniden kullanımı ilk stratejidir. Kullanılmayan kütüphane varlıkları “hazır içerik” olarak iş bitirme hesabına katılmaz.
+
+## Üretim akışı
+Brief → blockout → art review → geometry/UV → material → collision/socket → engine prefab → network/physics test → approval. Rig/animasyon gereken varlıkta ilgili kapılar eklenir. Her aşamada geri dönüş maliyeti görünürdür; üçgen model final onayından sonra ölçü değiştirmenin maliyeti backlog'a girer.
+
+## Satın alma kararı
+Ücretli Source tier yalnız kaynak düzenleme veya motor materyalleri gerçekten zaman kazandırıyorsa düşünülür. Bedel dışında lisans, dönüştürme saati, uyum ve bakım hesaplanır. Bu çalışma hiçbir paket satın almadı veya indirmedi.
+
+## Kabul
+Slice'taki her görünür gameplay nesnesi inventory'de bir satıra ve ASK-049 kabul kartına sahiptir. “Temporary” etiketleri release öncesi aramayla bulunur. data/assets.json bu başlangıç listesinin makine okunur halidir.
+
+## Gereksinim ve test izleri
+- REQ-024 → TC-024 — Shipping varlığı lisansa izlenebilir olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-047 — Seçilecek paketler ve kullanım sınırları](../04_art/047_package_selection.md)
+- [ASK-049 — Her nesne için üretim şartnamesi](../04_art/049_prop_asset_spec.md)
+- [ASK-056 — Modüler dünya kiti ve apartman kimliği](056_modular_world_kit.md)
+- [ASK-060 — On iki sözleşmelik içerik taslağı](060_contract_catalog.md)
+- [ASK-074 — Başlangıç backlog'u ve ilk iki sprint](../07_production/074_backlog_first_sprints.md)
+
+
+
+DOCUMENT: ASK-062
+PATH: docs/05_content/062_ui_information.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 47348c8a61f6ef4e5f607b2055e496f9d12f90790e3cfa101dc7206a7ca5f98f
+
+---
+doc_id: ASK-062
+title: "Arayüz ve bilgi hiyerarşisi"
+version: 0.1.0
+status: proposed
+owner_role: UX
+last_reviewed: 2026-09-07
+dependencies: ["ASK-013","ASK-015","ASK-019","ASK-022","ASK-032","ASK-063"]
+---
+
+# Arayüz ve bilgi hiyerarşisi
+
+## Ekranlar
+Frontend; lobi/davet; loading; brifing; gameplay HUD; görev panosu; sonuç; Hub yükseltme; ayarlar; bağlantı/kayıt hata ekranları. Aynı bilgi farklı ekranda farklı formülle hesaplanmaz. Cüzdan campaign state'ten, geçici tur değeri delivery ledger'dan gelir ve farklı etiketlenir.
+
+## Gameplay hiyerarşisi
+Merkezde küçük etkileşim niyeti ve ret nedeni; platform kontrolünde denge ve vinç kilidi; kenarda süre/kota; pingler dünya bağlamında. Sürekli bütün oyuncuların sayısal kütlesini göstermek zorunlu değildir. UI fiziksel silueti ve görüşü kapatmamalıdır.
+
+## Etkileşim durumları
+Uygun, niyet gönderiliyor, kabul edildi, reddedildi, meşgul. Reddedilen komut bir frame yeşil başarı göstermemeli. Ret metni düzeltilir eylem önerir: “Önce eşyayı bırak”, “Vinç hareket ediyor”, “Teslimat alanına tamamen yerleştir”. Hata kodu localization anahtarına eşlenir.
+
+## Lobi ve kopma
+Host işareti, bağlantı durumu, content/build uyuşmazlığı ve hazır bilgisi net görünür. Reconnect rezervi oyuncuya geri dönüş beklentisini açıklar; sürenin ağ kopmasını tespit sonrası başladığı uygulama ayrıntısı yanlış geri sayım üretmemelidir. Host kaybı ekranı mevcut turun korunmadığını söyler.
+
+## Sonuç ekranı
+Teslim edilen/zorunlu/kaybedilen eşyalar; hasar nedeniyle değer farkı; başarı bonusu; kaydedilme durumu; sonraki eylem. “Kaydediliyor” ve “Kaydedildi” ayrı durumdur. Başarı sesi disk commit öncesi ekonomik güvence olarak kullanılmaz.
+
+## Kabul
+1080p ve seçili düşük çözünürlükte metin okunur; gamepad odağı hiçbir modalda kaybolmaz; renk olmadan başarı/ret ayrılır. İlk oyuncu geçici tur gelirini kendi misafir cüzdanı sanmamalıdır. UI screenshot regresyonu farklı dillerle yapılır.
+
+## Gereksinim ve test izleri
+- REQ-034 → TC-034 — UI otorite ve kayıt durumunu doğru göstermeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-013 — Kontroller, kamera ve giriş niyetleri](../01_gameplay/013_controls_camera.md)
+- [ASK-015 — Etkileşim sorgusu ve komut sözleşmesi](../01_gameplay/015_interaction_contract.md)
+- [ASK-019 — Vinç kontrolü ve kontrol kiralaması](../01_gameplay/019_winch_control.md)
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](../01_gameplay/022_delivery_scoring.md)
+- [ASK-032 — Kopma, yeniden bağlanma ve host kaybı](../02_network/032_disconnect_reconnect_hostloss.md)
+- [ASK-063 — Erişilebilirlik ve kamera konforu](063_accessibility.md)
+
+
+
+DOCUMENT: ASK-063
+PATH: docs/05_content/063_accessibility.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 8e49d521023db3e07e0241166e7778cacd3f524806922b0631ddfa8150aac286
+
+---
+doc_id: ASK-063
+title: "Erişilebilirlik ve kamera konforu"
+version: 0.1.0
+status: proposed
+owner_role: UX
+last_reviewed: 2026-09-07
+dependencies: ["ASK-013","ASK-054","ASK-055","ASK-062","ASK-068"]
+---
+
+# Erişilebilirlik ve kamera konforu
+
+## Minimum hedefler
+Tuş yeniden atama, gamepad desteği, tutma toggle/basılı seçimi, fare hassasiyeti, kamera sarsıntısını kapatma, FOV seçeneği, ayrı ses kanalları, UI ölçeği ve renk dışı durum işaretleri. Bunlar final ürün için önerilen minimumdur; uygulanmış özellik iddiası değildir.
+
+## Hareket konforu
+Kamera roll zorlaması kapalı; head bob ve motion blur varsayılanı konfor testine göre düşük/kapalı. FOV'un dikey/yatay anlamı UI'da tutarlı olur. Düşme ve recovery geçişlerinde aşırı hızlandırılmış kamera yerine kısa kontrollü geçiş kullanılır. Platform görsel eğimiyle karakter kamerası aynı şekilde dönmek zorunda değildir.
+
+## Motor beceri yükü
+Tekrarlı hızlı tuş basma veya sürekli yüksek basınç gerektiren mini oyun yoktur. Secure belirli koşullarda tek niyettir; uzun zorunlu mash değildir. Toggle tutma menü/odak kaybı ve reconnect cleanup ile güvenli çalışmalıdır.
+
+## İşitsel/görsel eşdeğer
+Vinç kilidi, kritik hasar ve delivery ret nedeni hem UI/ikon hem uygun sesle sunulur. Ping komutları mikrofon olmadan yön ve yardım ihtiyacını anlatır. Oyuncu renginin yanında isim/simge kullanılır. Yanıp sönme ve büyük ekran dolumu sınırlanır.
+
+## Test katılımı
+Konfor veya erişim ihtiyacı olan oyuncular uygun bilgilendirmeyle test edilir; “tüm engeller için erişilebilir” gibi doğrulanmamış iddia yapılmaz. Ayarların menüye ulaşmadan önce erişilebilir olması gerekebilir; ilk açılış erişim ekranı düşünülür.
+
+## Kabul
+Ses kapalı, renk ayrımı sınırlı ve gamepad-only testlerinde temel görev tamamlanabilir. Tutma toggle kullanıcıyı eşya üzerinde kilitlemez. En büyük UI ölçeğinde kritik onay düğmesi ekran dışına çıkmaz. QA bulguları kozmetik diye otomatik düşük öncelik almaz.
+
+## Gereksinim ve test izleri
+- REQ-035 → TC-035 — Erişim ayarları temel görevi desteklemeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-013 — Kontroller, kamera ve giriş niyetleri](../01_gameplay/013_controls_camera.md)
+- [ASK-054 — VFX, geri bildirim ve havuzlama](../04_art/054_vfx_feedback.md)
+- [ASK-055 — Ses tasarımı, miks ve sesli iletişim](../04_art/055_audio_sound_design.md)
+- [ASK-062 — Arayüz ve bilgi hiyerarşisi](062_ui_information.md)
+- [ASK-068 — Oyuncu testi, eğlence ve okunurluk](../06_quality/068_playtest_protocol.md)
+
+
+
+DOCUMENT: ASK-064
+PATH: docs/05_content/064_localization_onboarding.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 56afa17fa6e776276100e1651c43e7adb91451a9dd858bab6ae88ff5ecc1c936
+
+---
+doc_id: ASK-064
+title: "Yerelleştirme ve öğretici tasarımı"
+version: 0.1.0
+status: proposed
+owner_role: UX
+last_reviewed: 2026-09-07
+dependencies: ["ASK-011","ASK-058","ASK-062","ASK-063"]
+---
+
+# Yerelleştirme ve öğretici tasarımı
+
+## Dil kapsamı
+Türkçe ve İngilizce ilk öneridir; kesin dil listesi maliyet ve test kapasitesiyle onaylanır. Runtime string birleştirmesiyle cümle oluşturmak yerine parametreli localization anahtarları kullanılır. Item/contract ID değişmez, görünen ad çevrilir.
+
+## İçerik kuralları
+Kısa, eylem odaklı metin; cihaz bağımsız action simgesi; çoğul ve sayı biçimleri; eksik font glyph testleri. “E'ye bas” sabit metni yerine yeniden atanmış etkileşim düğmesi gösterilir. Türkçe İ/ı ve büyük harfe çevirme locale kuralları test edilir.
+
+## Öğretici akış
+Bak/hareket → sandığı tut/bırak → ortak taşıma → platforma yerleştir → karşı ağırlık → secure → vinç → teslimat → sonuç/kayıt. Her adım gerçek authoritative davranışı gözler, sadece düğmeye basmayı değil. Oyuncu önceden adımı yaptıysa tekrar zorunlu değildir.
+
+## Yardım dozu
+İlk tur kısa bağlamsal yardım; tekrar turlarda azaltılabilir. Bir oyuncu öğrendi diye bütün grubun yardımını otomatik kapatma. Host'un başlattığı ortak görev ile yerel öğretici ilerleme ayrıdır; yardım kartı ağ state'ini değiştirmez.
+
+## Çeviri süreci
+Ana metin → bağlam/screenshot → çeviri → oyun içi kontrol → terminoloji review. Sadece tablo çevirisi line break ve dar arayüz sorununu göstermez. Sözlükte winch/vinç, secured/sabitlenmiş, holder/tutan oyuncu karşılıkları kararlı tutulur.
+
+## Kabul
+Pseudo-localization ile %30 uzamış metinlerde taşma kontrolü; Türkçe font ve sayı biçimi; controller prompt'u; eksik key için geliştirme alarmı. Öğretici oyuncuyu serbest bıraktığında sonraki hedefi anlayabilmeli; teknik ekip açıklaması gerektiren adım yeniden tasarlanır.
+
+## Gereksinim ve test izleri
+- REQ-036 → TC-036 — Yerelleştirme metin ve input'u korumalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-011 — Temel oyun döngüsü ve zaman çizgisi](../01_gameplay/011_core_loop.md)
+- [ASK-058 — Seviye 1 — Avlu apartmanı](058_level_one_courtyard.md)
+- [ASK-062 — Arayüz ve bilgi hiyerarşisi](062_ui_information.md)
+- [ASK-063 — Erişilebilirlik ve kamera konforu](063_accessibility.md)
+
+
+

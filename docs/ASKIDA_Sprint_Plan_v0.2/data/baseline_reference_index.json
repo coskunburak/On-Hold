@@ -1,0 +1,779 @@
+{
+  "source_version": "0.1.0",
+  "documents": [
+    {
+      "doc_id": "ASK-002",
+      "baseline_path": "AGENTS.md"
+    },
+    {
+      "doc_id": "ASK-001",
+      "baseline_path": "README.md"
+    },
+    {
+      "doc_id": "ASK-003",
+      "baseline_path": "docs/00_foundation/003_document_map.md"
+    },
+    {
+      "doc_id": "ASK-004",
+      "baseline_path": "docs/00_foundation/004_project_charter.md"
+    },
+    {
+      "doc_id": "ASK-005",
+      "baseline_path": "docs/00_foundation/005_vision_hook.md"
+    },
+    {
+      "doc_id": "ASK-006",
+      "baseline_path": "docs/00_foundation/006_audience_market_validation.md"
+    },
+    {
+      "doc_id": "ASK-007",
+      "baseline_path": "docs/00_foundation/007_scope_matrix.md"
+    },
+    {
+      "doc_id": "ASK-008",
+      "baseline_path": "docs/00_foundation/008_design_pillars.md"
+    },
+    {
+      "doc_id": "ASK-009",
+      "baseline_path": "docs/00_foundation/009_decision_register.md"
+    },
+    {
+      "doc_id": "ASK-010",
+      "baseline_path": "docs/00_foundation/010_glossary_parameters.md"
+    },
+    {
+      "doc_id": "ASK-011",
+      "baseline_path": "docs/01_gameplay/011_core_loop.md"
+    },
+    {
+      "doc_id": "ASK-012",
+      "baseline_path": "docs/01_gameplay/012_session_state_machine.md"
+    },
+    {
+      "doc_id": "ASK-013",
+      "baseline_path": "docs/01_gameplay/013_controls_camera.md"
+    },
+    {
+      "doc_id": "ASK-014",
+      "baseline_path": "docs/01_gameplay/014_cooperation_roles.md"
+    },
+    {
+      "doc_id": "ASK-015",
+      "baseline_path": "docs/01_gameplay/015_interaction_contract.md"
+    },
+    {
+      "doc_id": "ASK-016",
+      "baseline_path": "docs/01_gameplay/016_item_state_model.md"
+    },
+    {
+      "doc_id": "ASK-017",
+      "baseline_path": "docs/01_gameplay/017_shared_carrying.md"
+    },
+    {
+      "doc_id": "ASK-018",
+      "baseline_path": "docs/01_gameplay/018_platform_balance.md"
+    },
+    {
+      "doc_id": "ASK-019",
+      "baseline_path": "docs/01_gameplay/019_winch_control.md"
+    },
+    {
+      "doc_id": "ASK-020",
+      "baseline_path": "docs/01_gameplay/020_straps_anchors.md"
+    },
+    {
+      "doc_id": "ASK-021",
+      "baseline_path": "docs/01_gameplay/021_damage_breakage.md"
+    },
+    {
+      "doc_id": "ASK-022",
+      "baseline_path": "docs/01_gameplay/022_delivery_scoring.md"
+    },
+    {
+      "doc_id": "ASK-023",
+      "baseline_path": "docs/01_gameplay/023_contract_rules.md"
+    },
+    {
+      "doc_id": "ASK-024",
+      "baseline_path": "docs/01_gameplay/024_progression_economy.md"
+    },
+    {
+      "doc_id": "ASK-025",
+      "baseline_path": "docs/01_gameplay/025_recovery_failures.md"
+    },
+    {
+      "doc_id": "ASK-026",
+      "baseline_path": "docs/02_network/026_network_adr_spike.md"
+    },
+    {
+      "doc_id": "ASK-027",
+      "baseline_path": "docs/02_network/027_authority_matrix.md"
+    },
+    {
+      "doc_id": "ASK-028",
+      "baseline_path": "docs/02_network/028_command_protocol.md"
+    },
+    {
+      "doc_id": "ASK-029",
+      "baseline_path": "docs/02_network/029_replication_snapshot.md"
+    },
+    {
+      "doc_id": "ASK-030",
+      "baseline_path": "docs/02_network/030_latency_prediction.md"
+    },
+    {
+      "doc_id": "ASK-031",
+      "baseline_path": "docs/02_network/031_lobby_steam_connectivity.md"
+    },
+    {
+      "doc_id": "ASK-032",
+      "baseline_path": "docs/02_network/032_disconnect_reconnect_hostloss.md"
+    },
+    {
+      "doc_id": "ASK-033",
+      "baseline_path": "docs/02_network/033_campaign_transaction.md"
+    },
+    {
+      "doc_id": "ASK-034",
+      "baseline_path": "docs/02_network/034_security_abuse.md"
+    },
+    {
+      "doc_id": "ASK-035",
+      "baseline_path": "docs/02_network/035_network_test_matrix.md"
+    },
+    {
+      "doc_id": "ASK-036",
+      "baseline_path": "docs/03_engineering/036_unity_repository.md"
+    },
+    {
+      "doc_id": "ASK-037",
+      "baseline_path": "docs/03_engineering/037_module_boundaries.md"
+    },
+    {
+      "doc_id": "ASK-038",
+      "baseline_path": "docs/03_engineering/038_bootstrap_lifecycle.md"
+    },
+    {
+      "doc_id": "ASK-039",
+      "baseline_path": "docs/03_engineering/039_data_schemas.md"
+    },
+    {
+      "doc_id": "ASK-040",
+      "baseline_path": "docs/03_engineering/040_physics_integration.md"
+    },
+    {
+      "doc_id": "ASK-041",
+      "baseline_path": "docs/03_engineering/041_editor_asset_validation.md"
+    },
+    {
+      "doc_id": "ASK-042",
+      "baseline_path": "docs/03_engineering/042_build_ci_release.md"
+    },
+    {
+      "doc_id": "ASK-043",
+      "baseline_path": "docs/03_engineering/043_save_schema_migration.md"
+    },
+    {
+      "doc_id": "ASK-044",
+      "baseline_path": "docs/03_engineering/044_telemetry_debugging.md"
+    },
+    {
+      "doc_id": "ASK-045",
+      "baseline_path": "docs/03_engineering/045_errors_resilience.md"
+    },
+    {
+      "doc_id": "ASK-046",
+      "baseline_path": "docs/04_art/046_art_direction.md"
+    },
+    {
+      "doc_id": "ASK-047",
+      "baseline_path": "docs/04_art/047_package_selection.md"
+    },
+    {
+      "doc_id": "ASK-048",
+      "baseline_path": "docs/04_art/048_licenses_provenance.md"
+    },
+    {
+      "doc_id": "ASK-049",
+      "baseline_path": "docs/04_art/049_prop_asset_spec.md"
+    },
+    {
+      "doc_id": "ASK-050",
+      "baseline_path": "docs/04_art/050_ai_blender_export.md"
+    },
+    {
+      "doc_id": "ASK-051",
+      "baseline_path": "docs/04_art/051_character_rig.md"
+    },
+    {
+      "doc_id": "ASK-052",
+      "baseline_path": "docs/04_art/052_animation_graph.md"
+    },
+    {
+      "doc_id": "ASK-053",
+      "baseline_path": "docs/04_art/053_materials_textures_lighting.md"
+    },
+    {
+      "doc_id": "ASK-054",
+      "baseline_path": "docs/04_art/054_vfx_feedback.md"
+    },
+    {
+      "doc_id": "ASK-055",
+      "baseline_path": "docs/04_art/055_audio_sound_design.md"
+    },
+    {
+      "doc_id": "ASK-056",
+      "baseline_path": "docs/05_content/056_modular_world_kit.md"
+    },
+    {
+      "doc_id": "ASK-057",
+      "baseline_path": "docs/05_content/057_blockout_metrics.md"
+    },
+    {
+      "doc_id": "ASK-058",
+      "baseline_path": "docs/05_content/058_level_one_courtyard.md"
+    },
+    {
+      "doc_id": "ASK-059",
+      "baseline_path": "docs/05_content/059_levels_two_three.md"
+    },
+    {
+      "doc_id": "ASK-060",
+      "baseline_path": "docs/05_content/060_contract_catalog.md"
+    },
+    {
+      "doc_id": "ASK-061",
+      "baseline_path": "docs/05_content/061_asset_inventory.md"
+    },
+    {
+      "doc_id": "ASK-062",
+      "baseline_path": "docs/05_content/062_ui_information.md"
+    },
+    {
+      "doc_id": "ASK-063",
+      "baseline_path": "docs/05_content/063_accessibility.md"
+    },
+    {
+      "doc_id": "ASK-064",
+      "baseline_path": "docs/05_content/064_localization_onboarding.md"
+    },
+    {
+      "doc_id": "ASK-065",
+      "baseline_path": "docs/06_quality/065_performance_targets.md"
+    },
+    {
+      "doc_id": "ASK-066",
+      "baseline_path": "docs/06_quality/066_render_physics_asset_budgets.md"
+    },
+    {
+      "doc_id": "ASK-067",
+      "baseline_path": "docs/06_quality/067_test_strategy_traceability.md"
+    },
+    {
+      "doc_id": "ASK-068",
+      "baseline_path": "docs/06_quality/068_playtest_protocol.md"
+    },
+    {
+      "doc_id": "ASK-069",
+      "baseline_path": "docs/06_quality/069_quality_gates.md"
+    },
+    {
+      "doc_id": "ASK-070",
+      "baseline_path": "docs/06_quality/070_release_regression_support.md"
+    },
+    {
+      "doc_id": "ASK-071",
+      "baseline_path": "docs/07_production/071_roadmap_capacity.md"
+    },
+    {
+      "doc_id": "ASK-072",
+      "baseline_path": "docs/07_production/072_team_workflow.md"
+    },
+    {
+      "doc_id": "ASK-073",
+      "baseline_path": "docs/07_production/073_risk_register.md"
+    },
+    {
+      "doc_id": "ASK-074",
+      "baseline_path": "docs/07_production/074_backlog_first_sprints.md"
+    },
+    {
+      "doc_id": "ASK-075",
+      "baseline_path": "docs/07_production/075_steam_launch_plan.md"
+    },
+    {
+      "doc_id": "ASK-076",
+      "baseline_path": "docs/08_knowledge/076_notebook_import.md"
+    },
+    {
+      "doc_id": "ASK-077",
+      "baseline_path": "docs/08_knowledge/077_codex_task_workflow.md"
+    },
+    {
+      "doc_id": "ASK-078",
+      "baseline_path": "docs/08_knowledge/078_mcp_readonly_spec.md"
+    },
+    {
+      "doc_id": "ASK-079",
+      "baseline_path": "docs/08_knowledge/079_versioning_templates.md"
+    },
+    {
+      "doc_id": "ASK-080",
+      "baseline_path": "docs/08_knowledge/080_sources_evidence_limits.md"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "title": "Motor ve sürüm kararı kanıtla seçilmeli"
+    },
+    {
+      "id": "REQ-002",
+      "title": "Temiz checkout tekrar açılmalı"
+    },
+    {
+      "id": "REQ-003",
+      "title": "İstemci paylaşılan state'i doğrudan değiştirememeli"
+    },
+    {
+      "id": "REQ-004",
+      "title": "İki holder sınırlı kuvvetle aynı eşyayı taşıyabilmeli"
+    },
+    {
+      "id": "REQ-005",
+      "title": "Platform destek kütlesini bir kere saymalı"
+    },
+    {
+      "id": "REQ-006",
+      "title": "Ağ stresinde state bozulmamalı"
+    },
+    {
+      "id": "REQ-007",
+      "title": "Gerçek internet bağlantısı doğrulanmalı"
+    },
+    {
+      "id": "REQ-008",
+      "title": "Risk kapısı kanıtla kapanmalı"
+    },
+    {
+      "id": "REQ-009",
+      "title": "Eşya değişmezleri korunmalı"
+    },
+    {
+      "id": "REQ-010",
+      "title": "Anchor işlemi tek ve atomik olmalı"
+    },
+    {
+      "id": "REQ-011",
+      "title": "Teslimat ve ödeme yinelenmemeli"
+    },
+    {
+      "id": "REQ-012",
+      "title": "Hasar temas sayısıyla çoğalmamalı"
+    },
+    {
+      "id": "REQ-013",
+      "title": "Bitiş sırası ve kısmi ödül tutarlı olmalı"
+    },
+    {
+      "id": "REQ-014",
+      "title": "Kurtarma terminal item'ı canlandırmamalı"
+    },
+    {
+      "id": "REQ-015",
+      "title": "Lobi ve content handshake uyumlu olmalı"
+    },
+    {
+      "id": "REQ-016",
+      "title": "Misafir reconnect temiz snapshot almalı"
+    },
+    {
+      "id": "REQ-017",
+      "title": "Host kaybı checkpoint sınırını korumalı"
+    },
+    {
+      "id": "REQ-018",
+      "title": "Kayıt atomik ve migrate edilebilir olmalı"
+    },
+    {
+      "id": "REQ-019",
+      "title": "Satın alma güvenli ve softlock'suz olmalı"
+    },
+    {
+      "id": "REQ-020",
+      "title": "Content registry hataları build'i engellemeli"
+    },
+    {
+      "id": "REQ-021",
+      "title": "Sahne yaşam döngüsü kaynak sızdırmamalı"
+    },
+    {
+      "id": "REQ-022",
+      "title": "Bozuk komut sınırlı kaynakla reddedilmeli"
+    },
+    {
+      "id": "REQ-023",
+      "title": "Kaynak paketler ortak stil kapısından geçmeli"
+    },
+    {
+      "id": "REQ-024",
+      "title": "Shipping varlığı lisansa izlenebilir olmalı"
+    },
+    {
+      "id": "REQ-025",
+      "title": "Prop tam teknik kabul almalı"
+    },
+    {
+      "id": "REQ-026",
+      "title": "AI üretimi gerçek araç ve insan QA ile doğrulanmalı"
+    },
+    {
+      "id": "REQ-027",
+      "title": "Tek rig bütün karakterlerde çalışmalı"
+    },
+    {
+      "id": "REQ-028",
+      "title": "Animasyon gameplay state'i belirlememeli"
+    },
+    {
+      "id": "REQ-029",
+      "title": "Materyaller uyumlu ve bütçe içinde olmalı"
+    },
+    {
+      "id": "REQ-030",
+      "title": "VFX tek olay ve sınırlı havuz kullanmalı"
+    },
+    {
+      "id": "REQ-031",
+      "title": "Ses state ile uyumlu ve erişilebilir olmalı"
+    },
+    {
+      "id": "REQ-032",
+      "title": "Slice rotası iki/dört oyuncuyla geçilmeli"
+    },
+    {
+      "id": "REQ-033",
+      "title": "Sözleşmeler geçerli ve farklı karar sunmalı"
+    },
+    {
+      "id": "REQ-034",
+      "title": "UI otorite ve kayıt durumunu doğru göstermeli"
+    },
+    {
+      "id": "REQ-035",
+      "title": "Erişim ayarları temel görevi desteklemeli"
+    },
+    {
+      "id": "REQ-036",
+      "title": "Yerelleştirme metin ve input'u korumalı"
+    },
+    {
+      "id": "REQ-037",
+      "title": "Hedef donanım performansı ölçülmeli"
+    },
+    {
+      "id": "REQ-038",
+      "title": "Build/release yolu kontrollü olmalı"
+    },
+    {
+      "id": "REQ-039",
+      "title": "Bilgi tabanı izlenebilir ve salt okunur kullanılmalı"
+    },
+    {
+      "id": "REQ-040",
+      "title": "Yayın iddiaları kanıta ve lisansa uymalı"
+    }
+  ],
+  "test_cases": [
+    {
+      "id": "TC-001",
+      "title": "Motor ve sürüm kararı kanıtla seçilmeli"
+    },
+    {
+      "id": "TC-002",
+      "title": "Temiz checkout tekrar açılmalı"
+    },
+    {
+      "id": "TC-003",
+      "title": "İstemci paylaşılan state'i doğrudan değiştirememeli"
+    },
+    {
+      "id": "TC-004",
+      "title": "İki holder sınırlı kuvvetle aynı eşyayı taşıyabilmeli"
+    },
+    {
+      "id": "TC-005",
+      "title": "Platform destek kütlesini bir kere saymalı"
+    },
+    {
+      "id": "TC-006",
+      "title": "Ağ stresinde state bozulmamalı"
+    },
+    {
+      "id": "TC-007",
+      "title": "Gerçek internet bağlantısı doğrulanmalı"
+    },
+    {
+      "id": "TC-008",
+      "title": "Risk kapısı kanıtla kapanmalı"
+    },
+    {
+      "id": "TC-009",
+      "title": "Eşya değişmezleri korunmalı"
+    },
+    {
+      "id": "TC-010",
+      "title": "Anchor işlemi tek ve atomik olmalı"
+    },
+    {
+      "id": "TC-011",
+      "title": "Teslimat ve ödeme yinelenmemeli"
+    },
+    {
+      "id": "TC-012",
+      "title": "Hasar temas sayısıyla çoğalmamalı"
+    },
+    {
+      "id": "TC-013",
+      "title": "Bitiş sırası ve kısmi ödül tutarlı olmalı"
+    },
+    {
+      "id": "TC-014",
+      "title": "Kurtarma terminal item'ı canlandırmamalı"
+    },
+    {
+      "id": "TC-015",
+      "title": "Lobi ve content handshake uyumlu olmalı"
+    },
+    {
+      "id": "TC-016",
+      "title": "Misafir reconnect temiz snapshot almalı"
+    },
+    {
+      "id": "TC-017",
+      "title": "Host kaybı checkpoint sınırını korumalı"
+    },
+    {
+      "id": "TC-018",
+      "title": "Kayıt atomik ve migrate edilebilir olmalı"
+    },
+    {
+      "id": "TC-019",
+      "title": "Satın alma güvenli ve softlock'suz olmalı"
+    },
+    {
+      "id": "TC-020",
+      "title": "Content registry hataları build'i engellemeli"
+    },
+    {
+      "id": "TC-021",
+      "title": "Sahne yaşam döngüsü kaynak sızdırmamalı"
+    },
+    {
+      "id": "TC-022",
+      "title": "Bozuk komut sınırlı kaynakla reddedilmeli"
+    },
+    {
+      "id": "TC-023",
+      "title": "Kaynak paketler ortak stil kapısından geçmeli"
+    },
+    {
+      "id": "TC-024",
+      "title": "Shipping varlığı lisansa izlenebilir olmalı"
+    },
+    {
+      "id": "TC-025",
+      "title": "Prop tam teknik kabul almalı"
+    },
+    {
+      "id": "TC-026",
+      "title": "AI üretimi gerçek araç ve insan QA ile doğrulanmalı"
+    },
+    {
+      "id": "TC-027",
+      "title": "Tek rig bütün karakterlerde çalışmalı"
+    },
+    {
+      "id": "TC-028",
+      "title": "Animasyon gameplay state'i belirlememeli"
+    },
+    {
+      "id": "TC-029",
+      "title": "Materyaller uyumlu ve bütçe içinde olmalı"
+    },
+    {
+      "id": "TC-030",
+      "title": "VFX tek olay ve sınırlı havuz kullanmalı"
+    },
+    {
+      "id": "TC-031",
+      "title": "Ses state ile uyumlu ve erişilebilir olmalı"
+    },
+    {
+      "id": "TC-032",
+      "title": "Slice rotası iki/dört oyuncuyla geçilmeli"
+    },
+    {
+      "id": "TC-033",
+      "title": "Sözleşmeler geçerli ve farklı karar sunmalı"
+    },
+    {
+      "id": "TC-034",
+      "title": "UI otorite ve kayıt durumunu doğru göstermeli"
+    },
+    {
+      "id": "TC-035",
+      "title": "Erişim ayarları temel görevi desteklemeli"
+    },
+    {
+      "id": "TC-036",
+      "title": "Yerelleştirme metin ve input'u korumalı"
+    },
+    {
+      "id": "TC-037",
+      "title": "Hedef donanım performansı ölçülmeli"
+    },
+    {
+      "id": "TC-038",
+      "title": "Build/release yolu kontrollü olmalı"
+    },
+    {
+      "id": "TC-039",
+      "title": "Bilgi tabanı izlenebilir ve salt okunur kullanılmalı"
+    },
+    {
+      "id": "TC-040",
+      "title": "Yayın iddiaları kanıta ve lisansa uymalı"
+    }
+  ],
+  "baseline_work": [
+    {
+      "id": "W-001",
+      "title": "Karar ve exact sürüm matrisi"
+    },
+    {
+      "id": "W-002",
+      "title": "Temel repo ve temiz build"
+    },
+    {
+      "id": "W-003",
+      "title": "Tek host-authoritative eşya"
+    },
+    {
+      "id": "W-004",
+      "title": "İki holder kuvvet prototipi"
+    },
+    {
+      "id": "W-005",
+      "title": "Kontrollü platform ve destek kümesi"
+    },
+    {
+      "id": "W-006",
+      "title": "Emülasyon, capture ve debug sayaçları"
+    },
+    {
+      "id": "W-007",
+      "title": "Gerçek internet/davet bağlantı denemesi"
+    },
+    {
+      "id": "W-008",
+      "title": "Risk testleri ve ADR go/no-go"
+    },
+    {
+      "id": "W-009",
+      "title": "Eşya state ve invariant domain katmanı"
+    },
+    {
+      "id": "W-010",
+      "title": "Anchor ve secure işlemleri"
+    },
+    {
+      "id": "W-011",
+      "title": "Delivery ve tek sonuç işlemi"
+    },
+    {
+      "id": "W-012",
+      "title": "Hasar ve kurtarma uygulaması"
+    },
+    {
+      "id": "W-013",
+      "title": "Lobi, reconnect ve host-loss UX"
+    },
+    {
+      "id": "W-014",
+      "title": "Kampanya save/migration ve ekonomi"
+    },
+    {
+      "id": "W-015",
+      "title": "Registry, import ve lifecycle validator"
+    },
+    {
+      "id": "W-016",
+      "title": "Protocol fuzz ve rate-limit kontrolleri"
+    },
+    {
+      "id": "W-017",
+      "title": "Art validation ve ana paket kararı"
+    },
+    {
+      "id": "W-018",
+      "title": "Provenance/lisans kayıtları"
+    },
+    {
+      "id": "W-019",
+      "title": "Bir final aday prop pipeline'ı"
+    },
+    {
+      "id": "W-020",
+      "title": "Blender parametrik deck/export deneyi"
+    },
+    {
+      "id": "W-021",
+      "title": "Karakter rig ve carry animasyon seti"
+    },
+    {
+      "id": "W-022",
+      "title": "Shared materyal ve ışık profili"
+    },
+    {
+      "id": "W-023",
+      "title": "VFX ve ses P0 seti"
+    },
+    {
+      "id": "W-024",
+      "title": "Avlu blockout ve tek görev rotası"
+    },
+    {
+      "id": "W-025",
+      "title": "12 sözleşme kartı ve data validator"
+    },
+    {
+      "id": "W-026",
+      "title": "HUD, sonuç ve bağlantı ekranları"
+    },
+    {
+      "id": "W-027",
+      "title": "Erişilebilirlik ve yerelleştirme temeli"
+    },
+    {
+      "id": "W-028",
+      "title": "Referans cihaz ve performance capture"
+    },
+    {
+      "id": "W-029",
+      "title": "CI staging/rollback ve smoke seti"
+    },
+    {
+      "id": "W-030",
+      "title": "Notebook/manifest/Codex entegrasyon denetimi"
+    },
+    {
+      "id": "W-031",
+      "title": "Salt okunur MCP prototipi — ileride, onayla"
+    },
+    {
+      "id": "W-032",
+      "title": "Demo/Steam hazırlık ve RC kontrol listesi"
+    }
+  ]
+}

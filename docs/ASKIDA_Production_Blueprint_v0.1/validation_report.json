@@ -1,0 +1,16 @@
+{
+  "scope": "DOCUMENT_PACKAGE_ONLY",
+  "game_tests_executed": false,
+  "status": "PASS",
+  "errors": [],
+  "stats": {
+    "markdown_documents": 80,
+    "canonical_words": 29961,
+    "internal_links_checked": 592,
+    "requirements": 40,
+    "planned_game_tests": 40,
+    "planned_work_items": 32,
+    "notebook_volumes": 10,
+    "sources": 32
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "OnHold.EditMode.Tests",
+  "references": [
+    "OnHold.Core",
+    "OnHold.Domain",
+    "OnHold.Gameplay",
+    "OnHold.Persistence",
+    "OnHold.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Newtonsoft.Json.dll",
+    "nunit.framework.dll"
+  ]
+}

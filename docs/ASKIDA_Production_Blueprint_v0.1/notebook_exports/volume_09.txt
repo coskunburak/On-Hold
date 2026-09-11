@@ -1,0 +1,403 @@
+ASKIDA KNOWLEDGE SNAPSHOT v0.1.0
+VOLUME: 09/10
+SNAPSHOT: 3ab02943c9c963c77b623d6ca4d382e1ac2696cbc26c2c0279935ebeb2b507f4
+STATUS: PROPOSED; GAME TESTS NOT RUN; READ-ONLY DERIVED COPY.
+Canonical Markdown documents remain the source of truth.
+
+DOCUMENT: ASK-065
+PATH: docs/06_quality/065_performance_targets.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: cd309393705d6e546b1ce831cf7b23ca22943bd428919ab05a38277bddf6a11f
+
+---
+doc_id: ASK-065
+title: "Performans hedefi ve ölçüm disiplini"
+version: 0.1.0
+status: proposed
+owner_role: Performance
+last_reviewed: 2026-09-07
+dependencies: ["ASK-009","ASK-010","ASK-040","ASK-066","ASK-069"]
+---
+
+# Performans hedefi ve ölçüm disiplini
+
+## Hedef ve eksik bilgi
+1080p/60 FPS başlangıç ürün hipotezidir. Referans CPU/GPU/RAM ve minimum cihaz henüz seçilmedi; bu yüzden Steam minimum sistem gereksinimi yazılamaz. Laptop/desktop, güç modu, sürücü ve ekran çözünürlüğü ölçüm kaydına girer. “Optimize low-poly” etiketinden donanım sonucu çıkarılmaz.
+
+## Kare bütçesi
+60 FPS için 16,67 ms frame aralığı vardır. CPU ve GPU süreleri basitçe toplanmaz; darboğaz ve pipeline davranışı incelenir. Önerilen ilk kontrol p95 CPU ve GPU frame sürelerinin hedef aralığa sığması, p99 spike'ların ayrıca raporlanmasıdır. Kesin p95/p99 kabul limiti referans cihaz seçildiğinde dondurulur; ortalama FPS yeterli değildir.
+
+## Host ayrı profil
+Host aynı anda yerel render, bütün shared physics ve diğer istemci ağ çıkışını taşır. Dört oyuncu host profili tek oyuncu editor profiliyle değiştirilemez. Remote istemci ve host'ta aynı scene/camera testleri ayrı kayda girer.
+
+## Bellek ve yükleme
+Peak RAM/VRAM, texture residency, prefab/scene yükleme süresi, GC allocation ve uzun oturum artışı ölçülür. Milestone hedefleri hardware kararıyla bağlanır. İlkel “her kare sıfır allocation” kuralı yerine hot path ve gözlenen hitch önceliklendirilir; gereksiz allocation yine giderilir.
+
+## Kalite seçenekleri
+Gölge mesafesi/kalitesi, dekor yoğunluğu, VFX yoğunluğu ve rendering ölçeği düşürülebilir. Gameplay collider, mandatory eşya veya denge hesabı düşük kalite seçeneğinde değişmez. Ağ mesaj sıklığı kullanıcı grafik seçeneğine bağlanmaz.
+
+## Kabul
+Aynı build'in kayıtlı rota replay girdisi veya kontrollü test rotasıyla karşılaştırması yapılır; deterministic fizik replay iddiası yoktur. Önce/sonra capture ve görüntü kalite karşılaştırması olmadan “optimizasyon” tamamlandı sayılmaz.
+
+## Gereksinim ve test izleri
+- REQ-037 → TC-037 — Hedef donanım performansı ölçülmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-009 — Karar kaydı ve onay bekleyenler](../00_foundation/009_decision_register.md)
+- [ASK-010 — Sözlük, birimler ve başlangıç parametreleri](../00_foundation/010_glossary_parameters.md)
+- [ASK-040 — Unity fizik uygulaması ve teknik sınırlar](../03_engineering/040_physics_integration.md)
+- [ASK-066 — Başlangıç asset, render ve fizik bütçeleri](066_render_physics_asset_budgets.md)
+- [ASK-069 — Milestone kalite kapıları ve bitmiş iş](069_quality_gates.md)
+
+
+
+DOCUMENT: ASK-066
+PATH: docs/06_quality/066_render_physics_asset_budgets.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: d7627073a33912e54d48cb7ffbc89c2ad1ed41cf55c067264be465455613e1a4
+
+---
+doc_id: ASK-066
+title: "Başlangıç asset, render ve fizik bütçeleri"
+version: 0.1.0
+status: proposed
+owner_role: Performance
+last_reviewed: 2026-09-07
+dependencies: ["ASK-018","ASK-040","ASK-049","ASK-053","ASK-065"]
+---
+
+# Başlangıç asset, render ve fizik bütçeleri
+
+## Rakamların durumu
+Aşağıdaki bütçeler erken tasarım alarmıdır; ölçülmüş platform limiti değildir. ArtValidation ve 4 oyunculu benchmark sonrasında daraltılabilir veya gevşetilebilir. Bir varlığın bütçeyi geçmesi otomatik ret yerine gerekçeli performans incelemesi açar; toplam sahne maliyeti belirleyicidir.
+
+| Kategori | Başlangıç alarmı |
+|---|---|
+| Yakın kahraman eşya LOD0 | 3k–12k triangle |
+| Küçük dekor | 100–1.500 triangle |
+| Karakter LOD0 | 10k–18k triangle; aksesuar dahil ölç |
+| Taşınabilir prefab | Genelde 1–2 material slot |
+| Ana eşya collision | Genelde 2–6 primitive parça |
+| Aynı anda uyanık carryable | Önce 12–20 ile test; 30 stres |
+| Gameplay rigidbody toplamı | Player/platform dahil ayrı sayaç |
+| Texture | Ekran alanına göre 256–2K; ortak atlas önceliği |
+
+## Render maliyeti
+Triangle sayısı tek sınır değildir: draw calls, skinned mesh, transparan overdraw, gölgeli ışık, shader varyantı ve texture bandwidth ölçülür. Özellikle cama ve parçacığa eklenen transparan katmanlar düşük-poly avantajını silebilir. Uzak cephelerde LOD/occlusion maliyet kazancı gerçek sahnede doğrulanır.
+
+## Fizik maliyeti
+Awake body sayısı, contact pair, solver iteration, CCD ve joint sayısı izlenir. Çok parçalı compound collider şekil sayısı arttıkça maliyet büyüyebilir. Her küçük dekoru fizik nesnesi yapma. Kullanıcı tutabilsin diye bütün şehir props'larını network actor yapmak v1 dışıdır.
+
+## Ağ maliyeti
+Physics budget ile replicated object budget aynı değildir. Uyuyan item düşük frekanslı gönderilebilir, fakat yaşam döngüsü ve teslimat bilgisi korunur. Ağ optimizasyonu semantik görünmezlik yaratmamalıdır.
+
+## İstisna kartı
+Asset ID, bütçe aşımı, oyuncuya getirisi, measured CPU/GPU/network etkisi, alternatif, onay sahibi ve yeniden ölçüm tarihi. Örneğin piano 14k tris ama tek material ile sahnede önemsiz maliyet olabilir; ölçüm yoksa karar yoktur.
+
+## Kabul
+Üç farklı paket kaynağından gelen adaylar aynı bütçe kartıyla değerlendirilir. Düşük kalite seçeneği oyuncuya daha avantajlı collision veya denge sağlamaz. LOD geçişinde grip noktası ve gameplay bounds değişmez.
+
+## Gereksinim ve test izleri
+- REQ-029 → TC-029 — Materyaller uyumlu ve bütçe içinde olmalı
+- REQ-037 → TC-037 — Hedef donanım performansı ölçülmeli
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-018 — Platform, destek kütlesi ve kontrollü eğim](../01_gameplay/018_platform_balance.md)
+- [ASK-040 — Unity fizik uygulaması ve teknik sınırlar](../03_engineering/040_physics_integration.md)
+- [ASK-049 — Her nesne için üretim şartnamesi](../04_art/049_prop_asset_spec.md)
+- [ASK-053 — Malzeme, texture ve aydınlatma standardı](../04_art/053_materials_textures_lighting.md)
+- [ASK-065 — Performans hedefi ve ölçüm disiplini](065_performance_targets.md)
+
+
+
+DOCUMENT: ASK-067
+PATH: docs/06_quality/067_test_strategy_traceability.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: e29db0ef1582e739a85eca9aaea10501cf30901a7c94e9d135db91f191057651
+
+---
+doc_id: ASK-067
+title: "Test stratejisi ve gereksinim izlenebilirliği"
+version: 0.1.0
+status: proposed
+owner_role: QA
+last_reviewed: 2026-09-07
+dependencies: ["ASK-016","ASK-022","ASK-035","ASK-069","ASK-074"]
+---
+
+# Test stratejisi ve gereksinim izlenebilirliği
+
+## Test katmanları
+Saf domain: durum geçişleri, teslimat idempotency, ekonomi, komut önkoşulları. EditMode: content registry, prefab ve source metadata. PlayMode: collision, controller, scene lifecycle. Multi-process integration: host + istemciler, snapshot/kopma. İnsan playtest: eğlence, okunurluk, stil, konfor. Hiçbiri diğerinin yerine geçmez.
+
+## Kayıtlar
+data/requirements.json REQ kimliği, zorunluluk, kaynak ASK ve kabul testlerini taşır. data/test_cases.json test adımı, beklenen sonuç, katman, kanıt ve mevcut durumu taşır. data/backlog.json W kimliği ve REQ ilişkisini taşır. Bu teslimatta oyun testlerinin hepsi NOT_RUN veya PLANNED; belge kontrolü ayrı rapordadır.
+
+## Test yazım standardı
+Given açık başlangıç state'i; When tek belirgin işlem/arıza; Then ölçülebilir sonuç ve yasak yan etki. “Co-op düzgün” test adı değildir. Örnek: iki oyuncu aynı anchor'a Secure yollar; bir Accepted, bir Busy; tek anchor ilişkisi; iki cüzdan değişmez; fizik joint sayısı geçerli aralıkta.
+
+## Regresyon
+Bir bug düzeltmesinde önce tekrar üretim kaydı, sonra mümkünse otomatik test, sonra düzeltme. Flaky test quarantine edilirse owner/tarih ve manuel telafi kapısı bulunur; yeşil rapor için silinmez. Ağ zamanlaması testinde seed/emülasyon profili kaydedilir.
+
+## Kapsam ölçümü
+Kod coverage yardımcı ölçüttür; yüzde yüz line coverage, fizik hissi veya yarış koşullarının kapsandığı anlamına gelmez. Kritik değişmezlerin ayrı test listesi gerekir. Requirement ile test eşlemesi boşsa kalite kapısı geçmez.
+
+## Kabul
+Her P0 gereksinim en az bir test ve sorumlu belgeye bağlanır. Test sonucu build kimliği taşır. “Planlandı” ile “geçti” UI/raporlarda açıkça ayrıdır. Paket doğrulayıcısı bu bağlantıları denetler; gerçek Unity testlerini çalıştırmaz.
+
+## Gereksinim ve test izleri
+- REQ-009 → TC-009 — Eşya değişmezleri korunmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-016 — Eşya semantiği ve değişmezler](../01_gameplay/016_item_state_model.md)
+- [ASK-022 — Teslimat doğrulaması ve tek seferlik sonuç](../01_gameplay/022_delivery_scoring.md)
+- [ASK-035 — Multiplayer test matrisi ve kanıt](../02_network/035_network_test_matrix.md)
+- [ASK-069 — Milestone kalite kapıları ve bitmiş iş](069_quality_gates.md)
+- [ASK-074 — Başlangıç backlog'u ve ilk iki sprint](../07_production/074_backlog_first_sprints.md)
+
+
+
+DOCUMENT: ASK-068
+PATH: docs/06_quality/068_playtest_protocol.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 5b553320c337dcae099e8344fccbf23306585d3a7e2ec38ffeec54f99cdd8ee7
+
+---
+doc_id: ASK-068
+title: "Oyuncu testi, eğlence ve okunurluk"
+version: 0.1.0
+status: proposed
+owner_role: Research
+last_reviewed: 2026-09-07
+dependencies: ["ASK-006","ASK-008","ASK-014","ASK-063"]
+---
+
+# Oyuncu testi, eğlence ve okunurluk
+
+## Test sorusu
+İlk tur: oyuncu özgün denge kancasını anlıyor mu? İkinci tur: ekip rol değiştirip hata kurtarma kullanıyor mu? Üçüncü tur: tekrar oynamayı istiyor mu? Bunlar ayrı sorulardır; tek 1–10 eğlence puanı hepsini açıklamaz.
+
+## Örneklem
+İlk nitel tur için 5–8 arkadaş grubu önerilir; iki/dört kişi ve farklı deneyim düzeyleri kapsanır. Bu küçük örneklem pazar satış tahmini değildir. Teknik ekip geliştiricinin açıklamasını duymadan oyunu oynayan kişilerden veri toplar.
+
+## Oturum
+Bilgilendirme/onay → kısa donanım/deneyim formu → yardım etmeden ilk deneme → ikinci deneme → kısa görüşme. Kritik erişim veya rahatsızlık halinde test durdurulur. Moderatör soruna hemen çözüm söylemez; ancak güvenlik/konfor önceliklidir.
+
+## Gözlem kodları
+F: fizik nedeni yanlış anlaşıldı; U: UI bulunamadı; N: ağ kaynaklı gecikme/ayrışma; C: kendiliğinden koordinasyon; R: başarılı kurtarma; I: boş bekleme. Her kod zaman damgası ve kliple ilişkilendirilir. Tek bir gülme anı oyunun bütünü için başarı kanıtı değildir.
+
+## Görüşme
+“Platform neden eğildi?”, “Bir arkadaşın ayrılırsa ne olmasını beklersin?”, “Hangi anda kontrol sende değildi?”, “Sonucu adil buldun mu?”, “Bir tur daha oynarsan neyi değiştirirsin?” Satın alma isteği sorulabilir, gerçekleşen davranışla karıştırılmaz.
+
+## Analiz ve kapı
+Gruplar arasında tekrar eden üç kritik sorun seçilir; çözüm hipotezi ve sonraki test karşılaştırması yazılır. Sadece olumlu alıntılar raporlanmaz. İlk tutma/teslimat süreleri ve bekleme oranı dağılım halinde incelenir. Değişiklik öncesi/sonrası farklı ağ veya cihaz varsa karıştırıcı etken not edilir.
+
+## İlgili kaynak belgeler
+- [ASK-006 — Hedef kitle ve ticari doğrulama](../00_foundation/006_audience_market_validation.md)
+- [ASK-008 — Tasarım ilkeleri ve anti-hedefler](../00_foundation/008_design_pillars.md)
+- [ASK-014 — Co-op roller ve oyuncu sayısı ölçekleme](../01_gameplay/014_cooperation_roles.md)
+- [ASK-063 — Erişilebilirlik ve kamera konforu](../05_content/063_accessibility.md)
+
+
+
+DOCUMENT: ASK-069
+PATH: docs/06_quality/069_quality_gates.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 83589d8bf450b32e72b952fab1f13aa6602fee4fdc581b02d278d8f171d0aef1
+
+---
+doc_id: ASK-069
+title: "Milestone kalite kapıları ve bitmiş iş"
+version: 0.1.0
+status: proposed
+owner_role: QA
+last_reviewed: 2026-09-07
+dependencies: ["ASK-007","ASK-035","ASK-065","ASK-067","ASK-071"]
+---
+
+# Milestone kalite kapıları ve bitmiş iş
+
+## Kapılar
+G0 Tasarım tabanı: kritik ADR'ler, ekip ve risk spike hedefi onaylı. G1 Teknik risk: iki/dört istemci, platform/shared carry, gerçek internet yolu ve cleanup kanıtlı. G2 Slice: tek görev final hedefli art/UI/audio ile uçtan uca; commit güvenli. G3 Demo: üç görev, onboarding, erişim, oyuncu testi, destek toplama. G4 Content complete: onaylı v1 içerik ve localization. G5 Release candidate: P0/P1 kapalı, performans/soak/save/platform kontrolleri.
+
+## Definition of Ready
+İşin problemi, ilgili ASK/REQ, input-output, açık kararları, asset bağımlılığı, kabul testi ve yaklaşık kapasitesi bilinmelidir. “Multiplayer yap” Ready değildir. Belirsiz kritik teknoloji önce spike işidir; implementation tahmini gibi sunulmaz.
+
+## Definition of Done
+Kod/art teslimi + review + ilgili otomatik test + gerçek build kontrolü + belge/gereksinim güncellemesi + gerekli görsel/performans kanıtı + lisans/provenance. Sadece develop branch'e merge edilmek Done değildir. Plan belgesinin yazılması ilgili gameplay işini Done yapmaz.
+
+## Bug önem sınıfları
+P0 veri kaybı/çoğaltma, oturum crash'i, temel güvenlik/erişim blokajı. P1 temel görev tamamlanamıyor, holder kilidi, ciddi ağ ayrışması. P2 anlaşılır workaround'lu önemli kusur. P3 küçük kozmetik. Öncelik ve şiddet ayrı alanlar olabilir; release engelleyici kurallar açık yazılır.
+
+## Kapıdan geçememe
+Kapsam kesme, yeniden tasarım veya süre uzatma kararı Product/Tech/QA ile kayda girer. Test eşiğini sessiz düşürmek yoktur. İstisna yalnız etkisi, geçici çözümü ve son tarihi varsa değerlendirilir; veri kaybı “bilinen hata” diyerek normalleştirilmez.
+
+## Kabul
+Her kapı tek klasörde build, test raporu, art görüntüleri, risk güncellemesi ve onay kaydı taşır. Bu arşiv bu kapıları tanımlar; hiçbirini gerçekleşmiş olarak işaretlemez.
+
+## Gereksinim ve test izleri
+- REQ-008 → TC-008 — Risk kapısı kanıtla kapanmalı
+- REQ-040 → TC-040 — Yayın iddiaları kanıta ve lisansa uymalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-007 — Kapsam, sürümler ve kesme sırası](../00_foundation/007_scope_matrix.md)
+- [ASK-035 — Multiplayer test matrisi ve kanıt](../02_network/035_network_test_matrix.md)
+- [ASK-065 — Performans hedefi ve ölçüm disiplini](065_performance_targets.md)
+- [ASK-067 — Test stratejisi ve gereksinim izlenebilirliği](067_test_strategy_traceability.md)
+- [ASK-071 — Üretim yol haritası ve kapasite senaryoları](../07_production/071_roadmap_capacity.md)
+
+
+
+DOCUMENT: ASK-070
+PATH: docs/06_quality/070_release_regression_support.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 8f35524c7ed0f2b690da5063712d08e47f707f26bcec17b9a81296cccf940e8e
+
+---
+doc_id: ASK-070
+title: "Regresyon, destek ve yayın sonrası triyaj"
+version: 0.1.0
+status: proposed
+owner_role: QA
+last_reviewed: 2026-09-07
+dependencies: ["ASK-032","ASK-043","ASK-069","ASK-075"]
+---
+
+# Regresyon, destek ve yayın sonrası triyaj
+
+## Release regresyonu
+Temiz kurulum; ilk açılış; controller/fare; iki/dört oyuncu daveti; sürüm uyuşmazlığı; bütün görevlerin başlama/bitmesi; save migration; cloud kapalı; kopma/reconnect; host kaybı; offline hata; ayarlar; alt-tab; çözünürlük; uzun oturum. Steam özel build branch'i ve test hesapları yayın öncesi hazırlanır, burada kurulmadı.
+
+## Destek paketi
+Build ID, platform/OS, hata kodu, isteğe bağlı anonymized log bundle ve yeniden üretim adımları. Oyuncudan parola veya Steam ticket istenmez. Kayıt dosyası istenirse içeriği ve saklama amacı açıklanır. Kullanıcının özel bilgileri herkese açık issue'ya kopyalanmaz.
+
+## Öncelik
+Çökme ve veri kaybı hızlı triage; yaygın ağ bağlantı sorunu servis/build ayrımı; tek asset clipping art kuyruğu. Hata sayısı dışında etkilenen kullanıcı sayısı ve yeniden üretilebilirlik izlenir. Aynı kök neden farklı rapor başlıklarında birleşebilir.
+
+## Hotfix
+En küçük düzeltme; ilgili regresyon; save/protocol uyum kontrolü; staging branch; manuel yayın onayı; rollback seçeneği. Yeni içerik ile acil ağ düzeltmesini aynı hotfix'e yükleme. İki farklı protocol build'inin aynı lobide eşleşmesi engellenir.
+
+## Canlı destek sınırı
+V1 live-service içerik takvimi vaat etmez. Yine de yayın sonrası hata düzeltme ve iletişim kapasitesi bütçelenir. Ekip sahibi haftalık destek saatini ve kritik durum muhatabını belirler. Oyuncuya tarih verilmeden önce hata kapsamı anlaşılmalıdır.
+
+## Kabul
+Rollback prosedürü kuru testten geçer; eski build yeni save'i bozamaz; yayın notları gerçek düzeltmeleri anlatır. Destek işi roadmap kapasitesinden düşülür, görünmez ücretsiz emek sayılmaz.
+
+## Gereksinim ve test izleri
+- REQ-038 → TC-038 — Build/release yolu kontrollü olmalı
+
+Durum ve ayrıntılı adımlar: [gereksinim kayıtları](../../data/requirements.json) ve [test kayıtları](../../data/test_cases.json). Oyun testleri henüz çalıştırılmadı.
+
+## İlgili kaynak belgeler
+- [ASK-032 — Kopma, yeniden bağlanma ve host kaybı](../02_network/032_disconnect_reconnect_hostloss.md)
+- [ASK-043 — Save şeması, migration ve cloud çatışması](../03_engineering/043_save_schema_migration.md)
+- [ASK-069 — Milestone kalite kapıları ve bitmiş iş](069_quality_gates.md)
+- [ASK-075 — Steam hazırlığı, demo ve yayın kontrolü](../07_production/075_steam_launch_plan.md)
+
+
+
+DOCUMENT: ASK-071
+PATH: docs/07_production/071_roadmap_capacity.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: 31b04de07aa80134da4ddc0247decb855f0e7a1d6fa87bfafcf889e80d549e8f
+
+---
+doc_id: ASK-071
+title: "Üretim yol haritası ve kapasite senaryoları"
+version: 0.1.0
+status: proposed
+owner_role: Producer
+last_reviewed: 2026-09-07
+dependencies: ["ASK-004","ASK-007","ASK-009","ASK-069","ASK-073","ASK-074"]
+---
+
+# Üretim yol haritası ve kapasite senaryoları
+
+## Tarih değil kapı planı
+Bu çalışma ekip büyüklüğü, haftalık zaman ve bütçe bilinmeden kesin çıkış tarihi vermez. Önerilen sıra: karar/teknik spike → vertical slice → dış demo → içerik üretimi → alpha/content lock → beta/optimizasyon → release candidate → yayın sonrası destek. Bir kapı geçmeden paralel içerik büyütmek riski gizler.
+
+## Kapasite hesabı
+Bir tam zamanlı kişinin haftada 40 saatinin tamamı feature üretimi değildir. Toplantı, review, test, hata ve idari işleri hesaba katmak için başlangıç planında kişi başı 25 net üretim saati/hafta kullanılabilir. İki kişi × 25 × 2 hafta = 100 saatlik ilk risk sprinti kapasitesidir. Bu oran proje gerçeğiyle ilk iki sprintte düzeltilir.
+
+## Senaryolar
+İki deneyimli tam zamanlı geliştirici ve sınırlı dış sanat/QA desteği için 9–15 ay bir ön planlama aralığı olabilir; solo/yarı zamanlı üretimde 18–30 ay veya daha fazlası gerekebilir. Bunlar sektör benchmark'ı veya taahhüt değil, kapsamın büyüklüğünü anlatan kaba yargılardır. Gerçek tahmin W kayıtları, içerik üretim hızı ve belirsizlik kapanmasıyla güncellenir. Aynı süre içine part-time kapasiteyi full-time gibi yerleştirmeyin.
+
+## Aşama çıktıları
+Risk: çalışan ortak taşıma kararı. Slice: bir tam kalite örneği. Demo: dış oyuncu kanıtı. İçerik: onaylı kit ile tekrar üretim. Beta: yeni özellik değil kusur/perf. RC: yayın ve geri alma kanıtı. Her aşama bir testable build ve değişen risk listesi teslim eder.
+
+## Paralel çalışmanın sınırı
+Artist risk sırasında yalnız yeniden kullanılabilir referans/ölçek/tek örnek üzerinde çalışabilir; seçilmemiş platform tasarımının 40 varyantını üretmez. Gameplay ile networking aynı domain sözleşmesini paylaşır; iki farklı tutma sistemi paralel geliştirilmez.
+
+## Bütçe belirsizliği
+Editor/hizmet lisansları, test donanımı, asset source tier, ses/çeviri, mağaza görselleri, hukuki/muhasebe ve yayın sonrası destek ayrı kalemlerdir. Ücretsiz asset kullanımı bu maliyetleri sıfırlamaz. Nakit harcama üst sınırı kullanıcı onayı bekler.
+
+## İlgili kaynak belgeler
+- [ASK-004 — Proje bildirgesi ve başarı tanımı](../00_foundation/004_project_charter.md)
+- [ASK-007 — Kapsam, sürümler ve kesme sırası](../00_foundation/007_scope_matrix.md)
+- [ASK-009 — Karar kaydı ve onay bekleyenler](../00_foundation/009_decision_register.md)
+- [ASK-069 — Milestone kalite kapıları ve bitmiş iş](../06_quality/069_quality_gates.md)
+- [ASK-073 — Risk defteri ve azaltma planı](073_risk_register.md)
+- [ASK-074 — Başlangıç backlog'u ve ilk iki sprint](074_backlog_first_sprints.md)
+
+
+
+DOCUMENT: ASK-072
+PATH: docs/07_production/072_team_workflow.md
+VERSION: 0.1.0
+STATUS: proposed
+SHA256: c940d625194af7200450c2b013da977daad86698c88d67286ae50f7b1237a828
+
+---
+doc_id: ASK-072
+title: "Ekip rolleri, review ve çalışma ritmi"
+version: 0.1.0
+status: proposed
+owner_role: Producer
+last_reviewed: 2026-09-07
+dependencies: ["ASK-002","ASK-009","ASK-036","ASK-069","ASK-074"]
+---
+
+# Ekip rolleri, review ve çalışma ritmi
+
+## Rol sahipliği
+Product kapsam ve öncelik; TechLead mimari ve sürüm; Gameplay semantik uygulama; Network co-op; ArtLead stil; TechnicalArtist import/performans; QA kanıt; Producer kapasite ve risk. Bir kişi birden çok rol olabilir; her işin yine tek accountable owner'ı bulunur. Bu plan belirli çalışanların var olduğunu varsaymaz.
+
+## Haftalık ritim
+Hafta başı hedef ve kapasite; kısa engel kontrolü; ortada oynanabilir build; hafta sonunda test kanıtı ve risk güncellemesi. Toplantı sayısını artırmak yerine yazılı iş kartı ve build linki kullanılır. “Bu hafta neler yaptım” yerine “hangi oyuncu davranışı artık doğrulandı” sorulur.
+
+## İş kartı
+W ID, problem, kapsam dışı, ASK/REQ, bağımlılık, tahmin aralığı, kabul testleri, owner, review rolü, build/commit, risk ve sonuç. AI'a verilecek görev de bu karttan türetilir. Büyük işi “oyunu yap” diye tek prompt'a dönüştürmek izlenebilirliği kaybettirir.
+
+## Review
+Network/ekonomi değişikliği domain ve QA gözü; art değişikliği stil ve teknik bütçe; level değişikliği oynanabilirlik ve collision; belge değişikliği bağımlılık ve karar durumu. Review yalnız kod biçimi değildir. Kullanıcı değişiklikleri AI tarafından üzerine yazılmaz.
+
+## Ekip içi ortak dosyalar
+Scene merge riski yüksekse iş alanları prefab/modül bazında ayrılır. Bir kişinin sahip olduğu art kaynaklarında lock iletişimi uygulanır. .meta ve GUID bütünlüğü kontrol edilir. Uzun branch ve büyük asset import PR'ları küçük anlamlı partilere bölünür.
+
+## Kabul
+Bir ekip üyesi yokken başka biri işin kararını ve son doğrulanan build'i bulabilir. Sözlü kararlar ASK-009 veya ilgili ADR'ye işlenir. Ekip kapasitesi dışında iş sessizce sprint'e eklenmez.
+
+## İlgili kaynak belgeler
+- [ASK-002 — Codex çalışma sözleşmesi](../../AGENTS.md)
+- [ASK-009 — Karar kaydı ve onay bekleyenler](../00_foundation/009_decision_register.md)
+- [ASK-036 — Unity deposu ve dosya hiyerarşisi](../03_engineering/036_unity_repository.md)
+- [ASK-069 — Milestone kalite kapıları ve bitmiş iş](../06_quality/069_quality_gates.md)
+- [ASK-074 — Başlangıç backlog'u ve ilk iki sprint](074_backlog_first_sprints.md)
+
+
+

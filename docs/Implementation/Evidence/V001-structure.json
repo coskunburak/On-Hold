@@ -1,0 +1,12 @@
+{
+    "test": "V001",
+    "result": "PASS",
+    "editor": "6000.5.0f1",
+    "ngo": "2.9.0",
+    "transport": "6.5.0",
+    "lockHash": "51f1c814ce545471e9e3274927d1404f54c4fe33a07c3359d64be5487e286d3a",
+    "sceneHash": "5a09e14c5f35f35b95e45c54b9e652d401b9c8fa4cb166a2e9e9916e6f39e32b",
+    "generated": "2026-09-10T09:47:06.3387210Z",
+    "replication": "NGO custom messages; world-owned registry; zero NetworkObject prefabs by design",
+    "objects": 37
+}

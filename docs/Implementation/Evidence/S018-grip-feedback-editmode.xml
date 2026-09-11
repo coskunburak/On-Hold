@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-10 13:34:30Z" end-time="2026-09-10 13:34:30Z" duration="0.0296817">
+  <test-suite type="TestSuite" id="1000" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="66" result="Passed" start-time="2026-09-10 13:34:30Z" end-time="2026-09-10 13:34:30Z" duration="0.029682" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1076" name="OnHold.EditMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.EditMode.Tests.dll" runstate="Runnable" testcasecount="66" result="Passed" start-time="2026-09-10 13:34:30Z" end-time="2026-09-10 13:34:30Z" duration="0.024358" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="32848" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1077" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="66" result="Passed" start-time="2026-09-10 13:34:30Z" end-time="2026-09-10 13:34:30Z" duration="0.023677" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1078" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="66" result="Passed" start-time="2026-09-10 13:34:30Z" end-time="2026-09-10 13:34:30Z" duration="0.022111" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1025" name="InteractionFeedbackTests" fullname="OnHold.Tests.InteractionFeedbackTests" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-09-10 13:34:30Z" end-time="2026-09-10 13:34:30Z" duration="0.018713" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1034" name="S018_DefaultAndRejectedCandidatesCannotBePresentedAsValid" fullname="OnHold.Tests.InteractionFeedbackTests.S018_DefaultAndRejectedCandidatesCannotBePresentedAsValid" methodname="S018_DefaultAndRejectedCandidatesCannotBePresentedAsValid" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="1661003930" result="Passed" start-time="2026-09-10 13:34:30Z" end-time="2026-09-10 13:34:30Z" duration="0.005709" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="S018_DomainPreviewRejectsSecuredTerminalAndInvalidActors" fullname="OnHold.Tests.InteractionFeedbackTests.S018_DomainPreviewRejectsSecuredTerminalAndInvalidActors" methodname="S018_DomainPreviewRejectsSecuredTerminalAndInvalidActors" classname="OnHold.Tests.InteractionFeedbackTests" runstate="Runnable" seed="1252076119" result="Passed" start-time="2026-09-10 13:34:30Z" end-time="2026-09-10 13:34:30Z" duration="0.004355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

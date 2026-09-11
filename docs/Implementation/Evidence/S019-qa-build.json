@@ -1,0 +1,10 @@
+{
+    "result": "Succeeded",
+    "target": "StandaloneOSX",
+    "editor": "6000.5.0f1",
+    "path": "/Users/burakcoskun/On Hold/Builds/S019-QA/On Hold.app",
+    "utc": "2026-09-11T08:02:53.2543490Z",
+    "errors": 0,
+    "warnings": 347,
+    "seconds": 23.02893
+}

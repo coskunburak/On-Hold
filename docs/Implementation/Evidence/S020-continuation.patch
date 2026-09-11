@@ -1,0 +1,1010 @@
+--- continuation-start/Assets/_OnHold/Data/FoundationConfig.json
++++ final/Assets/_OnHold/Data/FoundationConfig.json
+@@ -68,7 +68,6 @@
+     "ManipulationTorqueMax": 400,
+     "ReleasePenetrationTolerance": 0.029999999329447746,
+     "SafeReleaseSearchDistance": 0.5,
+-    "SafeReleaseStep": 0.15000000596046448,
+     "MaxReleaseLinearSpeed": 5.0,
+     "MaxReleaseAngularSpeed": 4.0
+ }
+--- continuation-start/Assets/_OnHold/Editor/HeldManipulationVerification.cs
++++ final/Assets/_OnHold/Editor/HeldManipulationVerification.cs
+@@ -22,25 +22,27 @@
+             File.WriteAllText(scene, text); AssetDatabase.ImportAsset(scene);
+         }
+         public static void BuildPlayers() { BuildDevelopment(); BuildVisibleQA(); }
+-        public static void BuildDevelopment() => Build(false);
+-        public static void BuildVisibleQA() => Build(true);
+-        static void Build(bool qa)
++        public static void BuildDevelopment() => Build(false, "S019", "ONHOLD_MANIPULATION_ACCEPTANCE");
++        public static void BuildVisibleQA() => Build(true, "S019", "ONHOLD_MANIPULATION_ACCEPTANCE");
++        public static void BuildS020Development() => Build(false, "S020", "ONHOLD_RELEASE_ACCEPTANCE");
++        public static void BuildS020VisibleQA() => Build(true, "S020", "ONHOLD_RELEASE_ACCEPTANCE");
++        static void Build(bool qa, string sprint, string qaDefine)
+         {
+             var target = EditorUserBuildSettings.activeBuildTarget;
+             if (target != BuildTarget.StandaloneOSX && target != BuildTarget.StandaloneWindows64 && target != BuildTarget.StandaloneLinux64)
+-                throw new InvalidOperationException("S019 validation requires the configured desktop target");
+-            string directory = qa ? "Builds/S019-QA" : "Builds/S019";
++                throw new InvalidOperationException(sprint + " validation requires the configured desktop target");
++            string directory = "Builds/" + sprint + (qa ? "-QA" : "");
+             string path = directory + "/On Hold" + (target == BuildTarget.StandaloneOSX ? ".app" : target == BuildTarget.StandaloneWindows64 ? ".exe" : "");
+             var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
+                 scenes = new[] { "Assets/_OnHold/Scenes/Bootstrap.unity" }, target = target,
+                 locationPathName = path, options = BuildOptions.Development,
+-                extraScriptingDefines = qa ? new[] { "ONHOLD_MANIPULATION_ACCEPTANCE" } : Array.Empty<string>()
++                extraScriptingDefines = qa ? new[] { qaDefine } : Array.Empty<string>()
+             });
+-            File.WriteAllText("docs/Implementation/Evidence/S019-" + (qa ? "qa" : "development") + "-build.json", JsonUtility.ToJson(new Evidence {
++            File.WriteAllText("docs/Implementation/Evidence/" + sprint + "-" + (qa ? "qa" : "development") + "-build.json", JsonUtility.ToJson(new Evidence {
+                 result = report.summary.result.ToString(), target = target.ToString(), editor = Application.unityVersion,
+                 path = Path.GetFullPath(path), errors = report.summary.totalErrors, warnings = report.summary.totalWarnings,
+                 seconds = report.summary.totalTime.TotalSeconds, utc = DateTime.UtcNow.ToString("O") }, true));
+-            if (report.summary.result != BuildResult.Succeeded) throw new InvalidOperationException("S019 build failed");
++            if (report.summary.result != BuildResult.Succeeded) throw new InvalidOperationException(sprint + " build failed");
+         }
+         [Serializable] sealed class Evidence { public string result, target, editor, path, utc; public int errors, warnings; public double seconds; }
+     }
+--- continuation-start/Assets/_OnHold/Runtime/Core/FoundationConfig.cs
++++ final/Assets/_OnHold/Runtime/Core/FoundationConfig.cs
+@@ -30,7 +30,7 @@
+         public float ManipulationResponse = 6, ManipulationTorqueMax = 400;
+         // S020 — Carry Handling & Release Safety.
+         public float ReleasePenetrationTolerance = .03f;
+-        public float SafeReleaseSearchDistance = .5f, SafeReleaseStep = .15f;
++        public float SafeReleaseSearchDistance = .5f;
+         public float MaxReleaseLinearSpeed = 5, MaxReleaseAngularSpeed = 4;
+         public void Validate()
+         {
+@@ -49,7 +49,7 @@
+                 GroundProbe >= PlayerRadius || SlopeLimit >= 85 || PitchMin >= PitchMax || PitchMin < -85 || PitchMax > 85 ||
+                 InteractionTriggers < 0 || InteractionTriggers > 2 || CarryDistance >= CarryBreakDistance || Reach >= CarryBreakDistance)
+                 throw new ArgumentException("Invalid player/interaction configuration relationship");
+-            if (SafeReleaseSearchDistance > 2 || SafeReleaseStep > SafeReleaseSearchDistance ||
++            if (SafeReleaseSearchDistance > .5f ||
+                 ReleasePenetrationTolerance > .5f || MaxReleaseLinearSpeed > BodySpeedMax || MaxReleaseAngularSpeed > AngularSpeedMax)
+                 throw new ArgumentException("Invalid release safety limits");
+         }
+--- continuation-start/Assets/_OnHold/Runtime/Gameplay/FoundationWorld.cs
++++ final/Assets/_OnHold/Runtime/Gameplay/FoundationWorld.cs
+@@ -201,9 +201,9 @@
+             CarryableBody held = null;
+             foreach (var i in Items)
+                 if (i && i.State != null && i.State.IsHeldBy(actor)) { held = i; break; }
+-            if (held == null) return Reason.AlreadyApplied;
++            if (held == null) return Reason.Accepted; // Idempotent release, including destroyed cargo.
+             if (!held.Body || held.Body.isKinematic || held.State.Lifecycle != Lifecycle.Available)
+-            { held.State.Release(actor); return Reason.Accepted; }
++            return Reason.InvalidState;
+             var result = ReleaseSafety.Evaluate(held, Config, out var safePos);
+             if (result == ReleaseResult.Released)
+             {
+@@ -213,7 +213,7 @@
+                 held.Body.linearVelocity = linear; held.Body.angularVelocity = angular;
+                 held.State.Release(actor); return Reason.Accepted;
+             }
+-            return Reason.Blocked;
++            return result == ReleaseResult.InvalidState ? Reason.InvalidState : Reason.Blocked;
+         }
+         void FixedUpdate()
+         {
+--- continuation-start/Assets/_OnHold/Runtime/Gameplay/ReleaseSafety.cs
++++ final/Assets/_OnHold/Runtime/Gameplay/ReleaseSafety.cs
+@@ -3,7 +3,7 @@
+ 
+ namespace OnHold.Gameplay
+ {
+-    public enum ReleaseResult { Released, Blocked, NoSafePose, InvalidState }
++    public enum ReleaseResult { Released, NoSafePose, InvalidState }
+ 
+     /// <summary>
+     /// S020 — stateless release-safety logic. All methods are deterministic and allocation-free after warmup.
+@@ -35,12 +35,16 @@
+         public static bool IsPoseSafe(Rigidbody body, Vector3 boundsCenter, Vector3 boundsSize,
+             Vector3 position, Quaternion rotation, float tolerance)
+         {
+-            if (!body) return false;
++            if (!body || !SafeMath.Finite(position) || !SafeMath.Finite(rotation) ||
++                !SafeMath.Finite(boundsCenter) || !SafeMath.Finite(boundsSize) ||
++                !Numbers.Finite(tolerance) || tolerance < 0 ||
++                boundsSize.x <= 0 || boundsSize.y <= 0 || boundsSize.z <= 0 ||
++                Mathf.Abs(Quaternion.Dot(rotation, rotation) - 1f) > .001f) return false;
+             var center = position + rotation * boundsCenter;
+-            float shrink = Mathf.Clamp01(tolerance / Mathf.Max(.01f, Mathf.Min(boundsSize.x, boundsSize.y, boundsSize.z)));
+-            var halfExtents = boundsSize * .5f * (1f - shrink);
++            // Tolerance is a distance on each face, independent of the cargo aspect ratio.
++            var halfExtents = boundsSize * .5f - Vector3.one * tolerance;
+             if (halfExtents.x <= 0 || halfExtents.y <= 0 || halfExtents.z <= 0) return false;
+-            int mask = (1 << 8) | (1 << 9) | (1 << 10); // world, cargo, player
++            int mask = (1 << 8) | (1 << 9) | (1 << 10) | (1 << 11); // world, player, cargo, platform
+             int count = Physics.OverlapBoxNonAlloc(center, halfExtents, overlapBuffer, rotation, mask, QueryTriggerInteraction.Ignore);
+             if (count >= overlapBuffer.Length) return false; // overflow → conservative unsafe
+             for (int i = 0; i < count; i++)
+@@ -61,14 +65,23 @@
+         {
+             safePosition = Vector3.zero;
+             if (!item || !item.Body || !item.Definition) return ReleaseResult.InvalidState;
+-            safePosition = item.Body.position;
+-            var rotation = item.Body.rotation;
+-            var origin = item.Body.position;
+-            var bc = item.Definition.BoundsCenter;
+-            var bs = item.Definition.BoundsSize;
++            return Evaluate(item.Body, item.Definition.BoundsCenter, item.Definition.BoundsSize, config, out safePosition);
++        }
++
++        public static ReleaseResult Evaluate(Rigidbody body, Vector3 bc, Vector3 bs,
++            FoundationConfig config, out Vector3 safePosition)
++        {
++            safePosition = Vector3.zero;
++            if (!body || body.isKinematic || config == null || !SafeMath.Finite(body.position) ||
++                !SafeMath.Finite(body.rotation) || Mathf.Abs(Quaternion.Dot(body.rotation, body.rotation) - 1f) > .001f ||
++                !SafeMath.Finite(bc) || !SafeMath.Finite(bs) || bs.x <= 0 || bs.y <= 0 || bs.z <= 0)
++                return ReleaseResult.InvalidState;
++            var origin = body.position;
++            var rotation = body.rotation;
++            safePosition = origin;
+             float tol = config.ReleasePenetrationTolerance;
+ 
+-            if (IsPoseSafe(item.Body, bc, bs, origin, rotation, tol))
++            if (IsPoseSafe(body, bc, bs, origin, rotation, tol))
+                 return ReleaseResult.Released;
+ 
+             float scale = config.SafeReleaseSearchDistance / .5f;
+@@ -76,7 +89,7 @@
+             {
+                 var candidate = origin + offsets[i] * scale;
+                 if (Vector3.Distance(origin, candidate) > config.SafeReleaseSearchDistance) continue;
+-                if (IsPoseSafe(item.Body, bc, bs, candidate, rotation, tol))
++                if (IsPoseSafe(body, bc, bs, candidate, rotation, tol))
+                 {
+                     safePosition = candidate;
+                     return ReleaseResult.Released;
+--- continuation-start/Assets/_OnHold/Runtime/Presentation/FoundationFrontend.cs
++++ final/Assets/_OnHold/Runtime/Presentation/FoundationFrontend.cs
+@@ -193,12 +193,17 @@
+         }
+         CarryableBody Target() => InteractionFeedback.Target.Item;
+         uint Revision(CarryableBody item) => Frame?.Items.FirstOrDefault(f => f.Id == item.NetworkId)?.Revision ?? 0;
+-        void Release() { StopManipulation(); Network.Send(CommandType.Release); holding = false; }
++        void Release()
++        {
++            // Authority reconciliation in Update clears control only after the queued release commits.
++            Network.Send(CommandType.Release);
++            if (!World.IsAuthority) holding = false;
++        }
+         public void SetMenu(bool value)
+         {
+             menu = value || !Network.Connected || Frame == null || (SessionPhase)Frame.Phase != SessionPhase.Active;
+             nextInput = 0; lastMove = Vector2.zero;
+-            if (menu) { Network.Send(CommandType.StopInput); Release(); Network.Send(CommandType.ReleaseLease); gameplay?.Disable(); }
++            if (menu) { StopManipulation(); Network.Send(CommandType.StopInput); Release(); Network.Send(CommandType.ReleaseLease); gameplay?.Disable(); }
+             else gameplay?.Enable();
+             Cursor.lockState = menu ? CursorLockMode.None : CursorLockMode.Locked; Cursor.visible = menu;
+             RefreshInteractionFeedback();
+@@ -212,7 +217,7 @@
+                 case Reason.Busy: return "Both grips or the selected control are occupied.";
+                 case Reason.InvalidState: return "Release the item first and check the current phase.";
+                 case Reason.UnsafeSpeed: return "Stop the winch before changing straps.";
+-                case Reason.Blocked: return "Place the whole item safely on the deck and clear obstructions.";
++                case Reason.Blocked: return "Move the item clear of obstructions and try again.";
+                 case Reason.NotReady: return "A new run needs at least two players, with everyone loaded and ready.";
+                 case Reason.StaleRevision: return "The item changed. Look at it and try again.";
+                 case Reason.VoteRequired: return "Vote recorded. Host and a majority must agree.";
+--- continuation-start/Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.Release.cs
++++ final/Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.Release.cs
+@@ -0,0 +1,157 @@
++#if ONHOLD_RELEASE_ACCEPTANCE
++using System;
++using System.IO;
++using UnityEngine;
++using UnityEngine.InputSystem;
++using UnityEngine.InputSystem.LowLevel;
++using OnHold.Core;
++using OnHold.Domain;
++using OnHold.Gameplay;
++
++namespace OnHold.Presentation
++{
++    // S020 extends the existing visible acceptance fixture. Only this QA define compiles it.
++    // Virtual devices feed unchanged production bindings; geometry is arranged once per explicit scenario.
++    public sealed partial class HeldManipulationAcceptance
++    {
++        static readonly string[] ReleaseScenarios = { "Free release", "Floor support", "Wall contact", "Nearby correction", "No safe pose / retry", "Prolonged obstruction" };
++        Keyboard locomotion;
++        bool originalToggle, armed, pendingRelease;
++        int stageRelease;
++        float clickUntil, moveUntil, jumpUntil, obstructionStart;
++        Key moveKey;
++        Vector3 releaseOrigin;
++        float peakLinear, peakReleaseLinear, peakReleaseAngular, peakDisplacement, peakForce;
++        string releaseOutcome = "Ready";
++        string EvidenceDirectory => Path.Combine(Application.persistentDataPath, "S020QA");
++
++        void StartReleaseQA()
++        {
++            Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
++            frontend = FindAnyObjectByType<FoundationFrontend>();
++            controls = Keyboard.current; motion = InputSystem.AddDevice<Mouse>(); locomotion = InputSystem.AddDevice<Keyboard>();
++            originalToggle = frontend.Settings.ToggleHold; frontend.Settings.ToggleHold = true;
++            frontend.Network.Rejected += ReleaseRejected;
++            wall = GameObject.CreatePrimitive(PrimitiveType.Cube); wall.name = "S020 explicit QA obstacle"; wall.layer = 8;
++            wall.GetComponent<Renderer>().sharedMaterial = frontend.World.Items[0].GetComponentInChildren<Renderer>().sharedMaterial;
++            wall.SetActive(false);
++        }
++
++        void UpdateReleaseQA()
++        {
++            if (!frontend || frontend.World.Session?.Phase != SessionPhase.Active) return;
++            var world = frontend.World; var cargo = world.Items[0]; var actor = frontend.Network.LocalActor;
++            if (controls.f6Key.wasPressedThisFrame && cargo.HandleCount == 0) ArrangeReleaseQA();
++            if (controls.f5Key.wasPressedThisFrame) latched = !latched;
++            if (controls.f9Key.wasPressedThisFrame) { replayDirection = Vector2.right; replayUntil = Time.unscaledTime + .7f; }
++            if (controls.f10Key.wasPressedThisFrame) { replayDirection = Vector2.up; replayUntil = Time.unscaledTime + .7f; }
++            if (controls.f2Key.wasPressedThisFrame) { moveKey = Key.W; moveUntil = Time.unscaledTime + .7f; }
++            if (controls.f3Key.wasPressedThisFrame) { moveKey = Key.D; moveUntil = Time.unscaledTime + .7f; }
++            if (controls.f4Key.wasPressedThisFrame) jumpUntil = Time.unscaledTime + .12f;
++            if (controls.f7Key.wasPressedThisFrame && cargo.HandleCount > 0)
++            {
++                if (wall.activeSelf) { wall.SetActive(false); armed = false; Physics.SyncTransforms(); Debug.Log("S020 QA obstacle removed; recovery under normal world physics"); }
++                else if (scenario == 5) { PlaceReleaseObstacle(); obstructionStart = Time.unscaledTime; }
++                else { armed = true; Debug.Log("S020 QA next release will stage " + ReleaseScenarios[Mathf.Max(0, scenario)]); }
++            }
++            if (controls.fKey.wasPressedThisFrame)
++            {
++                clickUntil = Time.unscaledTime + .1f;
++                if (cargo.HandleCount > 0) { pendingRelease = true; releaseOrigin = cargo.Body.position; if (armed) stageRelease = 2; }
++            }
++            // This component runs after the frontend. On the following Update, its release command
++            // has been queued; arrange the fixture before the next authoritative physics tick.
++            if (stageRelease > 0 && --stageRelease == 0) { PlaceReleaseObstacle(); releaseOrigin = cargo.Body.position; armed = false; }
++            var mouseState = new MouseState { buttons = (ushort)((latched ? 2 : 0) | (Time.unscaledTime < clickUntil ? 1 : 0)),
++                delta = Time.unscaledTime < replayUntil ? replayDirection * (500 * Time.unscaledDeltaTime) : Vector2.zero };
++            InputSystem.QueueStateEvent(motion, mouseState);
++            var keyState = new KeyboardState();
++            if (Time.unscaledTime < moveUntil) keyState.Set(moveKey, true);
++            if (Time.unscaledTime < jumpUntil) keyState.Set(Key.Space, true);
++            InputSystem.QueueStateEvent(locomotion, keyState);
++            int grip = cargo.HeldGripIndex(actor);
++            if (frontend.InteractionFeedback.HasGrip) preview = frontend.InteractionFeedback.Grip.GripIndex;
++            if (grip != previousGrip || lastActive != frontend.ManipulationActive)
++            {
++                if (pendingRelease && grip < 0)
++                {
++                    peakDisplacement = Mathf.Max(peakDisplacement, Vector3.Distance(releaseOrigin, cargo.Body.position));
++                    peakReleaseLinear = Mathf.Max(peakReleaseLinear, cargo.Body.linearVelocity.magnitude);
++                    peakReleaseAngular = Mathf.Max(peakReleaseAngular, cargo.Body.angularVelocity.magnitude);
++                    releaseOutcome = "Released"; pendingRelease = false;
++                }
++                Debug.Log($"S020 QA transition scenario={scenario} preview={preview} grip={grip} manipulation={frontend.ManipulationActive} result={releaseOutcome} rotation={cargo.Body.rotation.eulerAngles} camera={frontend.ViewCamera.transform.eulerAngles}");
++                previousGrip = grip; lastActive = frontend.ManipulationActive;
++            }
++            if (grip >= 0)
++            {
++                peakLinear = Mathf.Max(peakLinear, cargo.Body.linearVelocity.magnitude);
++                maxAngular = Mathf.Max(maxAngular, cargo.Body.angularVelocity.magnitude);
++                peakForce = Mathf.Max(peakForce, cargo.LastForce.magnitude); maxTorque = Mathf.Max(maxTorque, cargo.LastTorque.magnitude);
++            }
++            if (controls.f8Key.wasPressedThisFrame)
++            {
++                Directory.CreateDirectory(EvidenceDirectory);
++                string path = Path.Combine(EvidenceDirectory, "S020-" + scenario + "-" + capture++ + ".png");
++                ScreenCapture.CaptureScreenshot(path);
++                Debug.Log($"S020 QA capture={path} scenario={scenario} held={grip} manipulating={frontend.ManipulationActive} result={releaseOutcome} peakLinear={peakLinear} peakAngular={maxAngular} force={peakForce} torque={maxTorque} releaseLinear={peakReleaseLinear} releaseAngular={peakReleaseAngular} observedFrameDisplacement={peakDisplacement} obstructionSeconds={(obstructionStart > 0 ? Time.unscaledTime - obstructionStart : 0)} finite={SafeMath.Finite(cargo.Body.position) && SafeMath.Finite(cargo.Body.linearVelocity) && SafeMath.Finite(cargo.Body.angularVelocity)}");
++            }
++        }
++
++        void ReleaseRejected(Reason reason)
++        {
++            if (!pendingRelease) return;
++            releaseOutcome = reason.ToString(); pendingRelease = false;
++            var cargo = frontend.World.Items[0];
++            Debug.Log($"S020 QA rejected={reason} grip={cargo.HeldGripIndex(frontend.Network.LocalActor)} manipulating={frontend.ManipulationActive}");
++        }
++        void ArrangeReleaseQA()
++        {
++            scenario = (scenario + 1) % ReleaseScenarios.Length;
++            wall.SetActive(false); latched = armed = pendingRelease = false; stageRelease = 0;
++            var world = frontend.World; var player = world.Players[frontend.Network.LocalActor.Id];
++            player.Respawn(new Vector3(0, .02f, -4));
++            foreach (var item in world.Items) item.ResetState();
++            world.Items[1].Body.position = new Vector3(5, .4f, -2);
++            var cargo = world.Items[0]; cargo.Body.position = new Vector3(0, .31f, -2.4f); cargo.Body.rotation = Quaternion.identity;
++            cargo.SuppressDamageUntil = world.Now + 120; Physics.SyncTransforms();
++            var desired = Quaternion.LookRotation(cargo.Body.worldCenterOfMass - player.Eye).eulerAngles;
++            var current = frontend.ViewCamera.transform.eulerAngles;
++            frontend.ApplyLook(new Vector2(Mathf.DeltaAngle(current.y, desired.y), -Mathf.DeltaAngle(current.x, desired.x)) / frontend.Settings.Sensitivity, false, 0);
++            peakLinear = maxAngular = peakForce = maxTorque = peakReleaseLinear = peakReleaseAngular = peakDisplacement = obstructionStart = 0;
++            releaseOutcome = "Ready"; frontend.RefreshInteractionFeedback();
++            Debug.Log("S020 QA arranged " + scenario + " " + ReleaseScenarios[scenario]);
++        }
++        void PlaceReleaseObstacle()
++        {
++            var world = frontend.World; var cargo = world.Items[0]; var player = world.Players[frontend.Network.LocalActor.Id];
++            if (scenario != 5)
++            {
++                cargo.Body.position = player.Eye + Vector3.forward * 1.7f; cargo.Body.rotation = Quaternion.identity;
++                cargo.Body.linearVelocity = Vector3.zero; cargo.Body.angularVelocity = Vector3.zero;
++            }
++            var origin = cargo.Body.position;
++            if (scenario == 1) cargo.Body.position = new Vector3(origin.x, .3f, origin.z);
++            if (scenario == 2) { wall.transform.position = origin + Vector3.right * 1.19f; wall.transform.localScale = new Vector3(.4f, 4, 8); }
++            if (scenario == 3) { wall.transform.position = origin - Vector3.up * .27f; wall.transform.localScale = new Vector3(8, .1f, 8); }
++            if (scenario == 4) { wall.transform.position = origin; wall.transform.localScale = Vector3.one * 6; }
++            if (scenario == 5) { wall.transform.position = player.transform.position + new Vector3(0, 1.5f, .8f); wall.transform.localScale = new Vector3(8, 4, .4f); }
++            wall.SetActive(scenario >= 2); Physics.SyncTransforms();
++            Debug.Log("S020 QA staged " + scenario + " at " + cargo.Body.position);
++        }
++        void DrawReleaseQA()
++        {
++            GUI.matrix = Matrix4x4.identity;
++            GUI.Box(new Rect(220, 552, 1040, 145), "S020 VISIBLE QA | " + (scenario < 0 ? "Click PLAY SOLO then F6" : ReleaseScenarios[scenario]) +
++                "\nF6 next setup (when free) | F grab / release via default LMB | F5 latch default RMB\nF9 yaw replay / F10 pitch replay | F7 arm contact fixture, or clear obstacle | F8 capture\nF2 W replay / F3 D replay / F4 Space replay | Native WASD / mouse / Space remain available");
++            if (frontend && scenario >= 0)
++                GUI.Label(new Rect(240, 656, 990, 30), $"Grip {frontend.World.Items[0].HeldGripIndex(frontend.Network.LocalActor)} | manipulating {frontend.ManipulationActive} | {releaseOutcome} | speed peak {peakLinear:F2} / spin {maxAngular:F2} | armed {armed}");
++        }
++        void CleanupReleaseQA()
++        {
++            if (frontend) { frontend.Network.Rejected -= ReleaseRejected; frontend.Settings.ToggleHold = originalToggle; }
++            if (locomotion != null) InputSystem.RemoveDevice(locomotion);
++        }
++    }
++}
++#endif
+--- continuation-start/Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.Release.cs.meta
++++ final/Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.Release.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: b4e65c81612124909be3dbc10e123dae--- continuation-start/Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.cs
++++ final/Assets/_OnHold/Runtime/Presentation/HeldManipulationAcceptance.cs
+@@ -1,4 +1,4 @@
+-#if ONHOLD_MANIPULATION_ACCEPTANCE
++#if ONHOLD_MANIPULATION_ACCEPTANCE || ONHOLD_RELEASE_ACCEPTANCE
+ using UnityEngine;
+ using UnityEngine.InputSystem;
+ using UnityEngine.InputSystem.LowLevel;
+@@ -8,11 +8,17 @@
+ namespace OnHold.Presentation
+ {
+     // QA-only scene arrangement and telemetry. All gameplay input still goes through the production actions.
+-    public sealed class HeldManipulationAcceptance : MonoBehaviour
++    #if ONHOLD_RELEASE_ACCEPTANCE
++    [DefaultExecutionOrder(1000)]
++#endif
++    public sealed partial class HeldManipulationAcceptance : MonoBehaviour
+     {
+         FoundationFrontend frontend;
+         GameObject wall;
+-        Keyboard controls, modifier;
++        Keyboard controls;
++#if !ONHOLD_RELEASE_ACCEPTANCE
++        Keyboard modifier;
++#endif
+         bool latched;
+         Mouse motion;
+         Vector2 replayDirection;
+@@ -21,9 +27,12 @@
+         bool lastActive;
+         float maxAngular, maxTorque;
+         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+-        static void StartQA() => new GameObject("S019 visible acceptance").AddComponent<HeldManipulationAcceptance>();
++        static void StartQA() => new GameObject("Explicit carry visible acceptance").AddComponent<HeldManipulationAcceptance>();
+         void Start()
+         {
++#if ONHOLD_RELEASE_ACCEPTANCE
++            StartReleaseQA();
++#else
+             Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
+             frontend = FindAnyObjectByType<FoundationFrontend>();
+             // A virtual modifier allows visible QA when the UI driver cannot hold a button across calls.
+@@ -33,9 +42,13 @@
+             frontend.Settings.ToggleHold = true;
+             wall = GameObject.CreatePrimitive(PrimitiveType.Cube); wall.name = "S019 QA wall"; wall.layer = 8;
+             wall.transform.localScale = new Vector3(8, 4, .4f); wall.transform.position = new Vector3(0, 2, -1.65f); wall.SetActive(false);
++#endif
+         }
+         void Update()
+         {
++#if ONHOLD_RELEASE_ACCEPTANCE
++            UpdateReleaseQA();
++#else
+             if (!frontend || frontend.World.Session?.Phase != SessionPhase.Active) return;
+             if (controls.f5Key.wasPressedThisFrame)
+             {
+@@ -62,7 +75,9 @@
+                 ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(directory, "S019-scenario-" + scenario + "-" + capture++ + ".png"));
+                 Debug.Log($"S019 QA sample scenario={scenario} held={grip} rotation={cargo.Body.rotation.eulerAngles} camera={frontend.ViewCamera.transform.rotation.eulerAngles} peakAngular={maxAngular} peakTorque={maxTorque}");
+             }
++#endif
+         }
++#if !ONHOLD_RELEASE_ACCEPTANCE
+         void Arrange()
+         {
+             latched = false; InputSystem.QueueStateEvent(modifier, new KeyboardState());
+@@ -80,8 +95,12 @@
+             frontend.RefreshInteractionFeedback(); maxAngular = maxTorque = 0;
+             Debug.Log("S019 QA arranged " + scenario + " (0=long free, 1=long wall, 2=crate)");
+         }
++#endif
+         void OnGUI()
+         {
++#if ONHOLD_RELEASE_ACCEPTANCE
++            DrawReleaseQA();
++#else
+             GUI.matrix = Matrix4x4.identity;
+             GUI.Box(new Rect(310, 590, 860, 100), "S019 QA — F6: arrange next cargo / wall scenario — F: grab / release\nF5: latch QA modifier; mouse/drag: rotate — mouse: look — WASD / Space unchanged\nF8: capture; F9/F10: explicit mouse input replay — Defaults: LMB grab, hold RMB + look to rotate");
+             if (frontend && scenario >= 0)
+@@ -89,8 +108,16 @@
+                 var cargo = frontend.World.Items[scenario == 2 ? 1 : 0];
+                 GUI.Label(new Rect(330, 660, 820, 28), $"Scenario {scenario} | active {frontend.ManipulationActive} | grip {cargo.HeldGripIndex(frontend.Network.LocalActor)} | cargo {cargo.Body.rotation.eulerAngles:F1} | max angular {maxAngular:F2} rad/s");
+             }
++#endif
+         }
+-        void OnDestroy() { if (modifier != null) InputSystem.RemoveDevice(modifier); if (motion != null) InputSystem.RemoveDevice(motion); if (wall) Destroy(wall); }
++        void OnDestroy() {
++#if ONHOLD_RELEASE_ACCEPTANCE
++            CleanupReleaseQA();
++#endif
++#if !ONHOLD_RELEASE_ACCEPTANCE
++            if (modifier != null) InputSystem.RemoveDevice(modifier);
++#endif
++            if (motion != null) InputSystem.RemoveDevice(motion); if (wall) Destroy(wall); }
+     }
+ }
+ #endif
+--- continuation-start/Assets/_OnHold/Scenes/Bootstrap.unity
++++ final/Assets/_OnHold/Scenes/Bootstrap.unity
+@@ -199,7 +199,7 @@
+   m_Name: 
+   m_EditorClassIdentifier: OnHold.Gameplay::OnHold.Gameplay.FoundationWorld
+   Configuration: {fileID: 4900000, guid: 7490a1bbab8e54dd09d535ee19c46204, type: 3}
+-  ContentHash: 7dbb09a07cc91edbca0a21a5720efdb420bc037dfede2c8811922e76341a1ffc
++  ContentHash: ef6283997a756d1c94f129f9ba1f928a543149267deecc03fbd391c3c72a3f38
+   Items:
+   - {fileID: 1163119329}
+   - {fileID: 1039011662}
+@@ -520,6 +520,7 @@
+   - component: {fileID: 386150560}
+   - component: {fileID: 386150559}
+   - component: {fileID: 386150558}
++  - component: {fileID: 386150561}
+   m_Layer: 0
+   m_Name: Local camera
+   m_TagString: MainCamera
+@@ -601,6 +602,50 @@
+   m_Children: []
+   m_Father: {fileID: 0}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++--- !u!114 &386150561
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 386150557}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
++  m_RenderShadows: 1
++  m_RequiresDepthTextureOption: 2
++  m_RequiresOpaqueTextureOption: 2
++  m_CameraType: 0
++  m_Cameras: []
++  m_RendererIndex: -1
++  m_VolumeLayerMask:
++    serializedVersion: 2
++    m_Bits: 1
++  m_VolumeTrigger: {fileID: 0}
++  m_VolumeFrameworkUpdateModeOption: 2
++  m_RenderPostProcessing: 0
++  m_Antialiasing: 0
++  m_AntialiasingQuality: 2
++  m_StopNaN: 0
++  m_Dithering: 0
++  m_ClearDepth: 1
++  m_AllowXRRendering: 1
++  m_AllowHDROutput: 1
++  m_UseScreenCoordOverride: 0
++  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
++  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
++  m_RequiresDepthTexture: 0
++  m_RequiresColorTexture: 0
++  m_TaaSettings:
++    m_Quality: 3
++    m_FrameInfluence: 0.1
++    m_JitterScale: 1
++    m_MipBias: 0
++    m_VarianceClampScale: 0.9
++    m_ContrastAdaptiveSharpening: 0
++  m_Version: 2
+ --- !u!1 &399783224
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -2352,7 +2397,7 @@
+   ConnectionData:
+     Address: 127.0.0.1
+     Port: 7777
+-    ServerListenAddress: 
++    ServerListenAddress: 127.0.0.1
+     ClientBindPort: 0
+   DebugSimulator:
+     PacketDelayMS: 0
+@@ -2702,6 +2747,7 @@
+   m_Component:
+   - component: {fileID: 1516097881}
+   - component: {fileID: 1516097880}
++  - component: {fileID: 1516097882}
+   m_Layer: 0
+   m_Name: Sun
+   m_TagString: Untagged
+@@ -2789,6 +2835,35 @@
+   m_Children: []
+   m_Father: {fileID: 0}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++--- !u!114 &1516097882
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1516097879}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
++  m_UsePipelineSettings: 1
++  m_AdditionalLightsShadowResolutionTier: 2
++  m_CustomShadowLayers: 0
++  m_LightCookieSize: {x: 1, y: 1}
++  m_LightCookieOffset: {x: 0, y: 0}
++  m_SoftShadowQuality: 0
++  m_RenderingLayersMask:
++    serializedVersion: 0
++    m_Bits: 1
++  m_ShadowRenderingLayersMask:
++    serializedVersion: 0
++    m_Bits: 1
++  m_Version: 4
++  m_LightLayerMask: 1
++  m_ShadowLayerMask: 1
++  m_RenderingLayers: 1
++  m_ShadowRenderingLayers: 1
+ --- !u!1 &1518208567
+ GameObject:
+   m_ObjectHideFlags: 0
+--- continuation-start/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs
++++ final/Assets/_OnHold/Tests/EditMode/ReleaseSafetyTests.cs
+@@ -20,9 +20,9 @@
+ 
+             // Create cargo with a Rigidbody — no full world needed for static ReleaseSafety tests.
+             cargoGo = GameObject.CreatePrimitive(PrimitiveType.Cube);
+-            cargoGo.layer = 9;
++            cargoGo.layer = 10;
+             cargoGo.transform.position = new Vector3(0, 5, 0);
+-            body = cargoGo.GetComponent<Rigidbody>();
++            body = cargoGo.AddComponent<Rigidbody>();
+             body.useGravity = false;
+ 
+             def = ScriptableObject.CreateInstance<ItemDefinition>();
+@@ -64,7 +64,7 @@
+         {
+             floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
+             floor.layer = 8;
+-            floor.transform.position = new Vector3(0, 3.5f, 0);
++            floor.transform.position = new Vector3(0, 4f, 0);
+             floor.transform.localScale = new Vector3(10, 1, 10);
+             Physics.SyncTransforms();
+             Assert.IsTrue(ReleaseSafety.IsPoseSafe(body, def.BoundsCenter, def.BoundsSize,
+@@ -91,34 +91,45 @@
+ 
+         [Test] public void S020_E06_DeterministicCandidateOrdering()
+         {
+-            wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+-            wall.layer = 8;
+-            wall.transform.position = new Vector3(0, 5, 0);
+-            wall.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+-            Physics.SyncTransforms();
+-            bool r1 = ReleaseSafety.IsPoseSafe(body, def.BoundsCenter, def.BoundsSize,
+-                new Vector3(0, 5, 0), Quaternion.identity, config.ReleasePenetrationTolerance);
+-            bool r2 = ReleaseSafety.IsPoseSafe(body, def.BoundsCenter, def.BoundsSize,
+-                new Vector3(0, 5, 0), Quaternion.identity, config.ReleasePenetrationTolerance);
+-            Assert.AreEqual(r1, r2);
++            floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
++            floor.layer = 8; floor.transform.position = new Vector3(0, 4.45f, 0);
++            floor.transform.localScale = new Vector3(10, .2f, 10);
++            Physics.SyncTransforms();
++            Assert.IsFalse(ReleaseSafety.IsPoseSafe(body, Vector3.zero, Vector3.one, body.position, body.rotation, config.ReleasePenetrationTolerance));
++            Assert.AreEqual(ReleaseResult.Released, ReleaseSafety.Evaluate(body, Vector3.zero, Vector3.one, config, out var first));
++            Assert.AreEqual(new Vector3(0, 5.15f, 0), first, "First safe candidate in fixed order");
++            for (int i = 0; i < 20; i++)
++            {
++                Assert.AreEqual(ReleaseResult.Released, ReleaseSafety.Evaluate(body, Vector3.zero, Vector3.one, config, out var next));
++                Assert.AreEqual(first, next);
++            }
+         }
+ 
+         [Test] public void S020_E07_BoundedSearchNeverExceedsConfiguredDistance()
+         {
+-            float scale = config.SafeReleaseSearchDistance / .5f;
+-            var maxOffset = new Vector3(.15f, .30f, .15f) * scale;
+-            Assert.LessOrEqual(maxOffset.magnitude, config.SafeReleaseSearchDistance + .01f);
++            floor = GameObject.CreatePrimitive(PrimitiveType.Cube); floor.layer = 8;
++            floor.transform.position = new Vector3(0, 4.5f, 0); floor.transform.localScale = new Vector3(10, .2f, 10);
++            Physics.SyncTransforms();
++            foreach (float radius in new[] { .1f, .25f, .5f })
++            {
++                config.SafeReleaseSearchDistance = radius;
++                var origin = body.position;
++                var result = ReleaseSafety.Evaluate(body, Vector3.zero, Vector3.one, config, out var safe);
++                Assert.LessOrEqual(Vector3.Distance(origin, safe), radius);
++                Assert.AreEqual(origin, body.position, "Evaluation must not move the body");
++                if (result == ReleaseResult.Released)
++                    Assert.IsTrue(ReleaseSafety.IsPoseSafe(body, Vector3.zero, Vector3.one, safe, body.rotation, config.ReleasePenetrationTolerance));
++                else Assert.AreEqual(ReleaseResult.NoSafePose, result);
++            }
+         }
+ 
+         [Test] public void S020_E08_FullyEnclosedPoseIsUnsafe()
+         {
+-            wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+-            wall.layer = 8;
+-            wall.transform.position = new Vector3(0, 5, 0);
+-            wall.transform.localScale = new Vector3(10, 10, 10);
+-            Physics.SyncTransforms();
+-            Assert.IsFalse(ReleaseSafety.IsPoseSafe(body, def.BoundsCenter, def.BoundsSize,
+-                new Vector3(0, 5, 0), Quaternion.identity, config.ReleasePenetrationTolerance));
++            wall = GameObject.CreatePrimitive(PrimitiveType.Cube); wall.layer = 8;
++            wall.transform.position = body.position; wall.transform.localScale = Vector3.one * 10;
++            Physics.SyncTransforms();
++            Assert.AreEqual(ReleaseResult.NoSafePose, ReleaseSafety.Evaluate(body, Vector3.zero, Vector3.one, config, out var safe));
++            Assert.AreEqual(body.position, safe);
+         }
+ 
+         [Test] public void S020_E09_LinearVelocityBound()
+@@ -155,12 +166,55 @@
+             Assert.AreEqual(Vector3.zero, angular);
+         }
+ 
+-        [Test] public void S020_E13_ReleaseResultEnumHasExpectedValues()
+-        {
+-            Assert.AreEqual(0, (int)ReleaseResult.Released);
+-            Assert.AreEqual(1, (int)ReleaseResult.Blocked);
+-            Assert.AreEqual(2, (int)ReleaseResult.NoSafePose);
+-            Assert.AreEqual(3, (int)ReleaseResult.InvalidState);
++        [Test] public void S020_E13_InvalidStateDoesNotMoveBody()
++        {
++            var origin = body.position;
++            Assert.AreEqual(ReleaseResult.InvalidState, ReleaseSafety.Evaluate(body, Vector3.zero, new Vector3(float.NaN, 1, 1), config, out _));
++            Assert.AreEqual(origin, body.position);
++        }
++
++        [TestCase(8)] [TestCase(9)] [TestCase(10)] [TestCase(11)]
++        public void S020_AllSolidGameplayLayersBlock(int layer)
++        {
++            wall = GameObject.CreatePrimitive(PrimitiveType.Cube); wall.layer = layer;
++            wall.transform.position = body.position; Physics.SyncTransforms();
++            Assert.IsFalse(ReleaseSafety.IsPoseSafe(body, Vector3.zero, Vector3.one, body.position, body.rotation, config.ReleasePenetrationTolerance));
++        }
++
++        [Test] public void S020_InvalidNumericPoseRejectedBeforePhysicsQuery()
++        {
++            foreach (float bad in new[] { float.NaN, float.PositiveInfinity, float.NegativeInfinity })
++            {
++                Assert.IsFalse(ReleaseSafety.IsPoseSafe(body, Vector3.zero, Vector3.one, new Vector3(bad, 5, 0), Quaternion.identity, .03f));
++                Assert.IsFalse(ReleaseSafety.IsPoseSafe(body, Vector3.zero, Vector3.one, body.position, new Quaternion(0, 0, 0, bad), .03f));
++                Assert.IsFalse(ReleaseSafety.IsPoseSafe(body, Vector3.zero, Vector3.one, body.position, Quaternion.identity, bad));
++            }
++            Assert.IsFalse(ReleaseSafety.IsPoseSafe(body, Vector3.zero, Vector3.one, body.position, default, .03f));
++        }
++
++        [Test] public void S020_FullQueryBufferIsConservativelyUnsafe()
++        {
++            wall = new GameObject("Dense self colliders"); wall.transform.SetParent(cargoGo.transform, false);
++            for (int i = 0; i < 40; i++) wall.AddComponent<BoxCollider>();
++            wall.layer = 10; Physics.SyncTransforms();
++            Assert.IsFalse(ReleaseSafety.IsPoseSafe(body, Vector3.zero, Vector3.one, body.position, body.rotation, .03f));
++            Assert.AreEqual(ReleaseResult.NoSafePose, ReleaseSafety.Evaluate(body, Vector3.zero, Vector3.one, config, out _));
++        }
++
++        [TestCase(.02f, true)] [TestCase(.04f, false)]
++        public void S020_PenetrationToleranceIsDistancePerFace(float depth, bool safe)
++        {
++            wall = GameObject.CreatePrimitive(PrimitiveType.Cube); wall.layer = 8;
++            wall.transform.position = new Vector3(1.5f - depth, 5, 0); Physics.SyncTransforms();
++            Assert.AreEqual(safe, ReleaseSafety.IsPoseSafe(body, Vector3.zero, new Vector3(2, .6f, .7f), body.position, body.rotation, .03f));
++        }
++
++        [Test] public void S020_ConfigurationRejectsInvalidAndExcessiveLimits()
++        {
++            config.SafeReleaseSearchDistance = 2; Assert.Throws<ArgumentException>(() => config.Validate());
++            config = new FoundationConfig { ReleasePenetrationTolerance = float.NaN }; Assert.Throws<ArgumentException>(() => config.Validate());
++            config = new FoundationConfig { MaxReleaseLinearSpeed = 9 }; Assert.Throws<ArgumentException>(() => config.Validate());
++            config = new FoundationConfig { MaxReleaseAngularSpeed = 7 }; Assert.Throws<ArgumentException>(() => config.Validate());
+         }
+ 
+         [Test] public void S020_E14_WarmedReleaseSafetyChecksAllocateZero()
+--- continuation-start/Assets/_OnHold/Tests/PlayMode/CarryReleaseSafetyTests.cs
++++ final/Assets/_OnHold/Tests/PlayMode/CarryReleaseSafetyTests.cs
+@@ -92,7 +92,6 @@
+                 cargo.UpdateManipulation(player.Actor, true, new Vector2(1, .5f), Quaternion.identity, .02f);
+                 Tick();
+             }
+-            var rotBefore = cargo.Body.rotation;
+             Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
+             Assert.AreEqual(0, cargo.HandleCount);
+             // Manipulation torque must stop.
+@@ -101,24 +100,23 @@
+ 
+         [Test] public void S020_P03_FloorSupportedRelease()
+         {
+-            // Place cargo just above the floor.
+-            cargo.Body.position = new Vector3(30, .52f, 0);
+-            Physics.SyncTransforms();
+-            Grab();
+-            for (int i = 0; i < 10; i++) Tick();
+-            // Move cargo near floor.
+-            cargo.Body.position = new Vector3(30, .55f, 0);
+-            Physics.SyncTransforms();
+-            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
++            Grab();
++            // Authored long cargo is .6 m tall; support it at the floor, away from the player capsule.
++            cargo.Body.position = new Vector3(30, cargo.Definition.BoundsSize.y * .5f, 1.7f);
++            cargo.Body.rotation = Quaternion.identity;
++            Physics.SyncTransforms();
++            var before = cargo.Body.position;
++            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
++            Assert.AreEqual(before, cargo.Body.position, "Ordinary support needs no correction");
+         }
+ 
+         [Test] public void S020_P04_WallContactRelease()
+         {
+-            var wallObj = Box(new Vector3(31.8f, 1, 2.6f), new Vector3(.4f, 4, 8));
+-            Grab();
+-            for (int i = 0; i < 10; i++) Tick();
+-            // Cargo near wall but not deeply inside.
+-            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
++            Grab();
++            Box(cargo.Body.position + Vector3.right * (cargo.Definition.BoundsSize.x * .5f + .2f - .01f), new Vector3(.4f, 4, 8));
++            var before = cargo.Body.position;
++            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
++            Assert.AreEqual(before, cargo.Body.position, "Normal wall contact needs no correction");
+         }
+ 
+         [Test] public void S020_P05_DeepObstructedReleaseBlocked()
+@@ -128,7 +126,6 @@
+             cargo.Body.position = new Vector3(30, 1.5f, 1.7f); // inside the wall
+             Physics.SyncTransforms();
+             Grab();
+-            for (int i = 0; i < 5; i++) Tick();
+             var result = Apply(CommandType.Release);
+             // Should be blocked — cargo inside thick geometry.
+             Assert.AreEqual(Reason.Blocked, result);
+@@ -138,21 +135,16 @@
+ 
+         [Test] public void S020_P06_NearbySafeResolution()
+         {
+-            // Thin floor just barely overlapping cargo bottom.
+-            var thinFloor = Box(new Vector3(30, 1.05f, 1.7f), new Vector3(8, .1f, 8));
+-            cargo.Body.position = new Vector3(30, 1.05f, 1.7f); // slightly overlapping thin surface
+-            Physics.SyncTransforms();
+-            Grab();
+-            for (int i = 0; i < 5; i++) Tick();
+-            var posBefore = cargo.Body.position;
+-            var result = Apply(CommandType.Release);
+-            if (result == Reason.Accepted)
+-            {
+-                // If released, displacement must be bounded.
+-                float displacement = Vector3.Distance(posBefore, cargo.Body.position);
+-                Assert.LessOrEqual(displacement, world.Config.SafeReleaseSearchDistance + .01f);
+-            }
+-            // Either resolved nearby or blocked — both acceptable.
++            Grab();
++            var before = cargo.Body.position;
++            Box(before - Vector3.up * (cargo.Definition.BoundsSize.y * .5f + .05f - .08f), new Vector3(8, .1f, 8));
++            Assert.IsFalse(ReleaseSafety.IsPoseSafe(cargo.Body, cargo.Definition.BoundsCenter, cargo.Definition.BoundsSize, before, cargo.Body.rotation, world.Config.ReleasePenetrationTolerance));
++            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
++            float displacement = Vector3.Distance(before, cargo.Body.position);
++            Assert.AreEqual(.15f, displacement, .00001f);
++            Assert.LessOrEqual(displacement, world.Config.SafeReleaseSearchDistance);
++            Assert.IsTrue(ReleaseSafety.IsPoseSafe(cargo.Body, cargo.Definition.BoundsCenter, cargo.Definition.BoundsSize, cargo.Body.position, cargo.Body.rotation, world.Config.ReleasePenetrationTolerance));
++            TestContext.WriteLine($"Resolved release displacement: {displacement} m");
+         }
+ 
+         [Test] public void S020_P07_NoSafePoseRejection()
+@@ -175,41 +167,55 @@
+             Assert.AreEqual(Reason.Blocked, Apply(CommandType.Release));
+             Assert.AreEqual(1, cargo.HandleCount);
+             // Move cargo out.
+-            Object.Destroy(enclosure);
+-            fixtures.Remove(enclosure);
++            enclosure.SetActive(false); // Destroy is deferred until the next frame.
+             cargo.Body.position = player.Eye + Vector3.forward * 1.7f;
+             Physics.SyncTransforms();
+             Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
+             Assert.AreEqual(0, cargo.HandleCount);
+         }
+ 
+-        [Test] public void S020_P09_ProlongedObstruction()
+-        {
+-            Grab();
+-            var wallObj = Box(new Vector3(30, 1.5f, .8f), new Vector3(8, 4, .4f));
+-            float peakSpeed = 0;
+-            for (int i = 0; i < 500; i++)
++        GameObject ObstructionWorkload(int steps)
++        {
++            Grab();
++            var barrier = Box(new Vector3(30, 1.5f, .8f), new Vector3(8, 4, .4f));
++            float linear = 0, angular = 0, force = 0, torque = 0, depth = 0;
++            var collider = cargo.GetComponentInChildren<Collider>();
++            var obstacle = barrier.GetComponent<Collider>();
++            for (int i = 0; i < steps; i++)
+             {
+                 Tick();
+-                peakSpeed = Mathf.Max(peakSpeed, cargo.Body.linearVelocity.magnitude);
+-                Assert.IsTrue(SafeMath.Finite(cargo.Body.position));
+-                Assert.IsTrue(SafeMath.Finite(cargo.Body.linearVelocity));
+-                Assert.LessOrEqual(cargo.Body.linearVelocity.magnitude, world.Config.BodySpeedMax + .1f);
+-            }
+-            TestContext.WriteLine($"Prolonged obstruction peak speed: {peakSpeed}");
+-        }
++                linear = Mathf.Max(linear, cargo.Body.linearVelocity.magnitude);
++                angular = Mathf.Max(angular, cargo.Body.angularVelocity.magnitude);
++                force = Mathf.Max(force, cargo.LastForce.magnitude); torque = Mathf.Max(torque, cargo.LastTorque.magnitude);
++                if (Physics.ComputePenetration(collider, collider.transform.position, collider.transform.rotation,
++                    obstacle, obstacle.transform.position, obstacle.transform.rotation, out _, out var penetration)) depth = Mathf.Max(depth, penetration);
++                Assert.AreEqual(1, cargo.HandleCount, "Workload must stay held");
++                Assert.IsTrue(SafeMath.Finite(cargo.Body.position) && SafeMath.Finite(cargo.Body.rotation));
++                Assert.IsTrue(SafeMath.Finite(cargo.Body.linearVelocity) && SafeMath.Finite(cargo.Body.angularVelocity));
++                Assert.LessOrEqual(linear, world.Config.BodySpeedMax + .001f);
++                Assert.LessOrEqual(angular, world.Config.AngularSpeedMax + .001f);
++                Assert.LessOrEqual(force, world.Config.TotalForceMax + .001f);
++                Assert.LessOrEqual(torque, world.Config.TotalTorqueMax + .001f);
++            }
++            Assert.Greater(depth, 0, "Workload must exercise real contact");
++            Assert.Less(depth, .08f, "Retain the established solver penetration ceiling");
++            TestContext.WriteLine($"Obstruction duration={steps * .02f}s linear={linear} angular={angular} force={force} torque={torque} penetration={depth}");
++            return barrier;
++        }
++
++        [Test] public void S020_P09_ProlongedObstruction() => ObstructionWorkload(500);
+ 
+         [Test] public void S020_P10_ReleaseAfterProlongedObstruction()
+         {
+-            Grab();
+-            Box(new Vector3(30, 1.5f, .8f), new Vector3(8, 4, .4f));
+-            for (int i = 0; i < 300; i++) Tick();
+-            // Move cargo to valid position.
+-            cargo.Body.position = player.Eye + Vector3.forward * 1.7f;
+-            Physics.SyncTransforms();
+-            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
+-            Assert.LessOrEqual(cargo.Body.linearVelocity.magnitude, world.Config.MaxReleaseLinearSpeed + .01f);
+-            Assert.LessOrEqual(cargo.Body.angularVelocity.magnitude, world.Config.MaxReleaseAngularSpeed + .01f);
++            var barrier = ObstructionWorkload(500);
++            barrier.SetActive(false); Physics.SyncTransforms();
++            float recoveryPeak = 0;
++            for (int i = 0; i < 150; i++) { Tick(); recoveryPeak = Mathf.Max(recoveryPeak, cargo.Body.linearVelocity.magnitude); Assert.AreEqual(1, cargo.HandleCount); }
++            Assert.Less(recoveryPeak, world.Config.MaxReleaseLinearSpeed, "Recovery must not launch at the hard velocity ceiling");
++            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
++            TestContext.WriteLine($"Recovery peak={recoveryPeak}; release linear={cargo.Body.linearVelocity.magnitude} angular={cargo.Body.angularVelocity.magnitude}");
++            Assert.LessOrEqual(cargo.Body.linearVelocity.magnitude, world.Config.MaxReleaseLinearSpeed + .001f);
++            Assert.LessOrEqual(cargo.Body.angularVelocity.magnitude, world.Config.MaxReleaseAngularSpeed + .001f);
+         }
+ 
+         [Test] public void S020_P11_RapidManipulationBeforeRelease()
+@@ -253,15 +259,20 @@
+             cargo.Body.position = new Vector3(30, 1.5f, 1.7f);
+             Physics.SyncTransforms();
+             Grab();
++            cargo.UpdateManipulation(player.Actor, true, Vector2.one, Quaternion.identity, .02f);
++            cargo.TryHeldOrientation(player.Actor, out var orientation);
++            int grip = cargo.HeldGripIndex(player.Actor); uint revision = cargo.State.Revision;
++            for (int i = 0; i < 50; i++) Apply(CommandType.Release);
+             long before = GC.GetAllocatedBytesForCurrentThread();
+-            for (int i = 0; i < 100; i++)
+-            {
+-                Assert.AreEqual(Reason.Blocked, Apply(CommandType.Release));
+-                Assert.AreEqual(1, cargo.HandleCount);
+-            }
++            bool allBlocked = true;
++            for (int i = 0; i < 1000; i++) allBlocked &= Apply(CommandType.Release) == Reason.Blocked;
+             long bytes = GC.GetAllocatedBytesForCurrentThread() - before;
+-            TestContext.WriteLine("100 blocked release requests: " + bytes + " bytes");
+-            // Should be very low or zero — no per-request allocations.
++            Assert.IsTrue(allBlocked); Assert.AreEqual(0, bytes);
++            Assert.AreEqual(grip, cargo.HeldGripIndex(player.Actor)); Assert.AreEqual(revision, cargo.State.Revision);
++            Assert.IsTrue(cargo.TryHeldOrientation(player.Actor, out var after));
++            Assert.AreEqual(orientation.Target, after.Target); Assert.IsTrue(after.Active);
++            Assert.IsTrue(cargo.UpdateManipulation(player.Actor, true, Vector2.one, Quaternion.identity, .02f));
++            TestContext.WriteLine("1000 warmed blocked production release requests: " + bytes + " bytes");
+         }
+ 
+         [Test] public void S020_P15_PlayerControlsRegression()
+@@ -276,22 +287,37 @@
+             Assert.IsTrue(player.RequestJump());
+         }
+ 
++        [Test] public void S020_InvalidReleaseStatePreservesCommittedGrip()
++        {
++            Grab(); cargo.Body.isKinematic = true;
++            Assert.AreEqual(Reason.InvalidState, Apply(CommandType.Release));
++            Assert.AreEqual(1, cargo.HandleCount); Assert.IsTrue(cargo.State.IsHeldBy(player.Actor));
++        }
++
++        [TestCase(1f, 1f)] [TestCase(8f, 6f)]
++        public void S020_ProductionReleaseVelocityPolicy(float linear, float angular)
++        {
++            Grab(); cargo.Body.linearVelocity = Vector3.right * linear; cargo.Body.angularVelocity = Vector3.up * angular;
++            Assert.AreEqual(Reason.Accepted, Apply(CommandType.Release));
++            Assert.AreEqual(Vector3.right * Mathf.Min(linear, world.Config.MaxReleaseLinearSpeed), cargo.Body.linearVelocity);
++            Assert.AreEqual(Vector3.up * Mathf.Min(angular, world.Config.MaxReleaseAngularSpeed), cargo.Body.angularVelocity);
++            TestContext.WriteLine($"Velocity input={linear}/{angular}, released={cargo.Body.linearVelocity.magnitude}/{cargo.Body.angularVelocity.magnitude}");
++        }
++
+         [Test] public void S020_ThousandWarmedCarryReleaseSafetyOperationsAllocateZero()
+         {
+             Grab();
+             // Warmup.
+             for (int i = 0; i < 50; i++)
+             {
+-                ReleaseSafety.IsPoseSafe(cargo.Body, cargo.Definition.BoundsCenter, cargo.Definition.BoundsSize,
+-                    cargo.Body.position, cargo.Body.rotation, world.Config.ReleasePenetrationTolerance);
++                ReleaseSafety.Evaluate(cargo, world.Config, out _);
+                 var l = cargo.Body.linearVelocity; var a = cargo.Body.angularVelocity;
+                 ReleaseSafety.SanitizeVelocity(ref l, ref a, world.Config);
+             }
+             long start = GC.GetAllocatedBytesForCurrentThread();
+             for (int i = 0; i < 1000; i++)
+             {
+-                ReleaseSafety.IsPoseSafe(cargo.Body, cargo.Definition.BoundsCenter, cargo.Definition.BoundsSize,
+-                    cargo.Body.position, cargo.Body.rotation, world.Config.ReleasePenetrationTolerance);
++                ReleaseSafety.Evaluate(cargo, world.Config, out _);
+                 var l = cargo.Body.linearVelocity; var a = cargo.Body.angularVelocity;
+                 ReleaseSafety.SanitizeVelocity(ref l, ref a, world.Config);
+             }
+--- continuation-start/Assets/_OnHold/Tests/PlayMode/SoloPlayableInputTests.cs
++++ final/Assets/_OnHold/Tests/PlayMode/SoloPlayableInputTests.cs
+@@ -231,6 +231,41 @@
+             Assert.Greater(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .2f);
+             frontend.SetMenu(true); Assert.IsFalse(frontend.ManipulationActive);
+         }
++        [UnityTest] public IEnumerator S020_BlockedMouseReleasePreservesManipulationAndRetries()
++        {
++            frontend.Settings.ToggleHold = true; yield return PlaceAndClickCargo();
++            var world = network.World; var cargo = world.Items[0];
++            world.enabled = false; // Explicitly advance queued production commands below.
++            InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2 }); yield return null;
++            Assert.IsTrue(frontend.ManipulationActive);
++            var barrier = GameObject.CreatePrimitive(PrimitiveType.Cube);
++            try
++            {
++                barrier.layer = 8; barrier.transform.position = cargo.Body.position; barrier.transform.localScale = Vector3.one * 6;
++                Physics.SyncTransforms();
++                int grip = cargo.HeldGripIndex(network.LocalActor); uint revision = cargo.State.Revision;
++                var camera = frontend.ViewCamera.transform.rotation;
++                InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 3 }); yield return null;
++                Assert.IsTrue(frontend.ManipulationActive, "A release request must not dispose control before the authority decides");
++                world.Step(.02f); yield return null;
++                Assert.AreEqual(Reason.Blocked, network.LastReason);
++                Assert.AreEqual(grip, cargo.HeldGripIndex(network.LocalActor)); Assert.AreEqual(revision, cargo.State.Revision);
++                Assert.IsTrue(frontend.ManipulationActive);
++                InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 2, delta = new Vector2(20, 10) }); yield return null;
++                Assert.Less(Quaternion.Angle(camera, frontend.ViewCamera.transform.rotation), .01f);
++                Assert.IsTrue(cargo.TryHeldOrientation(network.LocalActor, out var orientation)); Assert.IsTrue(orientation.Active);
++                barrier.SetActive(false);
++                var player = world.Players[network.LocalActor.Id];
++                cargo.Body.position = player.Eye + frontend.ViewCamera.transform.forward * 1.7f;
++                cargo.Body.rotation = Quaternion.identity; Physics.SyncTransforms();
++                InputSystem.QueueStateEvent(mouse, new MouseState { buttons = 3 }); yield return null;
++                world.Step(.02f); yield return null;
++                Assert.AreEqual(0, cargo.HandleCount); Assert.IsFalse(frontend.ManipulationActive);
++                Assert.AreEqual(Vector3.zero, cargo.LastForce); Assert.AreEqual(Vector3.zero, cargo.LastTorque);
++            }
++            finally { UnityEngine.Object.Destroy(barrier); world.enabled = true; }
++        }
++
+         IEnumerator PlaceAndClickCargo()
+         {
+             var cargo = network.World.Items[0]; var p = network.World.Players[network.LocalActor.Id];

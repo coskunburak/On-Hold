@@ -1,0 +1,11 @@
+{
+  "name": "OnHold.Persistence",
+  "rootNamespace": "OnHold.Persistence",
+  "references": [
+    "OnHold.Core",
+    "OnHold.Domain",
+    "Unity.Newtonsoft.Json"
+  ],
+  "includePlatforms": [],
+  "noEngineReferences": false
+}

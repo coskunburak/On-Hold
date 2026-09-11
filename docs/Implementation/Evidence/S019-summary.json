@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "focusedEditMode": { "total": 14, "passed": 14, "failed": 0 },
+  "focusedPlayMode": { "total": 16, "passed": 16, "failed": 0 },
+  "regressionEditMode": { "total": 80, "passed": 80, "failed": 0 },
+  "regressionPlayMode": { "total": 60, "passed": 60, "failed": 0 },
+  "stability": {
+    "torqueBounded": true,
+    "angularVelocityBounded": true,
+    "peakAngularVelocity": 3.88,
+    "nanInfinityObserved": false,
+    "solverInstabilityObserved": false
+  },
+  "collision": {
+    "wallMaxPenetrationMm": 0.5,
+    "floorMaxPenetrationMm": 15.7
+  },
+  "performance": {
+    "iterations": 1000,
+    "managedBytes": 0
+  },
+  "compilation": {
+    "errors": 0,
+    "warnings": 0,
+    "unityWarnings": 347
+  }
+}

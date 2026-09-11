@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-11 08:45:09Z" end-time="2026-09-11 08:45:13Z" duration="3.9122597">
+  <test-suite type="TestSuite" id="1095" name="On Hold" fullname="On Hold" runstate="Runnable" testcasecount="76" result="Failed" site="Child" start-time="2026-09-11 08:45:09Z" end-time="2026-09-11 08:45:13Z" duration="3.912260" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1089" name="OnHold.PlayMode.Tests.dll" fullname="/Users/burakcoskun/On Hold/Library/ScriptAssemblies/OnHold.PlayMode.Tests.dll" runstate="Runnable" testcasecount="76" result="Failed" site="Child" start-time="2026-09-11 08:45:09Z" end-time="2026-09-11 08:45:13Z" duration="3.907181" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="47637" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1090" name="OnHold" fullname="OnHold" runstate="Runnable" testcasecount="76" result="Failed" site="Child" start-time="2026-09-11 08:45:09Z" end-time="2026-09-11 08:45:13Z" duration="3.906825" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1091" name="Tests" fullname="OnHold.Tests" runstate="Runnable" testcasecount="76" result="Failed" site="Child" start-time="2026-09-11 08:45:09Z" end-time="2026-09-11 08:45:13Z" duration="3.906651" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1003" name="CarryReleaseSafetyTests" fullname="OnHold.Tests.CarryReleaseSafetyTests" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-09-11 08:45:09Z" end-time="2026-09-11 08:45:13Z" duration="3.905404" total="16" passed="14" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1004" name="S020_P01_NormalCarryAndRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P01_NormalCarryAndRelease" methodname="S020_P01_NormalCarryAndRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="993597119" result="Passed" start-time="2026-09-11 08:45:09Z" end-time="2026-09-11 08:45:10Z" duration="0.715417" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="S020_P02_ManipulateBeforeRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P02_ManipulateBeforeRelease" methodname="S020_P02_ManipulateBeforeRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1633874710" result="Passed" start-time="2026-09-11 08:45:10Z" end-time="2026-09-11 08:45:10Z" duration="0.213485" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="S020_P03_FloorSupportedRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P03_FloorSupportedRelease" methodname="S020_P03_FloorSupportedRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="876906918" result="Failed" start-time="2026-09-11 08:45:10Z" end-time="2026-09-11 08:45:10Z" duration="0.205034" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: Accepted
+  But was:  Blocked
+]]></message>
+                <stack-trace><![CDATA[at OnHold.Tests.CarryReleaseSafetyTests.S020_P03_FloorSupportedRelease () [0x0006b] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/CarryReleaseSafetyTests.cs:112
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1007" name="S020_P04_WallContactRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P04_WallContactRelease" methodname="S020_P04_WallContactRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="841495291" result="Passed" start-time="2026-09-11 08:45:10Z" end-time="2026-09-11 08:45:11Z" duration="0.202855" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="S020_P05_DeepObstructedReleaseBlocked" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P05_DeepObstructedReleaseBlocked" methodname="S020_P05_DeepObstructedReleaseBlocked" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1485721177" result="Passed" start-time="2026-09-11 08:45:11Z" end-time="2026-09-11 08:45:11Z" duration="0.206155" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="S020_P06_NearbySafeResolution" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P06_NearbySafeResolution" methodname="S020_P06_NearbySafeResolution" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="2078888676" result="Passed" start-time="2026-09-11 08:45:11Z" end-time="2026-09-11 08:45:11Z" duration="0.216526" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="S020_P07_NoSafePoseRejection" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P07_NoSafePoseRejection" methodname="S020_P07_NoSafePoseRejection" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="574845519" result="Passed" start-time="2026-09-11 08:45:11Z" end-time="2026-09-11 08:45:11Z" duration="0.212994" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="S020_P08_RetryAfterBlockedRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P08_RetryAfterBlockedRelease" methodname="S020_P08_RetryAfterBlockedRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="580458802" result="Failed" start-time="2026-09-11 08:45:11Z" end-time="2026-09-11 08:45:11Z" duration="0.206187" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: Accepted
+  But was:  Blocked
+]]></message>
+                <stack-trace><![CDATA[at OnHold.Tests.CarryReleaseSafetyTests.S020_P08_RetryAfterBlockedRelease () [0x000d8] in /Users/burakcoskun/On Hold/Assets/_OnHold/Tests/PlayMode/CarryReleaseSafetyTests.cs:182
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1012" name="S020_P09_ProlongedObstruction" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P09_ProlongedObstruction" methodname="S020_P09_ProlongedObstruction" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1833662888" result="Passed" start-time="2026-09-11 08:45:11Z" end-time="2026-09-11 08:45:12Z" duration="0.243052" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Prolonged obstruction peak speed: 2.049621
+]]></output>
+            </test-case>
+            <test-case id="1013" name="S020_P10_ReleaseAfterProlongedObstruction" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P10_ReleaseAfterProlongedObstruction" methodname="S020_P10_ReleaseAfterProlongedObstruction" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="151963859" result="Passed" start-time="2026-09-11 08:45:12Z" end-time="2026-09-11 08:45:12Z" duration="0.225893" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="S020_P11_RapidManipulationBeforeRelease" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P11_RapidManipulationBeforeRelease" methodname="S020_P11_RapidManipulationBeforeRelease" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="213754820" result="Passed" start-time="2026-09-11 08:45:12Z" end-time="2026-09-11 08:45:12Z" duration="0.210885" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="S020_P12_ReGrab" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P12_ReGrab" methodname="S020_P12_ReGrab" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="139486126" result="Passed" start-time="2026-09-11 08:45:12Z" end-time="2026-09-11 08:45:12Z" duration="0.205847" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="S020_P13_DestroyedHeldCargo" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P13_DestroyedHeldCargo" methodname="S020_P13_DestroyedHeldCargo" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="928687876" result="Passed" start-time="2026-09-11 08:45:12Z" end-time="2026-09-11 08:45:13Z" duration="0.209515" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="S020_P14_RepeatedBlockedReleaseRequests" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P14_RepeatedBlockedReleaseRequests" methodname="S020_P14_RepeatedBlockedReleaseRequests" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="2132603738" result="Passed" start-time="2026-09-11 08:45:13Z" end-time="2026-09-11 08:45:13Z" duration="0.203627" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[100 blocked release requests: 0 bytes
+]]></output>
+            </test-case>
+            <test-case id="1018" name="S020_P15_PlayerControlsRegression" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_P15_PlayerControlsRegression" methodname="S020_P15_PlayerControlsRegression" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1013617814" result="Passed" start-time="2026-09-11 08:45:13Z" end-time="2026-09-11 08:45:13Z" duration="0.207533" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="S020_ThousandWarmedCarryReleaseSafetyOperationsAllocateZero" fullname="OnHold.Tests.CarryReleaseSafetyTests.S020_ThousandWarmedCarryReleaseSafetyOperationsAllocateZero" methodname="S020_ThousandWarmedCarryReleaseSafetyOperationsAllocateZero" classname="OnHold.Tests.CarryReleaseSafetyTests" runstate="Runnable" seed="1061184034" result="Passed" start-time="2026-09-11 08:45:13Z" end-time="2026-09-11 08:45:13Z" duration="0.211504" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[1000 warmed carry/release safety operations: 0 bytes
+Saving results to: /Users/burakcoskun/Library/Application Support/DefaultCompany/On Hold/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

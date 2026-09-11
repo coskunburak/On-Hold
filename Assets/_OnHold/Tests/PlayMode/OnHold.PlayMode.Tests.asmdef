@@ -1,0 +1,21 @@
+{
+  "name": "OnHold.PlayMode.Tests",
+  "references": [
+    "OnHold.Core",
+    "OnHold.Domain",
+    "OnHold.Gameplay",
+    "OnHold.Networking",
+    "OnHold.Persistence",
+    "OnHold.Presentation",
+    "OnHold.Bootstrap",
+    "Unity.Netcode.Runtime",
+    "Unity.InputSystem"
+  ],
+  "includePlatforms": [],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ]
+}
